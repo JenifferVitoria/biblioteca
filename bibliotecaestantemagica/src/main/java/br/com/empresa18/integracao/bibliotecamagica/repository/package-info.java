@@ -1,1 +1,0 @@
-package br.com.empresa18.integracao.bibliotecamagica.repository;

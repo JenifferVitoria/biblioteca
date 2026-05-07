@@ -1,4 +1,4 @@
-package br.com.empresa18.integracao.bibliotecamagica.entity;
+package br.com.empresa18.integracao.bibliotecaestantemagica.entity;
 
 
 import javax.persistence.Column;
@@ -25,8 +25,8 @@ public class ResponsavelAlunoEntity {
 	private int cpf;
 	
 	@ManyToOne
-	@JoinColumn(name = "idResponsavelAluno", nullable = false)
-	private ResponsavelAlunoEntity responsavelAluno;
+	@JoinColumn(name = "idUsuario", nullable = false)
+	private UsuariosEntity usuario;
 	
 //// GETTERS E SETTERS
 	public Long getId() {

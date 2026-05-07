@@ -1,4 +1,4 @@
-package br.com.empresa18.integracao.bibliotecamagica.entity;
+package br.com.empresa18.integracao.bibliotecaestantemagica.entity;
 
 import java.time.LocalDate;
 
