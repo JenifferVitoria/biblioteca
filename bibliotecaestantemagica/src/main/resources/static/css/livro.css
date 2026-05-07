@@ -1,0 +1,499 @@
+/* =========================
+   GERAL
+========================= */
+
+body{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI', sans-serif;
+    background:#f6f9ff;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    background:#ffffff;
+    min-height:100vh;
+    padding:25px;
+    border-right:1px solid #e3ecff;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.logo{
+    width:170px;
+}
+
+.sidebar-title{
+    color:#004aad;
+    text-align:center;
+    font-weight:700;
+    margin-top:20px;
+    margin-bottom:35px;
+}
+
+.menu-item{
+    padding:16px 18px;
+    border-radius:14px;
+    margin-bottom:10px;
+    color:#35507a;
+    font-size:17px;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.menu-item i{
+    margin-right:12px;
+}
+
+.menu-item:hover{
+    background:#edf4ff;
+}
+
+.menu-item.active{
+    background:#edf4ff;
+    color:#005bea;
+    font-weight:600;
+}
+
+.btn-sair{
+    width:100%;
+    height:58px;
+    border-radius:16px;
+    background:#ffffff;
+    border:1px solid #d9e7ff;
+    color:#35507a;
+    font-size:18px;
+    font-weight:600;
+}
+
+/* =========================
+   CONTEUDO
+========================= */
+
+.content-area{
+    padding:30px;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.search-box{
+    background:#ffffff;
+    border:2px solid #dce8ff;
+    border-radius:20px;
+    height:72px;
+    width:65%;
+    display:flex;
+    align-items:center;
+    padding:0 25px;
+}
+
+.search-box i{
+    color:#6f86ad;
+    font-size:24px;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    width:100%;
+    margin-left:15px;
+    font-size:20px;
+}
+
+.notification-icon{
+    font-size:28px;
+    color:#004aad;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.book-container{
+    background:#ffffff;
+    border-radius:26px;
+    padding:30px;
+    border:1px solid #e3ecff;
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb-custom{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:35px;
+    color:#7b8da9;
+    font-size:15px;
+}
+
+.breadcrumb-custom strong{
+    color:#35507a;
+}
+
+/* =========================
+   LIVRO
+========================= */
+
+.book-info-area{
+    display:flex;
+    gap:35px;
+}
+
+.book-cover img{
+    width:280px;
+    border-radius:18px;
+}
+
+.book-details h1{
+    font-size:60px;
+    color:#004aad;
+    font-weight:800;
+}
+
+.book-details h3{
+    color:#005bea;
+    margin-bottom:25px;
+}
+
+/* =========================
+   RATING
+========================= */
+
+.rating-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.stars{
+    color:#ffb400;
+    font-size:24px;
+}
+
+.rating-area span{
+    color:#60779d;
+    font-weight:600;
+}
+
+/* =========================
+   INFOS
+========================= */
+
+.book-data{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.info-item{
+    display:flex;
+    flex-direction:column;
+}
+
+.info-item strong{
+    color:#35507a;
+    margin-bottom:5px;
+}
+
+.info-item span{
+    color:#60779d;
+}
+
+/* =========================
+   SINOPSE
+========================= */
+
+.sinopse-area{
+    margin-top:40px;
+    padding-top:30px;
+    border-top:1px solid #edf2ff;
+}
+
+.sinopse-area h4{
+    color:#004aad;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.sinopse-area p{
+    color:#60779d;
+    line-height:1.8;
+}
+
+/* =========================
+   SIDE CARD
+========================= */
+
+.side-card{
+    background:#ffffff;
+    border:1px solid #e3ecff;
+    border-radius:22px;
+    padding:25px;
+}
+
+.status-badge{
+    background:#dff7e8;
+    color:#2fa45d;
+    padding:8px 18px;
+    border-radius:20px;
+    width:max-content;
+    margin-left:auto;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+.side-card h4{
+    color:#004aad;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+/* =========================
+   DISPONIBILIDADE
+========================= */
+
+.availability-box{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.availability-icon{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#edf4ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.availability-icon i{
+    font-size:32px;
+    color:#005bea;
+}
+
+.availability-box h2{
+    color:#005bea;
+    font-size:48px;
+    font-weight:800;
+    margin:0;
+}
+
+.availability-box p{
+    color:#60779d;
+    margin:0;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.btn-reservar{
+    width:100%;
+    height:58px;
+    background:linear-gradient(90deg,#005bea,#0047b3);
+    border:none;
+    border-radius:16px;
+    color:#ffffff;
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.btn-lista{
+    width:100%;
+    height:58px;
+    background:#ffffff;
+    border:2px solid #dce8ff;
+    border-radius:16px;
+    color:#005bea;
+    font-size:18px;
+    font-weight:700;
+}
+
+/* =========================
+   AVALIAÇÕES
+========================= */
+
+.avaliacao-geral{
+    text-align:left;
+    margin-bottom:30px;
+}
+
+.nota{
+    font-size:62px;
+    color:#005bea;
+    font-weight:800;
+}
+
+.avaliacao-geral span{
+    color:#60779d;
+}
+
+.rating-bars{
+    margin-bottom:25px;
+}
+
+.bar-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.bar-item span{
+    width:45px;
+    color:#60779d;
+}
+
+.bar{
+    flex:1;
+    height:10px;
+    background:#edf2ff;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    background:#005bea;
+    border-radius:20px;
+}
+
+.w-10{
+    width:10%;
+}
+
+.bar-item small{
+    color:#60779d;
+}
+
+.btn-avaliacoes{
+    width:100%;
+    height:58px;
+    background:#ffffff;
+    border:2px solid #dce8ff;
+    border-radius:16px;
+    color:#005bea;
+    font-size:17px;
+    font-weight:700;
+}
+
+/* =========================
+   EXTRA INFO
+========================= */
+
+.extra-info{
+    margin-top:45px;
+}
+
+.extra-info h4{
+    color:#004aad;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.extra-card{
+    border:1px solid #e3ecff;
+    border-radius:20px;
+    padding:22px;
+    display:flex;
+    gap:18px;
+    align-items:center;
+    height:100%;
+}
+
+.extra-icon{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#edf4ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.extra-icon i{
+    color:#005bea;
+    font-size:28px;
+}
+
+.extra-card small{
+    color:#7d8daa;
+}
+
+.extra-card h6{
+    color:#004aad;
+    margin:5px 0;
+    font-weight:700;
+}
+
+.extra-card span{
+    color:#005bea;
+    font-size:14px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:992px){
+
+    .sidebar{
+        min-height:auto;
+    }
+
+    .topbar{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    .book-info-area{
+        flex-direction:column;
+    }
+
+    .book-cover img{
+        width:100%;
+        max-width:350px;
+    }
+
+    .book-data{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .book-details h1{
+        font-size:42px;
+    }
+
+    .nota{
+        font-size:48px;
+    }
+
+}

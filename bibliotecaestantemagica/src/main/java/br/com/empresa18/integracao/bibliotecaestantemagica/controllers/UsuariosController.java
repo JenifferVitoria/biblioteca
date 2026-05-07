@@ -28,7 +28,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	private UsuariosRepository usu;
 
 	//BUSCAR TODOS
-		@GetMapping("/listarTodos")
+		@GetMapping("/listartodos")
 		@ResponseStatus(HttpStatus.OK)
 		public List<UsuariosEntity> listarTodos(){
 			return usu.findAll();

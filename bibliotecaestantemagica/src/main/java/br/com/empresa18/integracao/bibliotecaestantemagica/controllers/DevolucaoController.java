@@ -29,7 +29,7 @@ public class DevolucaoController {
 	private DevolucaoRepository repoDevo;
 
 	// LISTANDO TODOS
-	@GetMapping("/listarTodos")
+	@GetMapping("/listartodos")
 	@ResponseStatus(HttpStatus.OK)
 	public List<DevolucaoEntity> BuscarTodos() {
 

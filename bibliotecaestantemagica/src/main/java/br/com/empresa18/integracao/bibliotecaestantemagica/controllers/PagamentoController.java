@@ -29,7 +29,7 @@ public class PagamentoController {
 	private PagamentoRepository Pagar;
 
 	// LISTANDO TODOS
-	@GetMapping("/listarTodos")
+	@GetMapping("/listartodos")
 	@ResponseStatus(HttpStatus.OK)
 	public List<PagamentoEntity> BuscarTodosPagamentos() {
 

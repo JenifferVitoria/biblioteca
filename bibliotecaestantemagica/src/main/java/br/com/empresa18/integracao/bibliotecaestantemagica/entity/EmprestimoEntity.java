@@ -4,9 +4,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +28,19 @@ public class EmprestimoEntity implements Serializable {
 	private LocalDate dataEmprestimo;
 	private LocalDate dataDevolucao;
 	private String status;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idLocador")
+	private UsuariosEntity locador;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idLocatario")
+	private UsuariosEntity locatario;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idLivro")
+	private LivroEntity livro;
+	
 	public long getId() {
 		return id;
 	}

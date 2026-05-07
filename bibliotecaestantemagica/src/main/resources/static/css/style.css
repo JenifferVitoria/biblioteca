@@ -1,0 +1,168 @@
+/* =========================
+   CONFIGURAÇÕES GERAIS
+========================= */
+
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #f4f8ff 0%, #dfeeff 100%);
+    min-height:100vh;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.cadastro-container{
+    padding-top:50px;
+    padding-bottom:50px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+    width:260px;
+    max-width:100%;
+}
+
+/* =========================
+   TITULOS
+========================= */
+
+.titulo{
+    font-size:58px;
+    font-weight:800;
+    color:#004aad;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    color:#5c6f91;
+    font-size:20px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card-cadastro{
+    border-radius:30px;
+    background:#ffffff;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.titulo-input{
+    font-size:20px;
+    font-weight:700;
+    color:#004aad;
+    margin-bottom:12px;
+}
+
+.custom-input{
+    height:70px;
+}
+
+.custom-input .input-group-text{
+    background:#ffffff;
+    border:2px solid #d5e5ff;
+    border-right:none;
+    border-radius:18px 0 0 18px;
+    padding-left:20px;
+    padding-right:15px;
+}
+
+.custom-input .input-group-text i{
+    color:#1e73ff;
+    font-size:24px;
+}
+
+.custom-input .form-control,
+.custom-input .form-select{
+    border:2px solid #d5e5ff;
+    border-left:none;
+    border-radius:0 18px 18px 0;
+    font-size:18px;
+    color:#4b5d7a;
+    box-shadow:none;
+}
+
+.custom-input .form-control:focus,
+.custom-input .form-select:focus{
+    box-shadow:none;
+    border-color:#1e73ff;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+
+.btn-cadastrar{
+    height:65px;
+    border:none;
+    border-radius:18px;
+    background: linear-gradient(90deg, #005bea 0%, #0047b3 100%);
+    color:#ffffff;
+    font-size:22px;
+    font-weight:700;
+    transition:0.3s;
+}
+
+.btn-cadastrar:hover{
+    background: linear-gradient(90deg, #0047b3 0%, #003b94 100%);
+    transform:translateY(-2px);
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.texto-login{
+    color:#7a8aa8;
+    font-size:18px;
+}
+
+.link-login{
+    color:#005bea;
+    font-size:18px;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.link-login:hover{
+    text-decoration:underline;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:768px){
+
+    .titulo{
+        font-size:42px;
+    }
+
+    .subtitulo{
+        font-size:16px;
+    }
+
+    .card-cadastro{
+        border-radius:22px;
+    }
+
+    .custom-input{
+        height:60px;
+    }
+
+    .btn-cadastrar{
+        height:58px;
+        font-size:18px;
+    }
+
+}
