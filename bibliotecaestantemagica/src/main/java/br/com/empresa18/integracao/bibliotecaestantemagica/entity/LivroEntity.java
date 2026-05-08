@@ -24,17 +24,38 @@ public class LivroEntity implements Serializable{
 	private String titulo;
 	private String autor;
 	private String editora;
-	private LocalDate anoPublicacao;
-	private String isbn;
+    private String imagem;
+    private LocalDate anoPublicacao;
+    private String isbn;
+	private String genero;
+	private String codigoAcervo;
 	private long estoque;
 	public long getId() {
 		return id;
+	}
+	public String getGenero() {
+		return genero;
+	}
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+	public String getCodigoAcervo() {
+		return codigoAcervo;
+	}
+	public void setCodigoAcervo(String codigoAcervo) {
+		this.codigoAcervo = codigoAcervo;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
 	public String getTitulo() {
 		return titulo;
+	}
+	public String getImagem() {
+		return imagem;
+	}
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
