@@ -30,6 +30,7 @@ public class LivroEntity implements Serializable{
 	private String genero;
 	private String codigoAcervo;
 	private long estoque;
+	
 	public long getId() {
 		return id;
 	}

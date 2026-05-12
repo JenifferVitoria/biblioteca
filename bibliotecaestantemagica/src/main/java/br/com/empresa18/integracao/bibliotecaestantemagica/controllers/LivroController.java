@@ -65,7 +65,7 @@ public class LivroController {
 			livroRepo.save(livro);
 			return "Atualizado";
 		}
-		return "Não atulizado";
+		return "Não atualizado";
 	}
 	
 }
