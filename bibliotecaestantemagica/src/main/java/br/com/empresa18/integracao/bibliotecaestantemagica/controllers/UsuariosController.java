@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +23,18 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 
 
 	@RestController
-	@RequestMapping("usuarios")
+	@RequestMapping("/usuarios")
 	@CrossOrigin("*")
 	public class UsuariosController{
 	@Autowired
 	private UsuariosRepository usu;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
+	public UsuariosController() {
+		// TODO Auto-generated constructor stub
+	}
 
 	//BUSCAR TODOS
 		@GetMapping("/listartodos")
@@ -44,12 +53,12 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 		
 
 	// GRAVAR
-	@PostMapping("/salvar/{id}")
+	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.OK)
 	public UsuariosEntity gravarUsuarios(@RequestBody UsuariosEntity usuarios) {
+	usuarios.setSenha(encoder.encode(usuarios.getSenha()));
 	return usu.save(usuarios);
 	}
-
 
 
 	// ATUALIZAR
@@ -77,6 +86,32 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 			return "Usuario não encontrado";
 	}
 
+	@PostMapping("/login")
+	public ResponseEntity<UsuariosEntity> login(
+	        @RequestBody UsuariosEntity usuarioLogin) {
+
+	    // busca usuário por email
+	    Optional<UsuariosEntity> usuario =
+	            usu.findByEmail(usuarioLogin.getEmail());
+
+	    // se encontrou usuário, verifica senha
+	    if (usuario.isPresent()) {
+
+	        UsuariosEntity usuarioEncontrado = usuario.get();
+
+	       
+			// compara senha enviada com senha armazenada (hash)
+	        if (encoder.matches(
+	                usuarioLogin.getSenha(),
+	                usuarioEncontrado.getSenha())) {
+
+	            return ResponseEntity.ok(usuarioEncontrado);
+	        }
+	    }
+
+	    // se não encontrou usuário ou senha não bate, retorna 401
+	    return ResponseEntity.status(401).build();
+	}
 
 
 	}

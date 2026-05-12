@@ -40,7 +40,7 @@ public class UsuariosEntity {
 	@Column (name = "tipo", length = 100, nullable = false)
 	private String tipo;
 	
-	@Column (name = "senha", length = 8, nullable = false)
+	@Column (name = "senha", nullable = false)
 	private String senha;
 	
    

@@ -91,6 +91,7 @@ public class LivroEntity implements Serializable{
 	public void setEstoque(long estoque) {
 		this.estoque = estoque;
 	}
+
 	
 	
 
