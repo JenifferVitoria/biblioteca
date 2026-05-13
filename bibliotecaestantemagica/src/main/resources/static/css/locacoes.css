@@ -1,0 +1,421 @@
+
+/* =========================
+   GERAL
+========================= */
+
+body{
+    margin:0;
+    padding:0;
+    background:#f4f8ff;
+    font-family:'Segoe UI', sans-serif;
+    color:#1d3f72;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:280px;
+    background:#ffffff;
+    border-right:1px solid #e4ecff;
+    padding:30px 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.logo-area{
+    text-align:center;
+}
+
+.logo-area img{
+    width:150px;
+    margin-bottom:15px;
+}
+
+.logo-area h2{
+    font-size:28px;
+    font-weight:800;
+    color:#004aad;
+}
+
+.menu{
+    list-style:none;
+    padding:0;
+    margin-top:40px;
+}
+
+.menu li{
+    margin-bottom:12px;
+}
+
+.menu li a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:16px 18px;
+    border-radius:16px;
+    text-decoration:none;
+    color:#28508f;
+    font-size:18px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.menu li a i{
+    font-size:22px;
+}
+
+.menu li.active a,
+.menu li a:hover{
+    background:#edf4ff;
+    color:#0057d8;
+}
+
+.logout-btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    padding:16px;
+    border-radius:18px;
+    border:1px solid #dce8ff;
+    color:#2d4f84;
+    font-size:18px;
+    font-weight:500;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+    flex:1;
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:20px;
+}
+
+.notification-btn{
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:#ffffff;
+    color:#004aad;
+    font-size:24px;
+    border:1px solid #dfe9ff;
+    position:relative;
+}
+
+.page-header h1{
+    font-size:54px;
+    font-weight:800;
+    color:#004aad;
+}
+
+.page-header p{
+    color:#5f7ea9;
+    font-size:22px;
+    margin-top:10px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards-grid{
+    margin-top:35px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.info-card{
+    background:#ffffff;
+    border-radius:24px;
+    padding:30px;
+    border:1px solid #e4ecff;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.card-icon{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#edf4ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#0057d8;
+    font-size:34px;
+}
+
+.info-card span{
+    color:#2d4f84;
+    font-weight:600;
+}
+
+.info-card h3{
+    font-size:52px;
+    color:#004aad;
+    margin:10px 0;
+    font-weight:800;
+}
+
+.info-card a{
+    text-decoration:none;
+    color:#0057d8;
+    font-weight:600;
+}
+
+.green-link{
+    color:#1d8f47 !important;
+}
+
+/* =========================
+   TABS
+========================= */
+
+.tabs-container{
+    margin-top:35px;
+    background:#ffffff;
+    border-radius:24px;
+    padding:0 30px;
+    border:1px solid #e4ecff;
+    display:flex;
+    gap:40px;
+}
+
+.tab-btn{
+    background:none;
+    border:none;
+    padding:24px 10px;
+    font-size:24px;
+    font-weight:600;
+    color:#4c6691;
+    position:relative;
+}
+
+.tab-btn.active{
+    color:#0057d8;
+}
+
+.tab-btn.active::after{
+    content:'';
+    width:100%;
+    height:4px;
+    background:#0057d8;
+    position:absolute;
+    left:0;
+    bottom:0;
+    border-radius:10px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-card{
+    background:#ffffff;
+    margin-top:25px;
+    border-radius:30px;
+    border:1px solid #e4ecff;
+    padding:30px;
+}
+
+.table-header h2{
+    color:#004aad;
+    font-size:36px;
+    font-weight:800;
+    margin-bottom:30px;
+}
+
+.table thead th{
+    color:#24467f;
+    font-size:20px;
+    font-weight:700;
+    padding:20px;
+    border-bottom:1px solid #e4ecff;
+}
+
+.table tbody td{
+    padding:24px 20px;
+    vertical-align:middle;
+    font-size:18px;
+}
+
+.book-info{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.book-info img{
+    width:65px;
+    height:95px;
+    border-radius:10px;
+    object-fit:cover;
+}
+
+.book-info strong{
+    display:block;
+    color:#004aad;
+    font-size:20px;
+}
+
+.book-info span{
+    display:block;
+    color:#506d9d;
+    margin-top:5px;
+}
+
+.book-info small{
+    color:#6f87ab;
+}
+
+.days-badge{
+    background:#e8f8ec;
+    color:#1d8f47;
+    padding:10px 16px;
+    border-radius:12px;
+    font-weight:700;
+    font-size:15px;
+}
+
+.active-status{
+    color:#129347;
+    font-weight:700;
+}
+
+.btn-renew{
+    border:2px solid #b8d0ff;
+    background:#ffffff;
+    color:#0057d8;
+    padding:12px 20px;
+    border-radius:14px;
+    font-weight:700;
+    transition:0.3s;
+}
+
+.btn-renew:hover{
+    background:#edf4ff;
+}
+
+/* =========================
+   ALERT
+========================= */
+
+.info-alert{
+    margin-top:30px;
+    background:#edf4ff;
+    border-radius:20px;
+    padding:25px;
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+}
+
+.alert-icon{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#0057d8;
+    font-size:26px;
+}
+
+.info-alert strong{
+    color:#004aad;
+    font-size:24px;
+}
+
+.info-alert p{
+    margin-top:8px;
+    color:#355686;
+    font-size:18px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:1200px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .page-header h1{
+        font-size:42px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .content{
+        padding:20px;
+    }
+
+    .page-header h1{
+        font-size:34px;
+    }
+
+    .page-header p{
+        font-size:18px;
+    }
+
+    .tabs-container{
+        overflow-x:auto;
+        padding:0 15px;
+    }
+
+    .tab-btn{
+        font-size:18px;
+        white-space:nowrap;
+    }
+
+    .table-card{
+        padding:20px;
+    }
+
+    .table-header h2{
+        font-size:28px;
+    }
+
+    .book-info{
+        min-width:250px;
+    }
+
+    .table thead th,
+    .table tbody td{
+        font-size:15px;
+    }
+
+    .btn-renew{
+        padding:10px 14px;
+        font-size:14px;
+    }
+
+}
+
