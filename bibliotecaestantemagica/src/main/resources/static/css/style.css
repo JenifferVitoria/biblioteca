@@ -2,11 +2,15 @@
    CONFIGURAÇÕES GERAIS
 ========================= */
 
-body{
+*{
     margin:0;
     padding:0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #f4f8ff 0%, #dfeeff 100%);
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(180deg, #f4f8ff 0%, #dfeeff 100%);
     min-height:100vh;
 }
 
@@ -15,8 +19,7 @@ body{
 ========================= */
 
 .cadastro-container{
-    padding-top:50px;
-    padding-bottom:50px;
+    padding:40px 15px;
 }
 
 /* =========================
@@ -37,6 +40,7 @@ body{
     font-weight:800;
     color:#004aad;
     margin-bottom:10px;
+    line-height:1.1;
 }
 
 .subtitulo{
@@ -51,6 +55,8 @@ body{
 .card-cadastro{
     border-radius:30px;
     background:#ffffff;
+    padding:40px !important;
+    box-shadow:0 10px 30px rgba(0,74,173,0.08);
 }
 
 /* =========================
@@ -65,7 +71,7 @@ body{
 }
 
 .custom-input{
-    height:70px;
+    min-height:70px;
 }
 
 .custom-input .input-group-text{
@@ -90,6 +96,7 @@ body{
     font-size:18px;
     color:#4b5d7a;
     box-shadow:none;
+    padding:16px;
 }
 
 .custom-input .form-control:focus,
@@ -103,10 +110,10 @@ body{
 ========================= */
 
 .btn-cadastrar{
-    height:65px;
+    min-height:65px;
     border:none;
     border-radius:18px;
-    background: linear-gradient(90deg, #005bea 0%, #0047b3 100%);
+    background:linear-gradient(90deg, #005bea 0%, #0047b3 100%);
     color:#ffffff;
     font-size:22px;
     font-weight:700;
@@ -114,7 +121,7 @@ body{
 }
 
 .btn-cadastrar:hover{
-    background: linear-gradient(90deg, #0047b3 0%, #003b94 100%);
+    background:linear-gradient(90deg, #0047b3 0%, #003b94 100%);
     transform:translateY(-2px);
 }
 
@@ -139,30 +146,113 @@ body{
 }
 
 /* =========================
-   RESPONSIVO
+   TABLETS
+========================= */
+
+@media(max-width:992px){
+
+    .titulo{
+        font-size:48px;
+    }
+
+    .subtitulo{
+        font-size:18px;
+    }
+
+    .card-cadastro{
+        padding:30px !important;
+    }
+
+}
+
+/* =========================
+   CELULAR
 ========================= */
 
 @media(max-width:768px){
 
+    .cadastro-container{
+        padding:25px 12px;
+    }
+
+    .logo{
+        width:180px;
+    }
+
     .titulo{
-        font-size:42px;
+        font-size:36px;
     }
 
     .subtitulo{
-        font-size:16px;
+        font-size:15px;
+        padding:0 10px;
     }
 
     .card-cadastro{
         border-radius:22px;
+        padding:25px 18px !important;
+    }
+
+    .titulo-input{
+        font-size:16px;
     }
 
     .custom-input{
-        height:60px;
+        min-height:58px;
+    }
+
+    .custom-input .input-group-text{
+        padding-left:14px;
+        padding-right:10px;
+    }
+
+    .custom-input .input-group-text i{
+        font-size:20px;
+    }
+
+    .custom-input .form-control,
+    .custom-input .form-select{
+        font-size:15px;
+        padding:12px;
     }
 
     .btn-cadastrar{
-        height:58px;
+        min-height:55px;
         font-size:18px;
+        border-radius:14px;
+    }
+
+    .texto-login,
+    .link-login{
+        font-size:15px;
+    }
+
+}
+
+/* =========================
+   CELULARES PEQUENOS
+========================= */
+
+@media(max-width:480px){
+
+    .titulo{
+        font-size:30px;
+    }
+
+    .subtitulo{
+        font-size:14px;
+    }
+
+    .logo{
+        width:150px;
+    }
+
+    .card-cadastro{
+        padding:20px 15px !important;
+    }
+
+    .btn-cadastrar{
+        font-size:16px;
     }
 
 }
