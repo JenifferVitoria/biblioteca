@@ -25,10 +25,11 @@ public class LivroEntity implements Serializable{
 	private String autor;
 	private String editora;
     private String imagem;
-    private LocalDate anoPublicacao;
+    private int anoPublicacao;
     private String isbn;
 	private String genero;
 	private String codigoAcervo;
+	
 	private long estoque;
 	public long getId() {
 		return id;
@@ -72,10 +73,10 @@ public class LivroEntity implements Serializable{
 	public void setEditora(String editora) {
 		this.editora = editora;
 	}
-	public LocalDate getAnoPublicacao() {
+	public int getAnoPublicacao() {
 		return anoPublicacao;
 	}
-	public void setAnoPublicacao(LocalDate anoPublicacao) {
+	public void setAnoPublicacao(int anoPublicacao) {
 		this.anoPublicacao = anoPublicacao;
 	}
 	public String getIsbn() {
