@@ -137,7 +137,16 @@ public class LivroController {
 	
 	if(livroRepo.existsById(id)) {
 		
+
+		if(livroRepo.existsById(id)) {
+			livro.setId(id);
+			
+			return livroRepo.save(livro);
+		}
+	
+
 		return livroRepo.save(livro);
+
 	}
 	
 	

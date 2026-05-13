@@ -31,6 +31,7 @@ public class LivroEntity implements Serializable{
 	private String codigoAcervo;
 	
 	private long estoque;
+	
 	public long getId() {
 		return id;
 	}

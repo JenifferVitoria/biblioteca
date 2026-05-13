@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<script type="text/javascript" src="js/livro.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Mágica - Detalhes do Livro</title>
@@ -100,9 +101,9 @@
                 <div class="search-box">
 
                     <i class="bi bi-search"></i>
-                    //MODAL
+                   
                     <input type="text"
-                           placeholder="Buscar por título, autor ou ISBN..." onclick="">
+                           placeholder="Buscar por título, autor ou ISBN..." data-bs-toggle="modal" data-bs-target="#modalLivro" onclick="listarLivros();">
 
                 </div>
 
