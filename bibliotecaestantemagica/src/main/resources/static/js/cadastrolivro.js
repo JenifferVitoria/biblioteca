@@ -1,3 +1,5 @@
+
+
 // COMEÇANDO O METODO LISTAR TODOS DOS (LIVROS)
 
 const API_BUSCAR_TODOS = "http://localhost:8000/livros/listartodos";
@@ -31,7 +33,6 @@ function limparFormulario(){
 	editandoId = null;
 	
 }
-
 
 
 // SALVAR
@@ -99,66 +100,3 @@ async function salvar(){
 
 
 // Pegando o modal do HTML
-
-//AbrindoModal
-function abrirModal(){
-	
-	const modal = new bootstrap.Modal(document.getElementById("modalLivro"));
-	modal.show();
-	
-}
-
-//FechandoModal
-function fecharModal(){
-	
-	const modalElement = document.getElementById("modalLivro");
-	const modal = bootstrap.Modal.getInstance(modalElement);
-	modal.hide();
-}
-
-async function listarLivros(){
-	
-	//constante que armazena a resposta da nossa api
-	const response = await fetch (API_BUSCAR_TODOS);
-	//constante que armazena a conversao da resposta em formato json
-	const livros = await response.json();
-	
-	//recuperando o tbody onde será criado as linhas
-	const tbody = document.querySelector("tbody");
-	tbody.innerHTML = "";
-	
-	livros.forEach(livro =>{
-		
-		//criando a linha
-		const tr = document.createElement("tr");
-		tr.innerHTML=`
-		<td>${livro.id}</td>
-		<td>${livro.titulo}</td>
-		<td>${livro.autor}</td>
-		<td>${livro.editora}</td>
-    	<td>${livro.anoPublicacao}</td>
-		<td>${livro.isbn}</td>
-		<td>${livro.genero}</td>
-		<td>${livro.codigoAcervo}</td>
-		<td>
-		  <button class="btn btn-warning btn-sm" onclick"editar(${livro.id})">
-		  Editar
-		  </button>
-		  <button class="bnt btn-danger btn-sm" onclick="deletar(${livro.id})">
-		  Deletar
-		  </button>
-		  </td>
-		  
-		 `;
-		 
-		 tbody.appendChild(tr);
-	});
-		
-}
-
-//inicialização
-document.addEventListener("DOMContentLoaded",()=>{
-	
-	listarLivros();
-});
-
