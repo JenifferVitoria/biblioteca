@@ -76,6 +76,8 @@ async function salvar(){
 		        body: formData
 
 		    });
+			
+			window.Location.href="acervo.html";
 		
     } else {
 

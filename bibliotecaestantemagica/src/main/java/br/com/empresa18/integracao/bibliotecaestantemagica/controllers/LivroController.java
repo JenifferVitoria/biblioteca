@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -66,7 +65,7 @@ public class LivroController {
 
         // Definir o caminho onde o arquivo será salvo
         Path caminho = Paths.get(
-                "C:/uploads/" + nomeArquivo
+                "C:/Users/Acesso Livre/Documents/uploads" + nomeArquivo
         );
         
         // Salvar o arquivo no caminho definido
@@ -100,14 +99,50 @@ public class LivroController {
 	
 	@PutMapping("/atualizar/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public String atualizarTabela(@PathVariable Long id, @RequestBody LivroEntity livro) {
+	public LivroEntity atualizarTabela (@PathVariable long id,@RequestParam String titulo,
+			  @RequestParam String autor, 
+			  @RequestParam String editora, 
+			  @RequestParam MultipartFile imagem, 
+			  @RequestParam int anoPublicacao, 
+			  @RequestParam String isbn, 
+			  @RequestParam String genero, 
+			  @RequestParam String codigoAcervo, 
+			  @RequestParam long estoque) throws IOException {
+
+	// Gerar um nome único para o arquivo usando UUID
+	
+	String nomeArquivo = UUID.randomUUID()
+	+ "_"
+	+ imagem.getOriginalFilename();
+	
+	// Definir o caminho onde o arquivo será salvo
+	Path caminho = Paths.get(
+	"C:/Users/Acesso Livre/Documents/uploads/" + nomeArquivo
+	);
+	
+	// Salvar o arquivo no caminho definido
+	Files.write(caminho, imagem.getBytes());
+	
+	LivroEntity livro = new LivroEntity();
+	livro.setTitulo(titulo);
+	livro.setAutor(autor);
+	livro.setEditora(editora);
+	livro.setImagem(nomeArquivo); // Salvar o nome do arquivo no banco de dados
+	livro.setAnoPublicacao(anoPublicacao);
+	livro.setIsbn(isbn);			
+	livro.setGenero(genero);
+	livro.setCodigoAcervo(codigoAcervo);
+	livro.setEstoque(estoque);
+	
+	
+	if(livroRepo.existsById(id)) {
 		
-		if(livroRepo.existsById(id)) {
-			livro.setId(id);
-			livroRepo.save(livro);
-			return "Atualizado";
-		}
-		return "Não atulizado";
+		return livroRepo.save(livro);
 	}
 	
+	
+	return null;
+	
+	} 
+		
 }
