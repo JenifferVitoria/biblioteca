@@ -165,24 +165,12 @@
                                     Título do Livro *
                                 </label>
 
-                                <input type="text"
+                                <input type="text" id="titulo"
                                        class="form-control custom-input"
                                        placeholder="Digite o título do livro">
 
                             </div>
 
-                            <!-- SUBTÍTULO -->
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-                                    Subtítulo
-                                </label>
-
-                                <input type="text"
-                                       class="form-control custom-input"
-                                       placeholder="Digite o subtítulo">
-
-                            </div>
 
                             <!-- AUTOR -->
                             <div class="col-md-6 mb-4">
@@ -191,35 +179,22 @@
                                     Autor *
                                 </label>
 
-                                <input type="text"
+                                <input type="text" id="autor"
                                        class="form-control custom-input"
                                        placeholder="Digite o nome do autor">
 
                             </div>
 
-                            <!-- COAUTOR -->
-                            <div class="col-md-6 mb-4">
-
-                                <label class="form-label">
-                                    Coautor
-                                </label>
-
-                                <input type="text"
-                                       class="form-control custom-input"
-                                       placeholder="Digite o nome do coautor">
-
-                            </div>
-
-                            <!-- EDITORA -->
+                                      <!-- editora -->
                             <div class="col-md-4 mb-4">
 
                                 <label class="form-label">
                                     Editora *
                                 </label>
 
-                                <input type="text"
+                                <input type="text" id="editora"
                                        class="form-control custom-input"
-                                       placeholder="Digite a editora">
+                                       >
 
                             </div>
 
@@ -230,7 +205,7 @@
                                     Ano de Publicação *
                                 </label>
 
-                                <input type="number"
+                                <input type="number" id="ano"
                                        class="form-control custom-input"
                                        placeholder="2025">
 
@@ -243,7 +218,7 @@
                                     ISBN *
                                 </label>
 
-                                <input type="text"
+                                <input type="text" id="isbn"
                                        class="form-control custom-input"
                                        placeholder="978-85-00-00000-0">
 
@@ -256,7 +231,7 @@
                                     Categoria / Gênero *
                                 </label>
 
-                                <select class="form-select custom-input">
+                                <select class="form-select custom-input" id="categoria">
 
                                     <option>Selecione</option>
                                     <option>Romance</option>
@@ -269,79 +244,14 @@
 
                             </div>
 
-                            <!-- IDIOMA -->
-                            <div class="col-md-6 mb-4">
+        
 
-                                <label class="form-label">
-                                    Idioma *
-                                </label>
 
-                                <select class="form-select custom-input">
 
-                                    <option>Selecione</option>
-                                    <option>Português</option>
-                                    <option>Inglês</option>
-                                    <option>Espanhol</option>
 
-                                </select>
 
-                            </div>
 
-                            <!-- PÁGINAS -->
-                            <div class="col-md-3 mb-4">
-
-                                <label class="form-label">
-                                    Número de Páginas *
-                                </label>
-
-                                <input type="number"
-                                       class="form-control custom-input"
-                                       placeholder="336">
-
-                            </div>
-
-                            <!-- FORMATO -->
-                            <div class="col-md-3 mb-4">
-
-                                <label class="form-label">
-                                    Formato *
-                                </label>
-
-                                <select class="form-select custom-input">
-
-                                    <option>Selecione</option>
-                                    <option>Livro físico</option>
-                                    <option>E-book</option>
-
-                                </select>
-
-                            </div>
-
-                            <!-- SÉRIE -->
-                            <div class="col-md-3 mb-4">
-
-                                <label class="form-label">
-                                    Série
-                                </label>
-
-                                <input type="text"
-                                       class="form-control custom-input"
-                                       placeholder="Ex: Harry Potter">
-
-                            </div>
-
-                            <!-- VOLUME -->
-                            <div class="col-md-3 mb-4">
-
-                                <label class="form-label">
-                                    Volume
-                                </label>
-
-                                <input type="number"
-                                       class="form-control custom-input"
-                                       placeholder="1">
-
-                            </div>
+      
 
                             <!-- SINOPSE -->
                             <div class="col-12 mb-4">
@@ -356,110 +266,52 @@
 
                             </div>
 
-                            <!-- PALAVRAS -->
-                            <div class="col-12 mb-4">
-
-                                <label class="form-label">
-                                    Palavras-chave
-                                </label>
-
-                                <input type="text"
-                                       class="form-control custom-input"
-                                       placeholder="romance, suspense, fantasia...">
-
-                            </div>
+       
 
                         </div>
 
                     </div>
 
-                    <!-- COLUNA DIREITA -->
-                    <div class="col-lg-3">
 
-                        <!-- UPLOAD -->
-                        <div class="side-card">
+                                      <!-- editora -->
+                            <div class="col-md-4 mb-4">
 
-                            <h4>Capa do Livro</h4>
+                                <label class="form-label">
+                                    Upload *
+                                </label>
 
-                            <div class="upload-box">
-
-                                <i class="bi bi-image"></i>
-
-                                <p>
-                                    Arraste uma imagem aqui
-                                </p>
-
-                                <button type="button"
-                                        class="btn btn-upload">
-
-                                    Selecionar imagem
-
-                                </button>
-
+              
+								<input type="file" class="form-control custom-input" accept="image/*" id="fileInput">
                             </div>
 
-                        </div>
-
-                        <!-- ACERVO -->
-                        <div class="side-card mt-4">
-
-                            <h4>Informações do Acervo</h4>
-
-                            <!-- CÓDIGO -->
+		                            <!-- CÓDIGO -->
                             <div class="mb-3">
 
                                 <label class="form-label">
                                     Código do Acervo *
                                 </label>
 
-                                <input type="text"
+                                <input type="text" id="codigo"
                                        class="form-control custom-input"
                                        placeholder="LIV0001">
 
-                            </div>
-
-                            <!-- QUANTIDADE -->
+                            </div>		
+                            
+                                                        <!-- QUANTIDADE -->
                             <div class="mb-3">
 
                                 <label class="form-label">
-                                    Quantidade Total *
+                                    Estoque*
                                 </label>
 
-                                <input type="number"
+                                <input type="number" id="estoque"
                                        class="form-control custom-input"
                                        value="1">
 
                             </div>
-
-                            <!-- DISPONÍVEL -->
-                            <div class="mb-3">
-
-                                <label class="form-label">
-                                    Quantidade Disponível *
-                                </label>
-
-                                <input type="number"
-                                       class="form-control custom-input"
-                                       value="1">
-
-                            </div>
-
-                            <!-- LOCALIZAÇÃO -->
-                            <div class="mb-3">
-
-                                <label class="form-label">
-                                    Localização
-                                </label>
-
-                                <input type="text"
-                                       class="form-control custom-input"
-                                       placeholder="Prateleira A-03">
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                            
+				
+				
 
                 </div>
 
