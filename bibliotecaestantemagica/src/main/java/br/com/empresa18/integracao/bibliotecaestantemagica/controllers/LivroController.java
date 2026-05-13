@@ -137,16 +137,16 @@ public class LivroController {
 	
 	if(livroRepo.existsById(id)) {
 		
-<<<<<<< HEAD
+
 		if(livroRepo.existsById(id)) {
 			livro.setId(id);
-			livroRepo.save(livro);
-			return "Atualizado";
+			
+			return livroRepo.save(livro);
 		}
-		return "Não atualizado";
-=======
+	
+
 		return livroRepo.save(livro);
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
+
 	}
 	
 	
