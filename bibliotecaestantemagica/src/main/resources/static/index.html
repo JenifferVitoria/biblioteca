@@ -14,6 +14,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/cadastrousuario.js"></script>
 </head>
 <body>
 
@@ -44,7 +45,7 @@
 
                         <!-- NOME -->
                         <div class="mb-4">
-                            <label class="form-label titulo-input">
+                            <label class="form-label titulo-input" >
                                 NOME COMPLETO
                             </label>
 
@@ -53,7 +54,7 @@
                                     <i class="bi bi-person"></i>
                                 </span>
 
-                                <input type="text"
+                                <input type="text" id=nomeCompleto
                                        class="form-control"
                                        placeholder="Digite seu nome completo">
                             </div>
@@ -61,7 +62,7 @@
 
                         <!-- CPF -->
                         <div class="mb-4">
-                            <label class="form-label titulo-input">
+                            <label class="form-label titulo-input" >
                                 CPF
                             </label>
 
@@ -70,16 +71,17 @@
                                     <i class="bi bi-credit-card-2-front"></i>
                                 </span>
 
-                                <input type="text"
+                                <input type="text" id="cpf"
                                        class="form-control"
-                                       placeholder="Digite seu CPF">
+                                       placeholder="Digite seu CPF" 
+                                       onblur="validaCPF(this)">
                             </div>
                         </div>
 
                         <!-- EMAIL -->
                         <div class="mb-4">
-                            <label class="form-label titulo-input">
-                                EMAIL
+                            <label class="form-label titulo-input"  >
+                                EMAIL 
                             </label>
 
                             <div class="input-group custom-input">
@@ -87,7 +89,7 @@
                                     <i class="bi bi-envelope"></i>
                                 </span>
 
-                                <input type="email"
+                                <input type="email" id="email"
                                        class="form-control"
                                        placeholder="Digite seu email">
                             </div>
@@ -95,7 +97,7 @@
 
                         <!-- TELEFONE -->
                         <div class="mb-4">
-                            <label class="form-label titulo-input">
+                            <label class="form-label titulo-input" >
                                 TELEFONE
                             </label>
 
@@ -104,7 +106,7 @@
                                     <i class="bi bi-telephone"></i>
                                 </span>
 
-                                <input type="text"
+                                <input type="text" id="telefone"
                                        class="form-control"
                                        placeholder="Digite seu telefone">
                             </div>
@@ -112,7 +114,7 @@
 
                         <!-- ENDEREÇO -->
                         <div class="mb-4">
-                            <label class="form-label titulo-input">
+                            <label class="form-label titulo-input"  >
                                 ENDEREÇO
                             </label>
 
@@ -121,7 +123,7 @@
                                     <i class="bi bi-geo-alt"></i>
                                 </span>
 
-                                <input type="text"
+                                <input type="text" id="endereco"
                                        class="form-control"
                                        placeholder="Digite seu endereço completo">
                             </div>
@@ -129,7 +131,7 @@
 
                         <!-- DATA NASCIMENTO -->
                         <div class="mb-4">
-                            <label class="form-label titulo-input">
+                            <label class="form-label titulo-input" >
                                 DATA DE NASCIMENTO
                             </label>
 
@@ -138,14 +140,14 @@
                                     <i class="bi bi-calendar"></i>
                                 </span>
 
-                                <input type="date"
+                                <input type="date" id="dataNascimento"
                                        class="form-control">
                             </div>
                         </div>
                         
                          <!-- SENHA -->
 				             <div class="mb-4">
-				    <label class="form-label titulo-input">
+				    <label class="form-label titulo-input" >
 				        SENHA
 				    </label>
 				
@@ -154,15 +156,15 @@
 				            <i class="bi bi-lock"></i>
 				        </span>
 				
-				        <input type="password"
+				        <input type="password" id="senha"
 				               class="form-control"
-				               placeholder="Digite sua senha">
+				               placeholder="Digite sua senha"  >
 				    </div>
 				</div>
 								
 							 <!-- CNFIRMAR SENHA -->	
 				<div class="mb-4">
-				    <label class="form-label titulo-input">
+				    <label class="form-label titulo-input" >
 				        CONFIRMAR SENHA
 				    </label>
 				
@@ -171,7 +173,7 @@
 				            <i class="bi bi-shield-lock"></i>
 				        </span>
 				
-				        <input type="password"
+				        <input type="password" id="confirmarSenha" onblur="confirmandoSenha()"
 				               class="form-control"
 				               placeholder="Confirme sua senha">
 				    </div>
@@ -179,7 +181,7 @@
 								
                         <!-- SELECT -->
                         <div class="mb-4">
-                            <label class="form-label titulo-input">
+                            <label class="form-label titulo-input" >
                                 TIPO DE USUÁRIO
                             </label>
 
@@ -188,7 +190,7 @@
                                     <i class="bi bi-people"></i>
                                 </span>
 
-                                <select class="form-select">
+                                <select class="form-select" id="tipoUsuario">
                                     <option selected disabled>
                                         Selecione o tipo de usuário
                                     </option>
@@ -202,7 +204,7 @@
 
                         <!-- BOTÃO -->
                         <div class="d-grid mt-5">
-                            <button type="submit" class="btn btn-cadastrar">
+                            <button type="submit" class="btn btn-cadastrar" onclick="salvar" >
                                 CADASTRAR
                             </button>
                         </div>
