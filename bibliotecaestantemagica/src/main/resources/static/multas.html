@@ -18,6 +18,7 @@
     <!-- CSS -->
     <link rel="stylesheet"
           href="css/multas.css">
+     <script type="text/javascript" src="js/multas.js"></script>
 
 </head>
 <body>
@@ -203,7 +204,8 @@
 
                             <button class="btn-pay"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#pixModal">
+                                    data-bs-target="#pixModal"
+                                    onclick="abrirModalPix('12.00');">
 
                                 <i class="bi bi-qr-code"></i>
                                 Pagar
@@ -248,7 +250,8 @@
 
                             <button class="btn-pay"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#pixModal">
+                                    data-bs-target="#pixModal"
+                                    onclick="abrirModalPix('25.00');">
 
                                 <i class="bi bi-qr-code"></i>
                                 Pagar
@@ -299,8 +302,10 @@
                 <!-- QR CODE -->
                 <div class="qrcode-area">
 
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=PIX-BIBLIOTECA"
-                         alt="QR Code PIX">
+                   <img id="imgPix"
+					     src=""
+					     alt="QR Code PIX"
+					     class="img-fluid">
 
                 </div>
 
@@ -315,10 +320,9 @@
 
                     <div class="pix-copy">
 
-                        <input type="text"
-                               id="pixCode"
-                               value="00020126580014BR.GOV.BCB.PIX0136biblioteca@pix.com520400005303986540512.505802BR5920BIBLIOTECA MAGICA6009SAOPAULO62070503***6304ABCD"
-                               readonly>
+					<input type="text"
+					       id="pixCode"
+					       readonly>
 
                         <button onclick="copiarCodigo()">
 
@@ -341,25 +345,7 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
 
-    function copiarCodigo(){
-
-        let codigo =
-            document.getElementById("pixCode");
-
-        codigo.select();
-        codigo.setSelectionRange(0,99999);
-
-        navigator.clipboard.writeText(
-            codigo.value
-        );
-
-        alert("Código PIX copiado!");
-
-    }
-
-</script>
 
 </body>
 </html>
