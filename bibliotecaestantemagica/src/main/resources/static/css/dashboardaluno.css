@@ -35,6 +35,19 @@ body{
     width:170px;
 }
 
+.btn-buscar{
+    width:30%;
+    height:58px;
+    background:linear-gradient(90deg,#005bea,#0047b3);
+    border:none;
+    border-radius:16px;
+    color:#ffffff;
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:15px;
+    margin-top: 15px;
+}
+
 .sidebar-title{
     color:#004aad;
     font-weight:700;

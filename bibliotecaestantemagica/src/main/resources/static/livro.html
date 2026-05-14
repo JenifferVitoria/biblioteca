@@ -39,7 +39,7 @@
                 <!-- MENU -->
                 <ul class="menu list-unstyled">
 
-                    <li hr>
+                    <li>
                         <i class="bi bi-house"></i>
                         Início
                     </li>
@@ -94,24 +94,7 @@
         <!-- CONTEUDO -->
         <div class="col-lg-10 content-area">
 
-            <!-- TOPO -->
-            <div class="topbar">
-
-                <!-- BUSCA -->
-                <div class="search-box">
-
-                    <i class="bi bi-search"></i>
-                   
-                    <input type="text"
-                           placeholder="Buscar por título, autor ou ISBN..." data-bs-toggle="modal" data-bs-target="#modalLivro" onclick="listarLivros();">
-
-                </div>
-
-                <!-- NOTIFICAÇÃO -->
-                <i class="bi bi-bell notification-icon"></i>
-
-            </div>
-
+           
             <!-- CONTAINER -->
             <div class="book-container">
 
@@ -162,11 +145,12 @@
                                     <span>4,8 (1.245 avaliações)</span>
 
                                 </div>
-
+                                 
+                                 <table></table>
                                 <!-- INFOS -->
                                 <div class="book-data">
                                   <div class="info-item">
-                                    <strong>Título:</strong>
+                                   <strong>Título:</strong>
                                      <span>Verity</span>
                                   
                                   </div>
@@ -201,13 +185,13 @@
                                         <strong>Código do acervo:</strong>
                                         <span>LIV000123</span>
                                     </div>
-
+   
                                 </div>
 
                             </div>
-
+                               </table>
                         </div>
-
+                       
                         <!-- SINOPSE -->
                         <div class="sinopse-area">
 
@@ -265,10 +249,11 @@
                             </div>
 
                             <!-- BOTÕES -->
-                            <button class="btn btn-reservar">
+                            <button class="btn btn-reservar" id="btnReservar">
                                 <i class="bi bi-bookmark"></i>
                                 Reservar Livro
                             </button>
+                            <input type="hidden" id="livroId" value="1">
 
                             <button class="btn btn-lista">
                                 <i class="bi bi-bookmark-plus"></i>
@@ -407,7 +392,7 @@
 
                                     <h6>Colleen Hoover</h6>
 
-                                    <span>Ver outros livros</span>
+                                    
 
                                 </div>
 

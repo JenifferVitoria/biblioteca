@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.Repository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -153,5 +154,14 @@ public class LivroController {
 	return null;
 	
 	} 
+	
+	@PostMapping("/reservar/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public String reservarLivro (@PathVariable  long id) {
+		
+	    return "Livro reservado com sucesso";
+	
+	}
+	
 		
 }
