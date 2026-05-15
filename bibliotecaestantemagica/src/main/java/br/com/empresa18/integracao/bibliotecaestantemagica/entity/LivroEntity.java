@@ -1,8 +1,6 @@
 package br.com.empresa18.integracao.bibliotecaestantemagica.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,10 +23,22 @@ public class LivroEntity implements Serializable{
 	private String autor;
 	private String editora;
     private String imagem;
-    private int anoPublicacao;
+    private boolean disponivel = true;
+    
+	public boolean isDisponivel() {
+		return disponivel;
+	}
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	private int anoPublicacao;
     private String isbn;
 	private String genero;
 	private String codigoAcervo;
+
 	
 	private long estoque;
 	
