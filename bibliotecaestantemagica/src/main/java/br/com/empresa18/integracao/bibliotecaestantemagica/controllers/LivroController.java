@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.Repository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -155,13 +155,49 @@ public class LivroController {
 	
 	} 
 	
+	// disponibilidade
+	@GetMapping("/disponibilidade/{id}")
+	public String verificarDisponibilidade(@PathVariable Long id) {
+
+	    LivroEntity livro = livroRepo.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+
+	    if(livro.isDisponivel()) {
+	        return "Livro disponível";
+	    }
+
+	    return "Livro indisponível";
+	}
+    
+    //reserva livro
 	@PostMapping("/reservar/{id}")
-	@ResponseStatus(HttpStatus.CREATED)
-	public String reservarLivro (@PathVariable  long id) {
-		
-	    return "Livro reservado com sucesso";
-	
+	public String reservarLivro(@PathVariable Long id) {
+
+	    LivroEntity livro = livroRepo.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+
+	    if(livro.isDisponivel()) {
+
+	        livro.setDisponivel(false);
+
+	        livroRepo.save(livro);
+
+	        return "Livro reservado com sucesso";
+	    }
+
+	    return "Livro já reservado";
 	}
 	
-		
+	@PostMapping("/devolver/{id}")
+	public String devolverLivro(@PathVariable Long id) {
+
+	    LivroEntity livro = livroRepo.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+
+	    livro.setDisponivel(true);
+
+	    livroRepo.save(livro);
+
+	    return "Livro devolvido";
+	}
 }

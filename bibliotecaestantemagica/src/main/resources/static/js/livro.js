@@ -1,39 +1,25 @@
-const API_RESERVAR = "http://localhost:8000/livro/reservar";
-
-
-document.getElementById("btnReservar")
-.addEventListener("click",reservarLivro);
-
-function reservarLivro{
+// Ver disponibilidade
+function verificarLivro(){
 	
-	const idLivro = document.getElementById("livroId").value;
-	fetch("http://localhost:8000/livro/reservar/"+livroId,{
+	fetch("/disponibilidade")
+	.then(response => response.text())
+	.then(data =>{
 		
-		method: "POST"
-		
+		document.getElementById("resultado").innerHTML = data;
 	});
-	
-	then(response =>{
-		if(response.ok){
-			
-			alert("Livro reservado com sucesso!");
-			
-			
-		}else{
-			
-			alert ("Livro indisponível!");
-			
-		}
-		
-	});
-	
-	 (error => {
-		
-		alert("Erro ao reservar!");
-		
-	});
-	
-	
 	
 }
 
+//Reservar Livro
+function reservarLivro(){
+	
+	fetch ("/reservar",{
+		
+		method:"POST"
+	})
+	.then (response => reponse.text())
+	.then(data =>{
+		
+		document.getElementById("resultado").innerHTML = data;
+	})
+}

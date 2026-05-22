@@ -226,11 +226,10 @@
                         <!-- DISPONIBILIDADE -->
                         <div class="side-card">
 
-                            <div class="status-badge">
-                                Disponível
-                            </div>
+                            <button class="status-badge" onclick="verificarLivro();">
+                                Verificar Disponibilidade
+                            </button>
 
-                            <h4>Disponibilidade</h4>
 
                             <div class="availability-box">
 
@@ -238,22 +237,17 @@
                                     <i class="bi bi-book"></i>
                                 </div>
 
-                                <div>
-                                    <h2>3</h2>
-                                    <p>
-                                        exemplares disponíveis<br>
-                                        de 5 no total
-                                    </p>
-                                </div>
+                            
 
                             </div>
 
                             <!-- BOTÕES -->
-                            <button class="btn btn-reservar" id="btnReservar">
+                            <button class="btn btn-reservar" id="btnReservar" onclick="reservarLivro();">
                                 <i class="bi bi-bookmark"></i>
                                 Reservar Livro
                             </button>
                             <input type="hidden" id="livroId" value="1">
+                            <p id="resultado"></p>
 
                             <button class="btn btn-lista">
                                 <i class="bi bi-bookmark-plus"></i>
