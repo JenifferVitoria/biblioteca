@@ -309,5 +309,35 @@ body{
     .btn-reserve{
         font-size:18px;
     }
+    
+    /* =========================
+   MODAL RESERVA
+========================= */
+
+.modal-content{
+    border:none;
+    border-radius:20px;
+}
+
+.modal-header{
+    background:#edf4ff;
+}
+
+.modal-title{
+    color:#004aad;
+    font-weight:700;
+}
+
+#btnConfirmarReserva{
+    background:#005bea;
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+}
+
+#dadosLivroReserva{
+    color:#35507a;
+    line-height:1.8;
+}
 
 }
