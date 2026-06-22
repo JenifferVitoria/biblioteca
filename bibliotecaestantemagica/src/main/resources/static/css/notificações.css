@@ -1,0 +1,116 @@
+/* =========================
+   GERAL
+========================= */
+
+body{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI', sans-serif;
+    background:#f6f9ff;
+}
+
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:280px;
+    background:#ffffff;
+    border-right:1px solid #e4ecff;
+    padding:25px;
+}
+
+.logo-area img{
+    width:170px;
+}
+
+.menu{
+    list-style:none;
+    padding:0;
+    margin-top:30px;
+}
+
+.menu a{
+    display:block;
+    padding:16px;
+    text-decoration:none;
+    color:#35507a;
+    border-radius:14px;
+}
+
+.menu a:hover,
+.menu .active a{
+    background:#edf4ff;
+    color:#005bea;
+}
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.content{
+    flex:1;
+    padding:30px;
+}
+
+.page-header{
+    margin-bottom:30px;
+}
+
+.page-header h1{
+    color:#004aad;
+    font-weight:700;
+}
+
+.page-header p{
+    color:#7c8da9;
+}
+
+/* =========================
+   NOTIFICAÇÕES
+========================= */
+
+.notification-card{
+    background:#ffffff;
+    border-radius:24px;
+    padding:25px;
+    border:1px solid #e3ecff;
+    margin-bottom:20px;
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+}
+
+.notification-icon{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#edf4ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.notification-icon i{
+    color:#005bea;
+    font-size:28px;
+}
+
+.notification-content h5{
+    color:#14396b;
+    font-weight:700;
+}
+
+.notification-content p{
+    color:#60779d;
+    margin-bottom:5px;
+}
+
+.notification-content small{
+    color:#95a3bb;
+}
