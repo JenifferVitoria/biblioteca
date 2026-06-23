@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // emprestimo.js
 
 window.onload = function () {
@@ -199,7 +199,7 @@ window.onload = function () {
     });
 
 };
-=======
+
 const API_EMPRESTIMOS_LISTARTODOS = 'http://localhost:8000/emprestimos/listartodos';
 
 
@@ -235,4 +235,4 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
+
