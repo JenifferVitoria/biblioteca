@@ -189,4 +189,128 @@ window.onload = function () {
     // inicia cards
     atualizarCards();
 
+<<<<<<< HEAD
 };
+=======
+
+// ======================================
+// PEGAR INICIAIS
+// ======================================
+function getIniciais(nome) {
+
+    if (!nome) return "??";
+
+    return nome
+        .split(" ")
+        .map(n => n[0])
+        .join("")
+        .toUpperCase();
+
+}
+
+
+// ======================================
+// DELETAR USUÁRIO
+// ======================================
+async function deletarUsuario(id) {
+
+    const confirmar =
+        confirm(
+            "Deseja deletar este usuário?"
+        );
+
+    if (!confirmar) return;
+
+    try {
+
+        const resposta =
+            await fetch(
+                `${API}/deletar/${id}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+        if (resposta.ok) {
+
+            alert("Usuário deletado!");
+
+            carregarUsuarios();
+
+        } else {
+
+            alert("Erro ao deletar usuário");
+
+        }
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        alert("Erro no servidor");
+
+    }
+
+}
+
+
+// ======================================
+// EDITAR USUÁRIO
+// ======================================
+function editarUsuario(id) {
+
+    window.location.href =
+        `editarusuario.html?id=${id}`;
+
+}
+
+
+// ======================================
+// LOGOUT
+// ======================================
+function logout() {
+
+    const botao =
+        document.querySelector(
+            ".logout-btn"
+        );
+
+    botao.addEventListener(
+        "click",
+        () => {
+
+            const sair =
+                confirm("Deseja sair?");
+
+            if (sair) {
+
+                localStorage.clear();
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+        }
+    );
+
+}
+
+
+// ======================================
+// INICIAR
+// ======================================
+window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        carregarUsuarios();
+
+        logout();
+
+    }
+);
+
+
+
+>>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
