@@ -2,10 +2,10 @@
 
 // COMEÇANDO O METODO LISTAR TODOS DOS (LIVROS)
 
-const API_BUSCAR_TODOS = "http://localhost:8000/livros/listartodos";
-const API_BUSCAR_POR_ID = "http://localhost:8000/livros/listarid";
-const API_SALVAR = "http://localhost:8000/livros/salvar";
-const API_ATUALIZAR = "http://localhost:8000/livros/atualizar";
+const API_BUSCAR_TODOS = "http://localhost:8080/livros/listartodos";
+const API_BUSCAR_POR_ID = "http://localhost:8080/livros/listarid";
+const API_SALVAR = "http://localhost:8080/livros/salvar";
+const API_ATUALIZAR = "http://localhost:8080/livros/atualizar";
 
 // SERÁ UM METODO LISTAR TODOS, LISTAR POR ID E DELETAR PARA:
 //titulo
