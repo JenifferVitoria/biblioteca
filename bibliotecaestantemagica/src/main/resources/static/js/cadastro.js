@@ -1,136 +1,352 @@
-const API = "http://localhost:8080/usuarios";
+window.onload = function () {
 
+    // ==========================================
+    // FORMULÁRIO
+    // ==========================================
 
-// =====================================
-// VALIDAR CPF (BÁSICO)
-// =====================================
-function validaCPF(input) {
+    const form = document.querySelector("form");
 
-    let cpf = input.value.replace(/\D/g, "");
+    // ==========================================
+    // CAMPOS
+    // ==========================================
 
-    if (cpf.length !== 11) {
+    const nome =
+        document.getElementById("nomeCompleto");
 
-        alert("CPF inválido!");
-        input.value = "";
-        return false;
+    const cpf =
+        document.getElementById("cpf");
 
-    }
+    const email =
+        document.getElementById("email");
 
-    return true;
+    const telefone =
+        document.getElementById("telefone");
 
-}
+    const endereco =
+        document.getElementById("endereco");
 
-
-// =====================================
-// VALIDAR SENHAS
-// =====================================
-function confirmandoSenha() {
+    const dataNascimento =
+        document.getElementById("dataNascimento");
 
     const senha =
-        document.getElementById("senha").value;
+        document.getElementById("senha");
 
-    const confirmar =
-        document.getElementById("confirmarSenha").value;
+    const confirmarSenha =
+        document.getElementById("confirmarSenha");
 
-    if (senha !== confirmar) {
+    const tipoUsuario =
+        document.getElementById("tipoUsuario");
 
-        alert("As senhas não conferem!");
+    // ==========================================
+    // MÁSCARA CPF
+    // ==========================================
 
-        document.getElementById(
-            "confirmarSenha"
-        ).value = "";
+    cpf.addEventListener("input", function () {
 
-        return false;
+        let valor =
+            cpf.value.replace(/\D/g, "");
 
-    }
+        valor = valor.replace(
+            /(\d{3})(\d)/,
+            "$1.$2"
+        );
 
-    return true;
+        valor = valor.replace(
+            /(\d{3})(\d)/,
+            "$1.$2"
+        );
 
-}
+        valor = valor.replace(
+            /(\d{3})(\d{1,2})$/,
+            "$1-$2"
+        );
 
+        cpf.value = valor;
 
-// =====================================
-// SALVAR USUÁRIO
-// =====================================
-async function salvar(event) {
+    });
 
-    event.preventDefault();
+    // ==========================================
+    // MÁSCARA TELEFONE
+    // ==========================================
 
-    const usuario = {
+    telefone.addEventListener("input", function () {
 
-        nome: document.getElementById("nomeCompleto").value,
-        cpf: document.getElementById("cpf").value,
-        email: document.getElementById("email").value,
-        telefone: document.getElementById("telefone").value,
-        endereco: document.getElementById("endereco").value,
-        dataNascimento: document.getElementById("dataNascimento").value,
-        senha: document.getElementById("senha").value,
-        tipo: document.getElementById("tipoUsuario").value
+        let valor =
+            telefone.value.replace(/\D/g, "");
 
-    };
+        valor = valor.replace(
+            /^(\d{2})(\d)/g,
+            "($1) $2"
+        );
 
-    // validação simples
-    if (
-        !usuario.nome ||
-        !usuario.email ||
-        !usuario.senha
-    ) {
+        valor = valor.replace(
+            /(\d)(\d{4})$/,
+            "$1-$2"
+        );
 
-        alert("Preencha todos os campos obrigatórios!");
-        return;
+        telefone.value = valor;
 
-    }
+    });
 
-    try {
+    // ==========================================
+    // VALIDAR CPF
+    // ==========================================
 
-        const resposta =
-            await fetch(
-                `${API}/salvar`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(usuario)
-                }
-            );
+    window.validaCPF = function () {
 
-        if (resposta.ok) {
+        const valor =
+            cpf.value.replace(/\D/g, "");
 
-            alert("Usuário cadastrado com sucesso!");
+        if (valor.length !== 11) {
 
-            window.location.href =
-                "login.html";
+            alert("CPF inválido!");
 
-        } else {
+            cpf.focus();
 
-            const erro =
-                await resposta.text();
-
-            console.error(erro);
-
-            alert("Erro ao cadastrar usuário");
+            return false;
 
         }
 
-    } catch (erro) {
+        return true;
 
-        console.error(erro);
+    };
 
-        alert("Erro no servidor");
+    // ==========================================
+    // CONFIRMAR SENHA
+    // ==========================================
 
+    window.confirmandoSenha = function () {
+
+        if (
+            senha.value !==
+            confirmarSenha.value
+        ) {
+
+            alert(
+                "As senhas não coincidem!"
+            );
+
+            confirmarSenha.focus();
+
+            return false;
+
+        }
+
+        return true;
+
+    };
+
+    // ==========================================
+    // SUBMIT FORM
+    // ==========================================
+
+    form.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+            // =====================
+            // VALIDAÇÕES
+            // =====================
+
+            if (
+                nome.value.trim() === ""
+            ) {
+
+                alert(
+                    "Preencha o nome completo."
+                );
+
+                nome.focus();
+
+                return;
+
+            }
+
+            if (!validaCPF()) {
+
+                return;
+
+            }
+
+            if (
+                email.value.trim() === ""
+            ) {
+
+                alert(
+                    "Preencha o email."
+                );
+
+                email.focus();
+
+                return;
+
+            }
+
+            if (
+                telefone.value.trim() === ""
+            ) {
+
+                alert(
+                    "Preencha o telefone."
+                );
+
+                telefone.focus();
+
+                return;
+
+            }
+
+            if (
+                endereco.value.trim() === ""
+            ) {
+
+                alert(
+                    "Preencha o endereço."
+                );
+
+                endereco.focus();
+
+                return;
+
+            }
+
+            if (
+                dataNascimento.value === ""
+            ) {
+
+                alert(
+                    "Preencha a data de nascimento."
+                );
+
+                dataNascimento.focus();
+
+                return;
+
+            }
+
+            if (
+                senha.value.trim() === ""
+            ) {
+
+                alert(
+                    "Preencha a senha."
+                );
+
+                senha.focus();
+
+                return;
+
+            }
+
+            if (!confirmandoSenha()) {
+
+                return;
+
+            }
+
+            if (
+                tipoUsuario.selectedIndex === 0
+            ) {
+
+                alert(
+                    "Selecione o tipo de usuário."
+                );
+
+                tipoUsuario.focus();
+
+                return;
+
+            }
+
+            // =================================
+            // OBJETO USUÁRIO
+            // =================================
+
+            const usuario = {
+
+                nome: nome.value,
+
+                cpf: cpf.value,
+
+                email: email.value,
+
+                telefone: telefone.value,
+
+                endereco: endereco.value,
+
+                dataNascimento:
+                    dataNascimento.value,
+
+                senha: senha.value,
+
+                tipoUsuario:
+                    tipoUsuario.value
+
+            };
+
+            // =================================
+            // EXIBIR CONSOLE
+            // =================================
+
+            console.log(usuario);
+
+            // =================================
+            // SUCESSO
+            // =================================
+
+            alert(
+                "Cadastro realizado com sucesso!"
+            );
+
+            // =================================
+            // RESET
+            // =================================
+
+            form.reset();
+
+        }
+    );
+
+};
+
+async function logar() {
+
+    // captura campos
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+
+    // objeto login
+    const usuario = {
+        email: email,
+        senha: senha
+    };
+
+	console.log(usuario);
+	
+    // envia requisição para o backend
+    const response = await fetch("http://localhost:8000/usuarios/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(usuario)
+    });
+
+    // verifica resposta
+    if (response.ok) {
+        const data = await response.json();
+
+        localStorage.setItem(
+            "usuarioLogado",
+            JSON.stringify(data)
+        );
+
+        // redireciona para página de usuário
+        window.location.href = "dashboardbibliotecario.html";
+
+    } else {
+        alert("Email ou senha inválidos!");
     }
-
 }
-
-
-// =====================================
-// INICIAR EVENTO
-// =====================================
-window.addEventListener("DOMContentLoaded", () => {
-
-    document
-        .querySelector(".btn-cadastrar")
-        .addEventListener("click", salvar);
-
-});
