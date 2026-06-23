@@ -95,8 +95,47 @@ async function salvar(){
 
 
    //coloque aqui o seu método para listar
+ 
    
 }
+// FUNÇÃO CADASTROLIVRO PARA CAIR NA PAGINA LISTALIVRO
+ async function listarTodosOsLivros(){
+	
+	//constante que armazena a resposta da nossa api
+	const response = await fetch(API_BUSCAR_TODOS);
+	//constante que armazena a conversão da resposta em formato json
+	const livro =  await  response.json();
+	const tbody = document.querySelector("tbody");
+	tbody.innerHTML = "";
+	livro.foreach(livros =>{
+		const tr = document.createElement("tr");
+		tr.innerHTML =`<td>${livro.id}</td>
 
+		<td>${livro.placa}</td>
 
-// Pegando o modal do HTML
+		<td>${livro.modelo}</td>
+
+		<td>${livro.ano}</td>
+
+		<td>${livro.fabricante}</td>
+
+		<td>
+
+		<button class="btn btn-warning btn-sm" onclick="editar(${carro.id})">
+
+		Editar
+
+		</button>
+
+		<button class="btn btn-danger btn-sm" onclick="deletar(${carro.id})">
+
+		Deletar
+
+		</button>
+
+		</td>
+		
+		`;
+	})
+ }
+
