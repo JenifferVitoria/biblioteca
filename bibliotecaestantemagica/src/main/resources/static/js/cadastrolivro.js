@@ -23,13 +23,13 @@ let editandoId = null;
 //Utilitários
 function limparFormulario(){
 	
-	document.getElementById("Título").value = "";
-	document.getElementById("Autor").value = "";
-	document.getElementById("Editora").value = "";
-	document.getElementById("Ano de publicação").value = "";
-	document.getElementById("ISBN").value = "";
-	document.getElementById("Gênero").value = "";
-	document.getElementById("Código do acervo").value = "";
+	document.getElementById("titulo").value = "";
+	document.getElementById("autor").value = "";
+	document.getElementById("editora").value = "";
+	document.getElementById("anoPublicacao").value = "";
+	document.getElementById("isbn").value = "";
+	document.getElementById("genero").value = "";
+	document.getElementById("codigoAcervo").value = "";
 	editandoId = null;
 	
 }
@@ -45,15 +45,9 @@ async function salvar(){
 	const isbn = document.getElementById("isbn").value;
 	const genero = document.getElementById("genero").value;
 	const codigoAcervo = document.getElementById("codigoAcervo").value;
-	
-	// Pegando o arquivo da foto selecionada pelo usuário
-    const foto =
-        document.getElementById("fileInput").files[0];
 
-    const formData = new FormData();
-	//
-    formData.append("nome", nome);
-    formData.append("endereco", endereco);
+	const formData = new FormData();
+	
 	formData.append("titulo", titulo);
 	formData.append("autor", autor);
 	formData.append("editora", editora);
@@ -63,11 +57,6 @@ async function salvar(){
 	formData.append("codigoAcervo", codigoAcervo);
 	formData.append("id", editandoId); // Adicionando o ID ao FormData para atualização
 
-
-	// Verificando se o usuário selecionou uma foto antes de adicionar ao FormData
-    if(foto){
-        formData.append("imagem", foto);
-    }
 
     if(editandoId){
 
@@ -95,9 +84,10 @@ async function salvar(){
 
 
    //coloque aqui o seu método para listar
- 
+   await listarTodosOsLivros();
+   limparFormulario();
    
-}
+};
 // FUNÇÃO CADASTROLIVRO PARA CAIR NA PAGINA LISTALIVRO
  async function listarTodosOsLivros(){
 	
@@ -111,23 +101,28 @@ async function salvar(){
 		const tr = document.createElement("tr");
 		tr.innerHTML =`<td>${livro.id}</td>
 
-		<td>${livro.placa}</td>
+		<td>${livro.titulo}</td>
 
-		<td>${livro.modelo}</td>
+		<td>${livro.autor}</td>
 
-		<td>${livro.ano}</td>
+		<td>${livro.editora}</td>
 
-		<td>${livro.fabricante}</td>
+		<td>${livro.anoPublicacao}</td>
+		
+		<td>${livro.isbn}</td>
 
+		<td>${livro.genero}</td>
+		
+		<td>${livro.codigoAcervo}</td>
 		<td>
 
-		<button class="btn btn-warning btn-sm" onclick="editar(${carro.id})">
+		<button class="btn btn-warning btn-sm" onclick="editar(${livro.id})">
 
 		Editar
 
 		</button>
 
-		<button class="btn btn-danger btn-sm" onclick="deletar(${carro.id})">
+		<button class="btn btn-danger btn-sm" onclick="deletar(${livro.id})">
 
 		Deletar
 
@@ -136,6 +131,13 @@ async function salvar(){
 		</td>
 		
 		`;
-	})
+		tbody.appendChild(tr);
+	});
+	
  }
+ 
+ document.addEventListener("DOMContentLoaded",()=>{
+ 	
+ 	listarTodosOsLivros();
+ });
 
