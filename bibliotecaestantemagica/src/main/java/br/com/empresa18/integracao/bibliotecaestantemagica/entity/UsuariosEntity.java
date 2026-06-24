@@ -36,13 +36,13 @@ public class UsuariosEntity {
 	@Column (name = "endereco", length = 50, nullable = false)
 	private String endereco;
 	
-	@Column (name = "dataNascimento", length = 15, nullable = false)
+	@Column (name = "dataNascimento", nullable = false)
 	private LocalDate dataNascimento;
 	
 	@Column (name = "tipo", length = 100, nullable = false)
 	private String tipo;
 	
-	@Column (name = "senha", nullable = false)
+	@Column (name = "senha",length = 255, nullable = false)
 	private String senha;
 	
 	private boolean status;
