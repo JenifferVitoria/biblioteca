@@ -26,7 +26,11 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	@RequestMapping("/usuarios")
 	@CrossOrigin("*")
 	public class UsuariosController{
-	@Autowired
+	
+		
+		@Autowired
+	
+	
 	private UsuariosRepository usu;
 	
 	@Autowired
@@ -43,6 +47,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 			return usu.findAll();
 		}
 
+		
 	// BUSCAR POR ID
 	@GetMapping("/listarporid/{id}")
 	@ResponseStatus(HttpStatus.OK)

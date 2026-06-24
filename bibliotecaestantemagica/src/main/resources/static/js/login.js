@@ -1,18 +1,13 @@
 async function logar() {
 
-    // captura campos
     const email = document.getElementById("email").value;
     const senha = document.getElementById("senha").value;
 
-    // objeto login
     const usuario = {
         email: email,
         senha: senha
     };
 
-	console.log(usuario);
-	
-    // envia requisição para o backend
     const response = await fetch("http://localhost:8000/usuarios/login", {
         method: "POST",
         headers: {
@@ -21,25 +16,43 @@ async function logar() {
         body: JSON.stringify(usuario)
     });
 
-    // verifica resposta
-    if (response.ok) {
-        const data = await response.json();
 
-        localStorage.setItem(
-            "usuarioLogado",
-            JSON.stringify(data)
-        );
+    if (!response.ok) {
+        alert("Email ou senha inválidos!");
+        return;
+    }
 
-        // redireciona para página de usuário
+    // tenta ler o JSON // 
+	
+	
+    const usuarioLogado = await response.json();
+
+    console.log(usuarioLogado);
+
+    localStorage.setItem(
+        "usuarioLogado",
+        JSON.stringify(usuarioLogado)
+    );
+
+    // redirecionamento para pegar no formato tipo //
+	
+	
+    if (usuarioLogado.tipo === "Bibliotecário") {
+
         window.location.href = "dashboardbibliotecario.html";
 
+    } else if (usuarioLogado.tipo === "Aluno") {
+
+        window.location.href = "dashboardaluno.html";
+
     } else {
-        alert("Email ou senha inválidos!");
+
+        alert("Tipo de usuário inválido: " + usuarioLogado.tipo);
+
     }
 }
 
-function logout(){
-	
-	localStorage.removeItem("usuarioLogado");
-	window.location.href = "login.html";
+function logout() {
+    localStorage.removeItem("usuarioLogado");
+    window.location.href = "login.html";
 }

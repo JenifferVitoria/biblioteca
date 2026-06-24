@@ -23,13 +23,13 @@ public class UsuariosEntity {
 	private String nome;
 
 	@Column (name = "cpf", length = 11, nullable = false)
-	private int cpf;
+	private String cpf;
 
 	@Column (name = "email", length = 50, nullable = false)
 	private String email;
 	
 	@Column (name = "telefone", length = 20, nullable = false)
-	private int telefone;
+	private String telefone;
 	
 	@Column (name = "endereco", length = 50, nullable = false)
 	private String endereco;
@@ -64,11 +64,11 @@ public class UsuariosEntity {
 		this.nome = nome;
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -80,11 +80,11 @@ public class UsuariosEntity {
 		this.email = email;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 

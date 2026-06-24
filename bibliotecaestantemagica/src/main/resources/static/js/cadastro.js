@@ -1,14 +1,8 @@
 window.onload = function () {
 
-    // ==========================================
-    // FORMULÁRIO
-    // ==========================================
 
     const form = document.querySelector("form");
 
-    // ==========================================
-    // CAMPOS
-    // ==========================================
 
     const nome =
         document.getElementById("nomeCompleto");
@@ -37,9 +31,8 @@ window.onload = function () {
     const tipoUsuario =
         document.getElementById("tipoUsuario");
 
-    // ==========================================
-    // MÁSCARA CPF
-    // ==========================================
+		
+		
 
     cpf.addEventListener("input", function () {
 
@@ -65,32 +58,10 @@ window.onload = function () {
 
     });
 
-    // ==========================================
-    // MÁSCARA TELEFONE
-    // ==========================================
+   
 
-    telefone.addEventListener("input", function () {
 
-        let valor =
-            telefone.value.replace(/\D/g, "");
-
-        valor = valor.replace(
-            /^(\d{2})(\d)/g,
-            "($1) $2"
-        );
-
-        valor = valor.replace(
-            /(\d)(\d{4})$/,
-            "$1-$2"
-        );
-
-        telefone.value = valor;
-
-    });
-
-    // ==========================================
-    // VALIDAR CPF
-    // ==========================================
+    // VALIDAR CPF // 
 
     window.validaCPF = function () {
 
@@ -111,9 +82,8 @@ window.onload = function () {
 
     };
 
-    // ==========================================
-    // CONFIRMAR SENHA
-    // ==========================================
+ 
+    // CONFIRMAR SENHA // 
 
     window.confirmandoSenha = function () {
 
@@ -136,9 +106,7 @@ window.onload = function () {
 
     };
 
-    // ==========================================
-    // SUBMIT FORM
-    // ==========================================
+
 
     form.addEventListener(
         "submit",
@@ -146,9 +114,8 @@ window.onload = function () {
 
             event.preventDefault();
 
-            // =====================
-            // VALIDAÇÕES
-            // =====================
+   
+			
 
             if (
                 nome.value.trim() === ""
@@ -260,9 +227,7 @@ window.onload = function () {
 
             }
 
-            // =================================
-            // OBJETO USUÁRIO
-            // =================================
+         
 
             const usuario = {
 
@@ -286,23 +251,17 @@ window.onload = function () {
 
             };
 
-            // =================================
-            // EXIBIR CONSOLE
-            // =================================
+          
 
             console.log(usuario);
 
-            // =================================
-            // SUCESSO
-            // =================================
+          
 
             alert(
                 "Cadastro realizado com sucesso!"
             );
 
-            // =================================
-            // RESET
-            // =================================
+          
 
             form.reset();
 
