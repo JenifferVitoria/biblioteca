@@ -1,181 +1,257 @@
+
+<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Mágica - Pesquisa de Livros</title>
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Pesquisar Livros - Biblioteca Mágica</title>
 
     <link rel="stylesheet" href="css/listalivros.css">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body>
 
-<div class="dashboard-container">
+    <div class="dashboard">
 
-    <!-- HEADER -->
-    <header class="topbar">
-        <div class="logo-area">
-            <img src="img/logo.png" alt="Logo Biblioteca">
-            <div>
-                <h2>Biblioteca Mágica</h2>
-                <span>Área do Aluno</span>
-            </div>
-        </div>
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
 
-        <div class="profile-area">
-            <i class="bi bi-person-circle"></i>
-        </div>
-    </header>
+            <div class="logo">
 
-    <!-- PESQUISA -->
-    <section class="search-section">
+ <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"class="logo" alt="Biblioteca Mágica">
 
-        <div class="title-area">
-            <h1>Pesquisar Livros</h1>
-            <p>Encontre livros disponíveis na biblioteca.</p>
-        </div>
+                <h2>ESTANTE MÁGICA</h2>
 
-        <div class="search-box">
-
-            <div class="input-search">
-                <i class="bi bi-search"></i>
-
-                <input type="text"
-                       placeholder="Digite o nome do livro, autor ou categoria">
             </div>
 
-            <button class="btn-search">
-                Pesquisar
-            </button>
+            <nav class="menu">
 
-        </div>
+                <a href="inicio.html">
+                    <i class="bi bi-house"></i>
+                    Início
+                </a>
 
-    </section>
+                <a href="gerenciaracervo.html">
+                    <i class="bi bi-book"></i>
+                    Gerenciar Acervo
+                </a>
 
-    <!-- LISTA DE LIVROS -->
-    <section class="books-section">
+                <a href="usuarios.html">
+                    <i class="bi bi-person"></i>
+                    Usuários
+                </a>
 
-        <div class="section-header">
-            <h2>Livros Encontrados</h2>
-        </div>
+                <a href="emprestimos.html">
+                    <i class="bi bi-clipboard-check"></i>
+                    Empréstimos
+                </a>
 
-        <div class="books-grid">
+                <a href="devolucoes.html">
+                    <i class="bi bi-arrow-return-left"></i>
+                    Devoluções
+                </a>
 
-            <!-- CARD -->
-            <div class="book-card">
+                <a href="reservas.html">
+                    <i class="bi bi-bookmark"></i>
+                    Reservas
+                </a>
 
-                <div class="book-image">
-                    <img src="img/livro1.jpg" alt="Livro">
-                </div>
+                <a href="multas.html">
+                    <i class="bi bi-cash-coin"></i>
+                    Multas
+                </a>
 
-                <div class="book-info">
+            </nav>
 
-                    <h3>Dom Casmurro</h3>
+            <a href="login.html" class="btn-sair">
+                <i class="bi bi-box-arrow-right"></i>
+                Sair
+            </a>
 
-                    <p class="author">
-                        Machado de Assis
+        </aside>
+
+        <!-- CONTEÚDO -->
+        <main class="content">
+
+            <!-- TOPO -->
+            <header class="topbar">
+
+                <i class="bi bi-bell"></i>
+
+                <i class="bi bi-person-circle profile"></i>
+
+            </header>
+
+            <!-- PESQUISA -->
+            <section class="card">
+
+                <div class="titulo">
+
+                    <h1>Pesquisar Livros</h1>
+
+                    <p>
+                        Encontre livros disponíveis na biblioteca.
                     </p>
 
-                    <div class="book-details">
+                </div>
 
-                        <span>
-                            <i class="bi bi-book"></i>
-                            Romance
-                        </span>
+                <div class="search-area">
 
-                        <span class="available">
+                    <div class="search-input">
+
+                        <i class="bi bi-search"></i>
+
+                        <input type="text"
+                            placeholder="Digite o nome do livro, autor ou categoria">
+
+                    </div>
+
+                    <button>
+                        Pesquisar
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- RESULTADOS -->
+            <section class="card">
+
+                <div class="header-resultados">
+
+                    <div>
+
+                        <h2>Livros Encontrados</h2>
+
+                        <span>24 resultados encontrados</span>
+
+                    </div>
+
+                    <select>
+                        <option>Mais relevantes</option>
+                    </select>
+
+                </div>
+
+                <div class="books-grid">
+
+                    <!-- LIVRO -->
+                    <div class="book-card">
+
+                        <img src="img/livro1.jpg">
+
+                        <h3>Dom Casmurro</h3>
+
+                        <p>Machado de Assis</p>
+
+                        <small>Romance</small>
+
+                        <span class="status disponivel">
                             Disponível
                         </span>
 
+                        <div class="isbn">
+                            ISBN: 978-85-01-10735-6
+                        </div>
+
                     </div>
 
-                    <button class="btn-details">
-                        Ver detalhes
-                    </button>
+                    <!-- LIVRO -->
+                    <div class="book-card">
 
-                </div>
+                        <img src="img/livro2.jpg">
 
-            </div>
+                        <h3>O Pequeno Príncipe</h3>
 
-            <!-- CARD -->
-            <div class="book-card">
+                        <p>Antoine de Saint-Exupéry</p>
 
-                <div class="book-image">
-                    <img src="img/livro2.jpg" alt="Livro">
-                </div>
+                        <small>Ficção</small>
 
-                <div class="book-info">
-
-                    <h3>O Pequeno Príncipe</h3>
-
-                    <p class="author">
-                        Antoine de Saint-Exupéry
-                    </p>
-
-                    <div class="book-details">
-
-                        <span>
-                            <i class="bi bi-book"></i>
-                            Ficção
-                        </span>
-
-                        <span class="available">
+                        <span class="status disponivel">
                             Disponível
                         </span>
 
+                        <div class="isbn">
+                            ISBN: 978-85-01-00000-1
+                        </div>
+
                     </div>
 
-                    <button class="btn-details">
-                        Ver detalhes
+                    <!-- LIVRO -->
+                    <div class="book-card">
+
+                        <img src="img/livro3.jpg">
+
+                        <h3>Harry Potter</h3>
+
+                        <p>J. K. Rowling</p>
+
+                        <small>Fantasia</small>
+
+                        <span class="status emprestado">
+                            Emprestado
+                        </span>
+
+                        <div class="isbn">
+                            ISBN: 978-85-01-54321-0
+                        </div>
+
+                    </div>
+
+                    <!-- LIVRO -->
+                    <div class="book-card">
+
+                        <img src="img/livro4.jpg">
+
+                        <h3>1984</h3>
+
+                        <p>George Orwell</p>
+
+                        <small>Ficção Científica</small>
+
+                        <span class="status reservado">
+                            Reservado
+                        </span>
+
+                        <div class="isbn">
+                            ISBN: 978-65-00-12345-3
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- PAGINAÇÃO -->
+
+                <div class="pagination">
+
+                    <button>
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+
+                    <button class="active">1</button>
+
+                    <button>2</button>
+
+                    <button>3</button>
+
+                    <button>
+                        <i class="bi bi-chevron-right"></i>
                     </button>
 
                 </div>
 
-            </div>
+            </section>
 
-            <!-- CARD -->
-            <div class="book-card">
+        </main>
 
-                <div class="book-image">
-                    <img src="img/livro3.jpg" alt="Livro">
-                </div>
-
-                <div class="book-info">
-
-                    <h3>Harry Potter</h3>
-
-                    <p class="author">
-                        J. K. Rowling
-                    </p>
-
-                    <div class="book-details">
-
-                        <span>
-                            <i class="bi bi-book"></i>
-                            Fantasia
-                        </span>
-
-                        <span class="unavailable">
-                            Indisponível
-                        </span>
-
-                    </div>
-
-                    <button class="btn-details">
-                        Ver detalhes
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</div>
+    </div>
 
 </body>
+
 </html>
+
