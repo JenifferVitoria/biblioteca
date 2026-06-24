@@ -1,246 +1,355 @@
-const API = "http://localhost:8080/livros";
+window.onload = function () {
 
+    // =====================================
+    // ELEMENTOS
+    // =====================================
 
-// ==========================
-// CARREGAR LIVROS
-// ==========================
-async function carregarLivros() {
+    const btnEditar = document.querySelectorAll(".edit");
 
-    try {
+    const btnExcluir = document.querySelectorAll(".delete");
 
-        const resposta = await fetch(
-            `${API}/listartodos`
-        );
+    const logoutBtn = document.querySelector(".logout-btn");
 
-        if (!resposta.ok) {
+    const notificationBtn =
+        document.querySelector(".notification-btn");
 
-            throw new Error(
-                "Erro ao carregar livros"
+    const menuLinks =
+        document.querySelectorAll(".menu a");
+
+    const livrosTabela =
+        document.querySelector("tbody");
+
+    // =====================================
+    // EDITAR LIVRO
+    // =====================================
+
+    btnEditar.forEach((botao) => {
+
+        botao.addEventListener("click", function () {
+
+            const linha =
+                botao.closest("tr");
+
+            const titulo =
+                linha.querySelector("strong");
+
+            const autor =
+                linha.children[1];
+
+            const categoria =
+                linha.children[2];
+
+            const isbn =
+                linha.children[3];
+
+            const status =
+                linha.querySelector(".status");
+
+            // =========================
+            // PROMPTS
+            // =========================
+
+            const novoTitulo = prompt(
+                "Editar título:",
+                titulo.innerText
             );
 
-        }
+            if (novoTitulo !== null &&
+                novoTitulo !== "") {
 
-        const livros = await resposta.json();
+                titulo.innerText = novoTitulo;
 
-        const tbody =
-            document.querySelector("tbody");
+            }
 
-        tbody.innerHTML = "";
+            const novoAutor = prompt(
+                "Editar autor:",
+                autor.innerText
+            );
 
-        let total = livros.length;
+            if (novoAutor !== null &&
+                novoAutor !== "") {
+
+                autor.innerText = novoAutor;
+
+            }
+
+            const novaCategoria = prompt(
+                "Editar categoria:",
+                categoria.innerText
+            );
+
+            if (novaCategoria !== null &&
+                novaCategoria !== "") {
+
+                categoria.innerText = novaCategoria;
+
+            }
+
+            const novoISBN = prompt(
+                "Editar ISBN:",
+                isbn.innerText
+            );
+
+            if (novoISBN !== null &&
+                novoISBN !== "") {
+
+                isbn.innerText = novoISBN;
+
+            }
+
+            const novoStatus = prompt(
+                "Editar status (Disponível, Emprestado ou Reservado):",
+                status.innerText.trim()
+            );
+
+            if (novoStatus !== null &&
+                novoStatus !== "") {
+
+                status.innerText = novoStatus;
+
+                // remover classes
+                status.classList.remove(
+                    "available",
+                    "borrowed",
+                    "reserved"
+                );
+
+                // adicionar classe correta
+                if (
+                    novoStatus.toLowerCase() ===
+                    "disponível"
+                ) {
+
+                    status.classList.add(
+                        "available"
+                    );
+
+                }
+
+                else if (
+                    novoStatus.toLowerCase() ===
+                    "emprestado"
+                ) {
+
+                    status.classList.add(
+                        "borrowed"
+                    );
+
+                }
+
+                else {
+
+                    status.classList.add(
+                        "reserved"
+                    );
+
+                }
+
+            }
+
+            alert(
+                "Livro atualizado com sucesso!"
+            );
+
+            atualizarCards();
+
+        });
+
+    });
+
+    // =====================================
+    // EXCLUIR LIVRO
+    // =====================================
+
+    btnExcluir.forEach((botao) => {
+
+        botao.addEventListener("click", function () {
+
+            const linha =
+                botao.closest("tr");
+
+            const nomeLivro =
+                linha.querySelector("strong")
+                    .innerText;
+
+            const confirmar = confirm(
+                `Deseja excluir "${nomeLivro}"?`
+            );
+
+            if (confirmar) {
+
+                linha.remove();
+
+                atualizarCards();
+
+                alert(
+                    "Livro removido com sucesso!"
+                );
+
+            }
+
+        });
+
+    });
+
+    // =====================================
+    // ATUALIZAR CARDS
+    // =====================================
+
+    function atualizarCards() {
+
+        const linhas =
+            livrosTabela.querySelectorAll("tr");
+
+        let total = 0;
+
         let disponiveis = 0;
+
         let emprestados = 0;
+
         let reservados = 0;
 
-        livros.forEach(livro => {
+        linhas.forEach((linha) => {
 
-            let statusTexto = "Disponível";
-            let statusClasse = "available";
+            total++;
 
-            if (livro.status === "emprestado") {
+            const status =
+                linha.querySelector(".status")
+                    .innerText
+                    .trim()
+                    .toLowerCase();
 
-                statusTexto = "Emprestado";
-                statusClasse = "borrowed";
-                emprestados++;
-
-            } else if (
-                livro.status === "reservado"
-            ) {
-
-                statusTexto = "Reservado";
-                statusClasse = "reserved";
-                reservados++;
-
-            } else {
+            if (status === "disponível") {
 
                 disponiveis++;
 
             }
 
-            tbody.innerHTML += `
+            else if (status === "emprestado") {
 
-                <tr>
+                emprestados++;
 
-                    <td class="book-info">
+            }
 
-                        <img src="
-                            http://localhost:8080/uploads/${livro.imagem}
-                        ">
+            else {
 
-                        <div>
+                reservados++;
 
-                            <strong>
-                                ${livro.titulo}
-                            </strong>
-
-                            <span>
-                                Livro físico
-                            </span>
-
-                        </div>
-
-                    </td>
-
-                    <td>
-                        ${livro.autor}
-                    </td>
-
-                    <td>
-                        ${livro.genero}
-                    </td>
-
-                    <td>
-                        ${livro.isbn}
-                    </td>
-
-                    <td>
-
-                        <span class="
-                            status ${statusClasse}
-                        ">
-                            ${statusTexto}
-                        </span>
-
-                    </td>
-
-                    <td>
-
-                        <div class="actions">
-
-                            <button
-                                class="btn-action edit"
-                                onclick="
-                                    editarLivro(
-                                        ${livro.id}
-                                    )
-                                "
-                            >
-
-                                <i class="
-                                    bi bi-pencil
-                                "></i>
-
-                            </button>
-
-                            <button
-                                class="btn-action delete"
-                                onclick="
-                                    deletarLivro(
-                                        ${livro.id}
-                                    )
-                                "
-                            >
-
-                                <i class="
-                                    bi bi-trash
-                                "></i>
-
-                            </button>
-
-                        </div>
-
-                    </td>
-
-                </tr>
-
-            `;
+            }
 
         });
 
-        // CARDS
-        document.querySelectorAll(
-            ".info-card h3"
-        )[0].innerText = total;
+        const cards =
+            document.querySelectorAll(
+                ".info-card h3"
+            );
 
-        document.querySelectorAll(
-            ".info-card h3"
-        )[1].innerText = disponiveis;
-
-        document.querySelectorAll(
-            ".info-card h3"
-        )[2].innerText = emprestados;
-
-        document.querySelectorAll(
-            ".info-card h3"
-        )[3].innerText = reservados;
-
-    } catch (erro) {
-
-        console.error(erro);
-
-        alert(
-            "Erro ao carregar acervo"
-        );
+        cards[0].innerText = total;
+        cards[1].innerText = disponiveis;
+        cards[2].innerText = emprestados;
+        cards[3].innerText = reservados;
 
     }
 
-}
+    // =====================================
+    // NOTIFICAÇÃO
+    // =====================================
 
-
-// ==========================
-// DELETAR LIVRO
-// ==========================
-async function deletarLivro(id) {
-
-    const confirmar = confirm(
-        "Deseja deletar este livro?"
-    );
-
-    if (!confirmar) return;
-
-    try {
-
-        const resposta = await fetch(
-            `${API}/deletar/${id}`,
-            {
-                method: "DELETE"
-            }
-        );
-
-        if (resposta.ok) {
+    notificationBtn.addEventListener(
+        "click",
+        function () {
 
             alert(
-                "Livro deletado!"
-            );
-
-            carregarLivros();
-
-        } else {
-
-            alert(
-                "Erro ao deletar"
+                "Você possui 3 notificações."
             );
 
         }
+    );
 
-    } catch (erro) {
+    // =====================================
+    // MENU
+    // =====================================
 
-        console.error(erro);
+    menuLinks.forEach((link) => {
 
-        alert(
-            "Erro no servidor"
+        link.addEventListener("mouseenter",
+            function () {
+
+                link.style.opacity = "0.8";
+
+            });
+
+        link.addEventListener("mouseleave",
+            function () {
+
+                link.style.opacity = "1";
+
+            });
+
+    });
+
+    // =====================================
+    // LOGOUT
+    // =====================================
+
+    logoutBtn.addEventListener("click",
+        function (event) {
+
+            event.preventDefault();
+
+            const sair = confirm(
+                "Deseja sair do sistema?"
+            );
+
+            if (sair) {
+
+                alert(
+                    "Saindo do sistema..."
+                );
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+        });
+
+    // =====================================
+    // ANIMAÇÃO DAS IMAGENS
+    // =====================================
+
+    const capas =
+        document.querySelectorAll(
+            ".book-info img"
         );
 
-    }
+    capas.forEach((img) => {
 
-}
+        img.addEventListener("mouseenter",
+            function () {
 
+                img.style.transform =
+                    "scale(1.08)";
 
-// ==========================
-// EDITAR LIVRO
-// ==========================
-function editarLivro(id) {
+                img.style.transition =
+                    "0.3s";
 
-    window.location.href =
-        `editarlivro.html?id=${id}`;
+            });
 
-}
+        img.addEventListener("mouseleave",
+            function () {
 
+                img.style.transform =
+                    "scale(1)";
 
-// ==========================
-// INICIAR
-// ==========================
-window.addEventListener(
-    "DOMContentLoaded",
-    carregarLivros
-);
+            });
+
+    });
+
+    // =====================================
+    // INICIAR CARDS
+    // =====================================
+
+    atualizarCards();
+
+};
