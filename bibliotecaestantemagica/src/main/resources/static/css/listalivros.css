@@ -1,92 +1,465 @@
-.books-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:25px;
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
 }
 
-.book-card{
+body{
+    background:#f5f7fc;
+    color:#1e293b;
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+    width:280px;
+    background:#ffffff;
+    border-right:1px solid #e6edf9;
+
+    padding:25px;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.logo img{
+    width:90px;
+    margin-bottom:10px;
+}
+
+.logo h2{
+    color:#1450d2;
+    font-size:22px;
+    font-weight:700;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#475569;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    transition:.3s;
+}
+
+.menu a i{
+    font-size:18px;
+}
+
+.menu a:hover{
+    background:#edf4ff;
+    color:#1450d2;
+}
+
+.menu a.active{
+    background:#1450d2;
+    color:white;
+}
+
+.btn-sair{
+    text-decoration:none;
+
+    background:#1450d2;
+    color:white;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    font-weight:600;
+}
+
+/* ==========================
+   CONTEÚDO
+========================== */
+
+.content{
+    flex:1;
+    padding:30px;
+}
+
+/* ==========================
+   TOPBAR
+========================== */
+
+.topbar{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+
+    gap:25px;
+
+    margin-bottom:25px;
+}
+
+.topbar i{
+    color:#1450d2;
+}
+
+.topbar .bi-bell{
+    font-size:24px;
+}
+
+.profile{
+    font-size:42px;
+    cursor:pointer;
+}
+
+/* ==========================
+   CARD PADRÃO
+========================== */
+
+.card{
     background:#fff;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    margin-bottom:25px;
+
+    border:1px solid #e6edf9;
+
+    box-shadow:
+        0 4px 12px rgba(15,23,42,.04);
+}
+
+/* ==========================
+   TÍTULOS
+========================== */
+
+.titulo h1{
+    color:#1450d2;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.titulo p{
+    color:#64748b;
+    font-size:15px;
+}
+
+/* ==========================
+   PESQUISA
+========================== */
+
+.search-area{
+    display:flex;
+    gap:15px;
+    margin-top:25px;
+}
+
+.search-input{
+    flex:1;
+    position:relative;
+}
+
+.search-input i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#94a3b8;
+}
+
+.search-input input{
+    width:100%;
+    height:52px;
+
+    border:1px solid #dbe4f3;
+    border-radius:14px;
+
+    padding-left:48px;
+    padding-right:15px;
+
+    font-size:15px;
+
+    outline:none;
+}
+
+.search-input input:focus{
+    border-color:#1450d2;
+}
+
+.search-area button{
+    width:170px;
+
+    border:none;
+    border-radius:14px;
+
+    background:#1450d2;
+    color:white;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.search-area button:hover{
+    background:#0f43b7;
+}
+
+/* ==========================
+   RESULTADOS
+========================== */
+
+.header-resultados{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.header-resultados h2{
+    color:#1450d2;
+    margin-bottom:5px;
+}
+
+.header-resultados span{
+    color:#64748b;
+    font-size:14px;
+}
+
+.header-resultados select{
+    height:42px;
+
+    border:1px solid #dbe4f3;
+
+    border-radius:10px;
+
+    padding:0 12px;
+
+    outline:none;
+}
+
+/* ==========================
+   GRID DE LIVROS
+========================== */
+
+.books-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fill,minmax(220px,1fr));
+
+    gap:20px;
+}
+
+/* ==========================
+   CARD LIVRO
+========================== */
+
+.book-card{
+    background:white;
+
+    border:1px solid #e7eefc;
+
+    border-radius:18px;
+
+    padding:18px;
+
     transition:.3s;
 }
 
 .book-card:hover{
-    transform:translateY(-5px);
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 10px 20px rgba(20,80,210,.08);
 }
 
-.book-cover{
-    position:relative;
-    height:320px;
-}
-
-.book-cover img{
+.book-card img{
     width:100%;
-    height:100%;
+    height:240px;
+
     object-fit:cover;
+
+    border-radius:12px;
+
+    margin-bottom:15px;
 }
+
+.book-card h3{
+    color:#1450d2;
+    font-size:18px;
+
+    margin-bottom:6px;
+}
+
+.book-card p{
+    color:#475569;
+    margin-bottom:6px;
+}
+
+.book-card small{
+    display:block;
+
+    color:#64748b;
+
+    margin-bottom:12px;
+}
+
+/* ==========================
+   STATUS
+========================== */
 
 .status{
-    position:absolute;
-    top:15px;
-    right:15px;
-    padding:6px 12px;
+    display:inline-block;
+
+    padding:7px 12px;
+
     border-radius:20px;
-    color:white;
-    font-size:12px;
+
+    font-size:13px;
+    font-weight:600;
 }
 
 .disponivel{
-    background:#16a34a;
+    background:#dcfce7;
+    color:#15803d;
 }
 
-.indisponivel{
-    background:#dc2626;
+.emprestado{
+    background:#fef3c7;
+    color:#d97706;
 }
 
-.book-content{
-    padding:20px;
+.reservado{
+    background:#dbeafe;
+    color:#2563eb;
 }
 
-.book-content h3{
-    margin:10px 0;
-    color:#1746d0;
-}
+.isbn{
+    margin-top:12px;
 
-.autor{
     color:#64748b;
+
+    font-size:13px;
 }
 
-.categoria{
-    background:#edf2ff;
-    color:#1746d0;
-    padding:5px 10px;
-    border-radius:20px;
-    font-size:12px;
-}
+/* ==========================
+   PAGINAÇÃO
+========================== */
 
-.book-footer{
+.pagination{
+    margin-top:30px;
+
     display:flex;
+    justify-content:center;
+    align-items:center;
+
     gap:10px;
-    margin-top:20px;
 }
 
-.btn-detalhes,
-.btn-reservar{
-    flex:1;
-    border:none;
-    padding:12px;
-    border-radius:12px;
+.pagination button{
+    width:38px;
+    height:38px;
+
+    border:1px solid #dbe4f3;
+
+    background:white;
+
+    border-radius:10px;
+
     cursor:pointer;
 }
 
-.btn-detalhes{
-    background:#edf2ff;
-    color:#1746d0;
+.pagination button.active{
+    background:#1450d2;
+    color:white;
+    border-color:#1450d2;
 }
 
-.btn-reservar{
-    background:#1746d0;
-    color:white;
+/* ==========================
+   RESPONSIVO
+========================== */
+
+@media (max-width: 1024px){
+
+    .sidebar{
+        width:230px;
+    }
+
+    .books-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media (max-width: 768px){
+
+    .dashboard{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .search-area{
+        flex-direction:column;
+    }
+
+    .search-area button{
+        width:100%;
+        height:50px;
+    }
+
+    .header-resultados{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .books-grid{
+        grid-template-columns:1fr;
+    }
 }

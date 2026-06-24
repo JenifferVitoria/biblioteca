@@ -205,7 +205,6 @@ function diasRestantes(data) {
     return diff > 0 ? diff : 0;
 }
 
-
 // ==============================
 // INICIAR PÁGINA
 // ==============================

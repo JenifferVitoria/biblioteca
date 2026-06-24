@@ -23,7 +23,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 
 
 	@RestController
-	@RequestMapping("/usuarios")
+	@RequestMapping("/Usuarios")
 	@CrossOrigin("*")
 	public class UsuariosController{
 	
@@ -41,7 +41,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	}
 
 	//BUSCAR TODOS
-		@GetMapping("/listartodos")
+		@GetMapping("/listarTodos")
 		@ResponseStatus(HttpStatus.OK)
 		public List<UsuariosEntity> listarTodos(){
 			return usu.findAll();
@@ -49,7 +49,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 
 		
 	// BUSCAR POR ID
-	@GetMapping("/listarporid/{id}")
+	@GetMapping("/listarporId/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Optional<UsuariosEntity> buscarPorID(@PathVariable Long id){
 		return usu.findById(id);

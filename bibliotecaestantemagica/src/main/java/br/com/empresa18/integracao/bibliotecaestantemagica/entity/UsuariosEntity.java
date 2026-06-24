@@ -31,22 +31,23 @@ public class UsuariosEntity {
 	@Column (name = "telefone", length = 20, nullable = false)
 	private String telefone;
 	
+
 	@Column (name = "endereco", length = 50, nullable = false)
 	private String endereco;
 	
-	@Column (name = "dataNascimento", length = 15, nullable = false)
+	@Column (name = "dataNascimento", nullable = false)
 	private LocalDate dataNascimento;
 	
 	@Column (name = "tipo", length = 100, nullable = false)
 	private String tipo;
 	
-	@Column (name = "senha", nullable = false)
+	@Column (name = "senha",length = 255, nullable = false)
 	private String senha;
 	
-   
-	
-	
-/// GETTERS E SETTERS 
+	private boolean status;
+
+
+	/// GETTERS E SETTERS 
 ///
 	public Long getId() {
 		return id;
@@ -120,5 +121,12 @@ public class UsuariosEntity {
 		this.senha = senha;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	
+}	
