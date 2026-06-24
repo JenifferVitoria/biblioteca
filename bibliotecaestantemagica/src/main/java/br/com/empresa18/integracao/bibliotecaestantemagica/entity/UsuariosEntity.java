@@ -22,15 +22,17 @@ public class UsuariosEntity {
 	@Column(name = "nome", length = 150, nullable = false)
 	private String nome;
 
-	@Column (name = "cpf", length = 11, nullable = false)
-	private int cpf;
+	
+
+	@Column (name = "cpf", length = 14, nullable = false)
+	private String cpf;
 
 	@Column (name = "email", length = 50, nullable = false)
 	private String email;
 	
 	@Column (name = "telefone", length = 20, nullable = false)
-	private int telefone;
-	
+	private String telefone;
+
 	@Column (name = "endereco", length = 50, nullable = false)
 	private String endereco;
 	
@@ -43,10 +45,10 @@ public class UsuariosEntity {
 	@Column (name = "senha", nullable = false)
 	private String senha;
 	
-   
-	
-	
-/// GETTERS E SETTERS 
+	private boolean status;
+
+
+	/// GETTERS E SETTERS 
 ///
 	public Long getId() {
 		return id;
@@ -64,11 +66,11 @@ public class UsuariosEntity {
 		this.nome = nome;
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -80,11 +82,11 @@ public class UsuariosEntity {
 		this.email = email;
 	}
 
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
@@ -120,5 +122,12 @@ public class UsuariosEntity {
 		this.senha = senha;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	
+}	
