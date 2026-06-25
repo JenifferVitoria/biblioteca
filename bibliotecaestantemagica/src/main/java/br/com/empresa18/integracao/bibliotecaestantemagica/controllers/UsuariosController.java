@@ -69,13 +69,20 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	// ATUALIZAR
 	@PutMapping("/atualizar/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public String atualizarUsuarios(@PathVariable Long id, @RequestBody UsuariosEntity usuarios) {
-		if(usu.existsById(id)) {
-			usuarios.setId(id);
-			usu.save(usuarios);
-			return "Atualizado";
-		}
-		return "Não atualizado";
+	public UsuariosEntity atualizarUsuarios(@RequestBody UsuariosEntity usuarios, @PathVariable Long id) {
+
+	    if (usu.existsById(id)) {
+
+	        UsuariosEntity usuario = usu.findById(id).get();
+
+	        usuario.setNome(usuarios.getNome());
+	        usuario.setEmail(usuarios.getEmail());
+	        usuario.setTelefone(usuarios.getTelefone());
+
+	        return usu.save(usuario);
+	    }
+
+	    return null;
 	}
 
 

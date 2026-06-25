@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/perfilaluno.css">
 
     <!-- JS -->
-    <script type="text/javascript" src="js/perfilaluno.js"></script>
+    <script type="text/javascript" src="js/usuarios.js" defer></script>
 </head>
 
 <body>
@@ -82,10 +82,10 @@
                required>
 
         <input class="form-control mb-3"
-               id="email"
-               type="email"
-               placeholder="E-mail"
-               required>
+       id="email"
+       type="email"
+       placeholder="E-mail"
+       required>
 
         <div class="row">
 
@@ -133,12 +133,12 @@
             </div>
 
             <div class="col-md-4">
-                <input class="form-control mb-3"
-                       id="cep"
-                       placeholder="CEP"
-                       required
-                       minlength="8"
-                       maxlength="9">
+               <input type="text"
+                class="form-control mb-3"
+                id="cep"
+                placeholder="00000-000"
+                required
+                pattern="[0-9]{5}-?[0-9]{3}">
             </div>
 
         </div>
@@ -326,7 +326,9 @@
 
           <div class="list-group-item d-flex justify-content-between">
             Android Mobile
-            <button class="btn btn-sm btn-danger">Encerrar</button>
+            <button class="btn btn-sm btn-danger" onclick="encerrarSessao(this)">
+             Encerrar
+            </button>
           </div>
 
         </div>
@@ -335,7 +337,9 @@
 
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button class="btn btn-danger">Encerrar todas</button>
+        <button class="btn btn-danger" onclick="encerrarTodasSessoes()">
+         Encerrar todas
+        </button>
       </div>
 
     </div>
