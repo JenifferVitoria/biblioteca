@@ -219,50 +219,32 @@ try {
 // =========================
 // EDITAR
 // =========================
-async function editar(id) {
-
-try {
-
-    const response = await fetch(`${API_BUSCAR_POR_ID}/${id}`);
-
-    const usuario = await response.json();
-
-    editandoId = id;
-
-    document.getElementById("nome").value = usuario.nome ?? "";
-    document.getElementById("cpf").value = usuario.cpf ?? "";
-    document.getElementById("email").value = usuario.email ?? "";
-    document.getElementById("telefone").value = usuario.telefone ?? "";
-    document.getElementById("endereco").value = usuario.endereco ?? "";
-    document.getElementById("dataNascimento").value = usuario.dataNascimento ?? "";
-    document.getElementById("tipo").value = usuario.tipo ?? "";
-    document.getElementById("senha").value = usuario.senha ?? "";
-    document.getElementById("status").value = String(usuario.status);
-
-    abrirModal();
-
-} 
-catch (erro) {
-    console.error(erro);
-    alert("Erro ao carregar usuário.");
-}
-}
-
 function salvarPerfil() {
-    alert("Salvar perfil funcionando!");
-}
 
-function alterarSenha() {
-    alert("Senha funcionando!");
-}
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const telefone = document.getElementById("telefone").value;
+    const nascimento = document.getElementById("nascimento").value;
+    const endereco = document.getElementById("endereco").value;
+    const cidade = document.getElementById("cidade").value;
+    const estado = document.getElementById("estado").value;
+    const cep = document.getElementById("cep").value;
 
-function salvarPreferencias() {
-    alert("Preferências funcionando!");
-}
+    if (
+        nome === "" ||
+        email === "" ||
+        telefone === "" ||
+        nascimento === "" ||
+        endereco === "" ||
+        cidade === "" ||
+        estado === "" ||
+        cep === ""
+    ) {
+        alert("Preencha todos os campos obrigatórios.");
+        return;
+    }
 
-function salvarEmailRecuperacao() {
-    const email = document.getElementById("novoEmail").value;
-    alert("Email atualizado: " + email);
+    alert("Perfil salvo com sucesso!");
 }
 
 function encerrarSessao(btn) {
@@ -276,6 +258,65 @@ function encerrarSessao(btn) {
     alert("Sessão encerrada com sucesso.");
 }
 
+function salvarEmailRecuperacao() {
+
+    const emailAtual = document.getElementById("emailAtual").value;
+    const novoEmail = document.getElementById("novoEmail").value;
+    const confirmarEmail = document.getElementById("confirmarEmail").value;
+
+    if (
+        emailAtual === "" ||
+        novoEmail === "" ||
+        confirmarEmail === ""
+    ) {
+        alert("Preencha todos os campos.");
+        return;
+    }
+
+    if (novoEmail !== confirmarEmail) {
+        alert("Os e-mails não conferem.");
+        return;
+    }
+
+    alert("E-mail de recuperação atualizado com sucesso!");
+}
+
+function alterarSenha() {
+
+    const senhaAtual = document.getElementById("senhaAtual").value;
+    const novaSenha = document.getElementById("novaSenha").value;
+    const confirmarSenha = document.getElementById("confirmarSenha").value;
+
+    if (
+        senhaAtual === "" ||
+        novaSenha === "" ||
+        confirmarSenha === ""
+    ) {
+        alert("Preencha todos os campos.");
+        return;
+    }
+
+    if (novaSenha !== confirmarSenha) {
+        alert("As senhas não conferem.");
+        return;
+    }
+
+    alert("Senha alterada com sucesso!");
+}
+
+function salvarPreferencias() {
+
+    const email = document.getElementById("emailNotificacao").checked;
+    const sms = document.getElementById("smsNotificacao").checked;
+    const push = document.getElementById("pushNotificacao").checked;
+
+    if (!email && !sms && !push) {
+        alert("Selecione pelo menos uma preferência de notificação.");
+        return;
+    }
+
+    alert("Preferências salvas com sucesso!");
+}
 
 function encerrarTodasSessoes() {
 
