@@ -9,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "Usuarios")
 public class UsuariosEntity {
@@ -46,6 +48,8 @@ public class UsuariosEntity {
 	
 	private boolean status;
 
+	
+	
 
 	/// GETTERS E SETTERS 
 ///

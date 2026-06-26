@@ -2,6 +2,7 @@ const API = "http://localhost:8080/alunos";
 
 
 // CARREGAR PERFIL
+
 async function carregarPerfil() {
 
     try {
@@ -55,6 +56,7 @@ async function carregarPerfil() {
 
 
 // SALVAR PERFIL
+
 function salvarPerfil() {
 
     const perfil = {
@@ -73,9 +75,9 @@ function salvarPerfil() {
     alert("Perfil atualizado com sucesso!");
 }
 
-// ================================
+
 // ABRIR MODAL DE SEGURANÇA (SENHA)
-// ================================
+
 function abrirAlterarSenha() {
 
     const modal = new bootstrap.Modal(
@@ -86,9 +88,8 @@ function abrirAlterarSenha() {
 }
 
 
-// ================================
 // ALTERAR SENHA
-// ================================
+
 function alterarSenha() {
 
     const senhaAtual = document.getElementById("senhaAtual").value;
@@ -115,6 +116,7 @@ function alterarSenha() {
     }
 
     // Simulação de API
+	
     console.log("Senha alterada com sucesso!");
 
     msg.innerHTML = `
@@ -123,11 +125,13 @@ function alterarSenha() {
         </div>`;
 
     // limpar campos
+	
     document.getElementById("senhaAtual").value = "";
     document.getElementById("novaSenha").value = "";
     document.getElementById("confirmarSenha").value = "";
 
     // fechar modal automaticamente
+	
     setTimeout(() => {
         const modal = bootstrap.Modal.getInstance(document.getElementById('modalSenha'));
         modal.hide();
@@ -135,9 +139,9 @@ function alterarSenha() {
 }
 
 
-// ================================
+
 // ALTERAR E-MAIL (SIMULAÇÃO)
-// ================================
+
 function alterarEmail() {
 
     const novoEmail = prompt("Digite o novo e-mail de recuperação:");
@@ -150,26 +154,26 @@ function alterarEmail() {
 }
 
 
-// ================================
+
 // GERENCIAR PREFERÊNCIAS
-// ================================
+
 function gerenciarPreferencias() {
 
     alert("Aqui você pode futuramente abrir um modal de preferências.");
 }
 
 
-// ================================
+
 // VER SESSÕES ATIVAS
-// ================================
+
 function verSessoes() {
 
     alert(`
 Dispositivos conectados:
 
-- Chrome (Windows) - Online
-- Android - 2h atrás
-- iPhone - 1 dia atrás
+ Chrome (Windows) - Online
+ Android - 2h atrás
+ iPhone - 1 dia atrás
     `);
 }
 
@@ -184,7 +188,7 @@ function salvarPreferencias() {
 
     msg.innerHTML = "";
 
-    // Aqui futuramente você manda para API
+    
     console.log({
         email,
         sms,
@@ -266,63 +270,42 @@ function encerrarTodasSessoes() {
 async function salvarPerfil() {
 
     const perfil = {
-        nome: document.getElementById("nome").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        telefone: document.getElementById("telefone").value.trim(),
+        nome: document.getElementById("nome").value,
+        email: document.getElementById("email").value,
+        telefone: document.getElementById("telefone").value,
         nascimento: document.getElementById("nascimento").value,
-        endereco: document.getElementById("endereco").value.trim(),
-        cidade: document.getElementById("cidade").value.trim(),
+        endereco: document.getElementById("endereco").value,
+        cidade: document.getElementById("cidade").value,
         estado: document.getElementById("estado").value,
-        cep: document.getElementById("cep").value.trim()
+        cep: document.getElementById("cep").value
     };
 
-    // 🔴 1. VALIDA CAMPOS OBRIGATÓRIOS
     if (!perfil.nome || !perfil.email || !perfil.telefone || !perfil.nascimento) {
-        alert("Preencha todos os campos obrigatórios!");
+        alert("Preencha os campos obrigatórios!");
         return;
     }
 
-    // 🔴 2. VALIDAR EMAIL
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(perfil.email)) {
-        alert("E-mail inválido!");
-        return;
-    }
+    const id = 1;
 
-    // 🔴 3. VERIFICAR DUPLICADO NO BACK-END
-    try {
+    const resposta = await fetch(`http://localhost:8080/alunos/atualizar/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(perfil)
+    });
 
-        const resposta = await fetch(`http://localhost:8080/alunos/verificar-email?email=${perfil.email}`);
-
-        const existe = await resposta.json();
-
-        if (existe) {
-            alert("Este e-mail já está cadastrado!");
-            return;
-        }
-
-        // 🔵 4. SALVAR PERFIL
-        const salvar = await fetch("http://localhost:8080/alunos/atualizar", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(perfil)
-        });
-
-        if (salvar.ok) {
-            alert("Perfil atualizado com sucesso!");
-        } else {
-            alert("Erro ao salvar perfil!");
-        }
-
-    } catch (error) {
-        console.error(error);
-        alert("Erro de conexão com servidor!");
+    if (resposta.ok) {
+        alert("Perfil atualizado com sucesso!");
+    } else {
+        alert("Erro ao salvar perfil!");
     }
 }
 
+    
+
 // EXECUTA AO ABRIR A PÁGINA
+
 window.addEventListener(
     "DOMContentLoaded",
     carregarPerfil
