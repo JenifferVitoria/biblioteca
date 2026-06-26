@@ -1,238 +1,167 @@
-
-// emprestimo.js
-
-window.onload = function () {
-
-    // ============================
-    // FORMULÁRIO
-    // ============================
-
-    const form = document.querySelector("form");
-
-    // ============================
-    // CAMPOS
-    // ============================
-
-    const id = document.querySelector('input[name="id"]');
-
-    const dataEmprestimo = document.querySelector(
-        'input[name="dataEmprestimo"]'
-    );
-
-    const dataDevolucao = document.querySelector(
-        'input[name="dataDevolucao"]'
-    );
-
-    const status = document.querySelector(
-        'select[name="status"]'
-    );
-
-    const locador = document.querySelector(
-        'input[name="locador"]'
-    );
-
-    const locatario = document.querySelector(
-        'input[name="locatario"]'
-    );
-
-    const livro = document.querySelector(
-        'input[name="livro"]'
-    );
-
-    // ============================
-    // ALERTA
-    // ============================
-
-    const alerta = document.createElement("div");
-
-    alerta.classList.add(
-        "alert",
-        "alert-success",
-        "mt-4"
-    );
-
-    alerta.style.display = "none";
-
-    alerta.innerHTML = `
-        <i class="bi bi-check-circle-fill"></i>
-        Empréstimo cadastrado com sucesso!
-    `;
-
-    document.querySelector(".card-body")
-        .appendChild(alerta);
-
-    // ============================
-    // EVENTO SUBMIT
-    // ============================
-
-    form.addEventListener("submit", function (event) {
-
-        // impedir reload
-        event.preventDefault();
-
-        // ============================
-        // VALIDAÇÕES
-        // ============================
-
-        if (id.value === "") {
-
-            alert("Preencha o ID.");
-            id.focus();
-            return;
-
-        }
-
-        if (dataEmprestimo.value === "") {
-
-            alert("Preencha a data do empréstimo.");
-            dataEmprestimo.focus();
-            return;
-
-        }
-
-        if (dataDevolucao.value === "") {
-
-            alert("Preencha a data da devolução.");
-            dataDevolucao.focus();
-            return;
-
-        }
-
-        if (status.value === "") {
-
-            alert("Selecione o status.");
-            status.focus();
-            return;
-
-        }
-
-        if (locador.value.trim() === "") {
-
-            alert("Preencha o locador.");
-            locador.focus();
-            return;
-
-        }
-
-        if (locatario.value.trim() === "") {
-
-            alert("Preencha o locatário.");
-            locatario.focus();
-            return;
-
-        }
-
-        if (livro.value.trim() === "") {
-
-            alert("Preencha o livro.");
-            livro.focus();
-            return;
-
-        }
-
-        // ============================
-        // VALIDAÇÃO DE DATAS
-        // ============================
-
-        const dataEmp = new Date(dataEmprestimo.value);
-        const dataDev = new Date(dataDevolucao.value);
-
-        if (dataDev < dataEmp) {
-
-            alert(
-                "A data de devolução não pode ser menor que a data do empréstimo."
-            );
-
-            dataDevolucao.focus();
-
-            return;
-
-        }
-
-        // ============================
-        // OBJETO EMPRÉSTIMO
-        // ============================
-
-        const emprestimo = {
-
-            id: id.value,
-
-            dataEmprestimo: dataEmprestimo.value,
-
-            dataDevolucao: dataDevolucao.value,
-
-            status: status.value,
-
-            locador: locador.value,
-
-            locatario: locatario.value,
-
-            livro: livro.value
-
-        };
-
-        // ============================
-        // EXIBIR NO CONSOLE
-        // ============================
-
-        console.log(emprestimo);
-
-        // ============================
-        // ALERTA SUCESSO
-        // ============================
-
-        alerta.style.display = "block";
-
-        // esconder alerta
-        setTimeout(() => {
-
-            alerta.style.display = "none";
-
-        }, 3000);
-
-        // ============================
-        // LIMPAR FORMULÁRIO
-        // ============================
-
-        form.reset();
+const API_BUSCAR_TODOS = "http://localhost:8000/emprestimos/listartodos";
+const API_SALVAR = "http://localhost:8000/emprestimos/salvar";
+const API_BUSCAR_POR_ID = "http://localhost:8000/emprestimos/listarid";
+const API_ATUALIZAR = "http://localhost:8000/emprestimos/atualizar";
+const API_DELETAR = "http://localhost:8000/emprestimos/deletar";
+
+const API_USUARIOS = "http://localhost:8000/Usuarios/listarTodos";
+const API_LIVROS = "http://localhost:8000/livros/listartodos";
+
+let editandoId = null;
+
+// ================= LIMPAR =================
+function limparFormulario() {
+
+    document.getElementById("locador").value = "";
+    document.getElementById("locatario").value = "";
+    document.getElementById("livro").value = "";
+    document.getElementById("dataEmprestimo").value = "";
+    document.getElementById("dataDevolucao").value = "";
+    document.getElementById("status").value = "Em andamento";
+ 
+
+    editandoId = null;
+}
+
+// ================= MODAL =================
+function abrirModal() {
+    new bootstrap.Modal(document.getElementById("emprestimoModal")).show();
+}
+
+// ================= LISTAR =================
+async function listarTodos() {
+
+    const res = await fetch(API_BUSCAR_TODOS);
+    const data = await res.json();
+
+    const tbody = document.getElementById("emprestimos");
+    tbody.innerHTML = "";
+
+    data.forEach(emprestimo => {
+
+        tbody.innerHTML += `
+            <tr>
+                <td>${emprestimo.locador?.nome || ""}</td>
+                <td>${emprestimo.locatario?.nome || ""}</td>
+                <td>${emprestimo.livro?.titulo || ""}</td>
+                <td>${emprestimo.dataEmprestimo}</td>
+                <td>${emprestimo.dataDevolucao}</td>
+                <td>${emprestimo.status}</td>
+
+                <td>
+                    <button class="btn btn-warning btn-sm" onclick="editar(${emprestimo.id})">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+
+                    <button class="btn btn-danger btn-sm" onclick="deletar(${emprestimo.id})">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+// ================= USUÁRIOS =================
+async function carregarUsuarios() {
+
+    const res = await fetch(API_USUARIOS);
+    const usuarios = await res.json();
+
+    const locador = document.getElementById("locador");
+    const locatario = document.getElementById("locatario");
+
+    locador.innerHTML = "";
+    locatario.innerHTML = "";
+
+    usuarios.forEach(usuario => {
+
+        locador.innerHTML += `<option value="${usuario.id}">${usuario.nome}</option>`;
+        locatario.innerHTML += `<option value="${usuario.id}">${usuario.nome}</option>`;
 
     });
-
-};
-
-const API_EMPRESTIMOS_LISTARTODOS = 'http://localhost:8000/emprestimos/listartodos';
-
-
-async function listarEmprestimos() {
-  const response = await fetch(API_EMPRESTIMOS_LISTARTODOS);
-  const emprestimos = await response.json();
-
-  const tbody = document.getElementById("emprestimo");
-
-  tbody.innerHTML = ""; // 🔥 LIMPA ANTES DE ADICIONAR
-
-  emprestimos.forEach(emprestimo => {
-    const tr = document.createElement("tr");
-
-	tr.innerHTML = `
-	            <td>${emprestimo.id}</td>
-	            <td>${emprestimo.dataEmprestimo}</td>
-	            <td>${emprestimo.dataDevolucao}</td>
-				<td>12</td>
-				<td>${emprestimo.status}</td>		
-	            <td>
-        <button class="btn btn-warning btn-sm" onclick="editar(${emprestimo.id})">Renovar</button>
-      </td>
-    `;
-
-    tbody.appendChild(tr);
-  });
 }
-//FUNÇÃO PARA CARREGAR OS DADOS AO INICIALIZAR A PÁGINA
+
+// ================= LIVROS =================
+async function carregarLivros() {
+
+    const res = await fetch(API_LIVROS);
+    const livros = await res.json();
+
+    const select = document.getElementById("livro");
+
+    select.innerHTML = "";
+
+    livros.forEach(livros => {
+        select.innerHTML += `<option value="${livros.id}">${livros.titulo}</option>`;
+    });
+}
+
+// ================= SALVAR =================
+async function salvarEmprestimo() {
+
+    const emprestimo = {
+
+        locador: { id: Number(document.getElementById("locador").value) },
+        locatario: { id: Number(document.getElementById("locatario").value) },
+        livro: { id: Number(document.getElementById("livro").value) },
+
+        dataEmprestimo: document.getElementById("dataEmprestimo").value,
+        dataDevolucao: document.getElementById("dataDevolucao").value,
+        status: document.getElementById("status").value,
+    };
+
+    let url = API_SALVAR;
+    let method = "POST";
+
+    if (editandoId) {
+        url = `${API_ATUALIZAR}/${editandoId}`;
+        method = "PUT";
+    }
+
+    await fetch(url, {
+        method: method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(emprestimo)
+    });
+
+    limparFormulario();
+    listarTodos();
+}
+
+// ================= DELETAR =================
+async function deletar(id) {
+
+    if (!confirm("Deseja excluir?")) return;
+
+    await fetch(`${API_DELETAR}/${id}`, { method: "DELETE" });
+
+    listarTodos();
+}
+
+// ================= EDITAR =================
+async function editar(id) {
+
+    const res = await fetch(`${API_BUSCAR_POR_ID}/${id}`);
+    const emprestimo = await res.json();
+
+    editandoId = id;
+
+    document.getElementById("locador").value = emprestimo.locador.id;
+    document.getElementById("locatario").value = emprestimo.locatario.id;
+    document.getElementById("livro").value = emprestimo.livro.id;
+
+    document.getElementById("dataEmprestimo").value = emprestimo.dataEmprestimo;
+    document.getElementById("dataDevolucao").value = emprestimo.dataDevolucao;
+    document.getElementById("status").value = emprestimo.status;
+
+    abrirModal();
+}
+
+// ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
 
-	listarEmprestimos();
-})
-
-
-
+    listarTodos();
+    carregarUsuarios();
+    carregarLivros();
+});

@@ -21,15 +21,15 @@ public class EmprestimoEntity implements Serializable {
     private LocalDate dataDevolucao;
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idLocador")
     private UsuariosEntity locador;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idLocatario")
     private UsuariosEntity locatario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idLivro")
     private LivroEntity livro;
 
