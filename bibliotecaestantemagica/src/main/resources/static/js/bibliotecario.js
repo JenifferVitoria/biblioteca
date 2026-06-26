@@ -1,324 +1,153 @@
-const API_LIVROS =
-    "http://localhost:8080/livros";
-
-const API_USUARIOS =
-    "http://localhost:8080/alunos";
+const API_LIVROS = "http://localhost:8080/livros";
+const API_ALUNOS = "http://localhost:8080/alunos";
 
 
-// ======================================
-// CARREGAR DASHBOARD
-// ======================================
 async function carregarDashboard() {
-
     try {
+        const livros = await fetch(API_LIVROS + "/listartodos").then(r => r.json());
+        const alunos = await fetch(API_ALUNOS + "/listartodos").then(r => r.json());
 
-        // LIVROS
-        const respostaLivros =
-            await fetch(
-                `${API_LIVROS}/listartodos`
-            );
-
-        const livros =
-            await respostaLivros.json();
-
-        // USUÁRIOS
-        const respostaUsuarios =
-            await fetch(
-                `${API_USUARIOS}/listartodos`
-            );
-
-        const usuarios =
-            await respostaUsuarios.json();
-
-        // CONTADORES
-        let totalLivros =
-            livros.length;
-
+        let totalLivros = livros.length;
         let emprestados = 0;
+        let devolvidos = 0;
         let reservados = 0;
-        let disponiveis = 0;
+        let multas = 0;
 
         livros.forEach(livro => {
+            let status = (livro.status || "").toLowerCase().trim();
 
-            if (
-                livro.status === "emprestado"
-            ) {
+            if (status === "emprestado") emprestados++;
+            else if (status === "devolvido") devolvidos++;
+            else if (status === "reservado") reservados++;
 
-                emprestados++;
-
-            } else if (
-                livro.status === "reservado"
-            ) {
-
-                reservados++;
-
-            } else {
-
-                disponiveis++;
-
-            }
-
+            if (livro.multa === true) multas++;
         });
 
-        // CARDS
-        const cards =
-            document.querySelectorAll(
-                ".stats-card h2"
-            );
+        // Atualiza os cards (AJUSTE NO HTML: use IDs nesses elementos)
+        setText("totalLivros", totalLivros);
+        setText("emprestados", emprestados);
+        setText("devolvidos", devolvidos);
+        setText("reservados", reservados);
+        setText("multas", multas);
+        setText("alunos", alunos.length);
 
-        cards[0].innerText =
-            totalLivros;
-
-        cards[1].innerText =
-            emprestados;
-
-        cards[2].innerText =
-            "8";
-
-        cards[3].innerText =
-            reservados;
-
-        cards[4].innerText =
-            "7";
-
-        cards[5].innerText =
-            usuarios.length;
-
-        // CARREGAR EMPRÉSTIMOS
         carregarEmprestimos(livros);
 
-    } catch (erro) {
-
-        console.error(erro);
-
-        alert(
-            "Erro ao carregar dashboard"
-        );
-
+    } catch (error) {
+        console.error("Erro ao carregar dashboard:", error);
     }
-
 }
 
-
-// ======================================
-// CARREGAR EMPRÉSTIMOS
-// ======================================
+/* ================================
+   LISTA DE EMPRÉSTIMOS
+================================ */
 function carregarEmprestimos(livros) {
+    const lista = document.querySelector(".custom-card");
 
-    const container =
-        document.querySelector(
-            ".custom-card"
-        );
-
-    const emprestados =
-        livros.filter(
-            livro =>
-                livro.status ===
-                "emprestado"
-        );
-
-    if (emprestados.length === 0) {
-
+    if (!lista) {
+        console.error("Elemento .custom-card não encontrado no HTML");
         return;
-
     }
 
-    const itens =
-        container.querySelectorAll(
-            ".emprestimo-item"
-        );
+    let html = "";
 
-    itens.forEach(item => {
+    livros.forEach(livro => {
+        let status = (livro.status || "").toLowerCase().trim();
 
-        item.remove();
+        if (status === "emprestado") {
 
-    });
+            let imagem = livro.imagem
+                ? `http://localhost:8080/uploads/${livro.imagem}`
+                : "https://via.placeholder.com/80";
 
-    emprestados.forEach(livro => {
+            html += `
+                <div class="emprestimo-item">
 
-        container.innerHTML += `
+                    <img src="${imagem}" alt="Livro">
 
-            <div class="emprestimo-item">
+                    <div class="emprestimo-info">
+                        <h5>${livro.titulo || "Sem título"}</h5>
+                        <p>${livro.autor || "Autor desconhecido"}</p>
+                        <span>Usuário: ${livro.usuario || "N/A"}</span>
+                    </div>
 
-                <img src="
-                    http://localhost:8080/uploads/${livro.imagem}
-                ">
-
-                <div class="emprestimo-info">
-
-                    <h5>
-                        ${livro.titulo}
-                    </h5>
-
-                    <p>
-                        ${livro.autor}
-                    </p>
-
-                    <span>
-                        Usuário:
-                        ${livro.usuario || "Não informado"}
-                    </span>
+                    <div class="emprestimo-data">
+                        <small>Devolver até:</small>
+                        <strong>${livro.dataDevolucao || "-"}</strong>
+                    </div>
 
                 </div>
-
-                <div class="emprestimo-data">
-
-                    <small>
-                        Devolver até:
-                    </small>
-
-                    <strong>
-                        ${livro.dataDevolucao || "--"}
-                    </strong>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-}
-
-
-// ======================================
-// BUSCAR LIVRO
-// ======================================
-function buscarLivro() {
-
-    const busca =
-        document.querySelector(
-            ".search-box input"
-        );
-
-    busca.addEventListener(
-        "keyup",
-        async () => {
-
-            const texto =
-                busca.value.toLowerCase();
-
-            const resposta =
-                await fetch(
-                    `${API_LIVROS}/listartodos`
-                );
-
-            const livros =
-                await resposta.json();
-
-            const filtrados =
-                livros.filter(livro =>
-
-                    livro.titulo
-                        .toLowerCase()
-                        .includes(texto)
-
-                    ||
-
-                    livro.autor
-                        .toLowerCase()
-                        .includes(texto)
-
-                    ||
-
-                    livro.isbn
-                        .includes(texto)
-
-                );
-
-            console.log(filtrados);
-
+            `;
         }
-    );
+    });
 
+    lista.innerHTML = html;
 }
 
+/* ================================
+   BUSCAR LIVRO
+================================ */
+async function buscarLivro() {
+    try {
+        let texto = prompt("Digite o título do livro");
 
-// ======================================
-// MENU
-// ======================================
-function ativarMenu() {
+        if (!texto) return;
 
-    const menus =
-        document.querySelectorAll(
-            ".menu-item"
+        const livros = await fetch(API_LIVROS + "/listartodos").then(r => r.json());
+
+        const encontrado = livros.find(l =>
+            (l.titulo || "").toLowerCase() === texto.toLowerCase()
         );
+
+        if (encontrado) {
+            alert("Livro encontrado!");
+        } else {
+            alert("Livro não encontrado.");
+        }
+
+    } catch (error) {
+        console.error("Erro ao buscar livro:", error);
+    }
+}
+
+/* ================================
+   MENU ATIVO
+================================ */
+function ativarMenu() {
+    const menus = document.querySelectorAll(".menu-item");
 
     menus.forEach(menu => {
+        menu.addEventListener("click", () => {
 
-        menu.addEventListener(
-            "click",
-            () => {
+            menus.forEach(m => m.classList.remove("active"));
+            menu.classList.add("active");
 
-                menus.forEach(item => {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                });
-
-                menu.classList.add(
-                    "active"
-                );
-
-            }
-        );
-
+        });
     });
-
 }
 
-
-// ======================================
-// LOGOUT
-// ======================================
+/* ================================
+   LOGOUT
+================================ */
 function logout() {
-
-    const botao =
-        document.querySelector(
-            ".btn-sair"
-        );
-
-    botao.addEventListener(
-        "click",
-        () => {
-
-            const sair =
-                confirm(
-                    "Deseja sair?"
-                );
-
-            if (sair) {
-
-                localStorage.clear();
-
-                window.location.href =
-                    "login.html";
-
-            }
-
-        }
-    );
-
+    if (confirm("Deseja sair do sistema?")) {
+        localStorage.clear();
+        window.location.href = "login.html";
+    }
 }
 
+/* ================================
+   UTILITÁRIO
+================================ */
+function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+}
 
-// ======================================
-// INICIAR
-// ======================================
-window.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        carregarDashboard();
-
-        buscarLivro();
-
-        ativarMenu();
-
-        logout();
-
-    }
-);
+/* ================================
+   INIT
+================================ */
+window.onload = function () {
+    carregarDashboard();
+    ativarMenu();
+};
