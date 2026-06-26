@@ -329,11 +329,14 @@
                                 </div>
 
                             </div>
-
-                            <button class="btn btn-avaliacoes">
-                                <i class="bi bi-chat-left-text"></i>
-                                Ver todas as avaliações
-                            </button>
+				<button
+				    class="btn btn-avaliacoes"
+				    onclick="abrirModal('nomeLivro')">
+				
+				    <i class="bi bi-chat-left-text"></i>
+				    Avaliar Livro
+				
+				</button>
 
                         </div>
 
@@ -448,5 +451,100 @@
 
 </div>
 
+<!-- Modal Avaliar Livro -->
+<div id="modalAvaliacao" class="modal">
+
+    <div class="modal-content modal-livro">
+
+        <div class="modal-header">
+
+            <h2>Avaliar Livro</h2>
+
+            <button
+                class="btn-fechar"
+                type="button"
+                onclick="fecharModal()">
+
+                <i class="bi bi-x-lg"></i>
+
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="livro-info">
+
+                <i class="bi bi-book-fill"></i>
+
+                <h3 id="nomeLivro">
+                    O Pequeno Príncipe
+                </h3>
+
+            </div>
+
+            <div class="campo-avaliacao">
+
+                <label>Como você avalia este livro?</label>
+
+                <div class="rating" id="ratingLivro">
+
+                    <span class="star" onclick="avaliarLivro(1)">★</span>
+                    <span class="star" onclick="avaliarLivro(2)">★</span>
+                    <span class="star" onclick="avaliarLivro(3)">★</span>
+                    <span class="star" onclick="avaliarLivro(4)">★</span>
+                    <span class="star" onclick="avaliarLivro(5)">★</span>
+
+                </div>
+
+                <span id="textoNota" class="texto-nota">
+                    Clique nas estrelas
+                </span>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Comentário</label>
+
+                <textarea
+                    id="comentario"
+                    maxlength="500"
+                    onkeyup="contadorCaracteres()"
+                    placeholder="Compartilhe sua opinião sobre este livro..."></textarea>
+
+                <small id="contador">
+                    0 / 500 caracteres
+                </small>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                class="btn-cancelar"
+                type="button"
+                onclick="fecharModal()">
+
+                Cancelar
+
+            </button>
+
+            <button
+                class="btn-salvar"
+                type="button"
+                onclick="salvarAvaliacao()">
+
+                Publicar Avaliação
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 </body>
 </html>

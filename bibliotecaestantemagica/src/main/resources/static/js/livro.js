@@ -1,216 +1,145 @@
 
-window.onload = function () {
+let notaAvaliacao = 0;
 
-    // =========================================
-    // ELEMENTOS
-    // =========================================
 
-    const btnReservar = document.getElementById("btnReservar");
+	async function salvarLivro(){
+		
+	}
 
-    const resultado = document.getElementById("resultado");
 
-    const btnLista = document.querySelector(".btn-lista");
+	// SALVAR
+	async function salvarAvaliacao() {
 
-    const btnAvaliacoes = document.querySelector(".btn-avaliacoes");
+		if (validarCampo()=== true){
+			
+			
 
-    const btnSair = document.querySelector(".btn-sair");
+		
+		const avaliacao = {
 
-    const tituloLivro = document.querySelector(".book-details h1");
+			fornecedor : {
+				id : document.getElementById("select").value
+			},
+			
+	        dataDaAvaliacao: document.getElementById("dataDaAvaliacao").value,
 
-    const autorLivro = document.querySelector(".book-details h3");
+	        qualidadeDasPecas: qualidadeDasPecas,
 
-    const notaLivro = document.querySelector(".nota");
+	        prazoDeEntrega: prazoDeEntrega,
 
-    // =========================================
-    // STATUS DO LIVRO
-    // =========================================
+	        atendimento: atendimento,
 
-    let disponivel = true;
+	        preco: preco,
 
-    // =========================================
-    // VERIFICAR DISPONIBILIDADE
-    // =========================================
+	        observacoes: document.getElementById("observacoes").value
+	    };
+		
 
-    window.verificarLivro = function () {
 
-        const availabilityBox =
-            document.querySelector(".availability-box");
+	    await fetch(API_CADASTRAR, {
+	        method: "POST",
+	        headers: {
+	            "Content-Type": "application/json"
+	        },
+	        body: JSON.stringify(avaliacao)
+	    });
 
-        availabilityBox.innerHTML = "";
+	  //  alert("Avaliação salva com sucesso!");
 
-        const div = document.createElement("div");
+	    fecharModal();
+	    limparFormulario();
+	    listarFornecedor();     
+		};
+	}
 
-        div.classList.add("text-center");
+	 function validarCampo()  {
 
-        if (disponivel) {
+		notaAvaliacao = nota;
+		const select = document.getElementById("select").value;
+		const observacoes = document.getElementById("observacoes").value;
+			
 
-            div.innerHTML = `
-                <h4 class="text-success">
-                    <i class="bi bi-check-circle-fill"></i>
-                    Disponível
-                </h4>
 
-                <p>
-                    O livro está disponível para empréstimo.
-                </p>
-            `;
+			if (observacoes.length > 500){
+												
+						
+					alert("O maximo de carcters é 500")
+						return false;
+				}
+					
+				return true;
+						
+		}
+		
+		
+		
+		// ESTRELAS
+		function hoverStar(star, nota) {
 
-        } else {
+		    const estrelas = star.parentElement.querySelectorAll(".star");
 
-            div.innerHTML = `
-                <h4 class="text-danger">
-                    <i class="bi bi-x-circle-fill"></i>
-                    Indisponível
-                </h4>
+		    estrelas.forEach((item, index) => {
 
-                <p>
-                    Este livro já está reservado.
-                </p>
-            `;
+		        if (index < nota) {
+		            item.classList.add("hover");
+		        } else {
+		            item.classList.remove("hover");
+		        }
 
-        }
+		    });
+		}
 
-        availabilityBox.appendChild(div);
+		function limparHover(star) {
 
-    };
+		    const estrelas = star.parentElement.querySelectorAll(".star");
 
-    // =========================================
-    // RESERVAR LIVRO
-    // =========================================
+		    estrelas.forEach(item => {
+		        item.classList.remove("hover");
+		    });
+		}
 
-    window.reservarLivro = function () {
+		function avaliar(star, nota) {
 
-        if (!disponivel) {
+		    const rating = star.parentElement;
 
-            resultado.innerHTML = `
-                <span class="text-danger fw-bold">
-                    Livro indisponível.
-                </span>
-            `;
+		    const estrelas = rating.querySelectorAll(".star");
 
-            return;
+		    estrelas.forEach((item, index) => {
 
-        }
+		        if (index < nota) {
+		            item.classList.add("active");
+		        } else {
+		            item.classList.remove("active");
+		        }
 
-        disponivel = false;
+		    });
 
-        resultado.innerHTML = `
-            <span class="text-success fw-bold">
-                Livro reservado com sucesso!
-            </span>
-        `;
+		    const campo = rating.dataset.campo;
 
-        btnReservar.disabled = true;
+		    switch (campo) {
 
-        btnReservar.innerHTML = `
-            <i class="bi bi-check-circle"></i>
-            Reservado
-        `;
+		        case "qualidadeDasPecas":
+		            qualidadeDasPecas = nota;
+		            break;
 
-        btnReservar.classList.remove("btn-reservar");
+		       
+		    }
 
-        btnReservar.classList.add("btn-success");
+		    console.log(
+		        "Qualidade:", qualidadeDasPecas);
+		}
+		
+		function abrirModal(nomeLivro){
 
-    };
+		    document.getElementById("nomeLivro").innerHTML = nomeLivro;
 
-    // =========================================
-    // ADICIONAR À LISTA
-    // =========================================
+		    document.getElementById("modalAvaliacao").style.display="flex";
 
-    btnLista.addEventListener("click", function () {
+		}
 
-        alert(
-            `O livro "${tituloLivro.innerText}" foi adicionado à sua lista!`
-        );
+		function fecharModal(){
 
-    });
+		    document.getElementById("modalAvaliacao").style.display="none";
 
-    // =========================================
-    // VER TODAS AVALIAÇÕES
-    // =========================================
+		}
 
-    btnAvaliacoes.addEventListener("click", function () {
-
-        alert(
-            `Livro: ${tituloLivro.innerText}
-Autor: ${autorLivro.innerText}
-Nota: ${notaLivro.innerText}`
-        );
-
-    });
-
-    // =========================================
-    // BOTÃO SAIR
-    // =========================================
-
-    btnSair.addEventListener("click", function () {
-
-        const confirmar = confirm(
-            "Deseja realmente sair?"
-        );
-
-        if (confirmar) {
-
-            alert("Saindo do sistema...");
-
-            window.location.href = "login.html";
-
-        }
-
-    });
-
-    // =========================================
-    // MENU SIDEBAR
-    // =========================================
-
-    const menuItems =
-        document.querySelectorAll(".menu-item");
-
-    menuItems.forEach(item => {
-
-        item.addEventListener("mouseenter", function () {
-
-            item.style.cursor = "pointer";
-
-            item.style.opacity = "0.8";
-
-        });
-
-        item.addEventListener("mouseleave", function () {
-
-            item.style.opacity = "1";
-
-        });
-
-        item.addEventListener("click", function () {
-
-            alert(
-                `Abrindo: ${item.innerText.trim()}`
-            );
-
-        });
-
-    });
-
-    // =========================================
-    // ANIMAÇÃO CAPA
-    // =========================================
-
-    const capa =
-        document.querySelector(".book-cover img");
-
-    capa.addEventListener("mouseenter", function () {
-
-        capa.style.transform = "scale(1.03)";
-
-        capa.style.transition = "0.3s";
-
-    });
-
-    capa.addEventListener("mouseleave", function () {
-
-        capa.style.transform = "scale(1)";
-
-    });
-
-};
