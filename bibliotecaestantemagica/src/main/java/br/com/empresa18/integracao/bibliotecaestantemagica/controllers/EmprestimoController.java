@@ -32,6 +32,7 @@ public class EmprestimoController {
 
         return empresRepo.findAll();
     }
+  
 
     @GetMapping("/listarid/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -93,8 +94,28 @@ public class EmprestimoController {
                     emprestimoOpt.get();
 
             emprestimo.setDataDevolucao(
-                    emprestimo.getDataDevolucao().plusDays(7)
+                    emprestimo.getDataDevolucao().plusDays(10)
             );
+
+            return empresRepo.save(emprestimo);
+        }
+
+        return null;
+    }
+    
+    @PutMapping("/devolver/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public EmprestimoEntity devolver(@PathVariable Long id) {
+
+        Optional<EmprestimoEntity> emprestimoOpt = empresRepo.findById(id);
+
+        if (emprestimoOpt.isPresent()) {
+
+            EmprestimoEntity emprestimo = emprestimoOpt.get();
+
+            emprestimo.setStatus("Devolvido");
+
+            emprestimo.setDataDevolucao(java.time.LocalDate.now());
 
             return empresRepo.save(emprestimo);
         }

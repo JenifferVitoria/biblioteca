@@ -3,13 +3,15 @@ const API_SALVAR = "http://localhost:8000/emprestimos/salvar";
 const API_BUSCAR_POR_ID = "http://localhost:8000/emprestimos/listarid";
 const API_ATUALIZAR = "http://localhost:8000/emprestimos/atualizar";
 const API_DELETAR = "http://localhost:8000/emprestimos/deletar";
-
+const API_DEVOLVER = "http://localhost:8000/emprestimos/devolver";
+const API_RENOVAR = "http://localhost:8000/emprestimos/renovar";
 const API_USUARIOS = "http://localhost:8000/Usuarios/listarTodos";
 const API_LIVROS = "http://localhost:8000/livros/listartodos";
 
 let editandoId = null;
 
-// ================= LIMPAR =================
+
+//  LIMPAR FORMULARIO
 function limparFormulario() {
 
     document.getElementById("locador").value = "";
@@ -23,16 +25,32 @@ function limparFormulario() {
     editandoId = null;
 }
 
-// ================= MODAL =================
+//  MODAL 
 function abrirModal() {
     new bootstrap.Modal(document.getElementById("emprestimoModal")).show();
 }
 
-// ================= LISTAR =================
+function fecharModal(){
+	const modalElement = document.getElementById("emprestimoModal");
+	const modal = bootstrap.Modal.getInstance(modalElement);
+	modal.hide();
+}
+
+
+// INICIALIZAR
+document.addEventListener("DOMContentLoaded", () => {
+
+    listarTodos();
+    carregarUsuarios();
+    carregarLivros();
+});
+
+
+// LISTAR RESERVAS
 async function listarTodos() {
 
-    const res = await fetch(API_BUSCAR_TODOS);
-    const data = await res.json();
+    const response = await fetch(API_BUSCAR_TODOS);
+    const data = await response.json();
 
     const tbody = document.getElementById("emprestimos");
     tbody.innerHTML = "";
@@ -52,21 +70,55 @@ async function listarTodos() {
                     <button class="btn btn-warning btn-sm" onclick="editar(${emprestimo.id})">
                         <i class="bi bi-pencil"></i>
                     </button>
-
+					
+					<button class="btn btn-success btn-sm" onclick="devolver(${emprestimo.id})">
+					    <i class="bi bi-arrow-return-left"></i>
+					</button>
+					
+					<button class="btn btn-primary btn-sm" onclick="renovar(${emprestimo.id})">
+					    Renovar
+					</button>
+										
                     <button class="btn btn-danger btn-sm" onclick="deletar(${emprestimo.id})">
                         <i class="bi bi-trash"></i>
                     </button>
                 </td>
             </tr>
         `;
+		
+	
     });
 }
 
-// ================= USUÁRIOS =================
+// DEVOLVER
+async function devolver(id) {
+
+    if (!confirm("Deseja devolver este livro?")) return;
+
+    
+	try { 
+	const resposta = await fetch(`${API_DEVOLVER}/${id}`, {
+            method: "PUT"
+        });
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao devolver livro.");
+        }
+
+        alert("Livro devolvido com sucesso!");
+
+        listarTodos();
+
+    } catch (erro) {
+        console.error(erro);
+        alert("Erro ao devolver o livro.");
+    }
+}
+// USUÁRIOS 
 async function carregarUsuarios() {
 
-    const res = await fetch(API_USUARIOS);
-    const usuarios = await res.json();
+    const response = await fetch(API_USUARIOS);
+    const usuarios = await response.json();
 
     const locador = document.getElementById("locador");
     const locatario = document.getElementById("locatario");
@@ -75,29 +127,29 @@ async function carregarUsuarios() {
     locatario.innerHTML = "";
 
     usuarios.forEach(usuario => {
-
         locador.innerHTML += `<option value="${usuario.id}">${usuario.nome}</option>`;
-        locatario.innerHTML += `<option value="${usuario.id}">${usuario.nome}</option>`;
-
+	if (usuario.tipo === "BIBLIOTECARIO") {
+            locatario.innerHTML += `<option value="${usuario.id}">${usuario.nome}</option>`;
+        }
     });
 }
 
-// ================= LIVROS =================
+// LIVROS
 async function carregarLivros() {
 
-    const res = await fetch(API_LIVROS);
-    const livros = await res.json();
+    const response = await fetch(API_LIVROS);
+    const livros = await response.json();
 
     const select = document.getElementById("livro");
 
     select.innerHTML = "";
 
-    livros.forEach(livros => {
-        select.innerHTML += `<option value="${livros.id}">${livros.titulo}</option>`;
+    livros.forEach(livro => {
+        select.innerHTML += `<option value="${livro.id}">${livro.titulo}</option>`;
     });
 }
 
-// ================= SALVAR =================
+//  SALVAR 
 async function salvarEmprestimo() {
 
     const emprestimo = {
@@ -124,12 +176,12 @@ async function salvarEmprestimo() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emprestimo)
     });
-
+	fecharModal();
     limparFormulario();
     listarTodos();
 }
 
-// ================= DELETAR =================
+// DELETAR
 async function deletar(id) {
 
     if (!confirm("Deseja excluir?")) return;
@@ -139,7 +191,8 @@ async function deletar(id) {
     listarTodos();
 }
 
-// ================= EDITAR =================
+
+//  EDITAR
 async function editar(id) {
 
     const res = await fetch(`${API_BUSCAR_POR_ID}/${id}`);
@@ -158,10 +211,25 @@ async function editar(id) {
     abrirModal();
 }
 
-// ================= INIT =================
-document.addEventListener("DOMContentLoaded", () => {
+async function renovar(id) {
 
-    listarTodos();
-    carregarUsuarios();
-    carregarLivros();
-});
+    if (!confirm("Deseja renovar o empréstimo por mais 10 dias?")) return;
+
+    try {
+        const res = await fetch(`${API_RENOVAR}/${id}`, {
+            method: "PUT"
+        });
+
+        if (!res.ok) {
+            throw new Error("Erro ao renovar empréstimo");
+        }
+
+        alert("Empréstimo renovado por +10 dias!");
+
+        listarTodos();
+
+    } catch (erro) {
+        console.error(erro);
+        alert("Erro ao renovar empréstimo");
+    }
+}
