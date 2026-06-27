@@ -1,39 +1,12 @@
+const API_CADASTRAR ="http://localhost:8000/livros/salvar";
+
 
 let notaAvaliacao = 0;
-
-
-	async function salvarLivro(){
-		
-	}
-
 
 	// SALVAR
 	async function salvarAvaliacao() {
 
 		if (validarCampo()=== true){
-			
-			
-
-		
-		const avaliacao = {
-
-			fornecedor : {
-				id : document.getElementById("select").value
-			},
-			
-	        dataDaAvaliacao: document.getElementById("dataDaAvaliacao").value,
-
-	        qualidadeDasPecas: qualidadeDasPecas,
-
-	        prazoDeEntrega: prazoDeEntrega,
-
-	        atendimento: atendimento,
-
-	        preco: preco,
-
-	        observacoes: document.getElementById("observacoes").value
-	    };
-		
 
 
 	    await fetch(API_CADASTRAR, {
@@ -41,26 +14,28 @@ let notaAvaliacao = 0;
 	        headers: {
 	            "Content-Type": "application/json"
 	        },
-	        body: JSON.stringify(avaliacao)
+	        body: JSON.stringify(salvarAvaliacao)
 	    });
 
 	  //  alert("Avaliação salva com sucesso!");
 
 	    fecharModal();
 	    limparFormulario();
-	    listarFornecedor();     
 		};
+		console.log(salvarAvaliacao);
 	}
 
 	 function validarCampo()  {
 
-		notaAvaliacao = nota;
-		const select = document.getElementById("select").value;
-		const observacoes = document.getElementById("observacoes").value;
+	
+		const texto = document.getElementById("comentario").value;
 			
 
-
-			if (observacoes.length > 500){
+		if (notaAvaliacao === 0) {
+		      alert("Selecione uma nota para o livro.");
+		      return false;
+		  }
+			if (texto.length > 500){
 												
 						
 					alert("O maximo de carcters é 500")
@@ -74,59 +49,61 @@ let notaAvaliacao = 0;
 		
 		
 		// ESTRELAS
-		function hoverStar(star, nota) {
+		function hoverStar(star, nota){
 
 		    const estrelas = star.parentElement.querySelectorAll(".star");
 
-		    estrelas.forEach((item, index) => {
+		    estrelas.forEach((estrela,index)=>{
 
-		        if (index < nota) {
-		            item.classList.add("hover");
-		        } else {
-		            item.classList.remove("hover");
-		        }
-
-		    });
-		}
-
-		function limparHover(star) {
-
-		    const estrelas = star.parentElement.querySelectorAll(".star");
-
-		    estrelas.forEach(item => {
-		        item.classList.remove("hover");
-		    });
-		}
-
-		function avaliar(star, nota) {
-
-		    const rating = star.parentElement;
-
-		    const estrelas = rating.querySelectorAll(".star");
-
-		    estrelas.forEach((item, index) => {
-
-		        if (index < nota) {
-		            item.classList.add("active");
-		        } else {
-		            item.classList.remove("active");
+		        if(index < nota){
+		            estrela.classList.add("hover");
+		        }else{
+		            estrela.classList.remove("hover");
 		        }
 
 		    });
 
-		    const campo = rating.dataset.campo;
+		}
 
-		    switch (campo) {
+		function limparHover(star){
 
-		        case "qualidadeDasPecas":
-		            qualidadeDasPecas = nota;
-		            break;
+		    const estrelas = star.parentElement.querySelectorAll(".star");
 
-		       
-		    }
+		    estrelas.forEach(estrela=>{
 
-		    console.log(
-		        "Qualidade:", qualidadeDasPecas);
+		        estrela.classList.remove("hover");
+
+		    });
+
+		}
+
+		function avaliar(star, nota){
+
+		    notaAvaliacao = nota;
+
+		    const estrelas = star.parentElement.querySelectorAll(".star");
+
+		    estrelas.forEach((estrela,index)=>{
+
+		        if(index < nota){
+		            estrela.classList.add("active");
+		        }else{
+		            estrela.classList.remove("active");
+		        }
+
+		    });
+
+		    const textos = [
+		        "",
+		        "Péssimo 😞",
+		        "Ruim 😕",
+		        "Bom 🙂",
+		        "Muito Bom 😍",
+		        "Excelente ⭐"
+		    ];
+
+		    document.getElementById("textoNota").innerHTML = textos[nota];
+
 		}
 		
 		function abrirModal(nomeLivro){
@@ -142,4 +119,20 @@ let notaAvaliacao = 0;
 		    document.getElementById("modalAvaliacao").style.display="none";
 
 		}
+		
+		function limparFormulario() {
 
+		    notaAvaliacao = 0;
+
+		    document.getElementById("comentario").value = "";
+
+		    document.getElementById("contador").innerHTML = "0 / 500 caracteres";
+
+		    document.getElementById("textoNota").innerHTML = "Clique nas estrelas";
+
+		    document.querySelectorAll(".star").forEach(star => {
+		        star.classList.remove("active");
+		        star.classList.remove("hover");
+		    });
+
+		}

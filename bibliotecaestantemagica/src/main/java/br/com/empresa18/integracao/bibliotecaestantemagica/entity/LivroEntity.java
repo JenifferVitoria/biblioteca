@@ -25,7 +25,7 @@ public class LivroEntity implements Serializable {
 	private String autor;
 	private String editora;
 	private String imagem;
-	private boolean disponivel = true;
+	private boolean disponivel;
     private int anoPublicacao;
 	private String isbn;
 	private String genero;

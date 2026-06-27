@@ -585,11 +585,6 @@ body{
     transform:scale(1.2);
 }
 
-.star.ativa{
-
-    color:#FDBA12;
-}
-
 .texto-nota{
 
     display:block;
@@ -640,4 +635,22 @@ textarea:focus{
     padding:12px 28px;
     border-radius:10px;
     cursor:pointer;
+}
+.rating{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin:25px 0;
+}
+
+.star{
+    font-size:55px;
+    color:#d9d9d9;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.star.hover,
+.star.active{
+    color:#FDBA12;
 }

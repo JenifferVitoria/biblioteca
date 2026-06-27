@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<script type="text/javascript" src="js/livro.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Mágica - Detalhes do Livro</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/acervo.js"></script>
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet"
@@ -17,7 +15,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/livro.css">
     <script type="text/javascript" src="js/livro.js"></script>
-     <script type="text/javascript" src="js/reservalivro.js"></script>
 </head>
 <body>
 
@@ -42,9 +39,9 @@
                 <!-- MENU -->
                 <ul class="menu list-unstyled">
 
-                    <li>
-                        <i class="bi bi-house"></i>
-                        Início
+                     <li class="menu-item">
+                        <i class="bi bi-book"></i>
+                        Inicio
                     </li>
 
                     <li class="menu-item">
@@ -63,11 +60,6 @@
                     </li>
 
                     <li class="menu-item">
-                        <i class="bi bi-arrow-return-left"></i>
-                        Devoluções
-                    </li>
-
-                    <li class="menu-item">
                         <i class="bi bi-bookmark"></i>
                         Reservas
                     </li>
@@ -77,11 +69,7 @@
                         Multas
                     </li>
 
-                    <li class="menu-item">
-                        <i class="bi bi-bar-chart"></i>
-                        Relatórios
-                    </li>
-
+                  
                 </ul>
 
             </div>
@@ -188,6 +176,11 @@
                                         <strong>Código do acervo:</strong>
                                         <span>LIV000123</span>
                                     </div>
+                                    
+                                     <div class="info-item">
+                                        <strong>Disponibilidade:</strong>
+                                        <span></span>
+                                    </div>
    
                                 </div>
 
@@ -229,9 +222,7 @@
                         <!-- DISPONIBILIDADE -->
                         <div class="side-card">
 
-                            <button class="status-badge" onclick="verificarLivro();">
-                                Verificar Disponibilidade
-                            </button>
+                          
 
 
                             <div class="availability-box">
@@ -487,15 +478,34 @@
 
                 <label>Como você avalia este livro?</label>
 
-                <div class="rating" id="ratingLivro">
-
-                    <span class="star" onclick="avaliarLivro(1)">★</span>
-                    <span class="star" onclick="avaliarLivro(2)">★</span>
-                    <span class="star" onclick="avaliarLivro(3)">★</span>
-                    <span class="star" onclick="avaliarLivro(4)">★</span>
-                    <span class="star" onclick="avaliarLivro(5)">★</span>
-
-                </div>
+		<div class="rating" id="rating">
+		
+		    <span class="star"
+		          onmouseover="hoverStar(this,1)"
+		          onmouseout="limparHover(this)"
+		          onclick="avaliar(this,1)">★</span>
+		
+		    <span class="star"
+		          onmouseover="hoverStar(this,2)"
+		          onmouseout="limparHover(this)"
+		          onclick="avaliar(this,2)">★</span>
+		
+		    <span class="star"
+		          onmouseover="hoverStar(this,3)"
+		          onmouseout="limparHover(this)"
+		          onclick="avaliar(this,3)">★</span>
+		
+		    <span class="star"
+		          onmouseover="hoverStar(this,4)"
+		          onmouseout="limparHover(this)"
+		          onclick="avaliar(this,4)">★</span>
+		
+		    <span class="star"
+		          onmouseover="hoverStar(this,5)"
+		          onmouseout="limparHover(this)"
+		          onclick="avaliar(this,5)">★</span>
+		
+		</div>
 
                 <span id="textoNota" class="texto-nota">
                     Clique nas estrelas
@@ -510,7 +520,6 @@
                 <textarea
                     id="comentario"
                     maxlength="500"
-                    onkeyup="contadorCaracteres()"
                     placeholder="Compartilhe sua opinião sobre este livro..."></textarea>
 
                 <small id="contador">
