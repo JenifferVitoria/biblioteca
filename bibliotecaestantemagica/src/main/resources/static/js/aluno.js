@@ -1,551 +1,132 @@
-<<<<<<< HEAD
-// FUNÇÃO DE LOGOUT
-=======
-const API_LIVROS =
-    "http://localhost:8011/livros";
+const API_LIVROS = "http://localhost:8011/livros";
+const API_USUARIOS = "http://localhost:8011/usuarios";
 
-const API_ALUNOS =
-    "http://localhost:8011/usuarios";
-
-
-// =====================================
 // CARREGAR DASHBOARD
-// =====================================
 async function carregarDashboard() {
 
-    try {
+    const resposta = await fetch(`${API_LIVROS}/listartodos`);
+    const livros = await resposta.json();
 
-        const respostaLivros =
-            await fetch(
-                `${API_LIVROS}/listartodos`
-            );
-
-        if (!respostaLivros.ok) {
-
-            throw new Error(
-                "Erro ao carregar livros"
-            );
-
-        }
-
-        const livros =
-            await respostaLivros.json();
-
-        carregarLivrosDestaque(
-            livros
-        );
-
-        atualizarTotalLivros(
-            livros
-        );
-
-        carregarEmprestimos(
-            livros
-        );
-
-    } catch (erro) {
-
-        console.error(erro);
-
-        alert(
-            "Erro ao carregar dashboard"
-        );
-
-    }
+    mostrarLivros(livros);
+    atualizarTotalLivros(livros);
+    atualizarEmprestimos(livros);
 
 }
 
-
-// =====================================
-// USUÁRIO LOGADO
-// =====================================
+// CARREGAR USUÁRIO
 async function carregarUsuario() {
 
-    try {
+    const id = localStorage.getItem("usuarioId");
 
-        const id =
-            localStorage.getItem(
-                "usuarioId"
-            );
+    if (!id) return;
 
-        if (!id) {
+    const resposta = await fetch(`${API_USUARIOS}/listarporid/${id}`);
+    const usuario = await resposta.json();
 
-            return;
-
-        }
-
-        const response =
-            await fetch(
-                `${API_ALUNOS}/listarporid/${id}`
-            );
-
-        if (!response.ok) {
-
-            return;
-
-        }
-
-        const usuario =
-            await response.json();
-
-        const nome =
-            document.getElementById(
-                "nomeUsuario"
-            );
-
-        const tipo =
-            document.getElementById(
-                "tipoUsuario"
-            );
-
-        if (nome) {
-
-            nome.innerText =
-                usuario.nome;
-
-        }
-
-        if (tipo) {
-
-            tipo.innerText =
-                usuario.tipo;
-
-        }
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao carregar usuário",
-            erro
-        );
-
-    }
+    document.getElementById("nomeUsuario").innerText = usuario.nome;
+    document.getElementById("tipoUsuario").innerText = usuario.tipo;
 
 }
 
+// MOSTRAR LIVROS
+function mostrarLivros(livros) {
 
-// =====================================
-// LIVROS DESTAQUE
-// =====================================
-function carregarLivrosDestaque(
-    livros
-) {
-
-    const container =
-        document.querySelector(
-            ".books-grid"
-        );
+    const container = document.querySelector(".books-grid");
 
     container.innerHTML = "";
 
-    livros
-        .slice(0, 4)
-        .forEach(livro => {
+    livros.slice(0, 4).forEach(livro => {
 
-            container.innerHTML += `
-
-                <div class="book-card">
-
-                    <img
-                        src="http://localhost:8011/uploads/${livro.imagem}"
-                        alt="${livro.titulo}">
-
-                    <h5>
-                        ${livro.titulo}
-                    </h5>
-
-                    <p>
-                        ${livro.autor}
-                    </p>
-
-                    <span>
-                        ${livro.genero}
-                    </span>
-
-                    <div class="rating">
-                        ★★★★★
-                    </div>
-
-                </div>
-
-            `;
-
-        });
-
-}
-
-
-// =====================================
-// TOTAL LIVROS
-// =====================================
-function atualizarTotalLivros(
-    livros
-) {
-
-    const cards =
-        document.querySelectorAll(
-            ".info-card h2"
-        );
-
-    if (cards.length > 3) {
-
-        cards[3].innerText =
-            livros.length;
-
-    }
-
-}
-
-
-// =====================================
-// EMPRÉSTIMOS
-// =====================================
-function carregarEmprestimos(
-    livros
-) {
-
-    const container =
-        document.querySelectorAll(
-            ".custom-card"
-        )[1];
-
-    const emprestimos =
-        livros.filter(
-            livro =>
-
-                livro.status &&
-                livro.status.toUpperCase() ===
-                "EMPRESTADO"
-        );
-
-    const itens =
-        container.querySelectorAll(
-            ".emprestimo-item"
-        );
-
-    itens.forEach(item => {
-
-        item.remove();
+        container.innerHTML += `
+            <div class="book-card">
+                <img src="http://localhost:8011/uploads/${livro.imagem}">
+                <h5>${livro.titulo}</h5>
+                <p>${livro.autor}</p>
+                <span>${livro.genero}</span>
+            </div>
+        `;
 
     });
 
-    emprestimos
-        .slice(0, 2)
-        .forEach(livro => {
+}
 
-            container.innerHTML += `
+// TOTAL DE LIVROS
+function atualizarTotalLivros(livros) {
 
-                <div class="emprestimo-item">
-
-                    <img
-                        src="http://localhost:8011/uploads/${livro.imagem}"
-                        alt="${livro.titulo}">
-
-                    <div>
-
-                        <h5>
-                            ${livro.titulo}
-                        </h5>
-
-                        <p>
-                            ${livro.autor}
-                        </p>
-
-                        <span>
-                            Data da locação:
-                            ${livro.dataLocacao || "--"}
-                        </span>
-
-                    </div>
-
-                    <strong>
-                        ${livro.dataDevolucao || "--"}
-                    </strong>
-
-                </div>
-
-            `;
-
-        });
-
-    const cards =
-        document.querySelectorAll(
-            ".info-card h2"
-        );
-
-    if (cards.length > 1) {
-
-        cards[1].innerText =
-            emprestimos.length;
-
-    }
+    document.querySelectorAll(".info-card h2")[3].innerText =
+        livros.length;
 
 }
 
+// EMPRÉSTIMOS
+function atualizarEmprestimos(livros) {
 
-// =====================================
-// BUSCAR LIVROS
-// =====================================
-function buscarLivros() {
-
-    const botao =
-        document.querySelector(
-            ".btn-buscar"
-        );
-
-    const input =
-        document.querySelector(
-            ".search-box input"
-        );
-
-    if (!botao || !input) {
-
-        return;
-
-    }
-
-    botao.addEventListener(
-        "click",
-        async () => {
-
-            try {
-
-                const texto =
-                    input.value
-                        .toLowerCase()
-                        .trim();
-
-                const resposta =
-                    await fetch(
-                        `${API_LIVROS}/listartodos`
-                    );
-
-                const livros =
-                    await resposta.json();
-
-                const filtrados =
-                    livros.filter(
-                        livro =>
-
-                            livro.titulo
-                                .toLowerCase()
-                                .includes(texto)
-
-                            ||
-
-                            livro.autor
-                                .toLowerCase()
-                                .includes(texto)
-
-                            ||
-
-                            (
-                                livro.isbn || ""
-                            ).includes(texto)
-
-                    );
-
-                carregarLivrosDestaque(
-                    filtrados
-                );
-
-            } catch (erro) {
-
-                console.error(
-                    erro
-                );
-
-            }
-
-        }
+    const emprestados = livros.filter(
+        livro => livro.status === "EMPRESTADO"
     );
 
-}
-
-
-// =====================================
-// MENU ATIVO
-// =====================================
-function ativarMenu() {
-
-    const menus =
-        document.querySelectorAll(
-            ".menu-item"
-        );
-
-    menus.forEach(menu => {
-
-        menu.addEventListener(
-            "click",
-            () => {
-
-                menus.forEach(item => {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                });
-
-                menu.classList.add(
-                    "active"
-                );
-
-            }
-        );
-
-    });
+    document.querySelectorAll(".info-card h2")[1].innerText =
+        emprestados.length;
 
 }
 
+// BUSCAR LIVROS
+async function buscarLivros() {
 
-// =====================================
+    const texto =
+        document.querySelector(".search-box input")
+        .value.toLowerCase();
+
+    const resposta =
+        await fetch(`${API_LIVROS}/listartodos`);
+
+    const livros =
+        await resposta.json();
+
+    const filtrados = livros.filter(livro =>
+        livro.titulo.toLowerCase().includes(texto) ||
+        livro.autor.toLowerCase().includes(texto)
+    );
+
+    mostrarLivros(filtrados);
+
+}
+
 // LOGOUT
-// =====================================
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
 function logout() {
 
-    const confirmar = confirm("Deseja realmente sair do sistema?");
+    if (confirm("Deseja sair do sistema?")) {
 
-<<<<<<< HEAD
-    if(confirmar){
-        alert("Logout realizado com sucesso!");
+        localStorage.clear();
+
         window.location.href = "login.html";
-    }
-=======
-    if (!botao) {
-
-        return;
 
     }
 
-    botao.addEventListener(
-        "click",
-        () => {
-
-            const sair =
-                confirm(
-                    "Deseja sair?"
-                );
-
-            if (sair) {
-
-                localStorage.clear();
-
-                window.location.href =
-                    "login.html";
-
-            }
-
-        }
-    );
-
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
-}
-
-// BUSCAR LIVROS
-function buscarLivros() {
-
-<<<<<<< HEAD
-    const input = document.querySelector(".search-box input");
-    const filtro = input.value.toLowerCase();
-=======
-// =====================================
-// VOLTAR
-// =====================================
-function voltarPagina() {
-
-    window.history.back();
-
-}
-
-
-// =====================================
-// INICIAR
-// =====================================
-window.addEventListener(
-    "DOMContentLoaded",
-    () => {
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
-
-    const livros = document.querySelectorAll(".book-card");
-
-<<<<<<< HEAD
-    livros.forEach(livro => {
-=======
-        carregarUsuario();
-
-        buscarLivros();
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
-
-        const titulo = livro.querySelector("h5").textContent.toLowerCase();
-        const autor = livro.querySelector("p").textContent.toLowerCase();
-
-        if(titulo.includes(filtro) || autor.includes(filtro)){
-            livro.style.display = "block";
-        } else {
-            livro.style.display = "none";
-        }
-    });
-
-    if(filtro === ""){
-        livros.forEach(livro => {
-            livro.style.display = "block";
-        });
-    }
-}
-
-// ABRIR LIVRO
-function abrirLivro(titulo){
-
-    alert(`Você selecionou o livro: ${titulo}`);
 }
 
 // NOTIFICAÇÕES
-function abrirNotificacoes(){
+function abrirNotificacoes() {
 
-    alert("Você possui 2 livros próximos da devolução.");
+    alert("Você possui notificações.");
+
 }
 
-// VER TODAS LOCAÇÕES
-function verLocacoes(){
+// VER LOCAÇÕES
+function verLocacoes() {
 
-    alert("Abrindo todas as locações...");
+    window.location.href = "locacoes.html";
+
 }
 
-// EVENTOS AUTOMÁTICOS
+// INICIAR PÁGINA
 document.addEventListener("DOMContentLoaded", () => {
 
-    // CLIQUE NOS LIVROS
-    const livros = document.querySelectorAll(".book-card");
+    carregarDashboard();
 
-    livros.forEach(livro => {
+    carregarUsuario();
 
-        livro.addEventListener("click", () => {
+    document.querySelector(".btn-buscar")
+        .addEventListener("click", buscarLivros);
 
-            const titulo = livro.querySelector("h5").textContent;
-
-            abrirLivro(titulo);
-        });
-    });
-
-    // NOTIFICAÇÃO
-    const notificacao = document.querySelector(".notification-icon");
-
-    notificacao.addEventListener("click", abrirNotificacoes);
-
-    // BOTÃO LOCAÇÕES
-    const btnLocacoes = document.querySelector(".btn-locacoes");
-
-    btnLocacoes.addEventListener("click", verLocacoes);
-
-    // ENTER NA PESQUISA
-    const inputBusca = document.querySelector(".search-box input");
-
-    inputBusca.addEventListener("keypress", (e) => {
-
-        if(e.key === "Enter"){
-            buscarLivros();
-        }
-    });
 });
