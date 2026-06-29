@@ -18,52 +18,68 @@ body{
 
 /* SIDEBAR */
 .sidebar{
-    background: #1f2937;
+    background: #fff;
     min-height: 100vh;
-    padding: 25px 20px;
+    padding: 25px 18px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-right: 1px solid #e9ecef;
 }
 
+/* LOGO */
 .logo-area{
     margin-bottom: 40px;
 }
 
 .logo{
-    width: 150px;
+    width: 120px;
 }
 
 /* MENU */
 .menu{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
+    padding: 0;
 }
 
-.menu li,
-.menu a{
-    text-decoration: none;
+.menu li{
     list-style: none;
-    color: #fff;
-    padding: 14px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
+}
+
+.menu li a{
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 16px;
+    gap: 14px;
+    padding: 14px 18px;
+    color: #1f4ed8;
+    text-decoration: none;
+    border-radius: 18px;
+    font-size: 18px;
+    transition: .3s;
 }
 
-.menu li:hover,
-.menu a:hover{
-    background: #374151;
+/* Hover */
+.menu li a:hover{
+    background: #eef4ff;
+    color: #1f4ed8;
 }
 
+/* Item ativo */
+.menu li a.active{
+    background: #e8f0ff;
+    color: #1f4ed8;
+    font-weight: 600;
+}
+
+/* Ícones */
+.menu li a i{
+    font-size: 22px;
+}
 /* BOTÃO SAIR */
 .btn-sair{
-    background: #dc3545;
+    background: #2563eb;
     color: #fff;
     border: none;
     width: 100%;
