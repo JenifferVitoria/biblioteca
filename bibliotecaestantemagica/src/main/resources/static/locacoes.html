@@ -26,13 +26,11 @@
         <div>
 
             <!-- LOGO -->
-            <div class="logo-area">
+             <div class="logo-area text-center">
 
-                <img src="file:///C:/Users/Acesso%20Livre/git/repository10/bibliotecaestantemagica/src/main/resources/static/img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png" >
+                     <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"class="logo" alt="Biblioteca Mágica">
 
-
-            </div>
-
+                </div>
             <!-- MENU -->
             <ul class="menu">
 
@@ -103,77 +101,15 @@
             <h1>Minhas Locações</h1>
 
             <p>
-                Acompanhe seus empréstimos atuais e o histórico de devoluções.
+                Acompanhe seus empréstimos.
             </p>
 
         </div>
-
-        <!-- CARDS -->
-        <div class="cards-grid">
-
-            <div class="info-card">
-
-                <div class="card-icon">
-                    <i class="bi bi-book"></i>
-                </div>
-
-                <div>
-                    <span>Empréstimos Ativos</span>
-                    <h3>3</h3>
-                    <a href="#">Ver detalhes <i class="bi bi-arrow-right"></i></a>
-                </div>
-
-            </div>
-
-            <div class="info-card">
-
-                <div class="card-icon">
-                    <i class="bi bi-calendar-event"></i>
-                </div>
-
-                <div>
-                    <span>Devoluções Hoje</span>
-                    <h3>1</h3>
-                    <a href="#">Ver detalhes <i class="bi bi-arrow-right"></i></a>
-                </div>
-
-            </div>
-
-            <div class="info-card">
-
-                <div class="card-icon">
-                    <i class="bi bi-clock-history"></i>
-                </div>
-
-                <div>
-                    <span>Empréstimos Atrasados</span>
-                    <h3>0</h3>
-                    <a href="#" class="green-link">Ver detalhes <i class="bi bi-arrow-right"></i></a>
-                </div>
-
-            </div>
-
-            <div class="info-card">
-
-                <div class="card-icon">
-                    <i class="bi bi-hourglass-split"></i>
-                </div>
-
-                <div>
-                    <span>Total de Empréstimos</span>
-                    <h3>12</h3>
-                    <a href="#">Ver histórico <i class="bi bi-arrow-right"></i></a>
-                </div>
-
-            </div>
-
-        </div>
-
+        
         <!-- TABS -->
         <div class="tabs-container">
 
-            <button class="tab-btn active">Empréstimos Ativos</button>
-            <button class="tab-btn">Histórico de Devoluções</button>
+            <button class="tab-btn active">Empréstimos</button>
 
         </div>
 
@@ -181,7 +117,7 @@
         <div class="table-card">
 
             <div class="table-header">
-                <h2>Empréstimos Ativos</h2>
+                <h2>Empréstimos</h2>
             </div>
 
             <div class="table-responsive">
@@ -197,158 +133,22 @@
                         <th>Data de Devolução</th>
                         <th>Dias Restantes</th>
                         <th>Status</th>
-                        <th>Ações</th>
 
                     </tr>
 
                     </thead>
 
-                    <tbody>
+                    <tbody id="emprestimos"></tbody>
 
-                    <tr>
-
-                        <td class="book-info">
-
-                            <img src="https://m.media-amazon.com/images/I/81hCVEC0ExL.jpg">
-
-                            <div>
-
-                                <strong>Pai Rico Pai Pobre</strong>
-
-                                <span>Robert Kiyosaki</span>
-
-                                <small>ISBN: 978-85-01-00000-1</small>
-
-                            </div>
-
-                        </td>
-
-                        <td>10/05/2024</td>
-
-                        <td>24/05/2024</td>
-
-                        <td>
-                            <span class="days-badge">
-                                <i class="bi bi-clock"></i>
-                                14 dias
-                            </span>
-                        </td>
-
-                        <td>
-                            <span class="status active-status">
-                                ● Ativo
-                            </span>
-                        </td>
-
-                        <td>
-
-                            <button class="btn-renew">
-                                <i class="bi bi-calendar-check"></i>
-                                Renovar
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class="book-info">
-
-                            <img src="https://m.media-amazon.com/images/I/71g2ednj0JL.jpg">
-
-                            <div>
-
-                                <strong>O Poder do Hábito</strong>
-
-                                <span>Charles Duhigg</span>
-
-                                <small>ISBN: 978-85-02-00000-6</small>
-
-                            </div>
-
-                        </td>
-
-                        <td>12/05/2024</td>
-
-                        <td>26/05/2024</td>
-
-                        <td>
-                            <span class="days-badge">
-                                <i class="bi bi-clock"></i>
-                                16 dias
-                            </span>
-                        </td>
-
-                        <td>
-                            <span class="status active-status">
-                                ● Ativo
-                            </span>
-                        </td>
-
-                        <td>
-
-                            <button class="btn-renew">
-                                <i class="bi bi-calendar-check"></i>
-                                Renovar
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class="book-info">
-
-                            <img src="https://m.media-amazon.com/images/I/81JJPDNlxSL.jpg">
-
-                            <div>
-
-                                <strong>Hábitos Atômicos</strong>
-
-                                <span>James Clear</span>
-
-                                <small>ISBN: 978-65-00-00001-3</small>
-
-                            </div>
-
-                        </td>
-
-                        <td>15/05/2024</td>
-
-                        <td>29/05/2024</td>
-
-                        <td>
-                            <span class="days-badge">
-                                <i class="bi bi-clock"></i>
-                                19 dias
-                            </span>
-                        </td>
-
-                        <td>
-                            <span class="status active-status">
-                                ● Ativo
-                            </span>
-                        </td>
-
-                        <td>
-
-                            <button class="btn-renew">
-                                <i class="bi bi-calendar-check"></i>
-                                Renovar
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    </tbody>
-
-                </table>
+       				</table>
 
             </div>
 
+        </div>
+
+    </main>
+
+</div>                
             <!-- ALERTA -->
             <div class="info-alert">
 
@@ -367,12 +167,5 @@
                 </div>
 
             </div>
-
-        </div>
-
-    </main>
-
-</div>
-
 </body>
 </html>

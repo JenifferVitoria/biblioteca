@@ -9,6 +9,11 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.entity.UsuariosEntity
 
 @Repository
 public interface UsuariosRepository extends JpaRepository<UsuariosEntity, Long>{
-	
-	 Optional <UsuariosEntity> findByEmail(String email);
+
+
+	    UsuariosEntity findByRa(String ra);
+
+	    boolean existsByRa(String ra);
+
+		Optional<UsuariosEntity> findByEmail(String email);
 }

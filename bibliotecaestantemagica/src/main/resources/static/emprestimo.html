@@ -24,11 +24,10 @@
 
         <div>
 
-           <div class="logo-area text-center">
-
-                     <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"class="logo" alt="Biblioteca Mágica">
-
-                </div>
+            <div class="logo-area text-center">
+                <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"
+                     class="logo" alt="Biblioteca Mágica">
+            </div>
 
             <ul class="menu">
 
@@ -70,7 +69,7 @@
         <div class="table-card">
 
             <div class="table-header">
-                <h2>Lista de reservas</h2>
+                <h2>Lista de Empréstimos</h2>
             </div>
 
             <div class="table-responsive">
@@ -79,8 +78,8 @@
 
                     <thead>
                     <tr>
-                        <th>Locador</th>
-                        <th>Locatário</th>
+                        <th>Aluno (RA)</th>
+                        <th>Nome</th>
                         <th>Livro</th>
                         <th>Empréstimo</th>
                         <th>Devolução</th>
@@ -110,36 +109,54 @@
 
             <div class="modal-body p-4">
 
-                <h3 class="text-primary mb-3">Cadastro de Empréstimo</h3>
+                <h3 class="text-primary mb-3">Novo Empréstimo</h3>
 
                 <div class="row g-3">
 
-                    <div class="col-md-4">
-                        <label>Locador</label>
-                        <select id="locador" class="form-select"></select>
+                    <!-- RA COM BUSCA -->
+                    <div class="col-md-6">
+                        <label>RA do aluno</label>
+                        <div class="input-group">
+                            <input type="text" id="raAluno" class="form-control" placeholder="Digite o RA">
+                            <button class="btn btn-primary" type="button" onclick="buscarAluno()">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <label>Locatário</label>
-                        <select id="locatario" class="form-select"></select>
+                    <!-- NOME AUTOMÁTICO -->
+                    <div class="col-md-6">
+                        <label>Nome do aluno</label>
+                        <input type="text" id="nomeAluno" class="form-control" readonly>
                     </div>
 
-                    <div class="col-md-4">
-                        <label>Livro</label>
-                        <select id="livro" class="form-select"></select>
+                    <!-- BUSCA LIVRO -->
+                    <div class="col-md-12">
+                        <label>Buscar livro</label>
+                        <div class="input-group">
+                            <input type="text" id="buscaLivro" class="form-control" placeholder="Digite o nome do livro">
+                            <button class="btn btn-primary" type="button" onclick="buscarLivro()">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
                     </div>
 
+                    <!-- LISTA DE LIVROS FILTRADOS -->
+                    <div class="col-md-12">
+                        <label>Selecione o livro</label>
+                        <select id="livro" class="form-select" size="5"></select>
+                    </div>
+
+                    <!-- DATAS -->
                     <div class="col-md-6">
                         <label>Data Empréstimo</label>
                         <input type="date" id="dataEmprestimo" class="form-control">
                     </div>
 
-                    <div class="col-md-6">
-                        <label>Data Devolução</label>
-                        <input type="date" id="dataDevolucao" class="form-control">
-                    </div>
+ 
 
-                    <div class="col-md-6">
+                    <!-- STATUS -->
+                    <div class="col-md-12">
                         <label>Status</label>
                         <select id="status" class="form-select">
                             <option>Em andamento</option>
@@ -153,11 +170,8 @@
             </div>
 
             <div class="modal-footer">
-
                 <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-
-                <button class="btn btn-primary" onclick="salvarEmprestimo()">Salvar</button>
-
+                <button class="btn btn-primary" onclick="salvarEmprestimo()">Reservar</button>
             </div>
 
         </div>

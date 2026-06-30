@@ -8,38 +8,35 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Emprestimo")
 public class EmprestimoEntity implements Serializable {
-	
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-	@Id
+    private static final long serialVersionUID = 1L;
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
+    @Column(nullable = false)
     private LocalDate dataEmprestimo;
-    private LocalDate dataDevolucao;
+
+    @Column(nullable = false)
     private String status;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idLocador")
-    private UsuariosEntity locador;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private UsuariosEntity usuario;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idLocatario")
-    private UsuariosEntity locatario;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idLivro")
+    @JoinColumn(name = "idLivro", nullable = false)
     private LivroEntity livro;
 
-    
-    
-    public long getId() {
+    public EmprestimoEntity() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,14 +48,6 @@ public class EmprestimoEntity implements Serializable {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public LocalDate getDataDevolucao() {
-        return dataDevolucao;
-    }
-
-    public void setDataDevolucao(LocalDate dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -67,20 +56,12 @@ public class EmprestimoEntity implements Serializable {
         this.status = status;
     }
 
-    public UsuariosEntity getLocador() {
-        return locador;
+    public UsuariosEntity getUsuario() {
+        return usuario;
     }
 
-    public void setLocador(UsuariosEntity locador) {
-        this.locador = locador;
-    }
-
-    public UsuariosEntity getLocatario() {
-        return locatario;
-    }
-
-    public void setLocatario(UsuariosEntity locatario) {
-        this.locatario = locatario;
+    public void setUsuario(UsuariosEntity usuario) {
+        this.usuario = usuario;
     }
 
     public LivroEntity getLivro() {

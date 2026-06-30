@@ -26,6 +26,9 @@ public class UsuariosEntity {
 
 	@Column (name = "cpf", length = 11, nullable = false)
 	private String cpf;
+	
+	@Column(name = "ra", unique = true, nullable = false)
+	private String ra;
 
 	@Column (name = "email", length = 50, nullable = false)
 	private String email;
@@ -33,7 +36,6 @@ public class UsuariosEntity {
 	@Column (name = "telefone", length = 20, nullable = false)
 	private String telefone;
 	
-
 	@Column (name = "endereco", length = 50, nullable = false)
 	private String endereco;
 	
@@ -77,6 +79,13 @@ public class UsuariosEntity {
 		this.cpf = cpf;
 	}
 
+	public String getRa() {
+		return ra;
+	}
+
+	public void setRa(String ra) {
+		this.ra = ra;
+	}
 	public String getEmail() {
 		return email;
 	}
