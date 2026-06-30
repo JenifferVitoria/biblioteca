@@ -119,134 +119,52 @@
             </section>
 
             <!-- RESULTADOS -->
-            <section class="card">
+<div class="custom-card">
 
-                <div class="header-resultados">
+    <div class="card-header-custom">
+        <h4>Livros Encontrados</h4>
+    </div>
+ 
+    <div class="table-responsive">
+        <table class="table tabela-livros align-middle">
+            <thead>
+                <tr>
+                    <th>Capa</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Gênero</th>
+                    <th>ISBN</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
 
-                    <div>
+            <tbody>
+              
+                    <tr>
+                        <td>
+                            <img src="@livro.Capa" class="capa-livro" />
+                        </td>
 
-                        <h2>Livros Encontrados</h2>
+                        <td>Titulo</td>
+                        <td>Autor</td>
+                        <td>Genero</td>
+                        <td>ISBN</td>
 
-                        <span>24 resultados encontrados</span>
+                        <td>
+                            
+                               <span class="status disponivel">Disponível</span>
+ 
+                                                 
+                        </td>
 
-                    </div>
+                       
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
 
-                    <select>
-                        <option>Mais relevantes</option>
-                    </select>
-
-                </div>
-
-                <div class="books-grid">
-
-                    <!-- LIVRO -->
-                    <div class="book-card">
-
-                        <img src="img/livro1.jpg">
-
-                        <h3>Dom Casmurro</h3>
-
-                        <p>Machado de Assis</p>
-
-                        <small>Romance</small>
-
-                        <span class="status disponivel">
-                            Disponível
-                        </span>
-
-                        <div class="isbn">
-                            ISBN: 978-85-01-10735-6
-                        </div>
-
-                    </div>
-
-                    <!-- LIVRO -->
-                    <div class="book-card">
-
-                        <img src="img/livro2.jpg">
-
-                        <h3>O Pequeno Príncipe</h3>
-
-                        <p>Antoine de Saint-Exupéry</p>
-
-                        <small>Ficção</small>
-
-                        <span class="status disponivel">
-                            Disponível
-                        </span>
-
-                        <div class="isbn">
-                            ISBN: 978-85-01-00000-1
-                        </div>
-
-                    </div>
-
-                    <!-- LIVRO -->
-                    <div class="book-card">
-
-                        <img src="img/livro3.jpg">
-
-                        <h3>Harry Potter</h3>
-
-                        <p>J. K. Rowling</p>
-
-                        <small>Fantasia</small>
-
-                        <span class="status emprestado">
-                            Emprestado
-                        </span>
-
-                        <div class="isbn">
-                            ISBN: 978-85-01-54321-0
-                        </div>
-
-                    </div>
-
-                    <!-- LIVRO -->
-                    <div class="book-card">
-
-                        <img src="img/livro4.jpg">
-
-                        <h3>1984</h3>
-
-                        <p>George Orwell</p>
-
-                        <small>Ficção Científica</small>
-
-                        <span class="status reservado">
-                            Reservado
-                        </span>
-
-                        <div class="isbn">
-                            ISBN: 978-65-00-12345-3
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- PAGINAÇÃO -->
-
-                <div class="pagination">
-
-                    <button>
-                        <i class="bi bi-chevron-left"></i>
-                    </button>
-
-                    <button class="active">1</button>
-
-                    <button>2</button>
-
-                    <button>3</button>
-
-                    <button>
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-
-                </div>
-
-            </section>
-
+</div>
         </main>
 
     </div>
