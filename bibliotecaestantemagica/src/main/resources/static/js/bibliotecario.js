@@ -1,153 +1,171 @@
 const API_LIVROS = "http://localhost:8080/livros";
 const API_ALUNOS = "http://localhost:8080/alunos";
 
+window.onload = function () {
 
-async function carregarDashboard() {
-    try {
-        const livros = await fetch(API_LIVROS + "/listartodos").then(r => r.json());
-        const alunos = await fetch(API_ALUNOS + "/listartodos").then(r => r.json());
+    carregarDashboard();
 
-        let totalLivros = livros.length;
-        let emprestados = 0;
-        let devolvidos = 0;
-        let reservados = 0;
-        let multas = 0;
+    ativarMenu();
 
-        livros.forEach(livro => {
-            let status = (livro.status || "").toLowerCase().trim();
-
-            if (status === "emprestado") emprestados++;
-            else if (status === "devolvido") devolvidos++;
-            else if (status === "reservado") reservados++;
-
-            if (livro.multa === true) multas++;
-        });
-
-        // Atualiza os cards (AJUSTE NO HTML: use IDs nesses elementos)
-        setText("totalLivros", totalLivros);
-        setText("emprestados", emprestados);
-        setText("devolvidos", devolvidos);
-        setText("reservados", reservados);
-        setText("multas", multas);
-        setText("alunos", alunos.length);
-
-        carregarEmprestimos(livros);
-
-    } catch (error) {
-        console.error("Erro ao carregar dashboard:", error);
-    }
 }
 
-/* ================================
-   LISTA DE EMPRÉSTIMOS
-================================ */
-function carregarEmprestimos(livros) {
-    const lista = document.querySelector(".custom-card");
+async function carregarDashboard() {
 
-    if (!lista) {
-        console.error("Elemento .custom-card não encontrado no HTML");
-        return;
+    let respostaLivros = await fetch(API_LIVROS + "/listartodos");
+    let livros = await respostaLivros.json();
+
+    let respostaAlunos = await fetch(API_ALUNOS + "/listartodos");
+    let alunos = await respostaAlunos.json();
+
+    let totalLivros = livros.length;
+    let emprestados = 0;
+    let devolvidos = 0;
+    let reservados = 0;
+    let multas = 0;
+
+    for (let i = 0; i < livros.length; i++) {
+
+        if (livros[i].status == "Emprestado") {
+            emprestados++;
+        }
+
+        if (livros[i].status == "Devolvido") {
+            devolvidos++;
+        }
+
+        if (livros[i].status == "Reservado") {
+            reservados++;
+        }
+
+        if (livros[i].multa == true) {
+            multas++;
+        }
+
     }
+
+    document.getElementById("totalLivros").innerHTML = totalLivros;
+    document.getElementById("emprestados").innerHTML = emprestados;
+    document.getElementById("devolvidos").innerHTML = devolvidos;
+    document.getElementById("reservados").innerHTML = reservados;
+    document.getElementById("multas").innerHTML = multas;
+    document.getElementById("usuarios").innerHTML = alunos.length;
+
+    carregarEmprestimos(livros);
+}
+
+
+
+function carregarEmprestimos(livros) {
+
+    let lista = document.getElementById("listaEmprestimos");
 
     let html = "";
 
-    livros.forEach(livro => {
-        let status = (livro.status || "").toLowerCase().trim();
+    for (let i = 0; i < livros.length; i++) {
 
-        if (status === "emprestado") {
+        if (livros[i].status == "Emprestado") {
 
-            let imagem = livro.imagem
-                ? `http://localhost:8080/uploads/${livro.imagem}`
-                : "https://via.placeholder.com/80";
+            html +=
+            "<div class='emprestimo-item'>" +
 
-            html += `
-                <div class="emprestimo-item">
+                "<img src='http://localhost:8080/uploads/" + livros[i].imagem + "' width='70'>" +
 
-                    <img src="${imagem}" alt="Livro">
+                "<div class='emprestimo-info'>" +
 
-                    <div class="emprestimo-info">
-                        <h5>${livro.titulo || "Sem título"}</h5>
-                        <p>${livro.autor || "Autor desconhecido"}</p>
-                        <span>Usuário: ${livro.usuario || "N/A"}</span>
-                    </div>
+                    "<h5>" + livros[i].titulo + "</h5>" +
 
-                    <div class="emprestimo-data">
-                        <small>Devolver até:</small>
-                        <strong>${livro.dataDevolucao || "-"}</strong>
-                    </div>
+                    "<p>" + livros[i].autor + "</p>" +
 
-                </div>
-            `;
+                    "<span>Usuário: " + livros[i].usuario + "</span>" +
+
+                "</div>" +
+
+                "<div class='emprestimo-data'>" +
+
+                    "<small>Devolver até:</small><br>" +
+
+                    "<strong>" + livros[i].dataDevolucao + "</strong>" +
+
+                "</div>" +
+
+            "</div>";
+
         }
-    });
+
+    }
 
     lista.innerHTML = html;
+
 }
 
-/* ================================
-   BUSCAR LIVRO
-================================ */
+
 async function buscarLivro() {
-    try {
-        let texto = prompt("Digite o título do livro");
 
-        if (!texto) return;
+    let texto = document.getElementById("pesquisa").value;
 
-        const livros = await fetch(API_LIVROS + "/listartodos").then(r => r.json());
+    let resposta = await fetch(API_LIVROS + "/listartodos");
 
-        const encontrado = livros.find(l =>
-            (l.titulo || "").toLowerCase() === texto.toLowerCase()
-        );
+    let livros = await resposta.json();
 
-        if (encontrado) {
-            alert("Livro encontrado!");
-        } else {
-            alert("Livro não encontrado.");
+    let encontrado = false;
+
+    for (let i = 0; i < livros.length; i++) {
+
+        if (livros[i].titulo == texto) {
+
+            encontrado = true;
+
         }
 
-    } catch (error) {
-        console.error("Erro ao buscar livro:", error);
     }
+
+    if (encontrado == true) {
+
+        alert("Livro encontrado!");
+
+    } else {
+
+        alert("Livro não encontrado.");
+
+    }
+
 }
 
-/* ================================
-   MENU ATIVO
-================================ */
+
+
 function ativarMenu() {
-    const menus = document.querySelectorAll(".menu-item");
 
-    menus.forEach(menu => {
-        menu.addEventListener("click", () => {
+    let menus = document.getElementsByClassName("menu-item");
 
-            menus.forEach(m => m.classList.remove("active"));
-            menu.classList.add("active");
+    for (let i = 0; i < menus.length; i++) {
 
-        });
-    });
-}
+        menus[i].onclick = function () {
 
-/* ================================
-   LOGOUT
-================================ */
-function logout() {
-    if (confirm("Deseja sair do sistema?")) {
-        localStorage.clear();
-        window.location.href = "login.html";
+            for (let j = 0; j < menus.length; j++) {
+
+                menus[j].classList.remove("active");
+
+            }
+
+            this.classList.add("active");
+
+        }
+
     }
+
 }
 
-/* ================================
-   UTILITÁRIO
-================================ */
-function setText(id, value) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = value;
-}
 
-/* ================================
-   INIT
-================================ */
-window.onload = function () {
-    carregarDashboard();
-    ativarMenu();
-};
+function logout() {
+
+    let sair = confirm("Deseja sair do sistema?");
+
+    if (sair == true) {
+
+        localStorage.clear();
+
+        window.location.href = "login.html";
+
+    }
+
+}
