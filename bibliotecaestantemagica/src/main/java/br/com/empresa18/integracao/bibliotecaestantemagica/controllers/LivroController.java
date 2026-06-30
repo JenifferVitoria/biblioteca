@@ -199,4 +199,14 @@ public class LivroController {
 
 	    return "Livro devolvido";
 	}
+
+
+
+	@GetMapping("/BuscarPorTipo/{nome}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<LivroEntity> buscarPorTipo(@PathVariable String nome) {
+	    return livroRepo.findById(nome);
+	}
+
 }
+
