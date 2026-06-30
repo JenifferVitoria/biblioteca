@@ -28,10 +28,8 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	public class UsuariosController{
 	
 		
-		@Autowired
-	
-	
-	private UsuariosRepository usu;
+	@Autowired
+	private UsuariosRepository usuariosRepository;
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -44,7 +42,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 		@GetMapping("/listarTodos")
 		@ResponseStatus(HttpStatus.OK)
 		public List<UsuariosEntity> listarTodos(){
-			return usu.findAll();
+			return usuariosRepository.findAll();
 		}
 
 		
@@ -52,7 +50,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	@GetMapping("/listarporId/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Optional<UsuariosEntity> buscarPorID(@PathVariable Long id){
-		return usu.findById(id);
+		return usuariosRepository.findById(id);
 			
 		}
 		
@@ -60,9 +58,20 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	// GRAVAR
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.OK)
-	public UsuariosEntity gravarUsuarios(@RequestBody UsuariosEntity usuarios) {
-	usuarios.setSenha(encoder.encode(usuarios.getSenha()));
-	return usu.save(usuarios);
+	public ResponseEntity<?> gravarUsuarios(@RequestBody UsuariosEntity usuarios) {
+
+	    // Verifica se já existe um usuário com o mesmo RA
+	    if (usuariosRepository.existsByRa(usuarios.getRa())) {
+	        return ResponseEntity
+	                .status(HttpStatus.BAD_REQUEST)
+	                .body("Já existe um usuário cadastrado com o RA: " + usuarios.getRa());
+	    }
+
+	    usuarios.setSenha(encoder.encode(usuarios.getSenha()));
+
+	    UsuariosEntity usuarioSalvo = usuariosRepository.save(usuarios);
+
+	    return ResponseEntity.ok(usuarioSalvo);
 	}
 
 
@@ -71,15 +80,15 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	@ResponseStatus(HttpStatus.OK)
 	public UsuariosEntity atualizarUsuarios(@RequestBody UsuariosEntity usuarios, @PathVariable Long id) {
 
-	    if (usu.existsById(id)) {
+	    if (usuariosRepository.existsById(id)) {
 
-	        UsuariosEntity usuario = usu.findById(id).get();
+	        UsuariosEntity usuario = usuariosRepository.findById(id).get();
 
 	        usuario.setNome(usuarios.getNome());
 	        usuario.setEmail(usuarios.getEmail());
 	        usuario.setTelefone(usuarios.getTelefone());
 
-	        return usu.save(usuario);
+	        return usuariosRepository.save(usuario);
 	    }
 
 	    return null;
@@ -90,8 +99,8 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	@DeleteMapping("/deletar/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public String deletarUsuarios(@PathVariable Long id) {
-		if(usu.existsById(id)) {
-			usu.deleteById(id);
+		if(usuariosRepository.existsById(id)) {
+			usuariosRepository.deleteById(id);
 			return "Usuario deletado";
 		}
 		
@@ -104,7 +113,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 
 	    // busca usuário por email
 	    Optional<UsuariosEntity> usuario =
-	            usu.findByEmail(usuarioLogin.getEmail());
+	    usuariosRepository.findByEmail(usuarioLogin.getEmail());
 
 	    // se encontrou usuário, verifica senha
 	    if (usuario.isPresent()) {
@@ -125,6 +134,17 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	    return ResponseEntity.status(401).build();
 	}
 
+	// BUSCAR POR RA
+	@GetMapping("/buscarra/{ra}")
+	public ResponseEntity<UsuariosEntity> buscarPorRa(@PathVariable String ra) {
 
+	    UsuariosEntity usuario = usuariosRepository.findByRa(ra);
+
+	    if (usuario == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+
+	    return ResponseEntity.ok(usuario);
 	}
-
+	
+	}
