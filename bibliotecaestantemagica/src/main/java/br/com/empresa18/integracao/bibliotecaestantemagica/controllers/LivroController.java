@@ -202,11 +202,9 @@ public class LivroController {
 
 
 
-	@GetMapping("/BuscarPorTipo/{nome}")
+	@GetMapping("/BuscarPorTitulo/{titulo}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<LivroEntity> buscarPorTipo(@PathVariable String nome) {
-	    return livroRepo.findById(nome);
+	public List<LivroEntity> buscarPorTitulo(@PathVariable String titulo) {
+	    return livroRepo.findByTituloContainingIgnoreCase(titulo);
 	}
-
 }
-

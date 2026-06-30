@@ -6,15 +6,26 @@ const API_DEVOLVER = "http://localhost:8000/emprestimos/devolver";
 const API_RENOVAR = "http://localhost:8000/emprestimos/renovar";
 const API_LIVROS = "http://localhost:8000/livros/listartodos";
 const API_BUSCAR_RA = "http://localhost:8000/Usuarios/buscarra";
+const API_BUSCAR_LIVRO = "http://localhost:8000/livros/BuscarPorTitulo";
 
 let editandoId = null;
 let livros = [];
 let idUsuario = null;
 
-/* =========================
-   INICIALIZAÇÃO
-========================= */
 
+function abrirModal(){
+	const modal = new bootstrap.Modal(document.getElementById("emprestimoModal"));
+	modal.show();
+}
+
+function fecharModal(){
+	const modalElement = document.getElementById("emprestimoModal");
+	const modal = bootstrap.Modal.getInstance(modalElement);
+	modal.hide();
+}
+
+
+/// INICIALIZAÇÃO
 document.addEventListener("DOMContentLoaded", () => {
     listarEmprestimos();
     carregarLivros();
@@ -26,8 +37,7 @@ async function listarEmprestimos() {
 
     const response = await fetch(API_LISTAR);
     const dados = await response.json();
-
-    const tbody = document.getElementById("emprestimos");
+	const tbody = document.getElementById("emprestimos");
     tbody.innerHTML = "";
 
     dados.forEach(dado => {
@@ -73,41 +83,39 @@ async function buscarAluno() {
 
     if (!response.ok) {
         alert("Aluno não encontrado");
-
-        document.getElementById("nomeAluno").value = "";
+		document.getElementById("nomeAluno").value = "";
         idUsuario = null;
         return;
-    }
+  }
 
     const aluno = await response.json();
 
     idUsuario = aluno.id;
-
-    document.getElementById("nomeAluno").value = aluno.nome;
+	document.getElementById("nomeAluno").value = aluno.nome;
 }
+
 
 /// BUSCAR LIVRO
 
 async function buscarLivro() {
 
-    const texto = document.getElementById("buscaLivro").value.toLowerCase();
+    let titulo = document.getElementById("buscaLivro").value;
 
-    const response = await fetch(API_LIVROS);
-    const livros = await response.json();
+    let response = await fetch(`${API_BUSCAR_LIVRO}/${titulo}`);
 
-    const select = document.getElementById("livro");
+    let livros = await response.json();
+
+    let select = document.getElementById("livro");
     select.innerHTML = "";
 
-    livros
-        .filter(livro => livro.titulo.toLowerCase().includes(texto))
-        .forEach(livro => {
+    for (let i = 0; i < livros.length; i++) {
+             
+        let option = document.createElement("option");
+        option.value = livros[i].id;
+        option.text = livros[i].titulo;
 
-            const option = document.createElement("option");
-            option.value = livro.id;
-            option.textContent = livro.titulo;
-
-            select.appendChild(option);
-        });
+        select.appendChild(option);
+    }
 }
 
 /// CARREGAR LIVROS
@@ -121,38 +129,35 @@ async function carregarLivros() {
     select.innerHTML = "";
 
     livros.forEach(livro => {
-
-        select.innerHTML += `
-            <option value="${livro.id}">
-                ${livro.titulo}
-            </option>
+	select.innerHTML += `
+      <option value="${livro.id}">
+            ${livro.titulo}
+      </option>
         `;
     });
 }
-
+ 
 /// SALVAR
 
 async function salvarEmprestimo() {
 
-    if (idUsuario == null) {
-        alert("Busque um aluno pelo RA antes de salvar.");
-        return;
-    }
+	if (idUsuario == null) {
+	    alert("Busque um aluno pelo RA antes de salvar.");
+	    return;
+	}
 
-    const emprestimo = {
+	let emprestimo = {};
 
-        usuario: {
-            id: idUsuario
-        },
+	emprestimo.usuario = {
+	    id: idUsuario
+	};
 
-        livro: {
-            id: Number(document.getElementById("livro").value)
-        },
+	emprestimo.livro = {
+	    id: Number(document.getElementById("livro").value)
+	};
 
-        dataEmprestimo: document.getElementById("dataEmprestimo").value,
-
-        status: document.getElementById("status").value
-    };
+	emprestimo.dataEmprestimo = document.getElementById("dataEmprestimo").value;
+	emprestimo.status = document.getElementById("status").value;
 
     let salvar = API_SALVAR;
     let metodo = "POST";
@@ -178,14 +183,18 @@ async function salvarEmprestimo() {
 
         alert("Empréstimo salvo com sucesso!");
 
-        limparFormulario();
-
-        listarEmprestimos();
+limparFormulario();
+listarEmprestimos();
 
     } else {
 
         alert("Erro ao salvar empréstimo.");
     }
+	
+fecharModal();
+await listarEmprestimos();
+limparFormulario();	
+
 }
 
 /// DEVOLVER
@@ -195,8 +204,8 @@ async function devolver(id) {
     if (!confirm("Deseja devolver este livro?")) return;
 
     const response = await fetch(`${API_DEVOLVER}/${id}`, {
-        method: "PUT"
-    });
+    method: "PUT"
+ });
 
     if (response.ok) {
 
@@ -217,7 +226,7 @@ async function renovar(id) {
     if (!confirm("Deseja renovar este empréstimo?")) return;
 
     const response = await fetch(`${API_RENOVAR}/${id}`, {
-        method: "PUT"
+   method: "PUT"
     });
 
     if (response.ok) {
@@ -229,7 +238,7 @@ async function renovar(id) {
     } else {
 
         alert("Erro ao renovar.");
-    }
+ }
 }
 
 /// DELETAR
@@ -239,8 +248,8 @@ async function deletar(id) {
     if (!confirm("Deseja excluir este empréstimo?")) return;
 
     await fetch(`${API_DELETAR}/${id}`, {
-        method: "DELETE"
-    });
+    method: "DELETE"
+});
 
     listarEmprestimos();
 }
@@ -249,13 +258,13 @@ async function deletar(id) {
 
 function limparFormulario() {
 
-    editandoId = null;
-    idUsuario = null;
+  editandoId = null;
+  idUsuario = null;
 
     document.getElementById("raAluno").value = "";
-    document.getElementById("nomeAluno").value = "";
-    document.getElementById("buscaLivro").value = "";
-    document.getElementById("livro").selectedIndex = 0;
-    document.getElementById("dataEmprestimo").value = "";
-    document.getElementById("status").value = "Em andamento";
+  document.getElementById("nomeAluno").value = "";
+  document.getElementById("buscaLivro").value = "";
+  document.getElementById("livro").selectedIndex = 0;
+  document.getElementById("dataEmprestimo").value = "";
+  document.getElementById("status").value = "Em andamento";
 }

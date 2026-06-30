@@ -108,8 +108,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<UsuariosEntity> login(
-	        @RequestBody UsuariosEntity usuarioLogin) {
+	public ResponseEntity<UsuariosEntity> login(@RequestBody UsuariosEntity usuarioLogin) {
 
 	    // busca usuário por email
 	    Optional<UsuariosEntity> usuario =
@@ -121,17 +120,11 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	        UsuariosEntity usuarioEncontrado = usuario.get();
 
 	       
-			// compara senha enviada com senha armazenada (hash)
-	        if (encoder.matches(
-	                usuarioLogin.getSenha(),
-	                usuarioEncontrado.getSenha())) {
 
-	            return ResponseEntity.ok(usuarioEncontrado);
-	        }
 	    }
+		return null;
+	    
 
-	    // se não encontrou usuário ou senha não bate, retorna 401
-	    return ResponseEntity.status(401).build();
 	}
 
 	// BUSCAR POR RA
