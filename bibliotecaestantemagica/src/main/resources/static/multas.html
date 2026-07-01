@@ -1,31 +1,27 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Multas - Biblioteca Mágica</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-  <script type="text/javascript" src="js/multas.js"></script> 
-  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="js/multas.js"></script>
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- CSS -->
-    <link rel="stylesheet"
-          href="css/multas.css">
-   
+    <link rel="stylesheet" href="css/multas.css">
 
 </head>
+
 <body>
 
 <div class="layout">
@@ -35,56 +31,28 @@
 
         <div>
 
-             <!-- LOGO -->
+           <div class="logo-area text-center">
+                <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"
+                     class="logo" alt="Biblioteca Mágica">
+            </div>
 
-                <div class="logo-area text-center">
 
-                     <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"class="logo" alt="Biblioteca Mágica">
-
-                </div>
-
-            <!-- MENU -->
             <ul class="menu">
 
-                <li>
-                    <a href="dashboardaluno.html">
-                        <i class="bi bi-house"></i>
-                        Início
-                    </a>
-                </li>
+                <li><a href="dashboardaluno.html"><i class="bi bi-house"></i> Início</a></li>
 
-                <li>
-                    <a href="meus-livros.html">
-                        <i class="bi bi-book"></i>
-                        Meus Livros
-                    </a>
-                </li>
+                <li><a href="meus-livros.html"><i class="bi bi-book"></i> Meus Livros</a></li>
 
-                <li>
-                    <a href="reservalivro.html">
-                        <i class="bi bi-bookmark"></i>
-                        Reservas
-                    </a>
-                </li>
+                <li><a href="reservalivro.html"><i class="bi bi-bookmark"></i> Reservas</a></li>
 
-                <li class="active">
-                    <a href="multas.html">
-                        <i class="bi bi-currency-dollar"></i>
-                        Multas
-                    </a>
-                </li>
+                <li class="active"><a href="multas.html"><i class="bi bi-currency-dollar"></i> Multas</a></li>
 
             </ul>
 
         </div>
 
-        <!-- SAIR -->
-        <a href="#"
-           class="logout-btn">
-
-            <i class="bi bi-box-arrow-left"></i>
-            Sair
-
+        <a href="#" class="logout-btn">
+            <i class="bi bi-box-arrow-left"></i> Sair
         </a>
 
     </aside>
@@ -92,107 +60,31 @@
     <!-- CONTEÚDO -->
     <main class="content">
 
-        <!-- HEADER -->
-        <div class="page-header">
+        <h1>Minhas Multas</h1>
+        <p>Visualize e pague suas multas pendentes.</p>
 
-            <div>
-
-                <h1>Minhas Multas</h1>
-
-                <p>
-                    Visualize e pague suas multas pendentes.
-                </p>
-
-            </div>
-
-        </div>
-
-        
-        <!-- TABELA -->
+        <!-- SUA TABELA AQUI -->
         <div class="table-card">
 
-            <div class="table-header">
+            <h2>Histórico de Multas</h2>
 
-                <h2>Histórico de Multas</h2>
+            <table class="table align-middle">
 
-            </div>
-
-            <div class="table-responsive">
-
-                <table class="table align-middle">
-
-                    <thead>
-
+                <thead>
                     <tr>
-
                         <th>Livro</th>
                         <th>Dias de Atraso</th>
                         <th>Valor</th>
                         <th>Status</th>
                         <th>Ação</th>
-
                     </tr>
+                </thead>
 
-                    </thead>
+                <tbody id="tabelaMultas">
+                    <!-- JS vai preencher -->
+                </tbody>
 
-                   <tbody>
-
-               <tr>
-
-                   <td class="book-info">
-
-                 <img src="https://m.media-amazon.com/images/I/81hCVEC0ExL.jpg">
-
-                  <div>
-
-                 <strong id="tituloLivro1">Pai Rico Pai Pobre</strong>
-
-                   <span id="autorLivro1">Robert Kiyosaki</span>
-
-                </div>
-
-            </td>
-
-                <td id="diasAtraso1">
-                  5 dias
-                 </td>
-
-                <td id="valorMulta1">
-                 R$ 12,50
-                 </td>
-
-              <td>
-
-                <span class="status pending" id="statusMulta1">
-
-               Pendente
-
-              </span>
-
-             </td>
-
-              <td>
-
-        <button class="btn-pay"
-                id="btnPagar1"
-                data-bs-toggle="modal"
-                data-bs-target="#pixModal">
-
-            <i class="bi bi-qr-code"></i>
-            Pagar
-
-             </button>
-
-            </td>
-
-         </tr>
-
-       </tbody>
-       
-       
-                </table>
-
-            </div>
+            </table>
 
         </div>
 
@@ -200,7 +92,89 @@
 
 </div>
 
-<!-- MODAL PIX -->
+<!-- =============================== -->
+<!-- MODAL EMPRESTIMO -->
+<!-- =============================== -->
+<div class="modal fade" id="emprestimoModal" tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Detalhes do Empréstimo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <p><strong>Livro:</strong> <span id="modalLivro"></span></p>
+                <p><strong>Autor:</strong> <span id="modalAutor"></span></p>
+                <p><strong>Usuário:</strong> <span id="modalUsuario"></span></p>
+                <p><strong>Data:</strong> <span id="modalData"></span></p>
+                <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+                <button class="btn btn-primary" onclick="pagarEmprestimo()">
+                    Confirmar ação
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =============================== -->
+<!-- MODAL MULTA -->
+<!-- =============================== -->
+<div class="modal fade" id="multaModal" tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Detalhes da Multa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <p><strong>Livro:</strong> <span id="modalLivroMulta"></span></p>
+                <p><strong>Usuário:</strong> <span id="modalUsuarioMulta"></span></p>
+                <p><strong>Dias de atraso:</strong> <span id="modalDias"></span></p>
+                <p><strong>Valor:</strong> R$ <span id="modalValor"></span></p>
+                <p><strong>Status:</strong> <span id="modalStatusMulta"></span></p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+                <button class="btn btn-success" onclick="pagarMulta()">
+                    Pagar Multa
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =============================== -->
+<!-- MODAL PIX (NÃO ALTERADO) -->
+<!-- =============================== -->
 <div class="modal fade"
      id="pixModal"
      tabindex="-1">
@@ -212,9 +186,7 @@
             <div class="modal-header border-0">
 
                 <h5 class="modal-title">
-
                     Pagamento via PIX
-
                 </h5>
 
                 <button type="button"
@@ -229,31 +201,23 @@
                 <div class="qrcode-area">
 
                    <img id="imgPix"
-					     src=""
-					     alt="QR Code PIX"
-					     class="img-fluid">
+                        src=""
+                        alt="QR Code PIX"
+                        class="img-fluid">
 
                 </div>
 
                 <!-- CÓDIGO -->
                 <div class="pix-code-area">
 
-                    <label>
-
-                        Código PIX
-
-                    </label>
+                    <label>Código PIX</label>
 
                     <div class="pix-copy">
 
-					<input type="text"
-					       id="pixCode"
-					       readonly>
+                        <input type="text" id="pixCode" readonly>
 
                         <button onclick="copiarCodigo()">
-
                             <i class="bi bi-copy"></i>
-
                         </button>
 
                     </div>
@@ -270,15 +234,6 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-</body>
-</html>
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
 
 </body>
 </html>
