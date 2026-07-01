@@ -23,9 +23,9 @@ body{
     padding: 25px 18px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     border-right: 1px solid #e9ecef;
 }
+
 
 /* LOGO */
 .logo-area{
@@ -88,6 +88,21 @@ body{
     transition: 0.3s;
 }
 
+.btn-locacoes{
+    width: 100%;
+    margin-top: 10px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-locacoes:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
 .btn-sair:hover{
     background: #bb2d3b;
 }
@@ -235,94 +250,48 @@ body{
     font-weight: bold;
 }
 
-/* EMPRESTIMOS */
-.emprestimo-item{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-}
+/* MELHORIAS NO CARD DE EMPRÉSTIMO */
 
-.emprestimo-item img{
-    width: 70px;
-    height: 100px;
+.capa-emprestimo{
+    width: 90px;
+    height: 130px;
     object-fit: cover;
-    border-radius: 8px;
-}
-
-.emprestimo-item h5{
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.emprestimo-item p{
-    margin-bottom: 5px;
-    color: #666;
-}
-
-.emprestimo-item span{
-    font-size: 13px;
-    color: #999;
-}
-
-.btn-locacoes{
-    width: 100%;
-    margin-top: 10px;
-    background: #2563eb;
-    color: #fff;
-    border: none;
-    padding: 12px;
     border-radius: 10px;
-    transition: 0.3s;
 }
 
-.btn-locacoes:hover{
-    background: #1e40af;
+.titulo-livro{
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #1f2937;
 }
 
-/* INFO CARDS */
-.info-card{
-    background: #fff;
-    padding: 25px;
-    border-radius: 18px;
-    text-align: center;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-    transition: 0.3s;
+.autor-livro{
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #4b5563;
 }
 
-.info-card:hover{
-    transform: translateY(-5px);
+.data-locacao{
+    font-size: 0.95rem;
+    margin-bottom: 0;
 }
 
-.info-icon{
-    width: 60px;
-    height: 60px;
-    margin: auto;
+.emprestimo-info{
+    flex: 1;
+}
+
+.custom-card{
+    padding: 30px;
+}
+
+    .sidebar-logout{
+    width: 100%;
+    margin-top: 15px;
+}
+
+.sidebar .menu{
     margin-bottom: 15px;
-    border-radius: 50%;
-    background: #dbeafe;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.info-icon i{
-    font-size: 28px;
-    color: #2563eb;
-}
-
-.info-card h2{
-    margin: 15px 0;
-    color: #2563eb;
-}
-
-.info-card a{
-    text-decoration: none;
-    color: #2563eb;
-    font-weight: 600;
 }
 
 /* RESPONSIVO */
@@ -340,4 +309,5 @@ body{
     .user-area{
         justify-content: space-between;
     }
+    
 }
