@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.empresa18.integracao.bibliotecaestantemagica.entity.EmprestimoEntity;
@@ -137,5 +138,22 @@ public class EmprestimoController {
         }
 
         return "Empréstimo não encontrado.";
+    }
+    
+    // BUSCAR EMPRESTIMO DE USUARIO
+    @GetMapping("/listarusuario/{id}")
+    public ResponseEntity<List<EmprestimoEntity>> listarPorUsuario(@PathVariable Long id) {
+
+        List<EmprestimoEntity> emprestimos = empresRepo.findByUsuarioId(id);
+
+        return ResponseEntity.ok(emprestimos);
+    }
+    
+    @GetMapping("/listarra/{ra}")
+    public ResponseEntity<List<EmprestimoEntity>> listarPorRa(@PathVariable String ra) {
+
+        List<EmprestimoEntity> emprestimos = empresRepo.findByUsuarioRa(ra);
+
+        return ResponseEntity.ok(emprestimos);
     }
 }

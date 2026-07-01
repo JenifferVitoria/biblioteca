@@ -108,23 +108,23 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRe
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<UsuariosEntity> login(@RequestBody UsuariosEntity usuarioLogin) {
+	public ResponseEntity<?> login(@RequestBody UsuariosEntity usuarioLogin) {
 
-	    // busca usuário por email
-	    Optional<UsuariosEntity> usuario =
-	    usuariosRepository.findByEmail(usuarioLogin.getEmail());
+	    Optional<UsuariosEntity> usuario = usuariosRepository.findByEmail(usuarioLogin.getEmail());
 
-	    // se encontrou usuário, verifica senha
 	    if (usuario.isPresent()) {
 
 	        UsuariosEntity usuarioEncontrado = usuario.get();
 
-	       
+	        if (encoder.matches(usuarioLogin.getSenha(), usuarioEncontrado.getSenha())) {
+
+	            return ResponseEntity.ok(usuarioEncontrado);
+
+	        }
 
 	    }
-		return null;
-	    
 
+	    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("E-mail ou senha inválidos.");
 	}
 
 	// BUSCAR POR RA
