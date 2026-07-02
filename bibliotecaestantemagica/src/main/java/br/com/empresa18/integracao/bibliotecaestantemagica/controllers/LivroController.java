@@ -65,7 +65,7 @@ public class LivroController {
 
         // Definir o caminho onde o arquivo será salvo
         Path caminho = Paths.get(
-                "C:/Users/Acesso Livre/Documents/uploads" + nomeArquivo
+        		"//SC-ALPHA/deploy/biblioeca/img/" + nomeArquivo
         );
         
         // Salvar o arquivo no caminho definido
@@ -117,7 +117,7 @@ public class LivroController {
 	
 	// Definir o caminho onde o arquivo será salvo
 	Path caminho = Paths.get(
-	"C:/Users/Acesso Livre/Documents/uploads/" + nomeArquivo
+			"//SC-ALPHA/deploy/biblioeca/img/" + nomeArquivo
 	);
 	
 	// Salvar o arquivo no caminho definido
@@ -206,5 +206,11 @@ public class LivroController {
 	@ResponseStatus(HttpStatus.OK)
 	public List<LivroEntity> buscarPorTitulo(@PathVariable String titulo) {
 	    return livroRepo.findByTituloContainingIgnoreCase(titulo);
+	}
+
+	@GetMapping("/BuscarPorTipo{nome}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<LivroEntity> BuscarLivro(@PathVariable String nome){
+		return livroRepo.findByGeneroOrTituloOrAutorOrIsbnEntitiesContaningIgnorecase(nome);
 	}
 }

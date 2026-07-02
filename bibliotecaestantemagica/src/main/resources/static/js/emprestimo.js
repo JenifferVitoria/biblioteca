@@ -99,18 +99,18 @@ async function buscarAluno() {
 
 async function buscarLivro() {
 
-    let titulo = document.getElementById("buscaLivro").value;
+    const titulo = document.getElementById("buscaLivro").value;
 
-    let response = await fetch(`${API_BUSCAR_LIVRO}/${titulo}`);
+    const response = await fetch(`${API_BUSCAR_LIVRO}/${titulo}`);
 
-    let livros = await response.json();
+    const livros = await response.json();
 
-    let select = document.getElementById("livro");
+    const select = document.getElementById("livro");
     select.innerHTML = "";
 
-    for (let i = 0; i < livros.length; i++) {
+    for (const i = 0; i < livros.length; i++) {
              
-        let option = document.createElement("option");
+        const option = document.createElement("option");
         option.value = livros[i].id;
         option.text = livros[i].titulo;
 
@@ -146,7 +146,7 @@ async function salvarEmprestimo() {
 	    return;
 	}
 
-	let emprestimo = {};
+	const emprestimo = {};
 
 	emprestimo.usuario = {
 	    id: idUsuario
@@ -159,8 +159,8 @@ async function salvarEmprestimo() {
 	emprestimo.dataEmprestimo = document.getElementById("dataEmprestimo").value;
 	emprestimo.status = document.getElementById("status").value;
 
-    let salvar = API_SALVAR;
-    let metodo = "POST";
+    const salvar = API_SALVAR;
+    const metodo = "POST";
 
     if (editandoId != null) {
 
@@ -227,7 +227,7 @@ async function renovar(id) {
 
     const response = await fetch(`${API_RENOVAR}/${id}`, {
    method: "PUT"
-    });
+});
 
     if (response.ok) {
 
