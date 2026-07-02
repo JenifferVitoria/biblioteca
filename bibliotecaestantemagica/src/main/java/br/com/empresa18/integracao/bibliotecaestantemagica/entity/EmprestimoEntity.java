@@ -20,6 +20,8 @@ public class EmprestimoEntity implements Serializable {
 
     @Column(nullable = false)
     private String status;
+    
+    private LocalDate dataDevolucao;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idUsuario", nullable = false)
@@ -60,7 +62,19 @@ public class EmprestimoEntity implements Serializable {
         return usuario;
     }
 
-    public void setUsuario(UsuariosEntity usuario) {
+    public LocalDate getDataDevolucao() {
+		return dataDevolucao;
+	}
+
+	public void setDataDevolucao(LocalDate dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setUsuario(UsuariosEntity usuario) {
         this.usuario = usuario;
     }
 

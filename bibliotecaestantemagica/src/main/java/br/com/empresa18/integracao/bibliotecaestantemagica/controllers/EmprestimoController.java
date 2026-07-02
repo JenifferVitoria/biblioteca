@@ -57,7 +57,8 @@ public class EmprestimoController {
         LivroEntity livro = livrosRepository
                 .findById(emprestimo.getLivro().getId())
                 .orElseThrow(() -> new RuntimeException("Livro não encontrado."));
-
+        emprestimo.setDataDevolucao(
+                emprestimo.getDataEmprestimo().plusDays(10));
         emprestimo.setUsuario(usuario);
         emprestimo.setLivro(livro);
 
@@ -170,12 +171,11 @@ public class EmprestimoController {
         LocalDate hoje = LocalDate.now();
 
         for (EmprestimoEntity emprestimo : listaEmprestimos) {
+        	if (hoje.isAfter(emprestimo.getDataEmprestimo().plusDays(10))
+        	        && emprestimo.getStatus().equalsIgnoreCase("Em andamento")) {
 
-            if (hoje.isAfter(emprestimo.getDataEmprestimo().plusDays(10))
-                    || emprestimo.getStatus().equalsIgnoreCase("Em andamento")) {
-
-                listaVencidos.add(emprestimo);
-            }
+        	    listaVencidos.add(emprestimo);
+        	}
         }
 
         return ResponseEntity.ok(listaVencidos);
