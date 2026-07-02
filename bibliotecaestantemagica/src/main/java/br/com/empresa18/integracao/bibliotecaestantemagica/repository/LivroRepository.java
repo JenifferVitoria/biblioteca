@@ -10,8 +10,6 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.entity.LivroEntity;
 @Repository
 public interface LivroRepository extends JpaRepository<LivroEntity, Long> {
 
-	List<LivroEntity> findByGeneroOrTituloOrAutorOrIsbnEntitiesContaning(String nome);
-
-	List<LivroEntity> findByEmailContaining(String nome);
+	List<LivroEntity> findByGeneroOrTituloOrAutorOrIsbnEntitiesContaningIgnorecase(String nome);
 	
 }

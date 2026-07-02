@@ -105,8 +105,8 @@
 
                         <i class="bi bi-search"></i>
 
-                        <input type="text"
-                            placeholder="Digite o nome do livro, autor ou categoria">
+                        <input type="text" id="perquisar"
+                            placeholder="Digite o nome do livro, autor ou categoria" >
 
                     </div>
 
@@ -129,12 +129,12 @@
         <table class="table tabela-livros align-middle">
             <thead>
                 <tr>
-                    <th>Capa</th>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Gênero</th>
-                    <th>ISBN</th>
-                    <th>Status</th>
+                    <th id="capa">Capa</th>
+                    <th id="titulo">Título</th>
+                    <th id="autor">Autor</th>
+                    <th id="genero">Gênero</th>
+                    <th id="isbn">ISBN</th>
+                    <th id="status">Status</th>
                 </tr>
             </thead>
 
@@ -143,18 +143,6 @@
                     <tr>
                         <td>
                             <img src="@livro.Capa" class="capa-livro" />
-                        </td>
-
-                        <td>Titulo</td>
-                        <td>Autor</td>
-                        <td>Genero</td>
-                        <td>ISBN</td>
-
-                        <td>
-                            
-                               <span class="status disponivel">Disponível</span>
- 
-                                                 
                         </td>
 
                        
