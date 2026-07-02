@@ -1,5 +1,5 @@
 const API_LISTAR_TODAS_MULTAS = "http://localhost:8080/multas/listartodos";
-const API_LISTAR_TODOS_EMPRESTIMOS = "http://localhost:8080/emprestimos/listartodos";
+const API_LISTAR_TODOS_EMPRESTIMOS = "http://localhost:8000/emprestimos/listartodos";
 
 let editandoId = null;
 

@@ -1,4 +1,4 @@
-const API_LISTAR = "http://localhost:8000/emprestimos/listarra";
+const API_LISTAR = "http://localhost:8000/emprestimos/listartodos";
 
 document.addEventListener("DOMContentLoaded", () => {
     listarLocacoes();
@@ -6,18 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function listarLocacoes() {
 
-    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-    if (usuario == null) {
-        alert("Usuário não está logado.");
-        return;
-    }
-
-    const response = await fetch(`${API_LISTAR}/${usuario.ra}`);
+    const response = await fetch(API_LISTAR);
     const dados = await response.json();
 
     const tbody = document.getElementById("emprestimos");
     tbody.innerHTML = "";
+	
+
+	const dataEmprestimo = new Date(dados.dataEmprestimo);
+	dataEmprestimo.setDate(dataEmprestimo.getDate() + 10);
 
     dados.forEach(dado => {
 
@@ -25,6 +22,7 @@ async function listarLocacoes() {
             <tr>
                 <td>${dado.livro?.titulo || ""}</td>
                 <td>${dado.dataEmprestimo || ""}</td>
+				<td>${dado.dataDevolucao || ""}</td>
                 <td>${dado.status || ""}</td>
             </tr>
         `;
