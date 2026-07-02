@@ -33,7 +33,7 @@ body{
 }
 
 .logo-area img{
-    width:140px;
+    width:180px;
     margin-bottom:20px;
 }
 
@@ -253,4 +253,78 @@ body{
         gap:20px;
     }
 
+}
+
+/* =========================
+   GRID DO MODAL DE EMPRÉSTIMO
+   (AJUSTADO AO SEU DESIGN)
+========================= */
+
+.modal-body .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+/* cada campo padrão */
+.modal-body .col-md-4,
+.modal-body .col-md-6 {
+    width: 100% !important;
+}
+
+/* inputs bonitos no seu padrão azul */
+.modal-body label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #004aad;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.modal-body .form-control,
+.modal-body .form-select {
+    border-radius: 14px;
+    border: 1px solid #dfe9ff;
+    padding: 10px 12px;
+    font-size: 14px;
+    transition: 0.2s;
+    background: #fff;
+}
+
+/* foco azul igual seu sistema */
+.modal-body .form-control:focus,
+.modal-body .form-select:focus {
+    border-color: #0066ff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 102, 255, 0.15);
+    outline: none;
+}
+
+/* campos que ocupam linha inteira */
+.modal-body .col-md-6 {
+    grid-column: span 1;
+}
+
+/* botão do modal alinhado bonito */
+.modal-footer {
+    border-top: none;
+    padding-top: 10px;
+}
+
+.modal-footer .btn-primary {
+    background: linear-gradient(135deg, #0066ff, #004aad);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 14px;
+    font-weight: 600;
+}
+
+.modal-footer .btn-secondary {
+    border-radius: 14px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .modal-body .row {
+        grid-template-columns: 1fr;
+    }
 }

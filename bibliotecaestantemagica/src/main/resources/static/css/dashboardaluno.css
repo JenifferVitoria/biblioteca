@@ -8,7 +8,7 @@
 body{
     background: #f4f7fb;
     font-family: 'Segoe UI', sans-serif;
-    color: blue;
+    color: #1f2937;
 }
 
 /* CONTAINER */
@@ -23,9 +23,9 @@ body{
     padding: 25px 18px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     border-right: 1px solid #e9ecef;
 }
+
 
 /* LOGO */
 .logo-area{
@@ -88,6 +88,21 @@ body{
     transition: 0.3s;
 }
 
+.btn-locacoes{
+    width: 100%;
+    margin-top: 10px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-locacoes:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
 .btn-sair:hover{
     background: #bb2d3b;
 }
@@ -204,11 +219,12 @@ body{
 }
 
 .book-card img{
-    width: 100%;
-    height: 240px;
+    width: 80px;
+    height: 120px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 12px;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto 10px;
 }
 
 .book-card h5{
@@ -235,94 +251,48 @@ body{
     font-weight: bold;
 }
 
-/* EMPRESTIMOS */
-.emprestimo-item{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-}
+/* MELHORIAS NO CARD DE EMPRÉSTIMO */
 
-.emprestimo-item img{
-    width: 70px;
-    height: 100px;
+.capa-emprestimo{
+    width: 90px;
+    height: 130px;
     object-fit: cover;
-    border-radius: 8px;
-}
-
-.emprestimo-item h5{
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.emprestimo-item p{
-    margin-bottom: 5px;
-    color: #666;
-}
-
-.emprestimo-item span{
-    font-size: 13px;
-    color: #999;
-}
-
-.btn-locacoes{
-    width: 100%;
-    margin-top: 10px;
-    background: #2563eb;
-    color: #fff;
-    border: none;
-    padding: 12px;
     border-radius: 10px;
-    transition: 0.3s;
 }
 
-.btn-locacoes:hover{
-    background: #1e40af;
+.titulo-livro{
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #1f2937;
 }
 
-/* INFO CARDS */
-.info-card{
-    background: #fff;
-    padding: 25px;
-    border-radius: 18px;
-    text-align: center;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-    transition: 0.3s;
+.autor-livro{
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #4b5563;
 }
 
-.info-card:hover{
-    transform: translateY(-5px);
+.data-locacao{
+    font-size: 0.95rem;
+    margin-bottom: 0;
 }
 
-.info-icon{
-    width: 60px;
-    height: 60px;
-    margin: auto;
+.emprestimo-info{
+    flex: 1;
+}
+
+.custom-card{
+    padding: 30px;
+}
+
+    .sidebar-logout{
+    width: 100%;
+    margin-top: 15px;
+}
+
+.sidebar .menu{
     margin-bottom: 15px;
-    border-radius: 50%;
-    background: #dbeafe;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.info-icon i{
-    font-size: 28px;
-    color: #2563eb;
-}
-
-.info-card h2{
-    margin: 15px 0;
-    color: #2563eb;
-}
-
-.info-card a{
-    text-decoration: none;
-    color: #2563eb;
-    font-weight: 600;
 }
 
 /* RESPONSIVO */
@@ -340,4 +310,96 @@ body{
     .user-area{
         justify-content: space-between;
     }
+
+}
+
+/* =====================================
+   MELHORIAS DE EXPERIÊNCIA DO USUÁRIO
+===================================== */
+
+.notification-wrapper{
+    position: relative;
+}
+
+.notification-badge{
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    background: #dc3545;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-actions{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.quick-actions .btn{
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 600;
+}
+
+.clickable-card{
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.clickable-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.book-card{
+    transition: all .3s ease;
+}
+
+.book-card:hover{
+    transform: scale(1.05);
+}
+
+.progress{
+    height: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar{
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.alert-warning{
+    border-radius: 10px;
+}
+
+.custom-card h4{
+    font-weight: 700;
+}
+
+.user-info h6{
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.user-info span{
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.book-card{
+    max-width: 180px;
+    margin: 0 auto;
+}
+
+.books-grid{
+    justify-items: center;
 }

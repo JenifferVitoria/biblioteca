@@ -1,33 +1,21 @@
-const API_BUSCAR_TODOS = "http://localhost:8000/emprestimos/listartodos";
+const API_LISTAR = "http://localhost:8000/emprestimos/listartodos";
 const API_SALVAR = "http://localhost:8000/emprestimos/salvar";
-const API_BUSCAR_POR_ID = "http://localhost:8000/emprestimos/listarid";
 const API_ATUALIZAR = "http://localhost:8000/emprestimos/atualizar";
 const API_DELETAR = "http://localhost:8000/emprestimos/deletar";
 const API_DEVOLVER = "http://localhost:8000/emprestimos/devolver";
 const API_RENOVAR = "http://localhost:8000/emprestimos/renovar";
-const API_USUARIOS = "http://localhost:8000/Usuarios/listarTodos";
 const API_LIVROS = "http://localhost:8000/livros/listartodos";
+const API_BUSCAR_RA = "http://localhost:8000/Usuarios/buscarra";
+const API_BUSCAR_LIVRO = "http://localhost:8000/livros/BuscarPorTitulo";
 
 let editandoId = null;
+let livros = [];
+let idUsuario = null;
 
 
-//  LIMPAR FORMULARIO
-function limparFormulario() {
-
-    document.getElementById("locador").value = "";
-    document.getElementById("locatario").value = "";
-    document.getElementById("livro").value = "";
-    document.getElementById("dataEmprestimo").value = "";
-    document.getElementById("dataDevolucao").value = "";
-    document.getElementById("status").value = "Em andamento";
- 
-
-    editandoId = null;
-}
-
-//  MODAL 
-function abrirModal() {
-    new bootstrap.Modal(document.getElementById("emprestimoModal")).show();
+function abrirModal(){
+	const modal = new bootstrap.Modal(document.getElementById("emprestimoModal"));
+	modal.show();
 }
 
 function fecharModal(){
@@ -37,199 +25,246 @@ function fecharModal(){
 }
 
 
-// INICIALIZAR
+/// INICIALIZAÇÃO
 document.addEventListener("DOMContentLoaded", () => {
-
-    listarTodos();
-    carregarUsuarios();
+    listarEmprestimos();
     carregarLivros();
 });
 
+/// LISTAR EMPRÉSTIMOS
 
-// LISTAR RESERVAS
-async function listarTodos() {
+async function listarEmprestimos() {
 
-    const response = await fetch(API_BUSCAR_TODOS);
-    const data = await response.json();
-
-    const tbody = document.getElementById("emprestimos");
+    const response = await fetch(API_LISTAR);
+    const dados = await response.json();
+	const tbody = document.getElementById("emprestimos");
     tbody.innerHTML = "";
 
-    data.forEach(emprestimo => {
+    dados.forEach(dado => {
 
         tbody.innerHTML += `
             <tr>
-                <td>${emprestimo.locador?.nome || ""}</td>
-                <td>${emprestimo.locatario?.nome || ""}</td>
-                <td>${emprestimo.livro?.titulo || ""}</td>
-                <td>${emprestimo.dataEmprestimo}</td>
-                <td>${emprestimo.dataDevolucao}</td>
-                <td>${emprestimo.status}</td>
+                <td>${dado.usuario?.ra || ""}</td>
+                <td>${dado.usuario?.nome || ""}</td>
+                <td>${dado.livro?.titulo || ""}</td>
+                <td>${dado.dataEmprestimo}</td>
+                <td>${dado.status}</td>
 
                 <td>
-                    <button class="btn btn-warning btn-sm" onclick="editar(${emprestimo.id})">
-                        <i class="bi bi-pencil"></i>
+                    <button class="btn btn-success btn-sm" onclick="devolver(${dado.id})">
+                        <i class="bi bi-arrow-return-left"></i>
                     </button>
-					
-					<button class="btn btn-success btn-sm" onclick="devolver(${emprestimo.id})">
-					    <i class="bi bi-arrow-return-left"></i>
-					</button>
-					
-					<button class="btn btn-primary btn-sm" onclick="renovar(${emprestimo.id})">
-					    Renovar
-					</button>
-										
-                    <button class="btn btn-danger btn-sm" onclick="deletar(${emprestimo.id})">
+
+                    <button class="btn btn-primary btn-sm" onclick="renovar(${dado.id})">
+                        Renovar
+                    </button>
+
+                    <button class="btn btn-danger btn-sm" onclick="deletar(${dado.id})">
                         <i class="bi bi-trash"></i>
                     </button>
                 </td>
             </tr>
         `;
-		
-	
     });
 }
 
-// DEVOLVER
+/// BUSCAR ALUNO POR RA
+
+async function buscarAluno() {
+
+    const ra = document.getElementById("raAluno").value;
+
+    if (!ra) {
+        alert("Digite o RA do aluno");
+        return;
+    }
+
+    const response = await fetch(`${API_BUSCAR_RA}/${ra}`);
+
+    if (!response.ok) {
+        alert("Aluno não encontrado");
+		document.getElementById("nomeAluno").value = "";
+        idUsuario = null;
+        return;
+  }
+
+    const aluno = await response.json();
+
+    idUsuario = aluno.id;
+	document.getElementById("nomeAluno").value = aluno.nome;
+}
+
+
+/// BUSCAR LIVRO
+
+async function buscarLivro() {
+
+    const titulo = document.getElementById("buscaLivro").value;
+
+    const response = await fetch(`${API_BUSCAR_LIVRO}/${titulo}`);
+
+    const livros = await response.json();
+
+    const select = document.getElementById("livro");
+    select.innerHTML = "";
+
+    for (const i = 0; i < livros.length; i++) {
+             
+        const option = document.createElement("option");
+        option.value = livros[i].id;
+        option.text = livros[i].titulo;
+
+        select.appendChild(option);
+    }
+}
+
+/// CARREGAR LIVROS
+
+async function carregarLivros() {
+
+    const response = await fetch(API_LIVROS);
+    livros= await response.json();
+
+    const select = document.getElementById("livro");
+    select.innerHTML = "";
+
+    livros.forEach(livro => {
+	select.innerHTML += `
+      <option value="${livro.id}">
+            ${livro.titulo}
+      </option>
+        `;
+    });
+}
+ 
+/// SALVAR
+
+async function salvarEmprestimo() {
+
+	if (idUsuario == null) {
+	    alert("Busque um aluno pelo RA antes de salvar.");
+	    return;
+	}
+
+	const emprestimo = {};
+
+	emprestimo.usuario = {
+	    id: idUsuario
+	};
+
+	emprestimo.livro = {
+	    id: Number(document.getElementById("livro").value)
+	};
+
+	emprestimo.dataEmprestimo = document.getElementById("dataEmprestimo").value;
+	emprestimo.status = document.getElementById("status").value;
+
+    const salvar = API_SALVAR;
+    const metodo = "POST";
+
+    if (editandoId != null) {
+
+        salvar = `${API_ATUALIZAR}/${editandoId}`;
+        metodo = "PUT";
+    }
+
+    const response = await fetch(salvar, {
+
+        method: metodo,
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(emprestimo)
+    });
+
+    if (response.ok) {
+
+        alert("Empréstimo salvo com sucesso!");
+
+limparFormulario();
+listarEmprestimos();
+
+    } else {
+
+        alert("Erro ao salvar empréstimo.");
+    }
+	
+fecharModal();
+await listarEmprestimos();
+limparFormulario();	
+
+}
+
+/// DEVOLVER
+
 async function devolver(id) {
 
     if (!confirm("Deseja devolver este livro?")) return;
 
-    
-	try { 
-	const resposta = await fetch(`${API_DEVOLVER}/${id}`, {
-            method: "PUT"
-        });
+    const response = await fetch(`${API_DEVOLVER}/${id}`, {
+    method: "PUT"
+ });
 
-        if (!resposta.ok) {
-            throw new Error("Erro ao devolver livro.");
-        }
+    if (response.ok) {
 
-        alert("Livro devolvido com sucesso!");
+        alert("Livro devolvido!");
 
-        listarTodos();
+        listarEmprestimos();
 
-    } catch (erro) {
-        console.error(erro);
-        alert("Erro ao devolver o livro.");
+    } else {
+
+        alert("Erro ao devolver.");
     }
 }
-// USUÁRIOS 
-async function carregarUsuarios() {
 
-    const response = await fetch(API_USUARIOS);
-    const usuarios = await response.json();
-
-    const locador = document.getElementById("locador");
-    const locatario = document.getElementById("locatario");
-
-    locador.innerHTML = "";
-    locatario.innerHTML = "";
-
-    usuarios.forEach(usuario => {
-        locador.innerHTML += `<option value="${usuario.id}">${usuario.nome}</option>`;
-	if (usuario.tipo === "BIBLIOTECARIO") {
-            locatario.innerHTML += `<option value="${usuario.id}">${usuario.nome}</option>`;
-        }
-    });
-}
-
-// LIVROS
-async function carregarLivros() {
-
-    const response = await fetch(API_LIVROS);
-    const livros = await response.json();
-
-    const select = document.getElementById("livro");
-
-    select.innerHTML = "";
-
-    livros.forEach(livro => {
-        select.innerHTML += `<option value="${livro.id}">${livro.titulo}</option>`;
-    });
-}
-
-//  SALVAR 
-async function salvarEmprestimo() {
-
-    const emprestimo = {
-
-        locador: { id: Number(document.getElementById("locador").value) },
-        locatario: { id: Number(document.getElementById("locatario").value) },
-        livro: { id: Number(document.getElementById("livro").value) },
-
-        dataEmprestimo: document.getElementById("dataEmprestimo").value,
-        dataDevolucao: document.getElementById("dataDevolucao").value,
-        status: document.getElementById("status").value,
-    };
-
-    let url = API_SALVAR;
-    let method = "POST";
-
-    if (editandoId) {
-        url = `${API_ATUALIZAR}/${editandoId}`;
-        method = "PUT";
-    }
-
-    await fetch(url, {
-        method: method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(emprestimo)
-    });
-	fecharModal();
-    limparFormulario();
-    listarTodos();
-}
-
-// DELETAR
-async function deletar(id) {
-
-    if (!confirm("Deseja excluir?")) return;
-
-    await fetch(`${API_DELETAR}/${id}`, { method: "DELETE" });
-
-    listarTodos();
-}
-
-
-//  EDITAR
-async function editar(id) {
-
-    const res = await fetch(`${API_BUSCAR_POR_ID}/${id}`);
-    const emprestimo = await res.json();
-
-    editandoId = id;
-
-    document.getElementById("locador").value = emprestimo.locador.id;
-    document.getElementById("locatario").value = emprestimo.locatario.id;
-    document.getElementById("livro").value = emprestimo.livro.id;
-
-    document.getElementById("dataEmprestimo").value = emprestimo.dataEmprestimo;
-    document.getElementById("dataDevolucao").value = emprestimo.dataDevolucao;
-    document.getElementById("status").value = emprestimo.status;
-
-    abrirModal();
-}
+/// RENOVAR
 
 async function renovar(id) {
 
-    if (!confirm("Deseja renovar o empréstimo por mais 10 dias?")) return;
+    if (!confirm("Deseja renovar este empréstimo?")) return;
 
-    try {
-        const res = await fetch(`${API_RENOVAR}/${id}`, {
-            method: "PUT"
-        });
+    const response = await fetch(`${API_RENOVAR}/${id}`, {
+   method: "PUT"
+});
 
-        if (!res.ok) {
-            throw new Error("Erro ao renovar empréstimo");
-        }
+    if (response.ok) {
 
-        alert("Empréstimo renovado por +10 dias!");
+        alert("Empréstimo renovado!");
 
-        listarTodos();
+        listarEmprestimos();
 
-    } catch (erro) {
-        console.error(erro);
-        alert("Erro ao renovar empréstimo");
-    }
+    } else {
+
+        alert("Erro ao renovar.");
+ }
+}
+
+/// DELETAR
+
+async function deletar(id) {
+
+    if (!confirm("Deseja excluir este empréstimo?")) return;
+
+    await fetch(`${API_DELETAR}/${id}`, {
+    method: "DELETE"
+});
+
+    listarEmprestimos();
+}
+
+/// LIMPAR
+
+function limparFormulario() {
+
+  editandoId = null;
+  idUsuario = null;
+
+    document.getElementById("raAluno").value = "";
+  document.getElementById("nomeAluno").value = "";
+  document.getElementById("buscaLivro").value = "";
+  document.getElementById("livro").selectedIndex = 0;
+  document.getElementById("dataEmprestimo").value = "";
+  document.getElementById("status").value = "Em andamento";
 }

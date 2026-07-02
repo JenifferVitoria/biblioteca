@@ -1,171 +1,105 @@
-const API_LIVROS = "http://localhost:8080/livros";
-const API_ALUNOS = "http://localhost:8080/alunos";
+const API_LISTAR_TODAS_MULTAS = "http://localhost:8080/multas/listartodos";
+const API_LISTAR_TODOS_EMPRESTIMOS = "http://localhost:8080/emprestimos/listartodos";
+
+let editandoId = null;
+
+
+function limparFormulario() {
+		document.getElementById("valor").value="";
+		document.getElementById("diasAtraso").value="";
+		document.getElementById("dataGeracao").value="";
+		document.getElementById("paga").value="";
+
+    editandoId = null;
+}
+
+
 
 window.onload = function () {
+    carregarEmprestimosAtivos();
+    carregarMultasPendentes();
+};
 
-    carregarDashboard();
 
-    ativarMenu();
+async function carregarEmprestimosAtivos() {
 
-}
+    const response = await fetch(API_LISTAR_TODOS_EMPRESTIMOS);
+    const emprestimos = await resposta.json();
 
-async function carregarDashboard() {
+    let ativos = emprestimos.filter(e => e.status === "ATIVO");
 
-    let respostaLivros = await fetch(API_LIVROS + "/listartodos");
-    let livros = await respostaLivros.json();
-
-    let respostaAlunos = await fetch(API_ALUNOS + "/listartodos");
-    let alunos = await respostaAlunos.json();
-
-    let totalLivros = livros.length;
-    let emprestados = 0;
-    let devolvidos = 0;
-    let reservados = 0;
-    let multas = 0;
-
-    for (let i = 0; i < livros.length; i++) {
-
-        if (livros[i].status == "Emprestado") {
-            emprestados++;
-        }
-
-        if (livros[i].status == "Devolvido") {
-            devolvidos++;
-        }
-
-        if (livros[i].status == "Reservado") {
-            reservados++;
-        }
-
-        if (livros[i].multa == true) {
-            multas++;
-        }
-
-    }
-
-    document.getElementById("totalLivros").innerHTML = totalLivros;
-    document.getElementById("emprestados").innerHTML = emprestados;
-    document.getElementById("devolvidos").innerHTML = devolvidos;
-    document.getElementById("reservados").innerHTML = reservados;
-    document.getElementById("multas").innerHTML = multas;
-    document.getElementById("usuarios").innerHTML = alunos.length;
-
-    carregarEmprestimos(livros);
+    preencherEmprestimos(ativos);
 }
 
 
+function preencherEmprestimos(lista) {
 
-function carregarEmprestimos(livros) {
+    const container = document.getElementById("lista-emprestimos");
 
-    let lista = document.getElementById("listaEmprestimos");
+    container.innerHTML = "";
 
-    let html = "";
+    lista.forEach(emp => {
 
-    for (let i = 0; i < livros.length; i++) {
+        container.innerHTML += `
+            <div class="emprestimo-item">
 
-        if (livros[i].status == "Emprestado") {
+                <div class="emprestimo-info">
+                    <h4>${emp.livro.titulo}</h4>
+                    <p>${emp.livro.autor}</p>
+                    <small>Usuário: ${emp.usuario.nome}</small><br>
+                    <small>Data: ${emp.dataEmprestimo}</small>
+                </div>
 
-            html +=
-            "<div class='emprestimo-item'>" +
-
-                "<img src='http://localhost:8080/uploads/" + livros[i].imagem + "' width='70'>" +
-
-                "<div class='emprestimo-info'>" +
-
-                    "<h5>" + livros[i].titulo + "</h5>" +
-
-                    "<p>" + livros[i].autor + "</p>" +
-
-                    "<span>Usuário: " + livros[i].usuario + "</span>" +
-
-                "</div>" +
-
-                "<div class='emprestimo-data'>" +
-
-                    "<small>Devolver até:</small><br>" +
-
-                    "<strong>" + livros[i].dataDevolucao + "</strong>" +
-
-                "</div>" +
-
-            "</div>";
-
-        }
-
-    }
-
-    lista.innerHTML = html;
-
+            </div>
+        `;
+    });
 }
 
 
-async function buscarLivro() {
+async function carregarMultasPendentes() {
 
-    let texto = document.getElementById("pesquisa").value;
+    const response = await fetch(API_LISTAR_TODAS_MULTAS);
+    const multas = await resposta.json();
 
-    let resposta = await fetch(API_LIVROS + "/listartodos");
+    const pendentes = multas.filter(m => m.status === "PENDENTE");
 
-    let livros = await resposta.json();
+    preencherMultas(pendentes);
+}
 
-    let encontrado = false;
 
-    for (let i = 0; i < livros.length; i++) {
+function preencherMultas(lista) {
 
-        if (livros[i].titulo == texto) {
+    const container = document.getElementById("lista-multas");
 
-            encontrado = true;
+    container.innerHTML = "";
 
-        }
+    lista.forEach(multa => {
 
-    }
+        container.innerHTML += `
+            <div class="multa-item">
 
-    if (encontrado == true) {
+                <div class="multa-info">
+                    <h4>${multa.usuario.nome}</h4>
+                    <p>Atraso: ${multa.diasAtraso} dias</p>
+                    <small>Livro: ${multa.livro.titulo}</small>
+                </div>
 
-        alert("Livro encontrado!");
+                <div class="multa-valor">
+                    <strong>R$ ${multa.valor.toFixed(2)}</strong>
+                </div>
 
-    } else {
-
-        alert("Livro não encontrado.");
-
-    }
-
+            </div>
+        `;
+    });
 }
 
 
 
-function ativarMenu() {
 
-    let menus = document.getElementsByClassName("menu-item");
-
-    for (let i = 0; i < menus.length; i++) {
-
-        menus[i].onclick = function () {
-
-            for (let j = 0; j < menus.length; j++) {
-
-                menus[j].classList.remove("active");
-
-            }
-
-            this.classList.add("active");
-
-        }
-
-    }
-
+function irEmprestimos() {
+    window.location.href = "emprestimos.html";
 }
 
-
-function logout() {
-
-    let sair = confirm("Deseja sair do sistema?");
-
-    if (sair == true) {
-
-        localStorage.clear();
-
-        window.location.href = "login.html";
-
-    }
-
+function irMultas() {
+    window.location.href = "multas.html";
 }

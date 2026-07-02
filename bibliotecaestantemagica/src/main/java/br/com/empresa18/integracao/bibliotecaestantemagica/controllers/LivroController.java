@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.empresa18.integracao.bibliotecaestantemagica.entity.DevolucaoEntity;
 import br.com.empresa18.integracao.bibliotecaestantemagica.entity.LivroEntity;
 import br.com.empresa18.integracao.bibliotecaestantemagica.repository.LivroRepository;
 
@@ -202,21 +201,16 @@ public class LivroController {
 	}
 
 
-//LISTANDO TODOS
-	@GetMapping("/listartodos")
-	@ResponseStatus(HttpStatus.OK)
-	public List<LivroEntity> BuscarTodos() {
 
-		return livroRepo.findAll();
+	@GetMapping("/BuscarPorTitulo/{titulo}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<LivroEntity> buscarPorTitulo(@PathVariable String titulo) {
+	    return livroRepo.findByTituloContainingIgnoreCase(titulo);
 	}
 
-
-
-@GetMapping("/BuscarPorTipo{nome}")
-@ResponseStatus(HttpStatus.OK)
-public List<LivroEntity> BuscarLivro(@PathVariable String nome){
-	return livroRepo.findByGeneroOrTituloOrAutorOrIsbnEntitiesContaningIgnorecase(nome);
+	@GetMapping("/BuscarPorTipo{nome}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<LivroEntity> BuscarLivro(@PathVariable String nome){
+		return livroRepo.findByGeneroOrTituloOrAutorOrIsbnEntitiesContaningIgnorecase(nome);
+	}
 }
-
-}
-

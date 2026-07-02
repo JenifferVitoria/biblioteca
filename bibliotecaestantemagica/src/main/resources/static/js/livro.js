@@ -1,5 +1,6 @@
 const API_CADASTRAR ="http://localhost:8000/livros/salvar";
 const API_BUSCAR_TODOS ="http://localhost:8000/livros/listartodos";
+const API_BUSCAR_LIVRO ="http://localhost:8000/livros/BuscarPorTipo";
 
 
 let notaAvaliacao = 0;
@@ -112,7 +113,7 @@ let editandoid = null;
 			
 			const response = await fetch (API_BUSCAR_TODOS);
 			
-			const participantes = await response.json();
+			const livros = await response.json();
 			
 			const tbody = document.querySelector("tbody");
 
@@ -143,25 +144,25 @@ let editandoid = null;
 				});
 			}
 			
-			async function buscarNome(){
+			async function buscarLivro(){
 				
 				let valor = document.getElementById("valorFiltro").value;
 				let response ='';
-				let participantes ='';
+				let livros ='';
 				
 				console.log('tipo');
 				console.log(tipo);
 
 				if (valor){
 					
-						if(tipo==="nome"){
+						if(tipo==="livro"){
 							console.log('teste buscando');
 					
-							response = await fetch(`${API_BUSCAR_NOME}/${nomeFiltro}`);
+							response = await fetch(`${API_BUSCAR_LIVRO}/${nomeFiltro}`);
 						} 
 						
 				} else{
-					response = await fetch(API_BUSCAR_TODOS);	
+					response = await fetch(API_BUSCAR_LIVRO);	
 					
 				}
 				
@@ -173,17 +174,17 @@ let editandoid = null;
 
 				tr.innerHTML = `
 
-				<td>${participantes.nome}</td>
-					
-					<td>${participantes.cidade}</td>
-					
-					<td>${participantes.tipoCorrida}</td>
+				<td>${livros.imagem}</td>
 
-					<td>${participantes.numeroCamisa}</td>
-					
-					<td>${participantes.dataInscricao}</td>
+				<td>${livros.tiulo}</td>
 
-					<td>
+				<td>${livros.autpr}</td>
+
+				<td>${livros.genero}</td>
+
+				<td>${livros.isbn}</td>
+
+				<td>${livros.disponivel}</td>
 
 					`;
 
@@ -197,17 +198,13 @@ let editandoid = null;
 
 				async function  salvarParticipante(){
 					const participante = {
-						nome: document.getElementById("nome").value,
-						cpf: document.getElementById("cpf").value,
-						email: document.getElementById("email").value,
-						telefone: document.getElementById("telefone").value,
-						estado: document.getElementById("estado").value,
-						dataDeNascimento: document.getElementById("nascimento").value,
-						cidade: document.getElementById("cidade").value,
-						tipoCorrida: document.getElementById("corrida").value,
-						sexo: document.getElementById("sexo").value,
-						numeroCamisa: document.getElementById("camisa").value
-
+						capa: document.getElementById("imagem").value,
+						titulo: document.getElementById("titulo").value,
+						autor: document.getElementById("autor").value,
+						genero: document.getElementById("genero").value,
+						isbn: document.getElementById("isbn").value,
+						status: document.getElementById("disponivel").value
+						
 					};
 					const resposta = await fetch(
 					     "http://localhost:8000/participantes/cadastrar",

@@ -1,73 +1,175 @@
+const API_MULTAS_TODAS = "http://localhost:8080/multa/listartodos";
+const API_EMPRESTIMOS_TODOS = "http://localhost:8080/emprestimo/listartodos";
 
-function copiarCodigo(){
+const API_MULTA_PAGAR = "http://localhost:8080/pix/gerar";
+const API_EMPRESTIMO_ATUALIZAR = "http://localhost:8080/emprestimo/atualizar";
 
-    let codigo =
-        document.getElementById("pixCode");
+let listaMultas = [];
+let listaEmprestimos = [];
 
-    codigo.select();
-    codigo.setSelectionRange(0,99999);
+let editandoId = null;
 
-    navigator.clipboard.writeText(
-        codigo.value
-    );
 
-    alert("Código PIX copiado!");
-
+// VOLTAR
+function voltarPagina() {
+    window.location.href = "dashboardaluno.html";
 }
 
 
-async function abrirModalPix(valor) {
-	valor = parseFloat(valor);
-	const response = await fetch(
-	    `http://localhost:8000/pix/gerar?valor=${valor.toFixed(2)}`);
+// LIMPAR FORMULARIO
+function limparFormulario() {
+    editandoId = null;
+}
 
-    const data = await response.json();
 
-	console.log(data);
-	
-    document.getElementById("pixCode").value = data.payload;
+// ABRIR MODAL
 
-    document.getElementById("imgPix").src =
-        "data:image/png;base64," + data.qrCodeBase64;
-
-    let modal = new bootstrap.Modal(
-        document.getElementById("pixModal")
-    );
-
+function abrirModal(id) {
+    const modal = new bootstrap.Modal(document.getElementById(id));
     modal.show();
 }
 
 
-const API_EMPRESTIMOS_LISTARTODOS = 'http://localhost:8000/emprestimos/listartodos';
-
-
-async function listarEmprestimos() {
-  const response = await fetch(API_EMPRESTIMOS_LISTARTODOS);
-  const emprestimos = await response.json();
-
-  const tbody = document.getElementById("emprestimo");
-
-  tbody.innerHTML = ""; // 🔥 LIMPA ANTES DE ADICIONAR
-
-  emprestimos.forEach(emprestimo => {
-    const tr = document.createElement("tr");
-
-	tr.innerHTML = `
-	            <td>${emprestimo.id}</td>
-	            <td>${emprestimo.dataEmprestimo}</td>
-	            <td>${emprestimo.dataDevolucao}</td>
-				<td>12</td>
-				<td>${emprestimo.status}</td>		
-	            <td>
-        <button class="btn btn-warning btn-sm" onclick="editar(${emprestimo.id})">Renovar</button>
-      </td>
-    `;
-
-    tbody.appendChild(tr);
-  });
+// FECHAR MODAL 
+function fecharModal(id) {
+    const modalElement = document.getElementById(id);
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    modal.hide();
 }
-//FUNÇÃO PARA CARREGAR OS DADOS AO INICIALIZAR A PÁGINA
-document.addEventListener("DOMContentLoaded", () => {
 
-	listarEmprestimos();
-})
+
+// INICIALIZAR
+document.addEventListener("DOMContentLoaded", () => {
+    listarMultas();
+    listarEmprestimos();
+});
+
+
+// LISTAR MULTAS
+async function listarMultas() {
+
+    const response = await fetch(API_MULTAS_TODAS);
+    listaMultas = await response.json();
+
+    const tbody = document.getElementById("tabelaMultas");
+    tbody.innerHTML = "";
+
+    listaMultas.forEach((multa, index) => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${multa.livro?.titulo || "N/A"}</td>
+            <td>${multa.diasAtraso} dias</td>
+            <td>R$ ${multa.valor}</td>
+            <td>${multa.status}</td>
+            <td>
+
+                <button class="btn btn-primary btn-sm"
+                    onclick="abrirMultaModal(${index})">
+
+                    Ver
+
+                </button>
+
+                <button class="btn btn-success btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#pixModal"
+                    onclick="gerarPix(${multa.valor})">
+
+                    Pagar
+
+                </button>
+
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+}
+
+
+// LISTAR EMPRESTIMOS
+async function listarEmprestimos() {
+
+    const response = await fetch(API_EMPRESTIMOS_TODOS);
+    listaEmprestimos = await response.json();
+}
+
+
+// ABRIR MODAL MULTA
+function abrirMultaModal(lista) {
+
+    const multa = listaMultas[lista];
+
+    document.getElementById("modalLivroMulta").innerText = multa.livro?.titulo || "";
+    document.getElementById("modalUsuarioMulta").innerText = multa.aluno?.nome || "";
+    document.getElementById("modalDias").innerText = multa.diasAtraso || "";
+    document.getElementById("modalValor").innerText = multa.valor || "";
+    document.getElementById("modalStatusMulta").innerText = multa.status || "";
+
+    abrirModal("multaModal");
+}
+
+// ABRIR MODAL EMPRESTIMO
+function abrirEmprestimoModal(lista) {
+
+    const emprestimo = listaEmprestimos[lista];
+
+    document.getElementById("modalLivro").innerText = emprestimo.livro?.titulo || "";
+    document.getElementById("modalAutor").innerText = emprestimo.livro?.autor || "";
+    document.getElementById("modalUsuario").innerText = emprestimo.aluno?.nome || "";
+    document.getElementById("modalData").innerText = emprestimo.dataEmprestimo || "";
+    document.getElementById("modalStatus").innerText = emprestimo.status || "";
+
+    abrirModal("emprestimoModal");
+}
+
+
+// PIX (GERAR CÓDIGO)
+function gerarPix(valor) {
+
+    const codigo = "PIX-" + Date.now();
+
+    document.getElementById("pixCode").value = codigo;
+
+    document.getElementById("imgPix").src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + codigo;
+}
+
+// COPIAR PIX
+
+function copiarCodigo() {
+
+    const input = document.getElementById("pixCode");
+
+    input.select();
+    input.setSelectionRange(0, 99999);
+
+    navigator.clipboard.writeText(input.value);
+
+    alert("Código PIX copiado!");
+}
+
+// PAGAR MULTA
+
+async function pagarMulta() {
+		alert("Multa paga com sucesso!");
+
+await fetch(`${API_MULTA_PAGAR}/${id}`, { method: "PUT" });
+
+    fecharModal("multaModal");
+    listarMultas();
+}
+
+
+// PAGAR EMPRESTIMO
+async function pagarEmprestimo() {
+
+    alert("Empréstimo atualizado!");
+
+ await fetch(`${API_EMPRESTIMO_ATUALIZAR}/${id}`, { method: "PUT" });
+
+    fecharModal("emprestimoModal");
+    listarEmprestimos();
+}
