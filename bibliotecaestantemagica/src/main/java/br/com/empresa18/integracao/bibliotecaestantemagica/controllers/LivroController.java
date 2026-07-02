@@ -30,6 +30,7 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.LivroRepos
 @CrossOrigin("*")
 public class LivroController {
 	
+	private static final String String = null;
 	@Autowired
 	private LivroRepository livroRepo;
 	
@@ -208,9 +209,9 @@ public class LivroController {
 	    return livroRepo.findByTituloContainingIgnoreCase(titulo);
 	}
 
-	@GetMapping("/BuscarPorTipo{nome}")
+	@GetMapping("/BuscarPorTipo{genero}/{titulo}/{autor}/{isbn}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<LivroEntity> BuscarLivro(@PathVariable String nome){
-		return livroRepo.findByGeneroOrTituloOrAutorOrIsbnEntitiesContaningIgnorecase(nome);
+	public List<LivroEntity> BuscarLivro(@PathVariable String genero, String titulo, String autor, String isbn ){
+		return livroRepo.findByGeneroOrTituloOrAutorOrIsbnContainingIgnoreCase(genero, titulo, autor, isbn);
 	}
 }
