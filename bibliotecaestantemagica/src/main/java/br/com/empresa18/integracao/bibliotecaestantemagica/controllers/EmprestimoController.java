@@ -1,10 +1,13 @@
 package br.com.empresa18.integracao.bibliotecaestantemagica.controllers;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.empresa18.integracao.bibliotecaestantemagica.entity.EmprestimoEntity;
@@ -137,5 +140,44 @@ public class EmprestimoController {
         }
 
         return "Empréstimo não encontrado.";
+    }
+    
+    // BUSCAR EMPRESTIMO DE USUARIO
+    @GetMapping("/listarusuario/{id}")
+    public ResponseEntity<List<EmprestimoEntity>> listarPorUsuario(@PathVariable Long id) {
+
+        List<EmprestimoEntity> emprestimos = empresRepo.findByUsuarioId(id);
+
+        return ResponseEntity.ok(emprestimos);
+    }
+    
+    @GetMapping("/listarra/{ra}")
+    public ResponseEntity<List<EmprestimoEntity>> listarPorRa(@PathVariable String ra) {
+
+        List<EmprestimoEntity> emprestimos = empresRepo.findByUsuarioRa(ra);
+
+        return ResponseEntity.ok(emprestimos);
+    }
+    
+    
+//LISTAR VENCIDOS
+    @GetMapping("/listarvencidos")
+    public ResponseEntity<List<EmprestimoEntity>> listarVencidos() {
+
+        List<EmprestimoEntity> listaEmprestimos = empresRepo.findAll();
+        List<EmprestimoEntity> listaVencidos = new ArrayList<>();
+
+        LocalDate hoje = LocalDate.now();
+
+        for (EmprestimoEntity emprestimo : listaEmprestimos) {
+
+            if (hoje.isAfter(emprestimo.getDataEmprestimo().plusDays(10))
+                    || emprestimo.getStatus().equalsIgnoreCase("Em andamento")) {
+
+                listaVencidos.add(emprestimo);
+            }
+        }
+
+        return ResponseEntity.ok(listaVencidos);
     }
 }
