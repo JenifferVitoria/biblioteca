@@ -24,7 +24,7 @@ body{
 }
 
 .logo{
-    width:170px;
+    width:180px;
 }
 
 .sidebar-title{
@@ -50,7 +50,7 @@ body{
 }
 
 .menu-item:hover{
-    background:#edf4ff;
+    background:#edf4ff;s
 }
 
 .menu-item.active{
