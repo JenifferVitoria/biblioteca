@@ -1,144 +1,96 @@
+
 <!DOCTYPE html>
-
 <html lang="pt-br">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Biblioteca Mágica - Dashboard</title>
 
-
-
     <!-- Bootstrap -->
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
-
     <!-- Bootstrap Icons -->
-
     <link rel="stylesheet"
-
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-
-
     <!-- CSS -->
-
     <link rel="stylesheet" href="css/dashboardaluno.css">
-
     <script type="text/javascript" src="js/aluno.js"></script>
-
 </head>
-
 <body>
-
 
 <div class="container-fluid dashboard-container">
 
     <div class="row">
 
-
-
         <!-- SIDEBAR -->
-
         <div class="col-lg-2 sidebar">
 
             <div>
 
-
-
                 <!-- LOGO -->
-
                 <div class="logo-area text-center">
-
                      <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"class="logo" alt="Biblioteca Mágica">
-
                 </div>
-             </div>
-          </div>      
 
-                <!-- MENU --> 
+             
+                <!-- MENU -->
+                <ul class="menu list-unstyled">
 
-                
-	
-	<ul class="menu">
-	
-	    <li>
-    <a href="dashboardaluno.html" class="active">
-        <i class="bi bi-house"></i>
-        Início
-    </a>
-</li>
-	
-	    <li>
-	        <a href="acervo.html" class="active">
-	            <i class="bi bi-book"></i>
-	            Gerenciar Acervo
-	        </a>
-	    </li>
-	
-	    <li>
-	        <a href="usuarios.html">
-	            <i class="bi bi-people"></i>
-	            Usuários
-	        </a>
-	    </li>
-	
-	</ul>
+                    <li>
+                    <a href="dashboardbibliotecario.html">
+                        <i class="bi bi-house"></i>
+                        Início
+                    </a>
+                </li>
+                    <li class="menu-item">
+                        <i class="bi bi-person"></i>
+                        Meu Perfil
+                    </li>
 
+
+                    <li class="menu-item">
+                        <i class="bi bi-book"></i>
+                        Minhas Locações
+                    </li>
+
+                    <li class="menu-item">
+                        <i class="bi bi-arrow-return-left"></i>
+                        Devoluções
+                    </li>
+
+
+
+                </ul>
 
             </div>
 
-
-
             <!-- SAIR -->
-
-            <button class="btn btn-sair" onclick="logout()">
-
+            <button class="btn btn-sair">
                 <i class="bi bi-box-arrow-right"></i>
-
                 Sair
-
             </button>
 
         </div>
 
-
-
         <!-- CONTEÚDO -->
-
         <div class="col-lg-10 content-area">
 
-
-
             <!-- TOPO -->
-
             <div class="topbar">
 
-
-
                 <!-- BUSCA -->
-
                 <div class="search-box">
 
                     <i class="bi bi-search"></i>
 
                     <input type="text"
-
                            placeholder="Buscar por título, autor ou ISBN...">
-
-                    <button class="btn-buscar"  onclick="buscarLivros()">Buscar</button>
-
+                    <button class="btn-buscar">Buscar</button>
+                  
                 </div>
-             </div>
-
 
                 <!-- USER -->
-
                 <div class="user-area">
 
                     <i class="bi bi-bell notification-icon"></i>
@@ -146,15 +98,11 @@
                     <div class="user-info">
 
                         <img src="https://i.pravatar.cc/100"
-
                              alt="Usuário">
 
                         <div>
-
                             <h6>Jennifer Vitória</h6>
-
                             <span>Aluno</span>
-
                         </div>
 
                     </div>
@@ -163,36 +111,22 @@
 
             </div>
 
-
-
             <!-- GRID PRINCIPAL -->
-
             <div class="row mt-4">
 
-
-
                 <!-- LIVROS -->
-
-                <div class="col-lg-7 mb-4">
+                <div class="col-lg-12 mb-3">
 
                     <div class="custom-card">
 
                         <div class="card-header-custom">
-
                             <h4>Livros em Destaque</h4>
-
                             <a href="#">Ver todos</a>
-
                         </div>
-
-
 
                         <div class="books-grid">
 
-
-
                             <!-- LIVRO -->
-
                             <div class="book-card">
 
                                 <img src="https://m.media-amazon.com/images/I/91SDZ2eUj+L.jpg">
@@ -204,17 +138,12 @@
                                 <span>Romance</span>
 
                                 <div class="rating">
-
                                     ★★★★★ 4.8
-
                                 </div>
 
                             </div>
 
-
-
                             <!-- LIVRO -->
-
                             <div class="book-card">
 
                                 <img src="https://m.media-amazon.com/images/I/91r5G8RxqfL.jpg">
@@ -226,17 +155,12 @@
                                 <span>Romance</span>
 
                                 <div class="rating">
-
                                     ★★★★★ 4.7
-
                                 </div>
 
                             </div>
 
-
-
                             <!-- LIVRO -->
-
                             <div class="book-card">
 
                                 <img src="https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg">
@@ -248,17 +172,12 @@
                                 <span>Finanças</span>
 
                                 <div class="rating">
-
                                     ★★★★★ 4.8
-
                                 </div>
 
                             </div>
 
-
-
                             <!-- LIVRO -->
-
                             <div class="book-card">
 
                                 <img src="https://m.media-amazon.com/images/I/81wgcld4wxL.jpg">
@@ -270,9 +189,7 @@
                                 <span>Autoajuda</span>
 
                                 <div class="rating">
-
                                     ★★★★★ 4.6
-
                                 </div>
 
                             </div>
@@ -283,72 +200,18 @@
 
                 </div>
 
-
-
-<!-- EMPRESTIMOS -->
-<div class="col-lg-5 mb-4 d-flex">
-
-    <div class="custom-card w-100">
-
-        <div class="card-header-custom">
-            <h4>Empréstimos Ativos</h4>
-        </div>
-
-        <div class="emprestimo-item">
-
-            <img src="https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg"
-                 alt="Capa do livro"
-                 class="capa-emprestimo">
-
-            <div class="emprestimo-info">
-
-                <h3 class="titulo-livro">
-                    A Teoria do Saber
-                </h3>
-
-                <p class="autor-livro">
-                    <i class="bi bi-person-fill"></i>
-                    Jean Piaget
-                </p>
-
-                <p class="data-locacao">
-                    <i class="bi bi-calendar-event"></i>
-                    Locado em:
-                    <strong>12/05/2024</strong>
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="mt-4">
-            <button class="btn-locacoes w-100"
-                    onclick="window.location.href='locacoes.html'">
-                Minhas Locações
-            </button>
-        </div>
-
-    </div>
-
-</div>
-
+             
 
             <!-- CARDS INFERIORES -->
-
             <div class="row">
 
-
-
                 <!-- CARD -->
-
-                <div class="col-lg-3 mb-4">
+                <div class="col-lg-3 col-md-6 mb-4">
 
                     <div class="info-card">
 
                         <div class="info-icon">
-
                             <i class="bi bi-book"></i>
-
                         </div>
 
                         <h4>Livros Lidos</h4>
@@ -358,9 +221,7 @@
                         <p>Parabéns! Continue assim.</p>
 
                         <a href="#">
-
                             Ver histórico completo
-
                         </a>
 
                     </div>
@@ -368,15 +229,12 @@
                 </div>
 
                 <!-- CARD -->
-
                 <div class="col-lg-3 mb-4">
 
                     <div class="info-card">
 
                         <div class="info-icon">
-
                             <i class="bi bi-journal-check"></i>
-
                         </div>
 
                         <h4>Empréstimos Ativos</h4>
@@ -386,9 +244,7 @@
                         <p>Você possui livros emprestados.</p>
 
                         <a href="#">
-
                             Gerenciar locações
-
                         </a>
 
                     </div>
@@ -396,15 +252,12 @@
                 </div>
 
                 <!-- CARD -->
-
                 <div class="col-lg-3 mb-4">
 
                     <div class="info-card">
 
                         <div class="info-icon">
-
                             <i class="bi bi-currency-dollar"></i>
-
                         </div>
 
                         <h4>Multas</h4>
@@ -414,9 +267,7 @@
                         <p>Tudo certo! Sem multas pendentes.</p>
 
                         <a href="#">
-
                             Ver detalhes
-
                         </a>
 
                     </div>
@@ -424,15 +275,12 @@
                 </div>
 
                 <!-- CARD -->
-
                 <div class="col-lg-3 mb-4">
 
                     <div class="info-card">
 
                         <div class="info-icon">
-
                             <i class="bi bi-stack"></i>
-
                         </div>
 
                         <h4>Total de Livros</h4>
@@ -442,9 +290,7 @@
                         <p>Livros disponíveis na biblioteca.</p>
 
                         <a href="#">
-
                             Explorar catálogo
-
                         </a>
 
                     </div>
@@ -452,10 +298,12 @@
                 </div>
 
             </div>
-            
+
         </div>
 
+    </div>
+
+</div>
 
 </body>
-
 </html>

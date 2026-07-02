@@ -45,8 +45,13 @@ body{
 }
 
 .logo-area img{
+
+    width:180px;
+    margin-bottom:15px;
+
     width:140px;
     margin-bottom:20px;
+
 }
 
 .logo-area h2{
