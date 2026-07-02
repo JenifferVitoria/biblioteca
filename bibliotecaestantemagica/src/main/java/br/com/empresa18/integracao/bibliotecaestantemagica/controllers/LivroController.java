@@ -209,9 +209,9 @@ public class LivroController {
 	    return livroRepo.findByTituloContainingIgnoreCase(titulo);
 	}
 
-	@GetMapping("/BuscarPorTipo{genero}/{titulo}/{autor}/{isbn}")
+	@GetMapping("/BuscarPorTipo/{genero}/{titulo}/{autor}/{isbn}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<LivroEntity> BuscarLivro(@PathVariable String genero, String titulo, String autor, String isbn ){
+	public List<LivroEntity> BuscarLivro(@PathVariable String genero, @PathVariable String titulo, @PathVariable String autor, @PathVariable String isbn ){
 		return livroRepo.findByGeneroOrTituloOrAutorOrIsbnContainingIgnoreCase(genero, titulo, autor, isbn);
 	}
 }
