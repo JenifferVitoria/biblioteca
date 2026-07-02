@@ -29,3 +29,5 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.MultaRepos
 	        return multaRepo.findAll();
 	    }
 }
+
+	
