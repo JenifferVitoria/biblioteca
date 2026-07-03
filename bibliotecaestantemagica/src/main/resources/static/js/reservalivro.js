@@ -94,15 +94,11 @@ async function carregarLivro() {
         )[3].innerText =
             livro.anoPublicacao;
 
-    } catch (erro) {
+			} catch (erro) {
 
-        console.error(erro);
+			    console.error(erro);
 
-        alert(
-            "Erro ao carregar livro"
-        );
-
-    }
+			}
 
 }
 

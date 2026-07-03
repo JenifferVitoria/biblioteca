@@ -24,10 +24,12 @@ body{
     padding:40px 20px;
     overflow:hidden;
     background:
-    linear-gradient(180deg,
-    #f7fbff 0%,
-    #eaf3ff 45%,
-    #d7e9ff 100%);
+    linear-gradient(
+        180deg,
+        #f7fbff 0%,
+        #eaf3ff 45%,
+        #d7e9ff 100%
+    );
 }
 
 /* =========================
@@ -72,14 +74,14 @@ body{
 }
 
 /* =========================
-   CONTEUDO
+   CONTEÚDO
 ========================= */
 
 .login-content{
     position:relative;
     z-index:2;
     width:100%;
-    max-width:650px;
+    max-width:550px; /* reduzido de 650px */
 }
 
 /* =========================
@@ -87,12 +89,12 @@ body{
 ========================= */
 
 .logo{
-    width:380px;
+    width:300px; /* reduzido de 380px */
     margin-bottom:20px;
 }
 
 .logo-area h1{
-    font-size:72px;
+    font-size:56px; /* reduzido de 72px */
     font-weight:800;
     color:#004aad;
     line-height:1.1;
@@ -100,7 +102,7 @@ body{
 }
 
 .divider{
-    width:220px;
+    width:180px;
     height:2px;
     background:#c8dcff;
     margin:0 auto;
@@ -112,9 +114,9 @@ body{
 
 .login-card{
     background:#ffffff;
-    border-radius:38px;
-    padding:55px;
-    margin-top:45px;
+    border-radius:32px;
+    padding:40px; /* reduzido de 55px */
+    margin-top:30px; /* reduzido de 45px */
     box-shadow:0 15px 40px rgba(0,74,173,0.12);
 }
 
@@ -123,29 +125,29 @@ body{
 ========================= */
 
 .form-group{
-    margin-bottom:35px;
+    margin-bottom:25px;
 }
 
 .form-group label{
     display:block;
     color:#004aad;
     font-weight:700;
-    font-size:28px;
-    margin-bottom:18px;
+    font-size:22px; /* reduzido de 28px */
+    margin-bottom:12px;
 }
 
 .input-area{
-    height:90px;
+    height:70px; /* reduzido de 90px */
     border:2px solid #cfe0ff;
-    border-radius:22px;
+    border-radius:18px;
     display:flex;
     align-items:center;
-    padding:0 25px;
+    padding:0 20px;
     background:#ffffff;
 }
 
 .input-area i{
-    font-size:34px;
+    font-size:26px; /* reduzido de 34px */
     color:#4b8fff;
 }
 
@@ -153,8 +155,8 @@ body{
     border:none;
     outline:none;
     width:100%;
-    margin-left:20px;
-    font-size:30px;
+    margin-left:15px;
+    font-size:22px; /* reduzido de 30px */
     color:#35507a;
 }
 
@@ -172,12 +174,12 @@ body{
 
 .btn-login{
     width:100%;
-    height:90px;
+    height:70px; /* reduzido de 90px */
     border:none;
-    border-radius:22px;
+    border-radius:18px;
     background:linear-gradient(90deg,#005bea,#0047b3);
     color:#ffffff;
-    font-size:36px;
+    font-size:28px; /* reduzido de 36px */
     font-weight:700;
     margin-top:10px;
     transition:0.3s;
@@ -193,13 +195,18 @@ body{
 
 .forgot-password{
     text-align:center;
-    margin-top:35px;
+    margin-top:25px;
 }
 
 .forgot-password a{
     color:#004aad;
-    font-size:26px;
+    font-size:20px; /* reduzido de 26px */
     font-weight:500;
+    text-decoration:none;
+}
+
+.forgot-password a:hover{
+    text-decoration:underline;
 }
 
 /* =========================
@@ -208,37 +215,45 @@ body{
 
 @media(max-width:768px){
 
+    .login-content{
+        max-width:100%;
+    }
+
     .logo{
-        width:230px;
+        width:220px;
     }
 
     .logo-area h1{
-        font-size:48px;
+        font-size:40px;
     }
 
     .login-card{
-        padding:35px 25px;
+        padding:25px;
+        border-radius:24px;
     }
 
     .form-group label{
-        font-size:22px;
+        font-size:18px;
     }
 
     .input-area{
-        height:72px;
+        height:60px;
     }
 
-    .input-area input{
+    .input-area i{
         font-size:22px;
     }
 
+    .input-area input{
+        font-size:18px;
+    }
+
     .btn-login{
-        height:72px;
-        font-size:28px;
+        height:60px;
+        font-size:22px;
     }
 
     .forgot-password a{
-        font-size:20px;
+        font-size:16px;
     }
-
 }
