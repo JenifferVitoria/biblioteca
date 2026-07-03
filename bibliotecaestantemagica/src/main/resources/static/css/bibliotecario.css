@@ -50,7 +50,7 @@ body{
 }
 
 .menu-item:hover{
-    background:#edf4ff;s
+    background:#edf4ff;
 }
 
 .menu-item.active{
@@ -296,7 +296,7 @@ body{
 }
 
 /* =========================
-   BOTAO
+   BOTAO (CORRIGIDO)
 ========================= */
 
 .btn-gerenciar{
@@ -308,6 +308,11 @@ body{
     background:#edf4ff;
     color:#005bea;
     font-weight:700;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
 }
 
 /* =========================
