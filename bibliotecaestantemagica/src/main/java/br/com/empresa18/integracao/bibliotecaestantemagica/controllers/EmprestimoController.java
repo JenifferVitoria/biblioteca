@@ -1,7 +1,4 @@
 package br.com.empresa18.integracao.bibliotecaestantemagica.controllers;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -161,23 +158,12 @@ public class EmprestimoController {
     }
     
     
-//LISTAR VENCIDOS
-    @GetMapping("/listarvencidos")
-    public ResponseEntity<List<EmprestimoEntity>> listarVencidos() {
+    //LISTAR ATRASADO
+       @GetMapping("/atrasados")
+       public ResponseEntity<List<EmprestimoEntity>> listarEmprestimosAtrasados() {
 
-        List<EmprestimoEntity> listaEmprestimos = empresRepo.findAll();
-        List<EmprestimoEntity> listaVencidos = new ArrayList<>();
+            List<EmprestimoEntity> emprestimos = empresRepo.findEmprestimoAtrasados();
 
-        LocalDate hoje = LocalDate.now();
-
-        for (EmprestimoEntity emprestimo : listaEmprestimos) {
-        	if (hoje.isAfter(emprestimo.getDataEmprestimo().plusDays(10))
-        	        && emprestimo.getStatus().equalsIgnoreCase("Em andamento")) {
-
-        	    listaVencidos.add(emprestimo);
-        	}
+            return ResponseEntity.ok(emprestimos);
         }
-
-        return ResponseEntity.ok(listaVencidos);
     }
-}
