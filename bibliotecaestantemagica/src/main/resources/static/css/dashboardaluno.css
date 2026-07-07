@@ -74,19 +74,37 @@ body{
     font-weight:600;
 }
 
-.btn-sair{
+/* =========================
+   BOTÃO SAIR
+========================= */
+
+.logout-btn{
     width:100%;
     height:58px;
     border-radius:16px;
-    background:#ffffff;
-    border:1px solid #d9e7ff;
-    color:#35507a;
-    font-size:18px;
+    background:#004aad;
+    border:1px solid #004aad;
+    color:#ffffff !important;
+    font-size:16px;
     font-weight:600;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.3s;
+    margin-top:auto;
 }
 
-.btn-sair i{
-    margin-right:10px;
+.logout-btn:hover{
+    background:#005bea;
+    border-color:#005bea;
+    color:#ffffff !important;
+}
+
+.logout-btn i{
+    color:#ffffff;
+    font-size:18px;
 }
 
 /* =========================
@@ -108,33 +126,65 @@ body{
     gap:20px;
 }
 
+/* =========================
+   BUSCA
+========================= */
+
 .search-box{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:65%;
+    height:60px;
+    background:#ffffff;
+    border:2px solid #dce8ff;
+    border-radius:20px;
+    padding:8px 12px 8px 20px;
 }
 
-.search-box i{
-    font-size: 18px;
+.search-box > i{
+    color:#6f86ad;
+    font-size:22px;
 }
 
 .search-box input{
-    flex: 1;
-    min-width: 0;
-    padding: 10px 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    flex:1;
+    border:none;
+    outline:none;
+    font-size:16px;
+    color:#35507a;
+    background:transparent;
 }
 
-.btn-buscar{
-    width: 90px;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #0d6efd;
-    color: white;
-    cursor: pointer;
+
+/* BOTÃO BUSCAR */
+
+.btn-search{
+    height:45px;
+    padding:0 22px;
+    border-radius:14px;
+    background:#004aad;
+    color:#ffffff !important;
+    text-decoration:none;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-search:hover{
+    background:#005bea;
+    color:#ffffff !important;
+}
+
+.btn-search i{
+    color:#ffffff;
+    font-size:16px;
 }
 
 .user-area{
@@ -366,9 +416,8 @@ body{
         align-items:stretch;
     }
 
-    .search-box{
-        width:100%;
-    }
+   .search-box{
+    width:100%;
 
 }
 
