@@ -92,6 +92,10 @@ body{
     align-items:center;
 }
 
+/* =========================
+   BUSCA COM BOTÃO
+========================= */
+
 .search-box{
     background:#ffffff;
     border:2px solid #dce8ff;
@@ -100,7 +104,8 @@ body{
     width:65%;
     display:flex;
     align-items:center;
-    padding:0 25px;
+    padding:0 12px 0 25px;
+    gap:15px;
 }
 
 .search-box i{
@@ -111,10 +116,42 @@ body{
 .search-box input{
     border:none;
     outline:none;
-    width:100%;
-    margin-left:15px;
-    font-size:20px;
+    flex:1;
+    font-size:18px;
     color:#35507a;
+}
+
+.search-box input::placeholder{
+    color:#8a9bb8;
+}
+
+
+/* BOTÃO PESQUISAR */
+
+.btn-search{
+    height:48px;
+    padding:0 25px;
+    border-radius:14px;
+    background:#004aad;
+    color:#ffffff !important;
+    font-size:16px;
+    font-weight:600;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.3s;
+}
+
+.btn-search:hover{
+    background:#005bea;
+    color:#ffffff !important;
+}
+
+.btn-search i{
+    color:#ffffff;
+    font-size:18px;
 }
 
 .notification-icon{
@@ -361,7 +398,7 @@ body{
 }
 
 /* =========================
-   BOTÕES VOLTAR E SAIR
+   BOTAO SAIR
 ========================= */
 
 .bottom-buttons{
