@@ -1,4 +1,8 @@
 const API_SALVAR ="http://localhost:8000/alunos/salvar";	
+
+function voltarPagina() {
+    window.location.href = "dashboardbibliotecario.html";
+}
 	
 function limparFormulario(){
 	
