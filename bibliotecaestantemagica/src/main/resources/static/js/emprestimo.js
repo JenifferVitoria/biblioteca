@@ -81,17 +81,11 @@ async function buscarAluno() {
 
     const response = await fetch(`${API_BUSCAR_RA}/${ra}`);
 
-    if (!response.ok) {
-        alert("Aluno não encontrado");
-		document.getElementById("nomeAluno").value = "";
-        idUsuario = null;
-        return;
-  }
-
     const aluno = await response.json();
 
     idUsuario = aluno.id;
-	document.getElementById("nomeAluno").value = aluno.nome;
+
+    document.getElementById("nomeAluno").value = aluno.nome;
 }
 
 
@@ -203,20 +197,13 @@ async function devolver(id) {
 
     if (!confirm("Deseja devolver este livro?")) return;
 
-    const response = await fetch(`${API_DEVOLVER}/${id}`, {
-    method: "PUT"
- });
+    await fetch(`${API_DEVOLVER}/${id}`, {
+        method: "PUT"
+    });
 
-    if (response.ok) {
+    alert("Livro devolvido!");
 
-        alert("Livro devolvido!");
-
-        listarEmprestimos();
-
-    } else {
-
-        alert("Erro ao devolver.");
-    }
+    listarEmprestimos();
 }
 
 /// RENOVAR
@@ -225,20 +212,13 @@ async function renovar(id) {
 
     if (!confirm("Deseja renovar este empréstimo?")) return;
 
-    const response = await fetch(`${API_RENOVAR}/${id}`, {
-   method: "PUT"
-});
+    await fetch(`${API_RENOVAR}/${id}`, {
+        method: "PUT"
+    });
 
-    if (response.ok) {
+    alert("Empréstimo renovado!");
 
-        alert("Empréstimo renovado!");
-
-        listarEmprestimos();
-
-    } else {
-
-        alert("Erro ao renovar.");
- }
+    listarEmprestimos();
 }
 
 /// DELETAR
