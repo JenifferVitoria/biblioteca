@@ -30,19 +30,10 @@
              <!-- LOGO -->
 
                 <div class="logo-area">
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
 
                      <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"class="logo" alt="Biblioteca Mágica">
 
-<<<<<<< HEAD
                 </div>
-
-               <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"class="logo" alt="Biblioteca Mágica">
-=======
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
 
 
             <ul class="menu">
@@ -69,29 +60,36 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="reservas.html">
                         <i class="bi bi-bookmark"></i>
                         Reservas
                     </a>
                 </li>
 
-              <li>
+ <li>
     <a href="multas.html">
         <i class="bi bi-currency-dollar"></i>
         Multas
     </a>
 </li>
 
-            </ul>
+</ul>
 
-        </div>
+<div class="bottom-buttons">
 
-        <a href="#" class="logout-btn">
-            <i class="bi bi-box-arrow-left"></i>
-            Sair
-        </a>
+    <a href="javascript:history.back()" class="back-btn">
+        <i class="bi bi-arrow-left-circle"></i>
+        Voltar
+    </a>
 
-    </aside>
+    <a href="index.html" class="logout-btn">
+        <i class="bi bi-box-arrow-right"></i>
+        Sair
+    </a>
+
+</div>
+
+</aside>
 
     <!-- CONTEÚDO -->
     <main class="content">
@@ -103,10 +101,12 @@
                 <p>Gerencie os usuários cadastrados na biblioteca.</p>
             </div>
 		<button
-            class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#usuarioModal"
-			>Novo Usuário</button>
+    class="btn-add-user"
+    data-bs-toggle="modal"
+    data-bs-target="#usuarioModal">
+    <i class="bi bi-plus-circle"></i>
+    Novo Usuário
+</button>
         </div>
 
         <!-- CARDS -->
@@ -180,9 +180,11 @@
                     </tbody>
                     
                     </table>
+                    
                </div>
+               
              </div>
-            </div>     
+                
                      
 	
 	 <!-- MODAL CADASTRO -->
@@ -356,8 +358,9 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
