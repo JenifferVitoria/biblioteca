@@ -14,7 +14,12 @@ public interface EmprestismoRepository extends JpaRepository<EmprestimoEntity, L
 	List<EmprestimoEntity> findByUsuarioId(Long id);
 	List<EmprestimoEntity> findByUsuarioRa(String ra);
 
-		@Query(	value = "SELECT id, dataEmprestimo, status, dataDevolucao FROM Emprestimo WHERE DATEADD(DAY, 10, dataEmprestimo) < GETDATE()",
+		@Query(	value = "SELECT   id,\r\n"
+				+ "            dataEmprestimo,\r\n"
+				+ "            status,\r\n"
+				+ "            dataDevolucao,\r\n"
+				+ "            idLivro,\r\n"
+				+ "            idUsuario FROM Emprestimo WHERE DATEADD(DAY, 10, dataEmprestimo) < GETDATE()",
 		nativeQuery = true
 		)
 		List<EmprestimoEntity> findEmprestimoAtrasados();
