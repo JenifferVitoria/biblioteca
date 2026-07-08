@@ -1,13 +1,13 @@
 const API_CADASTRAR ="http://localhost:8000/livros/salvar";
 const API_BUSCAR_TODOS ="http://localhost:8000/livros/listartodos";
 const API_BUSCAR_LIVRO ="http://localhost:8000/livros/BuscarPorTipo";
-
+const API_BUSCAR_ID = "http://localhost:8000/livros/listarid";
 
 let notaAvaliacao = 0;
 let editandoid = null;
 
 	// SALVAR
-	async function salvarLivros() {
+	async function salvarAvaliacao() {
 
 		if (validarCampo()=== true){
 
@@ -17,7 +17,7 @@ let editandoid = null;
 	        headers: {
 	            "Content-Type": "application/json"
 	        },
-	        body: JSON.stringify(salvarLivros)
+	        body: JSON.stringify(salvarAvaliacao)
 	    });
 
 	  //  alert("Avaliação salva com sucesso!");
@@ -109,126 +109,6 @@ let editandoid = null;
 
 		}
 		
-		async function listarLivros (){
-			
-			const response = await fetch (API_BUSCAR_TODOS);
-			
-			const livros = await response.json();
-			
-			const tbody = document.querySelector("tbody");
-
-			exercicios.forEach(livros => {
-
-			const tr = document.createElement("tr");
-
-			tr.innerHTML = `
-			
-				<td>${livros.imagem}</td>
-				
-				<td>${livros.tiulo}</td>
-				
-				<td>${livros.autpr}</td>
-
-				<td>${livros.genero}</td>
-				
-				<td>${livros.isbn}</td>
-				
-				<td>${livros.disponivel}</td>
-				
-			
-
-				`;
-
-				tbody.appendChild(tr);
-
-				});
-			}
-			
-			async function buscarLivro(){
-				
-				let valor = document.getElementById("valorFiltro").value;
-				let response ='';
-				let livros ='';
-				
-				console.log('tipo');
-				console.log(tipo);
-
-				if (valor){
-					
-						if(tipo==="livro"){
-							console.log('teste buscando');
-					
-							response = await fetch(`${API_BUSCAR_LIVRO}/${nomeFiltro}`);
-						} 
-						
-				} else{
-					response = await fetch(API_BUSCAR_LIVRO);	
-					
-				}
-				
-				const tbody = document.querySelector("tbody");
-
-				exercicios.forEach(participante => {
-
-				const tr = document.createElement("tr");
-
-				tr.innerHTML = `
-
-				<td>${livros.imagem}</td>
-
-				<td>${livros.tiulo}</td>
-
-				<td>${livros.autpr}</td>
-
-				<td>${livros.genero}</td>
-
-				<td>${livros.isbn}</td>
-
-				<td>${livros.disponivel}</td>
-
-					`;
-
-					tbody.appendChild(tr);
-
-					});
-					
-
-				}
-				
-
-				async function  salvarParticipante(){
-					const participante = {
-						capa: document.getElementById("imagem").value,
-						titulo: document.getElementById("titulo").value,
-						autor: document.getElementById("autor").value,
-						genero: document.getElementById("genero").value,
-						isbn: document.getElementById("isbn").value,
-						status: document.getElementById("disponivel").value
-						
-					};
-					const resposta = await fetch(
-					     "http://localhost:8000/participantes/cadastrar",
-					     {
-					         method: "POST",
-					         headers: {
-					             "Content-Type": "application/json"
-					         },
-					         body: JSON.stringify(participante)
-					     }
-					 );
-
-					 const mensagem = await resposta.text();
-
-					 alert("Participante cadastrado com sucesso");
-					
-						
-					 await listarParticipantes();
-					limparFormulario();
-				}
-		
-		
-		
-		
 		
 		function abrirModal(nomeLivro){
 
@@ -260,3 +140,75 @@ let editandoid = null;
 		    });
 
 		}
+		
+		async function salvarLivro(){
+
+			const titulo = document.getElementById("titulo").value;
+			const autor = document.getElementById("autor").value;
+			const editora = document.getElementById("editora").value;
+			const anoPublicacao = document.getElementById("anoPublicacao").value;
+			const isbn = document.getElementById("isbn").value;
+			const genero = document.getElementById("genero").value;
+			const codigoAcervo = document.getElementById("codigoAcervo").value;
+
+			const formData = new FormData();
+			
+			formData.append("titulo", titulo);
+			formData.append("autor", autor);
+			formData.append("editora", editora);
+			formData.append("anoPublicacao", anoPublicacao);
+			formData.append("isbn", isbn);
+			formData.append("genero", genero);
+			formData.append("codigoAcervo", codigoAcervo);
+			formData.append("id", editandoid); 
+
+
+		    if(editandoid){
+
+				await fetch(`${API_ATUALIZAR}/${id}`, {
+
+				        method: "PUT",
+
+				        body: formData
+
+				    });
+					
+					window.Location.href="acervo.html";
+				
+		    } else {
+
+			    await fetch(API_SALVAR, {
+			
+			        method: "POST",
+			
+			        body: formData
+			
+			    });
+
+			}
+
+		   limparFormulario();
+		   
+		};
+		
+		
+		async function editar (id){
+
+		const response = await fetch(`${API_BUSCAR_ID}/${id}`);
+		const pessoa = await response.json();
+
+		editandoid = id;
+
+		//ATRIBUI CADA INPUT AS INFORMAÇÕES
+		document.getElementById('titulo').value=dados.titulo;
+		document.getElementById('autor').value=dados.bairro;
+		document.getElementById('complemento').value=dados.complemento;
+		document.getElementById('cidade').value=dados.localidade;
+		document.getElementById('estado').value=dados.estado;
+
+		abrirModal();
+
+
+		}
+		
+

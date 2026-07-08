@@ -24,13 +24,26 @@ body{
 ========================= */
 
 .sidebar{
+
     width:280px;
     background:#ffffff;
     border-right:1px solid #e3ecff;
+
     padding:30px 20px;
+
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
+
+    min-height:100vh;
+
+    box-sizing:border-box;
+
+}
+
+.sidebar-top{
+
+    flex:1;
+
 }
 
 .logo-area{
@@ -51,9 +64,14 @@ body{
 /* MENU */
 
 .menu{
+
     list-style:none;
     padding:0;
+
     margin-top:40px;
+
+    flex:1;
+
 }
 
 .menu li{
@@ -84,15 +102,73 @@ body{
 
 /* SAIR */
 
-.logout-btn{
-    text-decoration:none;
-    border:1px solid #dce8ff;
-    padding:16px;
-    border-radius:18px;
-    color:#2d4f84;
+/* =========================
+   BOTÕES RODAPÉ SIDEBAR
+========================= */
+
+.bottom-buttons{
+
     display:flex;
+
+    gap:12px;
+
+    width:100%;
+
+    margin-top:auto;
+
+    padding-top:10px;
+
+}
+
+
+.bottom-buttons a{
+
+    flex:1;
+
+    height:55px;
+
+    display:flex;
+
     align-items:center;
-    gap:10px;
+
+    justify-content:center;
+
+    gap:8px;
+
+    border-radius:16px;
+
+    text-decoration:none;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+
+/* VOLTAR */
+
+.back-btn{
+
+    background:#edf4ff;
+
+    border:1px solid #dce8ff;
+
+    color:#005bea;
+
+}
+
+
+/* SAIR */
+
+.logout-btn{
+
+    background:#004aad;
+
+    border:1px solid #004aad;
+
+    color:#ffffff !important;
+
 }
 
 /* =========================

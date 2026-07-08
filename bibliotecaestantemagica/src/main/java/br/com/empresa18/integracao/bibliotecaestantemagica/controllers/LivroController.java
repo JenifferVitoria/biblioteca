@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -30,13 +31,12 @@ import br.com.empresa18.integracao.bibliotecaestantemagica.repository.LivroRepos
 @CrossOrigin("*")
 public class LivroController {
 	
-	private static final String String = null;
 	@Autowired
 	private LivroRepository livroRepo;
 	
 	@GetMapping("/listartodos")
 	@ResponseStatus(HttpStatus.OK)
-	public List< LivroEntity> listarAluno(){
+	public List< LivroEntity> listarLivro(){
 		return livroRepo.findAll();
 	}
 
@@ -48,7 +48,7 @@ public class LivroController {
 	
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.CREATED)
-	public LivroEntity cadsatrar (@RequestParam String titulo, 
+	public LivroEntity cadastrar (@RequestParam String titulo, 
 								  @RequestParam String autor, 
 								  @RequestParam String editora, 
 								  @RequestParam MultipartFile imagem, 
@@ -82,7 +82,7 @@ public class LivroController {
 		livro.setGenero(genero);
 		livro.setCodigoAcervo(codigoAcervo);
 		livro.setEstoque(estoque);
-		
+		livro.setStatus("DISPONIVEL");
 
 		return livroRepo.save(livro);
 	}
@@ -153,65 +153,25 @@ public class LivroController {
 	
 	return null;
 	
-	} 
-	
-	// disponibilidade
-	@GetMapping("/disponibilidade/{id}")
-	public String verificarDisponibilidade(@PathVariable Long id) {
-
-	    LivroEntity livro = livroRepo.findById(id)
-	            .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
-
-	    if(livro.isDisponivel()) {
-	        return "Livro disponível";
-	    }
-
-	    return "Livro indisponível";
-	}
-    
-    //reserva livro
-	@PostMapping("/reservar/{id}")
-	public String reservarLivro(@PathVariable Long id) {
-
-	    LivroEntity livro = livroRepo.findById(id)
-	            .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
-
-	    if(livro.isDisponivel()) {
-
-	        livro.setDisponivel(false);
-
-	        livroRepo.save(livro);
-
-	        return "Livro reservado com sucesso";
-	    }
-
-	    return "Livro já reservado";
-	}
-	
-	@PostMapping("/devolver/{id}")
-	public String devolverLivro(@PathVariable Long id) {
-
-	    LivroEntity livro = livroRepo.findById(id)
-	            .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
-
-	    livro.setDisponivel(true);
-
-	    livroRepo.save(livro);
-
-	    return "Livro devolvido";
 	}
 
-
-
-	@GetMapping("/BuscarPorTitulo/{titulo}")
+	// PUT ATUALIZAR RESERVA
+	@PutMapping("/atualizarStatus/{id}/{status}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<LivroEntity> buscarPorTitulo(@PathVariable String titulo) {
-	    return livroRepo.findByTituloContainingIgnoreCase(titulo);
-	}
+	public String livro (@PathVariable long id, @RequestBody LivroEntity livro, @PathVariable String status) {
+	
+		 if (livroRepo.existsById(id)){
+			 livro.setId(id);
+			 livro.setStatus(status);
+			 
+			 livroRepo.save(livro);	
+	        	
+				return "Livro Reservado";
+	       }
+			return "Não Salvo";
+		}
+	
+	
 
-	@GetMapping("/BuscarPorTipo/{genero}/{titulo}/{autor}/{isbn}")
-	@ResponseStatus(HttpStatus.OK)
-	public List<LivroEntity> BuscarLivro(@PathVariable String genero, @PathVariable String titulo, @PathVariable String autor, @PathVariable String isbn ){
-		return livroRepo.findByGeneroOrTituloOrAutorOrIsbnContainingIgnoreCase(genero, titulo, autor, isbn);
-	}
 }
+
