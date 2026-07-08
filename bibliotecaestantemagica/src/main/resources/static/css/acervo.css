@@ -95,23 +95,75 @@ body{
 ========================= */
 
 .logout-btn{
+    width:100%;
+    height:58px;
+    border-radius:16px;
+    background:#004aad;
+    border:1px solid #004aad;
+    color:#ffffff !important;
+    font-size:16px;
+    font-weight:600;
+    text-decoration:none;
     display:flex;
     align-items:center;
-    gap:12px;
-    text-decoration:none;
-    padding:16px;
-    border-radius:18px;
-    border:1px solid #dce8ff;
-    color:#2d4f84;
-    font-size:18px;
-    font-weight:500;
-    transition:0.3s;
+    justify-content:center;
+    gap:8px;
+    transition:.3s;
 }
 
 .logout-btn:hover{
-    background:#edf4ff;
+    background:#005bea;
+    border-color:#005bea;
+    color:#ffffff !important;
 }
 
+.logout-btn i{
+    color:#ffffff;
+    font-size:18px;
+}
+
+/* =========================
+   BOTÕES INFERIORES
+========================= */
+
+.bottom-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.bottom-buttons a{
+    flex:1;
+}
+/* =========================
+   BOTÃO VOLTAR
+========================= */
+
+.back-btn{
+    width:100%;
+    height:58px;
+    border-radius:16px;
+    background:#edf4ff;
+    border:1px solid #dce8ff;
+    color:#005bea;
+    font-size:16px;
+    font-weight:600;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#dfeeff;
+    color:#005bea;
+}
+
+.back-btn i{
+    font-size:18px;
+}
 /* =========================
    CONTEÚDO
 ========================= */
@@ -181,23 +233,32 @@ body{
 /* BOTÃO */
 
 .btn-add-book{
-    background:linear-gradient(90deg,#005bea,#0047b3);
-    border:none;
-    color:#ffffff;
-    padding:16px 28px;
-    border-radius:18px;
-    font-size:18px;
-    font-weight:600;
+    height:58px;
+    padding:0 24px;
+    border-radius:16px;
+    background:#004aad;
+    border:1px solid #004aad;
+    color:#ffffff !important;
+    text-decoration:none;
+
     display:flex;
     align-items:center;
-    gap:10px;
-    text-decoration:none;
-    transition:0.3s;
+    justify-content:center;
+    gap:8px;
+
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
 }
 
 .btn-add-book:hover{
-    transform:translateY(-2px);
-    color:#ffffff;
+    background:#005bea;
+    border-color:#005bea;
+    color:#ffffff !important;
+}
+
+.btn-add-book i{
+    font-size:18px;
 }
 
 /* =========================
@@ -450,10 +511,13 @@ body{
         align-items:flex-start;
     }
 
-    .btn-add-book{
-        width:100%;
-        justify-content:center;
-    }
+   .bottom-buttons{
+    margin-top:20px;
+}
+
+.btn-add-book{
+    width:100%;
+}
 
 }
 

@@ -82,7 +82,7 @@ public class LivroController {
 		livro.setGenero(genero);
 		livro.setCodigoAcervo(codigoAcervo);
 		livro.setEstoque(estoque);
-		
+		livro.setStatus("DISPONIVEL");
 
 		return livroRepo.save(livro);
 	}
@@ -155,17 +155,16 @@ public class LivroController {
 	
 	}
 
-
 	// PUT ATUALIZAR RESERVA
-	@PutMapping("/atualizar1/{id}")
+	@PutMapping("/atualizarStatus/{id}/{status}")
 	@ResponseStatus(HttpStatus.OK)
-	public String atualizarReserva1(@PathVariable long id, @RequestBody LivroEntity reserva) {
+	public String livro (@PathVariable long id, @RequestBody LivroEntity livro, @PathVariable String status) {
 	
 		 if (livroRepo.existsById(id)){
-			 reserva.setId(id);
-			 reserva.setDisponivel(false);
+			 livro.setId(id);
+			 livro.setStatus(status);
 			 
-			 livroRepo.save(reserva);	
+			 livroRepo.save(livro);	
 	        	
 				return "Livro Reservado";
 	       }

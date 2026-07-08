@@ -2,6 +2,104 @@
    TABELA
 ========================== */
 
+<<<<<<< HEAD
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#f6f9ff;
+}
+
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:280px;
+    background:#ffffff;
+    border-right:1px solid #e4ecff;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.logo-area{
+    text-align:center;
+}
+
+.logo-area img{
+    width:180px;
+    max-width:100%;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu{
+    list-style:none;
+    padding:0;
+    margin-top:30px;
+}
+
+.menu li{
+    margin-bottom:12px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#35507a;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:500;
+    transition:.3s;
+}
+
+.menu li.active a,
+.menu a:hover{
+    background:#edf4ff;
+    color:#005bea;
+}
+
+/* =========================
+   BOTÕES INFERIORES
+========================= */
+
+.bottom-buttons{
+    display:flex;
+    gap:12px;
+    width:100%;
+}
+
+.back-btn,
+.logout-btn{
+    flex:1;
+    width:50%;
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    border-radius:16px;
+    text-decoration:none;
+    font-size:16px;
+=======
 .table-reservas{
     width:100%;
     border-collapse:collapse;
@@ -62,8 +160,42 @@
     padding:6px 15px;
     border-radius:30px;
     font-size:13px;
+>>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
     font-weight:600;
 
+<<<<<<< HEAD
+    box-sizing:border-box;
+}
+
+/* VOLTAR */
+
+.back-btn{
+    background:#edf4ff;
+    border:1px solid #dce8ff;
+    color:#005bea;
+}
+
+/* SAIR */
+
+.logout-btn{
+    background:#004aad;
+    border:1px solid #004aad;
+    color:#ffffff !important;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:992px){
+
+    .bottom-buttons{
+        flex-direction:column;
+    }
+
+    .back-btn,
+    .logout-btn{
+        width:100%;
+    }
+=======
 }
 
 .reservado{
@@ -148,5 +280,6 @@
     min-width:850px;
 
 }
+>>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
 
 }
