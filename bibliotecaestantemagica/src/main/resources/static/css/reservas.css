@@ -2,9 +2,13 @@
    GERAL
 ========================= */
 
-body{
+*{
     margin:0;
     padding:0;
+    box-sizing:border-box;
+}
+
+body{
     font-family:'Segoe UI', sans-serif;
     background:#f6f9ff;
 }
@@ -28,9 +32,18 @@ body{
     justify-content:space-between;
 }
 
+.logo-area{
+    text-align:center;
+}
+
 .logo-area img{
     width:180px;
+    max-width:100%;
 }
+
+/* =========================
+   MENU
+========================= */
 
 .menu{
     list-style:none;
@@ -45,9 +58,14 @@ body{
 .menu a{
     text-decoration:none;
     color:#35507a;
-    display:block;
+    display:flex;
+    align-items:center;
+    gap:12px;
     padding:16px;
     border-radius:14px;
+    font-size:16px;
+    font-weight:500;
+    transition:.3s;
 }
 
 .menu li.active a,
@@ -56,49 +74,62 @@ body{
     color:#005bea;
 }
 
-.logout-btn{
-    text-decoration:none;
-    color:#35507a;
-    border:1px solid #d9e7ff;
-    border-radius:16px;
-    padding:15px;
-    text-align:center;
-}
-
 /* =========================
-   CONTEÚDO
+   BOTÕES INFERIORES
 ========================= */
 
-.content{
+.bottom-buttons{
+    display:flex;
+    gap:12px;
+    width:100%;
+}
+
+.back-btn,
+.logout-btn{
     flex:1;
-    padding:30px;
-}
+    width:50%;
+    height:58px;
 
-.page-header h1{
-    color:#004aad;
-    font-weight:700;
-}
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
 
-.page-header p{
-    color:#7c8da9;
-}
-
-.table-card{
-    background:#fff;
-    border-radius:24px;
-    padding:25px;
-    border:1px solid #e3ecff;
-    margin-top:25px;
-}
-
-.table th{
-    color:#004aad;
-}
-
-.status{
-    padding:8px 14px;
-    border-radius:20px;
-    background:#edf4ff;
-    color:#005bea;
+    border-radius:16px;
+    text-decoration:none;
+    font-size:16px;
     font-weight:600;
+
+    box-sizing:border-box;
+}
+
+/* VOLTAR */
+
+.back-btn{
+    background:#edf4ff;
+    border:1px solid #dce8ff;
+    color:#005bea;
+}
+
+/* SAIR */
+
+.logout-btn{
+    background:#004aad;
+    border:1px solid #004aad;
+    color:#ffffff !important;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:992px){
+
+    .bottom-buttons{
+        flex-direction:column;
+    }
+
+    .back-btn,
+    .logout-btn{
+        width:100%;
+    }
+
 }

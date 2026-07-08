@@ -416,8 +416,9 @@ body{
         align-items:stretch;
     }
 
-   .search-box{
-    width:100%;
+    .search-box{
+        width:100%;
+    }
 
 }
 
@@ -426,18 +427,19 @@ body{
     .books-grid{
         grid-template-columns:1fr;
     }
-    
-    /* AJUSTE FINAL DE LAYOUT (DASHBOARD) */
+
+}
+
+/* =========================
+   AJUSTE FINAL DE LAYOUT
+========================= */
 
 .custom-card{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
-.books-grid{
-    grid-template-columns: repeat(2, 1fr);
-}
 
-}
+
