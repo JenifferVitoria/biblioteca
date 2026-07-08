@@ -27,9 +27,9 @@ public class UsuariosEntity {
 	@Column (name = "cpf", length = 11, nullable = false)
 	private String cpf;
 	
-	@Column(name = "ra", unique = true, nullable = false)
+	@Column(nullable = true)
 	private String ra;
-
+	
 	@Column (name = "email", length = 50, nullable = false)
 	private String email;
 	

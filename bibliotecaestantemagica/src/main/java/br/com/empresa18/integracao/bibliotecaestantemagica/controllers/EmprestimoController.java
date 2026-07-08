@@ -7,11 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.empresa18.integracao.bibliotecaestantemagica.entity.EmprestimoEntity;
-import br.com.empresa18.integracao.bibliotecaestantemagica.entity.LivroEntity;
-import br.com.empresa18.integracao.bibliotecaestantemagica.entity.UsuariosEntity;
 import br.com.empresa18.integracao.bibliotecaestantemagica.repository.EmprestismoRepository;
-import br.com.empresa18.integracao.bibliotecaestantemagica.repository.LivroRepository;
-import br.com.empresa18.integracao.bibliotecaestantemagica.repository.UsuariosRepository;
+
 
 @RestController
 @RequestMapping("/emprestimos")
@@ -21,11 +18,6 @@ public class EmprestimoController {
     @Autowired
     private EmprestismoRepository empresRepo;
 
-    @Autowired
-    private UsuariosRepository usuariosRepository;
-
-    @Autowired
-    private LivroRepository livrosRepository;
 
     // LISTAR TODOS
     @GetMapping("/listartodos")
@@ -45,42 +37,15 @@ public class EmprestimoController {
     @PostMapping("/salvar")
     @ResponseStatus(HttpStatus.CREATED)
     public EmprestimoEntity cadastrar(@RequestBody EmprestimoEntity emprestimo) {
-
-        UsuariosEntity usuario = usuariosRepository
-                .findById(emprestimo.getUsuario().getId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
-
-        LivroEntity livro = livrosRepository
-                .findById(emprestimo.getLivro().getId())
-                .orElseThrow(() -> new RuntimeException("Livro não encontrado."));
-        emprestimo.setDataDevolucao(
-                emprestimo.getDataEmprestimo().plusDays(10));
-        emprestimo.setUsuario(usuario);
-        emprestimo.setLivro(livro);
-
-        return empresRepo.save(emprestimo);
+    		return empresRepo.save(emprestimo);
     }
 
     // ATUALIZAR
     @PutMapping("/atualizar/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public EmprestimoEntity atualizar(@PathVariable Long id, @RequestBody EmprestimoEntity emprestimo) {
+    public EmprestimoEntity atualizar(@PathVariable Long id, int usuario, String livro, @RequestBody EmprestimoEntity emprestimo) {
 
-        if (!empresRepo.existsById(id)) {
-            return null;
-        }
-
-        UsuariosEntity usuario = usuariosRepository
-                .findById(emprestimo.getUsuario().getId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
-
-        LivroEntity livro = livrosRepository
-                .findById(emprestimo.getLivro().getId())
-                .orElseThrow(() -> new RuntimeException("Livro não encontrado."));
-
-        emprestimo.setId(id);
-        emprestimo.setUsuario(usuario);
-        emprestimo.setLivro(livro);
+ 
 
         return empresRepo.save(emprestimo);
     }
