@@ -15,67 +15,62 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.empresa18.integracao.bibliotecaestantemagica.entity.PagamentoEntity;
-import br.com.empresa18.integracao.bibliotecaestantemagica.repository.PagamentoRepository;
-
+import br.com.empresa18.integracao.bibliotecaestantemagica.entity.ReservasEntity;
+import br.com.empresa18.integracao.bibliotecaestantemagica.repository.ReservasRepository;
 
 @RestController
-@RequestMapping("/pagamentos")
+@RequestMapping("/reservas")
 @CrossOrigin("*")
-public class PagamentoController {
-
+public class ReservasController {
 	// CRIANDO USUARIO
 	@Autowired
-	private PagamentoRepository Pagar;
+	private ReservasRepository repoReser;
 
 	// LISTANDO TODOS
 	@GetMapping("/listartodos")
 	@ResponseStatus(HttpStatus.OK)
-	public List<PagamentoEntity> BuscarTodosPagamentos() {
+	public List<ReservasEntity> BuscarTodos() {
 
-		return Pagar.findAll();
+		return repoReser.findAll();
 	}
 
 	// LISTANDO USUARIOS POR ID
 	@GetMapping("/listarporid/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Optional<PagamentoEntity> buscarPagamentoPorID(@PathVariable Long id) {
+	public Optional<ReservasEntity> buscarPorID(@PathVariable Long id) {
 
-		return Pagar.findById(id);
+		return repoReser.findById(id);
 	}
 
 	// PUT ATUALIZAR USUARIO
 	@PutMapping("/atualizar/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public String atualizarPagamento(@PathVariable long id, @RequestBody PagamentoEntity paga) {
+	public String atualizar(@PathVariable long id, @RequestBody ReservasEntity devoo) {
+		if (repoReser.existsById(id)) {
+			devoo.setId(id);
+			repoReser.save(devoo);
 
-		 if (Pagar.existsById(id)){
-			 paga.setId(id);
-			 
-			 
-	        	Pagar.save(paga);	
-	        	
-				return "Salvo";
-	       }
-			return "Não Salvo";
+			return "Salvo";
 		}
+		return "Não Salvo";
+	}
 
 	// METODO DELETAR
 	@DeleteMapping("/deletar/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletarPagamento(@PathVariable Long id) {
+	public void deletarDevolucao(@PathVariable Long id) {
 
-		if (Pagar.existsById(id)) {
-			Pagar.deleteById(id);
+		if (repoReser.existsById(id)) {
+			repoReser.deleteById(id);
 		}
 	}
 
 	// SALVANDO USUARIO
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.CREATED)
-	public PagamentoEntity gravarPagamento(@RequestBody PagamentoEntity paga) {
+	public ReservasEntity gravar(@RequestBody ReservasEntity devoo) {
 
-		return Pagar.save(paga);
+		return repoReser.save(devoo);
 	}
 
 }
