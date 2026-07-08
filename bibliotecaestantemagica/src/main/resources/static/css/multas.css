@@ -83,21 +83,6 @@ body{
     color:#0057d8;
 }
 
-/* SAIR */
-
-.logout-btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-    text-decoration:none;
-    padding:16px;
-    border-radius:18px;
-    border:1px solid #dce8ff;
-    color:#2d4f84;
-    font-size:18px;
-    font-weight:500;
-}
 
 /* =========================
    CONTENT
@@ -317,46 +302,91 @@ body{
 }
 
 /* =========================
+   BOTÕES INFERIORES
+========================= */
+
+.bottom-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.bottom-buttons a{
+    flex:1;
+    height:58px;
+}
+
+
+/* =========================
+   BOTÃO VOLTAR
+========================= */
+
+.back-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    height:58px;
+    width:100%;
+
+    border-radius:16px;
+    background:#edf4ff;
+    border:1px solid #dce8ff;
+
+    color:#005bea;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:600;
+
+    transition:.3s;
+}
+
+
+/* =========================
+   BOTÃO SAIR
+========================= */
+
+.logout-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    height:58px;
+    width:100%;
+
+    border-radius:16px;
+    background:#004aad;
+    border:1px solid #004aad;
+
+    color:#ffffff !important;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#005bea;
+    border-color:#005bea;
+}
+
+.back-btn:hover{
+    background:#dfeeff;
+}
+
+
+/* =========================
    RESPONSIVO
 ========================= */
 
+
 @media(max-width:992px){
 
-    .layout{
+    .bottom-buttons{
         flex-direction:column;
-    }
-
-    .sidebar{
-        width:100%;
-    }
-
-}
-
-@media(max-width:768px){
-
-    .content{
-        padding:20px;
-    }
-
-    .page-header h1{
-        font-size:32px;
-    }
-
-    .table-card{
-        padding:20px;
-        overflow-x:auto;
-    }
-
-    .table{
-        min-width:700px;
-    }
-
-    .pix-copy{
-        flex-direction:column;
-    }
-
-    .pix-copy button{
-        width:100%;
     }
 
 }
