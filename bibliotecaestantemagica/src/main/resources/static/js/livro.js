@@ -192,23 +192,30 @@ let editandoid = null;
 		};
 		
 		
-		async function editar (id){
+		async function carregarDadosDoLivro (){
 
+			const parametros = new URLSearchParams(window.location.search);
+			const id = parametros.get('id'); // Retorna "camisa"	
+			console.log(id);
 		const response = await fetch(`${API_BUSCAR_ID}/${id}`);
-		const pessoa = await response.json();
-
+		const reserva = await response.json();
+	console.log(reserva);
 		editandoid = id;
 
 		//ATRIBUI CADA INPUT AS INFORMAÇÕES
-		document.getElementById('titulo').value=dados.titulo;
-		document.getElementById('autor').value=dados.bairro;
-		document.getElementById('complemento').value=dados.complemento;
-		document.getElementById('cidade').value=dados.localidade;
-		document.getElementById('estado').value=dados.estado;
+		document.getElementById('titulo').value=reserva.titulo;
+		document.getElementById('autor').value=reserva.bairro;
+		document.getElementById('editora').value=reserva.editora;
+		document.getElementById('anoPublicacao').value=reserva.anoPublicacao;
+		document.getElementById('isbn').value=reserva.isbn;
+		document.getElementById('genero').value=reserva.genero;
+		document.getElementById('disponibilidade').value=reserva.disponivel;
 
+		
 		abrirModal();
 
 
 		}
-		
-
+			document.addEventListener("DOMContentLoaded",()=>{
+				carregarDadosDoLivro();
+		});
