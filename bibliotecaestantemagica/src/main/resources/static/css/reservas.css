@@ -1,0 +1,260 @@
+/* ==========================
+   TABELA
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#f6f9ff;
+}
+
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:280px;
+    background:#ffffff;
+    border-right:1px solid #e4ecff;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.logo-area{
+    text-align:center;
+}
+
+.logo-area img{
+    width:180px;
+    max-width:100%;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu{
+    list-style:none;
+    padding:0;
+    margin-top:30px;
+}
+
+.menu li{
+    margin-bottom:12px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#35507a;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:500;
+    transition:.3s;
+}
+
+.menu li.active a,
+.menu a:hover{
+    background:#edf4ff;
+    color:#005bea;
+}
+
+/* =========================
+   BOTÕES INFERIORES
+========================= */
+
+.bottom-buttons{
+    display:flex;
+    gap:12px;
+    width:100%;
+}
+
+.back-btn,
+.logout-btn{
+    flex:1;
+    width:50%;
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    border-radius:16px;
+    text-decoration:none;
+    font-size:16px;
+
+.table-reservas{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:15px;
+    background:#fff;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.table-reservas thead{
+
+    background:linear-gradient(90deg,#0d6efd,#4ea5ff);
+    color:#fff;
+
+}
+
+.table-reservas thead th{
+
+    padding:18px;
+    text-align:center;
+    font-size:20px;
+    font-weight:600;
+    border:none;
+   
+
+}
+
+.table-reservas tbody td{
+
+    padding:18px;
+    text-align:center;
+    vertical-align:middle;
+    border-bottom:1px solid #e8eef7;
+    color: 0d6efd;
+    font-size:15px;
+
+}
+
+.table-reservas tbody tr{
+
+    transition:.3s;
+
+}
+
+.table-reservas tbody tr:hover{
+
+    background:#f4f9ff;
+
+}
+
+/* ==========================
+   STATUS
+========================== */
+
+.status{
+
+    display:inline-block;
+    padding:6px 15px;
+    border-radius:30px;
+    font-size:13px;
+
+
+    box-sizing:border-box;
+}
+
+/* VOLTAR */
+
+.back-btn{
+    background:#edf4ff;
+    border:1px solid #dce8ff;
+    color:#005bea;
+}
+
+
+.reservado{
+
+    background:#d9ecff;
+    color:#0d6efd;
+
+}
+
+.retirada{
+
+    background:#d4f8e4;
+    color:#198754;
+
+}
+
+.concluida{
+
+    background:#e7e8ea;
+    color:#495057;
+
+}
+
+/* ==========================
+   BOTÕES
+========================== */
+
+.btn-editar{
+
+    border:none;
+    background:#0d6efd;
+    color:#fff;
+    padding:9px 18px;
+    border-radius:8px;
+    font-weight:600;
+    margin-right:8px;
+    transition:.3s;
+
+}
+
+.btn-editar:hover{
+
+    background:#0b5ed7;
+    transform:translateY(-2px);
+
+}
+
+.btn-excluir{
+
+    border:none;
+    background:#ffffff;
+    color:#dc3545;
+    border:2px solid #dc3545;
+    padding:9px 18px;
+    border-radius:8px;
+    font-weight:600;
+    transition:.3s;
+
+}
+
+.btn-excluir:hover{
+
+    background:#dc3545;
+    color:#fff;
+    transform:translateY(-2px);
+
+}
+
+.btn-editar i,
+.btn-excluir i{
+
+    margin-right:5px;
+
+}
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+.table-reservas{
+
+    min-width:850px;
+
+}
+
+}
+}
