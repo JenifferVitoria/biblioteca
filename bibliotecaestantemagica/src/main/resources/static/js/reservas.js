@@ -13,44 +13,40 @@ let editandoID = null;
 async function listarLivrosCadastrados(){
 	
 	const response = await fetch (API_BUSCAR_TODOS);
-	const livro = await response.json();
+	const reservas = await response.json();
 	const tbody = document.getElementById("tabelaReservas");
 	tbody.innerHTML="";
 	
 	console.log('Resposta')
 	console.log(response);
 	console.log('JSON')
-	console.log(livro);
+	console.log(reservas);
 	
 	
 
 
-livro.forEach(livro => {
+reservas.forEach(reservas => {
 
 const tr = document.createElement("tr");
 
 tr.innerHTML = `
 
-<td>${livro.livro}</td>
+<td>${reservas.livro}</td>
 
-<td>${livro.autor}</td>
+<td>${reservas.autor}</td>
 
-<td>${livro.dataDaReserva}</td>
+<td>${reservas.dataDaReserva}</td>
 
-<td>${livro.status}</td>
+<td>${reservas.status}</td>
 
 
-<td>
+<td class="text-center">
 
-<button class="btn btn-warning btn-sm" onclick="editar(${livro.id})">
+<button class="btn btn-success btn-sm"
+        onclick="AbrirPagina(${reservas.id})">
 
-Editar
-
-</button>
-
-<button class="btn btn-danger btn-sm" onclick="deletar(${livro.id})">
-
-Deletar
+    <i class="bi bi-journal-check"></i>
+    Realizar Empréstimo
 
 </button>
 
@@ -77,25 +73,14 @@ function limparFormulario(){
 
 document.addEventListener("DOMContentLoaded",()=>{
 	
-	listarCarros();
+	listarLivrosCadastrados();
 });
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function AbrirPagina(id){
+     window.location.href = "emprestimos.html?id=" + id;
+}
 
 
 

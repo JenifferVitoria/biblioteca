@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.transaction.Status;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -26,6 +28,7 @@ public class LivroEntity implements Serializable {
 	private String editora;
 	private String imagem;
 	private boolean disponivel;
+	private String status;
     private int anoPublicacao;
 	private String isbn;
 	private String genero;
@@ -123,5 +126,15 @@ public class LivroEntity implements Serializable {
 	public void setEstoque(long estoque) {
 		this.estoque = estoque;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 
 }

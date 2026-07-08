@@ -1,7 +1,7 @@
 const API_CADASTRAR ="http://localhost:8000/livros/salvar";
 const API_BUSCAR_TODOS ="http://localhost:8000/livros/listartodos";
 const API_BUSCAR_LIVRO ="http://localhost:8000/livros/BuscarPorTipo";
-
+const API_BUSCAR_ID = "http://localhost:8000/livros/listarid";
 
 let notaAvaliacao = 0;
 let editandoid = null;
@@ -141,7 +141,74 @@ let editandoid = null;
 
 		}
 		
-	function abrirReserva(id){
-		window.location("listalivros.html?id="+id)
-	}
+		async function salvarLivro(){
+
+			const titulo = document.getElementById("titulo").value;
+			const autor = document.getElementById("autor").value;
+			const editora = document.getElementById("editora").value;
+			const anoPublicacao = document.getElementById("anoPublicacao").value;
+			const isbn = document.getElementById("isbn").value;
+			const genero = document.getElementById("genero").value;
+			const codigoAcervo = document.getElementById("codigoAcervo").value;
+
+			const formData = new FormData();
+			
+			formData.append("titulo", titulo);
+			formData.append("autor", autor);
+			formData.append("editora", editora);
+			formData.append("anoPublicacao", anoPublicacao);
+			formData.append("isbn", isbn);
+			formData.append("genero", genero);
+			formData.append("codigoAcervo", codigoAcervo);
+			formData.append("id", editandoid); 
+
+
+		    if(editandoid){
+
+				await fetch(`${API_ATUALIZAR}/${id}`, {
+
+				        method: "PUT",
+
+				        body: formData
+
+				    });
+					
+					window.Location.href="acervo.html";
+				
+		    } else {
+
+			    await fetch(API_SALVAR, {
+			
+			        method: "POST",
+			
+			        body: formData
+			
+			    });
+
+			}
+
+		   limparFormulario();
+		   
+		};
 		
+		
+		async function editar (id){
+
+		const response = await fetch(`${API_BUSCAR_ID}/${id}`);
+		const pessoa = await response.json();
+
+		editandoid = id;
+
+		//ATRIBUI CADA INPUT AS INFORMAÇÕES
+		document.getElementById('titulo').value=dados.titulo;
+		document.getElementById('autor').value=dados.bairro;
+		document.getElementById('complemento').value=dados.complemento;
+		document.getElementById('cidade').value=dados.localidade;
+		document.getElementById('estado').value=dados.estado;
+
+		abrirModal();
+
+
+		}
+		
+

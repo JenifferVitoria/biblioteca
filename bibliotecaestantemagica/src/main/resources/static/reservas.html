@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <title>Minhas Reservas - Biblioteca Mágica</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,6 +20,8 @@
 
 
 <body>
+   
+    <div class="layout">
 
 
 <div class="layout">
@@ -37,9 +39,139 @@
 
     <div class="logo-area">
 
+      <li class="active">
+                        <a href="reservas.html">
+                            <i class="bi bi-bookmark"></i>
+                            Reservas
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="emprestimos.html">
+                            <i class="bi bi-journal-check"></i>
+                            Empréstimos
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <a href="#" class="logout-btn">
+
+                <i class="bi bi-box-arrow-left"></i>
+                Sair
+
+            </a>
+
+        </aside>
+
+        <!-- ====================== CONTEÚDO ====================== -->
+
+        <main class="content">
+
+            <!-- Barra superior -->
+            <div class="topbar"></div>
+
+            <!-- Card principal -->
+            <div class="form-card">
+
+                <!-- Breadcrumb -->
+                <div class="breadcrumb-custom">
+
+                    <span>Início</span>
+
+                    <i class="bi bi-chevron-right"></i>
+
+                    <strong>Reservas do Bibliotecário</strong>
+
+                </div>
+
+                <!-- Cabeçalho -->
+                <div class="page-header">
+
+                    <h1>Reservas de Livros</h1>
+
+           
+
+                </div>
+
+                <!-- ====================== TABELA ====================== -->
+
+                <div class="table-responsive">
+
+                    <table class="table table-reservas align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Livro</th>
+                                <th>Autor</th>
+                                <th>Data da Reserva</th>
+                                <th>Status</th>
+                                <th class="text-center">Ações</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <!--
+                            O JavaScript preencherá automaticamente
+                            este tbody.
+                        -->
+
+                        <tbody id="tabelaReservas">
+
+                            <!-- Exemplo da estrutura que será criada automaticamente:
+
+                            <tr>
+
+                                <td>Dom Casmurro</td>
+
+                                <td>Machado de Assis</td>
+
+                                <td>07/07/2026</td>
+
+                                <td>
+
+                                    <span class="status reservado">
+                                        Reservado
+                                    </span>
+
+                                </td>
+
+                               <td class="text-center">
+
+    <button class="btn btn-success"
+            onclick="realizarEmprestimo(1)">
+
+        <i class="bi bi-journal-check"></i>
+
+        Realizar Empréstimo
+
+    </button>
+
+</td>
+
+                            </tr>
+
+                            -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+
         <img src="img/1000424142_82042f263a6f1ff161c5fa51e225e596-17_04_2026__19_59_05-removebg-preview.png"
              class="logo"
              alt="Biblioteca Mágica">
+
 
     </div>
 
