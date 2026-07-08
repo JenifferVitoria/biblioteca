@@ -141,7 +141,54 @@ let editandoid = null;
 
 		}
 		
-	function abrirReserva(id){
-		window.location("listalivros.html?id="+id)
-	}
+		async function salvarLivro(){
+
+			const titulo = document.getElementById("titulo").value;
+			const autor = document.getElementById("autor").value;
+			const editora = document.getElementById("editora").value;
+			const anoPublicacao = document.getElementById("anoPublicacao").value;
+			const isbn = document.getElementById("isbn").value;
+			const genero = document.getElementById("genero").value;
+			const codigoAcervo = document.getElementById("codigoAcervo").value;
+
+			const formData = new FormData();
+			
+			formData.append("titulo", titulo);
+			formData.append("autor", autor);
+			formData.append("editora", editora);
+			formData.append("anoPublicacao", anoPublicacao);
+			formData.append("isbn", isbn);
+			formData.append("genero", genero);
+			formData.append("codigoAcervo", codigoAcervo);
+			formData.append("id", editandoid); 
+
+
+		    if(editandoid){
+
+				await fetch(`${API_ATUALIZAR}/${id}`, {
+
+				        method: "PUT",
+
+				        body: formData
+
+				    });
+					
+					window.Location.href="acervo.html";
+				
+		    } else {
+
+			    await fetch(API_SALVAR, {
+			
+			        method: "POST",
+			
+			        body: formData
+			
+			    });
+
+			}
+
+		   limparFormulario();
+		   
+		};
 		
+
