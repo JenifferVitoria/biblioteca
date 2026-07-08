@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 function AbrirPagina(id){
-    window.location.href = "http://localhost:8000/emprestimos?id=" + id;
+     window.location.href = "emprestimos.html?id=" + id;
 }
 
 
