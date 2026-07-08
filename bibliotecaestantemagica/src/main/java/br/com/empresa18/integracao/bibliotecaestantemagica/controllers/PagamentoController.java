@@ -51,6 +51,8 @@ public class PagamentoController {
 
 		 if (Pagar.existsById(id)){
 			 paga.setId(id);
+			 
+			 
 	        	Pagar.save(paga);	
 	        	
 				return "Salvo";

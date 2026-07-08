@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.empresa18.integracao.bibliotecaestantemagica.entity.EmprestimoEntity;
@@ -65,8 +64,7 @@ public class EmprestimoController {
     // ATUALIZAR
     @PutMapping("/atualizar/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public EmprestimoEntity atualizar(@PathVariable Long id,
-                                      @RequestBody EmprestimoEntity emprestimo) {
+    public EmprestimoEntity atualizar(@PathVariable Long id, @RequestBody EmprestimoEntity emprestimo) {
 
         if (!empresRepo.existsById(id)) {
             return null;
@@ -92,11 +90,11 @@ public class EmprestimoController {
     @ResponseStatus(HttpStatus.OK)
     public EmprestimoEntity devolver(@PathVariable Long id) {
 
-        Optional<EmprestimoEntity> emprestimoOpt = empresRepo.findById(id);
+        Optional<EmprestimoEntity> emprestimos = empresRepo.findById(id);
 
-        if (emprestimoOpt.isPresent()) {
+        if (emprestimos.isPresent()) {
 
-            EmprestimoEntity emprestimo = emprestimoOpt.get();
+            EmprestimoEntity emprestimo = emprestimos.get();
 
             emprestimo.setStatus("Devolvido");
 
@@ -111,11 +109,11 @@ public class EmprestimoController {
     @ResponseStatus(HttpStatus.OK)
     public EmprestimoEntity renovar(@PathVariable Long id) {
 
-        Optional<EmprestimoEntity> emprestimoOpt = empresRepo.findById(id);
+        Optional<EmprestimoEntity> emprestimos = empresRepo.findById(id);
 
-        if (emprestimoOpt.isPresent()) {
+        if (emprestimos.isPresent()) {
 
-            EmprestimoEntity emprestimo = emprestimoOpt.get();
+            EmprestimoEntity emprestimo = emprestimos.get();
 
             emprestimo.setStatus("Renovado");
 
@@ -142,28 +140,19 @@ public class EmprestimoController {
     
     // BUSCAR EMPRESTIMO DE USUARIO
     @GetMapping("/listarusuario/{id}")
-    public ResponseEntity<List<EmprestimoEntity>> listarPorUsuario(@PathVariable Long id) {
-
-        List<EmprestimoEntity> emprestimos = empresRepo.findByUsuarioId(id);
-
-        return ResponseEntity.ok(emprestimos);
+    public List<EmprestimoEntity> listarPorUsuario(@PathVariable Long id) {
+        return empresRepo.findByUsuarioId(id);
     }
+    
     
     @GetMapping("/listarra/{ra}")
-    public ResponseEntity<List<EmprestimoEntity>> listarPorRa(@PathVariable String ra) {
-
-        List<EmprestimoEntity> emprestimos = empresRepo.findByUsuarioRa(ra);
-
-        return ResponseEntity.ok(emprestimos);
+    public List<EmprestimoEntity> listarPorRa(@PathVariable String ra) {
+        return empresRepo.findByUsuarioRa(ra);
     }
     
     
-    //LISTAR ATRASADO
-       @GetMapping("/atrasados")
-       public ResponseEntity<List<EmprestimoEntity>> listarEmprestimosAtrasados() {
-
-            List<EmprestimoEntity> emprestimos = empresRepo.findEmprestimoAtrasados();
-
-            return ResponseEntity.ok(emprestimos);
-        }
+    @GetMapping("/atrasados")
+    public List<EmprestimoEntity> listarEmprestimosAtrasados() {
+        return empresRepo.findEmprestimoAtrasados();
     }
+ }

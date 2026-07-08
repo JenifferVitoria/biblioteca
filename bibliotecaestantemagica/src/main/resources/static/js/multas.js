@@ -1,5 +1,4 @@
-const API_EMPRESTIMOS_TODOS = "http://localhost:8000/emprestimos/listartodos";
-
+const API_LISTAR_ATRASADOS ="http://localhost:8000/emprestimos/atrasados"
 
 let listaMultas = [];
 let listaEmprestimos = [];
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function listarMultas() {
 
-    const response = await fetch(API_EMPRESTIMOS_TODOS);
+    const response = await fetch( API_LISTAR_ATRASADOS);
     listaMultas = await response.json();
 
     const tbody = document.getElementById("tabelaMultas");
@@ -59,18 +58,33 @@ async function listarMultas() {
     listaMultas.forEach((multa ) => {
 
         const tr = document.createElement("tr");
-
+		
+		console.log(multa.dataEmprestimo);
+		
+		let dataDevolucao = adicionarDiasFormatado(multa.dataEmprestimo, 10);
+		
+		console.log(dataDevolucao);
+		
+		console.log("Hoje"+new Date());
+		
+		let dias = calcularDias(new Date(), dataDevolucao) *-1;
+		
+		console.log(dias)
+		
         tr.innerHTML = `
-            <td>${multa.Livro}</td>
-            <td>${multa.DiasdeAtraso} dias</td>
-            <td>${multa.valor}</td>
-            <td>${multa.Status}</td>
+         	<td>${multa.livro.titulo}</td>
+			<td>${multa.dataEmprestimo}</td>
+			<td>${multa.dataDevolucao}</td>
+            <td>${dias} dias</td>
+            <td>${"R$ "+dias*1.5}</td>
+            <td>${multa.status}</td>
             <td>
 
-                <button class="btn btn-primary btn-sm"
-                    onclick="abrirModalPix(${5.00})">
-
-                </button>
+			<button class="btn btn-success btn-sm btn-pagar"
+			    onclick="abrirModalPix(${dias*1.5})">
+			    <i class="bi bi-qr-code"></i>
+			    Pagar PIX
+			</button>
 
 
             </td>
@@ -80,7 +94,17 @@ async function listarMultas() {
     });
 }
 
-
+function adicionarDiasFormatado(data, dias) {
+  const novaData = new Date(data);
+  novaData.setDate(novaData.getDate() + dias);
+  
+  // Extrai ano, mês e dia com dois dígitos
+  const ano = novaData.getFullYear();
+  const mes = String(novaData.getMonth() + 1).padStart(2, '0');
+  const dia = String(novaData.getDate()).padStart(2, '0');
+  
+  return `${ano}-${mes}-${dia}`;
+}
 
 function copiarCodigo(){
 
@@ -122,9 +146,20 @@ modal.show();
 }
 
 
-
-
-
+function calcularDias(dataInicial, dataFinal) {
+  // Transforma as datas em objetos do tipo Data
+  const inicio = new Date(dataInicial);
+  const fim = new Date(dataFinal);
+  
+  // Calcula a diferença em milissegundos
+  const diferencaTempo = fim - inicio;
+  
+  // Total de milissegundos em um dia: 1000ms * 60s * 60m * 24h
+  const umDia = 1000 * 60 * 60 * 24;
+  
+  // Divide o tempo e arredonda para obter os dias exatos
+  return Math.round(diferencaTempo / umDia);
+}
 
 
 
