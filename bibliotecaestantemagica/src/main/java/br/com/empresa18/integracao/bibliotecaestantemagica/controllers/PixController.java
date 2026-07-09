@@ -39,8 +39,8 @@ public class PixController {
 	            df.format(Double.parseDouble(valor));
 
 	    String payload = QrCodeUtils.gerarPayloadPix(
-	            "07139541671",
-	            "FERNANDO GOMES DA SILVA",
+	            "12704817626",
+	            "Rafaela Rodrigues dos Santos",
 	            "BELO HORIZONTE",
 	            valorFormatado,
 	            "1"
