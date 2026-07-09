@@ -66,7 +66,7 @@ public class LivroController {
 
         // Definir o caminho onde o arquivo será salvo
         Path caminho = Paths.get(
-        		"//SC-ALPHA/deploy/biblioeca/img/" + nomeArquivo
+        		"//SC-ALPHA/deploy/biblioteca/img/" + nomeArquivo
         );
         
         // Salvar o arquivo no caminho definido

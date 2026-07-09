@@ -200,21 +200,21 @@ let editandoid = null;
 		const response = await fetch(`${API_BUSCAR_ID}/${id}`);
 		const reserva = await response.json();
 	console.log(reserva);
-		editandoid = id;
 
+	console.log(document.getElementById('nomeLivro').innerHTML);
 		//ATRIBUI CADA INPUT AS INFORMAÇÕES
-		document.getElementById('titulo').value=reserva.titulo;
-		document.getElementById('autor').value=reserva.bairro;
-		document.getElementById('editora').value=reserva.editora;
-		document.getElementById('anoPublicacao').value=reserva.anoPublicacao;
-		document.getElementById('isbn').value=reserva.isbn;
-		document.getElementById('genero').value=reserva.genero;
-		document.getElementById('disponibilidade').value=reserva.disponivel;
-
-		
-		abrirModal();
-
-
+		document.getElementById('titulo').innerHTML=reserva.titulo;
+		document.getElementById('autor').innerHTML=reserva.autor;
+		document.getElementById('editora').innerHTML=reserva.editora;
+		document.getElementById('anoPublicacao').innerHTML=reserva.anoPublicacao;
+		document.getElementById('isbn').innerHTML=reserva.isbn;
+		document.getElementById('genero').innerHTML=reserva.genero;
+		document.getElementById('disponibilidade').innerHTML=reserva.disponivel;
+		document.getElementById('nomeLivro').innerHTML=reserva.titulo;
+		document.getElementById('nomeAutor').innerHTML=reserva.autor;
+		document.getElementById('imagem').src=+reserva.imagem;
+	
+	console.log(document.getElementById('imagem').src);
 		}
 			document.addEventListener("DOMContentLoaded",()=>{
 				carregarDadosDoLivro();
