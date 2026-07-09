@@ -212,9 +212,8 @@ let editandoid = null;
 		document.getElementById('disponibilidade').innerHTML=reserva.disponivel;
 		document.getElementById('nomeLivro').innerHTML=reserva.titulo;
 		document.getElementById('nomeAutor').innerHTML=reserva.autor;
-		document.getElementById('imagem').src=+reserva.imagem;
+		document.getElementById('imagem').src="/img/"+reserva.imagem;
 	
-	console.log(document.getElementById('imagem').src);
 		}
 			document.addEventListener("DOMContentLoaded",()=>{
 				carregarDadosDoLivro();
