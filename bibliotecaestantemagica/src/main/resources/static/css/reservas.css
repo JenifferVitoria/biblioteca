@@ -2,7 +2,6 @@
    TABELA
 ========================== */
 
-<<<<<<< HEAD
 *{
     margin:0;
     padding:0;
@@ -99,7 +98,7 @@ body{
     border-radius:16px;
     text-decoration:none;
     font-size:16px;
-=======
+
 .table-reservas{
     width:100%;
     border-collapse:collapse;
@@ -160,10 +159,8 @@ body{
     padding:6px 15px;
     border-radius:30px;
     font-size:13px;
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
-    font-weight:600;
 
-<<<<<<< HEAD
+
     box-sizing:border-box;
 }
 
@@ -175,28 +172,6 @@ body{
     color:#005bea;
 }
 
-/* SAIR */
-
-.logout-btn{
-    background:#004aad;
-    border:1px solid #004aad;
-    color:#ffffff !important;
-}
-
-/* RESPONSIVO */
-
-@media(max-width:992px){
-
-    .bottom-buttons{
-        flex-direction:column;
-    }
-
-    .back-btn,
-    .logout-btn{
-        width:100%;
-    }
-=======
-}
 
 .reservado{
 
@@ -280,6 +255,6 @@ body{
     min-width:850px;
 
 }
->>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
 
+}
 }
