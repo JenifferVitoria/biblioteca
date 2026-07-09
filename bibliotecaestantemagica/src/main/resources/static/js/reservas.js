@@ -9,6 +9,11 @@ const API_SALVAR ="http://localhost:8000/reservas/salvar";
 
 let editandoID = null;
 
+function AbrirPagina(){
+     window.location.href ="emprestimo.html";
+}
+
+
 
 async function listarLivrosCadastrados(){
 	
@@ -71,16 +76,7 @@ function limparFormulario(){
 }
 
 
-document.addEventListener("DOMContentLoaded",()=>{
-	
-	listarLivrosCadastrados();
-});
 
-
-
-function AbrirPagina(id){
-     window.location.href = "emprestimos.html?id=" + id;
-}
 
 
 
