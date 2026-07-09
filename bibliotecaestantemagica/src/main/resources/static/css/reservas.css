@@ -201,6 +201,69 @@ body{
         align-items:flex-start;
         gap:20px;
     }
-
+    
+    
 }
+/* =========================
+   BOTÃO SAIR
+========================= */
+
+.logoutbutton{
+    width:100%;
+    height:58px;
+    border-radius:16px;
+    background:#004aad;
+    border:1px solid #004aad;
+    color:#ffffff !important;
+    font-size:16px;
+    font-weight:600;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.3s;
+}
+
+.logoutbutton:hover{
+    background:#005bea;
+    border-color:#005bea;
+    color:#ffffff !important;
+}
+
+.logoutbutton i{
+    color:#ffffff;
+    font-size:18px;
+}
+
+/* =========================
+   BOTÃO VOLTAR
+========================= */
+
+.backbutton{
+    width:100%;
+    height:58px;
+    border-radius:16px;
+    background:#edf4ff;
+    border:1px solid #dce8ff;
+    color:#005bea;
+    font-size:16px;
+    font-weight:600;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.3s;
+}
+
+.backbutton:hover{
+    background:#dfeeff;
+    color:#005bea;
+}
+
+.backbutton i{
+    font-size:18px;
+}
+
 
