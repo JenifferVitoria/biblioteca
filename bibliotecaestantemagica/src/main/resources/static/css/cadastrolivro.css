@@ -356,7 +356,9 @@ body{
     font-weight:600;
 }
 
-/* BOTÕES */
+/* =========================
+   BOTÕES
+========================= */
 
 .buttons-area{
     display:flex;
@@ -365,21 +367,80 @@ body{
     margin-top:40px;
 }
 
-.btn-cancel{
-    border:2px solid #cfe0ff;
-    color:#24508f;
+
+.btn-cancel,
+.btn-save{
+
+    width:160px;
+    height:55px;
+
     border-radius:16px;
-    padding:14px 30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:16px;
     font-weight:600;
+
+    cursor:pointer;
+
 }
 
+
+/* CANCELAR */
+
+.btn-cancel{
+
+    background:#fff4f4;
+    border:1px solid #ffd9d9;
+    color:#dc3545;
+
+}
+
+.btn-cancel:hover{
+
+    background:#ffe5e5;
+    border-color:#ffc2c2;
+    color:#b02a37;
+    transform:translateY(-2px);
+
+}
+
+
+/* SALVAR */
+
 .btn-save{
-    background:linear-gradient(90deg,#005bea,#0047b3);
-    color:#ffffff;
-    border:none;
-    border-radius:16px;
-    padding:14px 35px;
-    font-weight:600;
+
+    background:#edf4ff;
+    border:1px solid #dce8ff;
+    color:#005bea;
+
+}
+
+.btn-save:hover{
+
+    background:#dceaff;
+    border-color:#c6dcff;
+    color:#004aad;
+    transform:translateY(-2px);
+
+}
+
+
+/* HOVER */
+
+.btn-cancel:hover{
+
+    background:#edf4ff;
+
+}
+
+
+.btn-save:hover{
+
+    background:linear-gradient(90deg,#0047b3,#00398f);
+
 }
 
 /* =========================
@@ -415,6 +476,7 @@ body{
     .btn-save,
     .btn-cancel{
         width:100%;
+        height:55px;
     }
 
 }
