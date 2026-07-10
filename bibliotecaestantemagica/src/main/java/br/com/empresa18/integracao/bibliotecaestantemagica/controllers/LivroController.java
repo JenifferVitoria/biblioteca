@@ -172,6 +172,12 @@ public class LivroController {
 		}
 	
 	
+	@GetMapping("/BuscarPorTitulo/{titulo}")
+	@ResponseStatus(HttpStatus.OK)	    
+	public List<LivroEntity> buscarPorTitulo(@PathVariable String titulo) {
+	    return livroRepo.findByTituloContainingIgnoreCase(titulo);
+	}
+	
 
 }
 
