@@ -35,22 +35,74 @@ body{
     margin-bottom:35px;
 }
 
-.menu-item{
-    padding:16px 18px;
-    border-radius:14px;
-    margin-bottom:10px;
-    color:#35507a;
-    font-size:17px;
-    transition:0.3s;
-    cursor:pointer;
+/* =========================
+   MENU SIDEBAR
+========================= */
+
+.menu{
+    margin-top:35px;
+    padding:0;
 }
+
+
+.menu-item{
+    margin-bottom:10px;
+    border-radius:14px;
+    transition:0.3s;
+}
+
+
+.menu-item a{
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:16px 18px;
+
+    color:#35507a;
+
+    font-size:17px;
+
+    text-decoration:none;
+
+    border-radius:14px;
+
+    width:100%;
+
+    transition:0.3s;
+}
+
 
 .menu-item i{
-    margin-right:12px;
+
+    font-size:20px;
+
 }
 
-.menu-item:hover{
+
+/* HOVER */
+
+.menu-item a:hover{
+
     background:#edf4ff;
+
+    color:#005bea;
+
+}
+
+
+/* ITEM ATIVO */
+
+.menu-item.active a{
+
+    background:#edf4ff;
+
+    color:#005bea;
+
+    font-weight:600;
+
 }
 
 .menu-item.active{

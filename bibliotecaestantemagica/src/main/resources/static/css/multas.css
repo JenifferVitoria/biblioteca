@@ -302,86 +302,107 @@ body{
 }
 
 /* =========================
-   BOTÕES INFERIORES
+   AJUSTE BOTÕES SIDEBAR
+========================= */
+
+.bottom-buttons .btn{
+
+    border-radius:16px !important;
+
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    padding:0 15px;
+
+}
+
+
+/* VOLTAR */
+
+.bottom-buttons .back-btn{
+
+    background:#edf4ff !important;
+
+    border:1px solid #d9e7ff !important;
+
+    color:#005bea !important;
+
+}
+
+
+/* SAIR */
+
+.bottom-buttons .logout-btn{
+
+    background:#fff4f4 !important;
+
+    border:1px solid #ffd9d9 !important;
+
+    color:#dc3545 !important;
+
+}
+
+
+/* HOVER */
+
+.bottom-buttons .back-btn:hover{
+
+    background:#dbe9ff !important;
+
+    transform:translateY(-2px);
+
+}
+
+
+.bottom-buttons .logout-btn:hover{
+
+    background:#ffe5e5 !important;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================
+   CONTAINER BOTÕES INFERIORES
 ========================= */
 
 .bottom-buttons{
+
     display:flex;
-    gap:12px;
-    margin-top:20px;
+
+    flex-direction:row;
+
+    gap:10px;
+
+    margin-top:auto;
+
 }
 
-.bottom-buttons a{
+
+.bottom-buttons .btn{
+
     flex:1;
-    height:58px;
-}
 
+    width:50%;
 
-/* =========================
-   BOTÃO VOLTAR
-========================= */
-
-.back-btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-
-    height:58px;
-    width:100%;
-
-    border-radius:16px;
-    background:#edf4ff;
-    border:1px solid #dce8ff;
-
-    color:#005bea;
-    text-decoration:none;
-    font-size:16px;
-    font-weight:600;
-
-    transition:.3s;
-}
-
-
-/* =========================
-   BOTÃO SAIR
-========================= */
-
-.logout-btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-
-    height:58px;
-    width:100%;
-
-    border-radius:16px;
-    background:#004aad;
-    border:1px solid #004aad;
-
-    color:#ffffff !important;
-    text-decoration:none;
-    font-size:16px;
-    font-weight:600;
-
-    transition:.3s;
-}
-
-.logout-btn:hover{
-    background:#005bea;
-    border-color:#005bea;
-}
-
-.back-btn:hover{
-    background:#dfeeff;
 }
 
 
 /* =========================
    RESPONSIVO
 ========================= */
-
 
 @media(max-width:992px){
 
