@@ -82,75 +82,79 @@ body{
     color:#0057d8;
 }
 
+
 /* =========================
    BOTÕES INFERIORES
 ========================= */
 
 .bottom-buttons{
+    margin-top:auto;
     display:flex;
-    gap:12px;
-    margin-top:20px;
+    gap:10px;
 }
 
-.bottom-buttons a{
+/* ESTILO BASE DOS BOTÕES */
+
+.bottom-buttons .btn{
     flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:12px;
+    border-radius:14px;
+    font-weight:600;
+    text-decoration:none;
+    transition:.3s;
+    cursor:pointer;
 }
-/* =========================
-   BOTÃO VOLTAR
-========================= */
+
+
+/* BOTÃO VOLTAR */
 
 .back-btn{
-    width:100%;
-    height:58px;
-    border-radius:16px;
+
     background:#edf4ff;
-    border:1px solid #dce8ff;
+
     color:#005bea;
-    font-size:16px;
-    font-weight:600;
-    text-decoration:none;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    transition:.3s;
+
+    border:1px solid #dfe9ff;
+
 }
+
 
 .back-btn:hover{
-    background:#dfeeff;
+
+    background:#dbe9ff;
+
     color:#005bea;
+
+    transform:translateY(-2px);
+
 }
 
-.back-btn i{
-    font-size:18px;
-}
+
+/* BOTÃO SAIR */
 
 .logout-btn{
-    width:100%;
-    height:58px;
-    border-radius:16px;
-    background:#004aad;
-    border:1px solid #004aad;
-    color:#ffffff;
-    font-size:16px;
-    font-weight:600;
-    text-decoration:none;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    transition:.3s;
+
+    background:#fff4f4;
+
+    color:#dc3545;
+
+    border:1px solid #ffd9d9;
+
 }
+
 
 .logout-btn:hover{
-    background:#005bea;
-    border-color:#005bea;
-    color:#ffffff;
-}
 
-.logout-btn i{
-    font-size:18px;
-    color:#ffffff;
+    background:#ffe5e5;
+
+    color:#b02a37;
+
+    transform:translateY(-2px);
+
 }
 
 /* =========================
@@ -473,7 +477,7 @@ body{
    RESPONSIVO - CELULARES PEQUENOS
 ========================= */
 
-@media(max-width:480px){
+@media (max-width:480px){
 
     .sidebar{
         padding:15px;
@@ -504,47 +508,45 @@ body{
     }
 
     .bottom-buttons{
-    flex-direction:column;
-}
+        flex-direction:column;
+    }
 
-.back-btn,
-.logout-btn{
-    width:100%;
-}
+    .back-btn,
+    .logout-btn{
+        width:100%;
+    }
 
-.book-details h2{
-    font-size:26px;
-}
+    .book-details h2{
+        font-size:26px;
+    }
 
-.description{
-    font-size:16px;
-}
+    .description{
+        font-size:16px;
+    }
 
-.btn-reserve{
-    font-size:18px;
-    height:58px;
-}
+    .btn-reserve{
+        font-size:18px;
+        height:58px;
+    }
 
-/* BOTÕES */
-.modal-footer .btn{
-    height: 48px;
-    border-radius: 14px;
-    font-weight: 600;
-}
+    /* MODAL */
 
-/* HEADER */
-.modal-header{
-    padding: 24px 24px 10px;
-}
+    .modal-footer .btn{
+        height:48px;
+        border-radius:14px;
+        font-weight:600;
+    }
 
-/* BODY */
-.modal-body{
-    padding: 20px 24px;
-}
+    .modal-header{
+        padding:24px 24px 10px;
+    }
 
-/* FOOTER */
-.modal-footer{
-    padding: 10px 24px 24px;
-}
+    .modal-body{
+        padding:20px 24px;
+    }
+
+    .modal-footer{
+        padding:10px 24px 24px;
+    }
 
 }

@@ -22,15 +22,13 @@ body{
     background:#ffffff;
     border-right:1px solid #dfe9ff;
     padding:30px 20px;
+
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
+
+    min-height:100vh;
 }
 
-.logo-area{
-    text-align:center;
-    margin-bottom:40px;
-}
 
 .logo-area img{
     width:180px;
@@ -68,18 +66,86 @@ body{
     background:#edf4ff;
 }
 
-.logout-btn{
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid #dfe9ff;
-    padding:14px;
+/* =========================
+   BOTÕES INFERIORES SIDEBAR
+========================= */
+
+.bottom-buttons{
+
+    display:flex;
+    gap:12px;
+
+    width:100%;
+
+    margin-top:auto;
+
+}
+
+
+/* VOLTAR */
+
+.back-btn{
+
+    flex:1;
+    height:55px;
+    background:#edf4ff;
+    border:1px solid #dce8ff;
     border-radius:16px;
-    color:#004aad;
+    color:#005bea;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:10px;
+    gap:8px;
+
+    text-decoration:none;
     font-weight:600;
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    background:#dceaff;
+    color:#004aad;
+
+}
+
+
+/* SAIR */
+
+.logout-btn{
+
+    flex:1;
+    height:55px;
+
+    background:#fff4f4;
+    border:1px solid #ffd9d9;
+    border-radius:16px;
+
+    color:#dc3545;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    text-decoration:none;
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.logout-btn:hover{
+
+    background:#ffe5e5;
+    border-color:#ffc2c2;
+    color:#b02a37;
+
+    transform:translateY(-2px);
+
 }
 
 .content{
@@ -327,4 +393,79 @@ body{
     .modal-body .row {
         grid-template-columns: 1fr;
     }
+    
+}
+
+/* =========================
+   BOTÃO NOVO EMPRÉSTIMO
+========================= */
+
+.page-header .btn-primary{
+
+    background:linear-gradient(135deg,#0066ff,#004aad);
+    border:none;
+
+    height:55px;
+    padding:0 25px;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:16px;
+    font-weight:600;
+
+    color:#ffffff;
+
+    transition:.3s;
+}
+
+
+.page-header .btn-primary:hover{
+
+    background:linear-gradient(135deg,#005bea,#003d99);
+    transform:translateY(-2px);
+
+}
+
+/* =========================
+   BOTÃO BUSCA MODAL
+========================= */
+
+.btn-search-modal{
+
+    width:50px;
+    height:45px;
+
+    border:none;
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#0066ff,#004aad);
+
+    color:#ffffff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.3s;
+
+}
+
+
+.btn-search-modal i{
+
+    font-size:18px;
+
+}
+
+
+.btn-search-modal:hover{
+
+    background:linear-gradient(135deg,#005bea,#003d99);
+
+    transform:translateY(-2px);
+
 }
