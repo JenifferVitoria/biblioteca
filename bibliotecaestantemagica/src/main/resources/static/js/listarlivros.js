@@ -107,7 +107,7 @@ function preencherTabela(livros) {
 
 
 function AbrirPagina(id){
-	window.location.href="emprestimo.html?id="+id;
+	window.location.href="livro.html?id="+id;
 }
 
 

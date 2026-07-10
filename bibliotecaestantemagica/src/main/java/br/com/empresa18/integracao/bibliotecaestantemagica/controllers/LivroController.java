@@ -178,6 +178,7 @@ public class LivroController {
 	       }
 			return "Não Salvo";
 		}
+
 	
 	
 	@GetMapping("/BuscarPorTitulo/{titulo}")
@@ -185,6 +186,7 @@ public class LivroController {
 	public List<LivroEntity> buscarPorTitulo(@PathVariable String titulo) {
 	    return livroRepo.findByTituloContainingIgnoreCase(titulo);
 	}
+
 	
 	@PostMapping("/reservar/{id}")
 	@ResponseStatus(HttpStatus.OK)
@@ -206,9 +208,8 @@ public class LivroController {
 
 	    return "Livro reservado com sucesso!";
 	}
+
 }
-
-
 
 
 
