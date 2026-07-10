@@ -751,6 +751,7 @@ body{
 
 
 
+
 /* ==========================
    RESPONSIVO
 ========================== */
@@ -761,7 +762,7 @@ body{
 
         width:230px;
 
-    }
+    
 
 
     .content{
@@ -770,7 +771,7 @@ body{
 
     }
 
-}
+
 
 
 
@@ -864,4 +865,43 @@ body{
 
     }
 
+}
+.btn-selecionar{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+
+    border: none;
+    border-radius: 10px;
+
+    padding: 8px 18px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(37,99,235,.25);
+
+    transition: all .25s ease;
+}
+
+.btn-selecionar:hover{
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(37,99,235,.35);
+}
+
+.btn-selecionar:active{
+    transform: scale(.97);
+}
+
+.btn-selecionar i{
+    font-size: 16px;
+}
+}
 }

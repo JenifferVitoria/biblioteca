@@ -85,10 +85,12 @@ function preencherTabela(livros) {
             <td>${livro.disponivel ? "Disponível" : "Emprestado"}</td>
 
             <td>
-                <button class="btn btn-primary btn-sm"
-                        onclick="AbrirPagina(${livro.id})">
-                    Selecionar
-                </button >
+			
+			<button class="btn-selecionar"
+			        onclick="AbrirPagina(${livro.id})">
+			    <i class="bi bi-check-circle-fill"></i>
+			    Selecionar
+			</button>
 				
 				
 
