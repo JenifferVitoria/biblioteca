@@ -68,7 +68,9 @@ body{
 }
 
 
-/* MENU */
+/* ==========================
+   MENU
+========================== */
 
 .menu{
 
@@ -130,9 +132,11 @@ body{
 }
 
 
+
 /* ==========================
-   BOTÕES INFERIORES
+   BOTÕES INFERIORES (CORRIGIDO)
 ========================== */
+
 
 .bottom-buttons{
 
@@ -147,16 +151,15 @@ body{
 }
 
 
-/* PADRÃO BOTÕES */
+
+/* PADRÃO */
 
 .back-btn,
 .logout-btn{
 
-    flex:1;
+    height:45px;
 
-    height:55px;
-
-    border-radius:16px;
+    border-radius:14px;
 
     display:flex;
 
@@ -168,6 +171,8 @@ body{
 
     text-decoration:none;
 
+    font-size:14px;
+
     font-weight:600;
 
     transition:.3s;
@@ -175,9 +180,12 @@ body{
 }
 
 
+
 /* VOLTAR */
 
 .back-btn{
+
+    flex:1;
 
     background:#edf4ff;
 
@@ -186,6 +194,25 @@ body{
     color:#005bea;
 
 }
+
+
+
+/* SAIR */
+
+.logout-btn{
+
+    width:95px;
+
+    flex:none;
+
+    background:#fff4f4;
+
+    border:1px solid #ffd9d9;
+
+    color:#dc3545;
+
+}
+
 
 
 .back-btn:hover{
@@ -198,19 +225,6 @@ body{
 
 }
 
-
-
-/* SAIR */
-
-.logout-btn{
-
-    background:#fff4f4;
-
-    border:1px solid #ffd9d9;
-
-    color:#dc3545;
-
-}
 
 
 .logout-btn:hover{
@@ -238,6 +252,7 @@ body{
 }
 
 
+
 /* ==========================
    TOPBAR
 ========================== */
@@ -255,6 +270,7 @@ body{
     margin-bottom:25px;
 
 }
+
 
 
 .notification-btn{
@@ -284,6 +300,7 @@ body{
 }
 
 
+
 .notification-btn:hover{
 
     background:#edf4ff;
@@ -296,11 +313,13 @@ body{
    TÍTULO
 ========================== */
 
+
 .titulo{
 
     margin-bottom:25px;
 
 }
+
 
 
 .titulo h1{
@@ -314,6 +333,7 @@ body{
     margin-bottom:8px;
 
 }
+
 
 
 .titulo p{
@@ -330,6 +350,7 @@ body{
    CARD PADRÃO
 ========================== */
 
+
 .custom-card{
 
     background:#ffffff;
@@ -340,14 +361,17 @@ body{
 
     border:1px solid #dfe9ff;
 
-    box-shadow:0 5px 20px rgba(0,74,173,.05);
+    box-shadow:
+    0 5px 20px rgba(0,74,173,.05);
 
 }
+
 
 
 /* ==========================
    PESQUISA
 ========================== */
+
 
 .search-area{
 
@@ -360,6 +384,7 @@ body{
 }
 
 
+
 .search-input{
 
     flex:1;
@@ -367,6 +392,7 @@ body{
     position:relative;
 
 }
+
 
 
 .search-input i{
@@ -384,6 +410,7 @@ body{
     font-size:18px;
 
 }
+
 
 
 .search-input input{
@@ -409,16 +436,20 @@ body{
 }
 
 
+
 .search-input input:focus{
 
     border-color:#0066ff;
 
-    box-shadow:0 0 0 3px rgba(0,102,255,.10);
+    box-shadow:
+    0 0 0 3px rgba(0,102,255,.10);
 
 }
 
 
+
 /* BOTÃO PESQUISAR */
+
 
 .search-area button{
 
@@ -430,7 +461,8 @@ body{
 
     border-radius:16px;
 
-    background:linear-gradient(
+    background:
+    linear-gradient(
         135deg,
         #0066ff,
         #004aad
@@ -449,11 +481,13 @@ body{
 }
 
 
+
 .search-area button:hover{
 
     transform:translateY(-2px);
 
-    background:linear-gradient(
+    background:
+    linear-gradient(
         135deg,
         #005bea,
         #003d99
@@ -466,6 +500,7 @@ body{
 /* ==========================
    CABEÇALHO RESULTADOS
 ========================== */
+
 
 .header-resultados{
 
@@ -480,6 +515,7 @@ body{
 }
 
 
+
 .header-resultados h2{
 
     color:#004aad;
@@ -491,6 +527,7 @@ body{
 }
 
 
+
 .header-resultados span{
 
     color:#6c7aa0;
@@ -498,6 +535,7 @@ body{
     font-size:14px;
 
 }
+
 
 
 .header-resultados select{
@@ -515,9 +553,13 @@ body{
     color:#334155;
 
 }
+
+
+
 /* ==========================
    TABELA DE LIVROS
 ========================== */
+
 
 .table-responsive{
 
@@ -526,6 +568,7 @@ body{
     overflow-x:auto;
 
 }
+
 
 
 .tabela-livros{
@@ -539,7 +582,9 @@ body{
 }
 
 
+
 /* CABEÇALHO */
+
 
 .tabela-livros thead th{
 
@@ -560,7 +605,9 @@ body{
 }
 
 
+
 /* CORPO */
+
 
 .tabela-livros tbody td{
 
@@ -577,11 +624,13 @@ body{
 }
 
 
+
 .tabela-livros tbody tr{
 
     transition:.3s;
 
 }
+
 
 
 .tabela-livros tbody tr:hover{
@@ -596,6 +645,7 @@ body{
    CAPA DO LIVRO
 ========================== */
 
+
 .capa-livro{
 
     width:50px;
@@ -608,7 +658,8 @@ body{
 
     display:block;
 
-    box-shadow:0 3px 10px rgba(0,0,0,.12);
+    box-shadow:
+    0 3px 10px rgba(0,0,0,.12);
 
 }
 
@@ -617,6 +668,7 @@ body{
 /* ==========================
    STATUS
 ========================== */
+
 
 .status{
 
@@ -635,7 +687,6 @@ body{
 }
 
 
-/* DISPONÍVEL */
 
 .disponivel{
 
@@ -646,7 +697,6 @@ body{
 }
 
 
-/* EMPRESTADO */
 
 .emprestado{
 
@@ -657,7 +707,6 @@ body{
 }
 
 
-/* RESERVADO */
 
 .reservado{
 
@@ -667,11 +716,10 @@ body{
 
 }
 
-
-
 /* ==========================
    AÇÕES
 ========================== */
+
 
 .actions{
 
@@ -682,6 +730,7 @@ body{
     gap:10px;
 
 }
+
 
 
 .btn-action{
@@ -709,6 +758,7 @@ body{
 }
 
 
+
 .btn-action:hover{
 
     transform:scale(1.08);
@@ -719,11 +769,13 @@ body{
 
 /* EDITAR */
 
+
 .edit{
 
     background:#0066ff;
 
 }
+
 
 
 .edit:hover{
@@ -736,11 +788,13 @@ body{
 
 /* EXCLUIR */
 
+
 .delete{
 
     background:#ff4d4d;
 
 }
+
 
 
 .delete:hover{
@@ -751,18 +805,109 @@ body{
 
 
 
-
 /* ==========================
-   RESPONSIVO
+   BOTÃO SELECIONAR
 ========================== */
 
+
+.btn-selecionar{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+
+    color:#ffffff;
+
+
+    border:none;
+
+    border-radius:10px;
+
+
+    padding:8px 18px;
+
+
+    font-size:14px;
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    box-shadow:
+    0 4px 10px rgba(37,99,235,.25);
+
+
+    transition:.25s ease;
+
+}
+
+
+
+.btn-selecionar:hover{
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #1d4ed8,
+        #1e40af
+    );
+
+
+    transform:translateY(-2px);
+
+
+    box-shadow:
+    0 8px 16px rgba(37,99,235,.35);
+
+}
+
+
+
+.btn-selecionar:active{
+
+    transform:scale(.97);
+
+}
+
+
+
+.btn-selecionar i{
+
+    font-size:16px;
+
+}
+
+
+
+/* ==========================
+   RESPONSIVO TABLET
+========================== */
+
+
 @media(max-width:1200px){
+
 
     .sidebar{
 
         width:230px;
 
-    
+    }
 
 
     .content{
@@ -772,16 +917,24 @@ body{
     }
 
 
+}
 
+
+
+/* ==========================
+   RESPONSIVO CELULAR
+========================== */
 
 
 @media(max-width:992px){
+
 
     .layout{
 
         flex-direction:column;
 
     }
+
 
 
     .sidebar{
@@ -793,11 +946,13 @@ body{
     }
 
 
+
     .bottom-buttons{
 
         margin-top:25px;
 
     }
+
 
 
     .search-area{
@@ -807,23 +962,32 @@ body{
     }
 
 
+
     .search-area button{
 
         width:100%;
 
     }
 
+
 }
 
 
 
+/* ==========================
+   MOBILE
+========================== */
+
+
 @media(max-width:768px){
+
 
     .content{
 
         padding:20px;
 
     }
+
 
 
     .titulo h1{
@@ -833,11 +997,13 @@ body{
     }
 
 
+
     .custom-card{
 
         padding:20px;
 
     }
+
 
 
     .header-resultados{
@@ -851,11 +1017,13 @@ body{
     }
 
 
+
     .bottom-buttons{
 
         flex-direction:column;
 
     }
+
 
 
     .back-btn,
@@ -865,43 +1033,64 @@ body{
 
     }
 
-}
-.btn-selecionar{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
 
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: #fff;
-
-    border: none;
-    border-radius: 10px;
-
-    padding: 8px 18px;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    box-shadow: 0 4px 10px rgba(37,99,235,.25);
-
-    transition: all .25s ease;
 }
 
-.btn-selecionar:hover{
-    background: linear-gradient(135deg, #1d4ed8, #1e40af);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(37,99,235,.35);
-}
 
-.btn-selecionar:active{
-    transform: scale(.97);
-}
 
-.btn-selecionar i{
-    font-size: 16px;
-}
-}
+/* ==========================
+   CELULARES PEQUENOS
+========================== */
+
+
+@media(max-width:480px){
+
+
+    .sidebar{
+
+        padding:15px;
+
+    }
+
+
+
+    .logo-area img{
+
+        width:130px;
+
+    }
+
+
+
+    .content{
+
+        padding:15px;
+
+    }
+
+
+
+    .titulo h1{
+
+        font-size:24px;
+
+    }
+
+
+
+    .custom-card{
+
+        padding:15px;
+
+    }
+
+
+
+    .tabela-livros{
+
+        min-width:700px;
+
+    }
+
+
 }

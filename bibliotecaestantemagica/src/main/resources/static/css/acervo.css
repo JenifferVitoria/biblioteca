@@ -19,11 +19,8 @@
     --texto-claro:#6f87ab;
 
     --verde:#198754;
-
     --vermelho:#dc3545;
-
     --amarelo:#d89b00;
-
     --roxo:#4c61ff;
 
     --sombra:
@@ -35,7 +32,6 @@
 }
 
 
-
 /* =========================
    RESET GERAL
 ========================= */
@@ -44,13 +40,10 @@
 *{
 
     margin:0;
-
     padding:0;
-
     box-sizing:border-box;
 
 }
-
 
 
 body{
@@ -64,7 +57,6 @@ body{
     overflow-x:hidden;
 
 }
-
 
 
 /* =========================
@@ -81,7 +73,6 @@ body{
 }
 
 
-
 .content{
 
     flex:1;
@@ -91,7 +82,6 @@ body{
     animation:aparecer .5s ease;
 
 }
-
 
 
 /* =========================
@@ -121,7 +111,6 @@ body{
 }
 
 
-
 /* =========================
    SIDEBAR
 ========================= */
@@ -144,11 +133,9 @@ body{
     justify-content:space-between;
 
     box-shadow:
-
     8px 0 30px rgba(0,0,0,.04);
 
 }
-
 
 
 .logo-area{
@@ -156,7 +143,6 @@ body{
     text-align:center;
 
 }
-
 
 
 .logo-area img{
@@ -170,7 +156,6 @@ body{
 }
 
 
-
 .logo-area h2{
 
     font-size:28px;
@@ -180,7 +165,6 @@ body{
     color:var(--azul-principal);
 
 }
-
 
 
 /* =========================
@@ -199,13 +183,11 @@ body{
 }
 
 
-
 .menu li{
 
     margin-bottom:12px;
 
 }
-
 
 
 .menu li a{
@@ -233,13 +215,11 @@ body{
 }
 
 
-
 .menu li a i{
 
     font-size:22px;
 
 }
-
 
 
 .menu li.active a,
@@ -264,6 +244,10 @@ body{
 
     display:flex;
 
+    align-items:center;
+
+    justify-content:center;
+
     gap:12px;
 
     margin-top:auto;
@@ -271,15 +255,22 @@ body{
 }
 
 
+/* BOTÃO VOLTAR */
 
-.back-btn,
-.logout-btn{
 
-    flex:1;
+.back-btn{
 
-    height:58px;
+    width:120px;
 
-    border-radius:16px;
+    height:45px;
+
+    background:var(--azul-claro);
+
+    border:1px solid var(--azul-borda);
+
+    color:var(--azul-hover);
+
+    border-radius:14px;
 
     display:flex;
 
@@ -289,6 +280,8 @@ body{
 
     gap:8px;
 
+    font-size:14px;
+
     font-weight:600;
 
     text-decoration:none;
@@ -296,22 +289,6 @@ body{
     transition:.3s;
 
 }
-
-
-
-/* VOLTAR */
-
-
-.back-btn{
-
-    background:var(--azul-claro);
-
-    border:1px solid var(--azul-borda);
-
-    color:var(--azul-hover);
-
-}
-
 
 
 .back-btn:hover{
@@ -323,11 +300,14 @@ body{
 }
 
 
-
-/* SAIR */
+/* BOTÃO SAIR */
 
 
 .logout-btn{
+
+    width:120px;
+
+    height:45px;
 
     background:#fff4f4;
 
@@ -335,8 +315,25 @@ body{
 
     color:var(--vermelho);
 
-}
+    border-radius:14px;
 
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
 
 
 .logout-btn:hover{
@@ -871,7 +868,6 @@ body{
     transform:translateY(-3px);
 
     box-shadow:
-
     0 8px 15px rgba(0,0,0,.15);
 
 }
@@ -907,7 +903,6 @@ body{
     padding:10px;
 
     box-shadow:
-
     0 15px 50px rgba(0,0,0,.08);
 
 }
@@ -1350,7 +1345,6 @@ body{
 
     }
 
-
 }
 
 
@@ -1442,6 +1436,5 @@ body{
         min-width:700px;
 
     }
-
 
 }
