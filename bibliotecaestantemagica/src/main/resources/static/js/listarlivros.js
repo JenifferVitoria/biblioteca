@@ -1,5 +1,5 @@
 const API_BUSCAR_TODOS = "http://localhost:8000/livros/listartodos";
-const API_BUSCAR_LIVRO = "http://localhost:8000/livros/BuscarPorTipo";
+const API_BUSCAR = "http://localhost:8000/livros/buscar";
 
 // LISTAR TODOS//
 
@@ -18,17 +18,20 @@ async function listarLivros() {
 
 // BUSCAR LIVRO//
 
+
+
 async function buscarLivro() {
 
-    console.log("Buscando livro...");
-
-    const valor = document.getElementById("buscaLivro").value;
+   
+	console.log("Buscando livro...");
+	
+    const valor = document.getElementById("perquisar").value;
 
     let response;
 
     if (valor != "") {
 
-        response = await fetch(`${API_BUSCAR_LIVRO}/${valor}/${valor}/${valor}/${valor}`);
+        response = await fetch(`${API_BUSCAR}/${valor}/${valor}/${valor}/${valor}`);
 
     } else {
 
@@ -36,11 +39,17 @@ async function buscarLivro() {
 
     }
 
+    if (!response.ok) {
+        console.error("Erro ao buscar livros.");
+        return;
+    }
+
     const livros = await response.json();
+	
+	window.Location.href="reserva.html";
 
     preencherTabela(livros);
-	
-	
+
 }
 
 
@@ -56,12 +65,13 @@ function preencherTabela(livros) {
 
         const tr = document.createElement("tr");
 
-		console.log(livro.imagem);
+	
 		
-		
+	let caminho = "/img/"+livro.imagem;
+	console.log(caminho);
         tr.innerHTML = `
             <td>
-                <img src="${livro.imagem}" width="70" height="90">
+                <img src="${caminho}" width="70" height="90">
             </td>
 
             <td>${livro.titulo}</td>
@@ -76,11 +86,12 @@ function preencherTabela(livros) {
 
             <td>
                 <button class="btn btn-primary btn-sm"
-                        onclick="buscar(${livro.id})">
-                    Buscar
-                </button>
+                        onclick="AbrirPagina(${livro.id})">
+                    Selecionar
+                </button >
 				
 				
+
 				
             </td>
         `;
@@ -92,17 +103,11 @@ function preencherTabela(livros) {
 }
 
 
-// BUSCAR POR ID//
 
-async function buscar(id) {
-
-    console.log("Livro selecionado: " + id);
-
-}
 
 
 function AbrirPagina(id){
-	window.location.href="emprestimos.html?id="+id;
+	window.location.href="emprestimo.html?id="+id;
 }
 
 
