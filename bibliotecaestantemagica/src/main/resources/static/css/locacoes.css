@@ -109,6 +109,58 @@ body{
 }
 
 /* =========================
+   BOTÕES INFERIORES
+========================= */
+
+.bottom-buttons{
+    margin-top:auto;
+    display:flex;
+    gap:10px;
+}
+
+.bottom-buttons .btn{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+    cursor:pointer;
+}
+
+/* VOLTAR */
+
+.back-btn{
+    background:#edf4ff;
+    border:1px solid #dfe9ff;
+    color:#004aad;
+}
+
+.back-btn:hover{
+    background:#dbe9ff;
+    color:#004aad;
+    transform:translateY(-2px);
+}
+
+/* SAIR */
+
+.logout-btn{
+    background:#fff4f4;
+    border:1px solid #ffd9d9;
+    color:#dc3545;
+}
+
+.logout-btn:hover{
+    background:#ffe5e5;
+    color:#b02a37;
+    transform:translateY(-2px);
+}
+
+/* =========================
    CONTENT
 ========================= */
 
