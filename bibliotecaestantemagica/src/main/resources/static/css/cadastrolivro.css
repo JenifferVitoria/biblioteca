@@ -162,13 +162,15 @@ body{
 /* SAIR */
 
 .logout-btn{
+    background:#fff4f4;
+    border:1px solid #ffd9d9;
+    color:#dc3545;
+}
 
-    background:#004aad;
-
-    border:1px solid #004aad;
-
-    color:#ffffff !important;
-
+.logout-btn:hover{
+    background:#ffe5e5;
+    color:#b02a37;
+    transform:translateY(-2px);
 }
 
 /* =========================
