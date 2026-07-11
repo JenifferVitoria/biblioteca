@@ -1,5 +1,5 @@
-const API_BUSCAR_TODOS = "http://localhost:8000/livros/listartodos";
-const API_BUSCAR = "http://localhost:8000/livros/buscar";
+const API_BUSCAR_TODOS = "http://192.168.10.22:8011/livros/listartodos";
+const API_BUSCAR = "http://192.168.10.22:8011/livros/buscar";
 
 // LISTAR TODOS//
 

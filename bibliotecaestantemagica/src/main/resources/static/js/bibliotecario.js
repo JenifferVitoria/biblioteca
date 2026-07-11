@@ -1,5 +1,5 @@
-const API_LISTAR_TODAS_MULTAS = "http://localhost:8080/multas/listartodos";
-const API_LISTAR_TODOS_EMPRESTIMOS = "http://localhost:8000/emprestimos/listartodos";
+const API_LISTAR_TODAS_MULTAS = "http://192.168.10.84:8011/multas/listartodos";
+const API_LISTAR_TODOS_EMPRESTIMOS = "http://192.168.10.84:8011/emprestimos/listartodos";
 
 function voltarPagina() {
     window.location.href = "login.html";

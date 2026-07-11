@@ -1,5 +1,5 @@
-const API_LIVROS = "http://localhost:8011/livros";
-const API_USUARIOS = "http://localhost:8011/usuarios";
+const API_LIVROS = "http://192.168.10.22:8011/livros";
+const API_USUARIOS = "http://192.168.10.22:8011:8011/usuarios";
 
 
 // ==============================

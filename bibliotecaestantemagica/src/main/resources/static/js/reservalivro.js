@@ -1,5 +1,5 @@
-const API_LISTAR_ID = "http://localhost:8000/livros/listarid";
-const API_RESERVAR = "http://localhost:8000/livros/reservar";
+const API_LISTAR_ID = "http://192.168.10.22:8011/livros/listarid";
+const API_RESERVAR = "http://192.168.10.22:8011/livros/reservar";
 
 
 /// PEGAR ID DA URL

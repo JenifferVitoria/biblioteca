@@ -1,4 +1,4 @@
-const API_LISTAR_ATRASADOS ="http://localhost:8000/emprestimos/atrasados"
+const API_LISTAR_ATRASADOS ="http://192.168.10.22:8011/emprestimos/atrasados"
 
 let listaMultas = [];
 let listaEmprestimos = [];
