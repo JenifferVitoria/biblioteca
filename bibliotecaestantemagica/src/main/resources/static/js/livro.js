@@ -2,6 +2,7 @@ const API_CADASTRAR ="http://localhost:8000/livros/salvar";
 const API_BUSCAR_TODOS ="http://localhost:8000/livros/listartodos";
 const API_BUSCAR_LIVRO ="http://localhost:8000/livros/BuscarPorTipo";
 const API_BUSCAR_ID = "http://localhost:8000/livros/listarid";
+const API_RESERVAR = "http://localhost:8000/livros/reservar";
 
 let notaAvaliacao = 0;
 let editandoid = null;
@@ -194,6 +195,7 @@ let editandoid = null;
 		
 		async function carregarDadosDoLivro (){
 
+			document.getElementById("livroId").value = reserva.id;
 			const parametros = new URLSearchParams(window.location.search);
 			const id = parametros.get('id'); // Retorna "camisa"	
 			console.log(id);
@@ -218,3 +220,32 @@ let editandoid = null;
 			document.addEventListener("DOMContentLoaded",()=>{
 				carregarDadosDoLivro();
 		});
+		
+		
+		
+		async function reservarLivro() {
+
+		    const id = document.getElementById("livroId").value;
+
+		    const response = await fetch(`${API_RESERVAR}/${id}`, {
+		        method: "PUT"
+		    });
+
+		    if (response.ok) {
+
+		        document.getElementById("btnReservar").innerHTML =
+		            '<i class="bi bi-check-circle-fill"></i> Livro Reservado';
+
+		        document.getElementById("btnReservar").disabled = true;
+
+		        document.getElementById("resultado").innerHTML =
+		            "Reserva realizada com sucesso!";
+
+		    } else {
+
+		        alert("Erro ao reservar.");
+				w
+
+		    }
+
+		}

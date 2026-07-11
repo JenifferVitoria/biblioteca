@@ -69,6 +69,8 @@ function preencherTabela(livros) {
 		
 	let caminho = "/img/"+livro.imagem;
 	console.log(caminho);
+	console.log(livro);
+	console.log("ID:", livro.id);
         tr.innerHTML = `
             <td>
                 <img src="${caminho}" width="70" height="90">
@@ -116,3 +118,6 @@ function AbrirPagina(id){
 // CARREGA A TABELA//
 
 listarLivros();
+
+
+

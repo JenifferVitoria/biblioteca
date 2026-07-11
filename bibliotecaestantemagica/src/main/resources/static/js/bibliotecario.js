@@ -97,7 +97,9 @@ function preencherMultas(lista) {
     });
 }
 
-
+function irEmprestimos() {
+    window.location.href = "acervo.html";
+}
 
 
 function irEmprestimos() {

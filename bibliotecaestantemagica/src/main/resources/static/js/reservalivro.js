@@ -82,10 +82,12 @@ async function reservarLivro() {
     const id = obterIdLivro();
 
     if (id == null) {
+		
+		window.Location.href="livro.html";
 
         alert("Livro não encontrado.");
         return;
-    }
+    } 
 
     const response = await fetch(`${API_RESERVAR}/${id}`, {
 
@@ -106,6 +108,7 @@ async function reservarLivro() {
         botao.innerHTML = `
             <i class="bi bi-check-circle-fill"></i>
             Reservado
-        `;
+			
+        `;   
     }
 }

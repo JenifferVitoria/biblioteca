@@ -49,15 +49,16 @@ tr.innerHTML = `
 
 <button class="btn btn-success btn-sm"
         onclick="AbrirPagina(${reservas.id})">
-
+		
     <i class="bi bi-journal-check"></i>
     Realizar Empréstimo
-
+	
 </button>
+   
 
 </td>
 
-`;
+`; window.Location.href="livro.html";
 
 tbody.appendChild(tr);
 
