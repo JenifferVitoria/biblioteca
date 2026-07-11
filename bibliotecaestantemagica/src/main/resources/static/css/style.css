@@ -1,149 +1,316 @@
 /* =========================
-   CONFIGURAÇÕES GERAIS
+   VARIÁVEIS DO SISTEMA
+========================= */
+
+:root{
+
+    --azul-principal:#004aad;
+    --azul-hover:#0057d8;
+    --azul-gradiente:#005bea;
+
+    --azul-claro:#edf4ff;
+    --azul-borda:#e4ecff;
+
+    --fundo:#f4f8ff;
+
+    --branco:#ffffff;
+
+    --texto:#1d3f72;
+    --texto-claro:#6f87ab;
+
+    --sombra:
+    0 10px 30px rgba(0,74,173,.08);
+
+    --sombra-hover:
+    0 15px 35px rgba(0,74,173,.15);
+
+}
+
+
+/* =========================
+   RESET GERAL
 ========================= */
 
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
 }
 
+
 body{
-    font-family:'Segoe UI', sans-serif;
-    background:linear-gradient(180deg, #f4f8ff 0%, #dfeeff 100%);
+
+    background:var(--fundo);
+
+    font-family:'Segoe UI',sans-serif;
+
+    color:var(--texto);
+
     min-height:100vh;
+
 }
+
+
 
 /* =========================
    CONTAINER
 ========================= */
 
 .cadastro-container{
+
+    min-height:100vh;
+
     padding:40px 15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
 }
+
+
 
 /* =========================
    LOGO
 ========================= */
 
 .logo{
+
     width:260px;
+
     max-width:100%;
+
+    margin-bottom:20px;
+
 }
 
+
+
 /* =========================
-   TITULOS
+   TÍTULOS
 ========================= */
 
 .titulo{
+
     font-size:58px;
+
     font-weight:800;
-    color:#004aad;
+
+    color:var(--azul-principal);
+
     margin-bottom:10px;
+
     line-height:1.1;
+
 }
+
 
 .subtitulo{
-    color:#5c6f91;
+
+    color:var(--texto-claro);
+
     font-size:20px;
+
 }
 
+
+
 /* =========================
-   CARD
+   CARD CADASTRO
 ========================= */
 
 .card-cadastro{
+
+    background:var(--branco);
+
     border-radius:30px;
-    background:#ffffff;
+
     padding:40px !important;
-    box-shadow:0 10px 30px rgba(0,74,173,0.08);
+
+    border:1px solid var(--azul-borda);
+
+    box-shadow:var(--sombra);
+
+    transition:.3s;
+
 }
+
+
+.card-cadastro:hover{
+
+    box-shadow:var(--sombra-hover);
+
+}
+
+
 
 /* =========================
    INPUTS
 ========================= */
 
 .titulo-input{
-    font-size:20px;
+
+    font-size:18px;
+
     font-weight:700;
-    color:#004aad;
+
+    color:var(--azul-principal);
+
     margin-bottom:12px;
+
 }
+
+
 
 .custom-input{
+
     min-height:70px;
+
 }
+
+
 
 .custom-input .input-group-text{
-    background:#ffffff;
-    border:2px solid #d5e5ff;
+
+    background:var(--branco);
+
+    border:2px solid var(--azul-borda);
+
     border-right:none;
+
     border-radius:18px 0 0 18px;
+
     padding-left:20px;
+
     padding-right:15px;
+
 }
 
+
+
 .custom-input .input-group-text i{
-    color:#1e73ff;
+
+    color:var(--azul-hover);
+
     font-size:24px;
+
 }
+
+
 
 .custom-input .form-control,
 .custom-input .form-select{
-    border:2px solid #d5e5ff;
+
+    border:2px solid var(--azul-borda);
+
     border-left:none;
+
     border-radius:0 18px 18px 0;
+
     font-size:18px;
-    color:#4b5d7a;
+
+    color:var(--texto);
+
     box-shadow:none;
+
     padding:16px;
+
 }
+
+
 
 .custom-input .form-control:focus,
 .custom-input .form-select:focus{
-    box-shadow:none;
-    border-color:#1e73ff;
+
+    border-color:var(--azul-hover);
+
+    box-shadow:
+
+    0 0 0 .2rem rgba(0,87,216,.15);
+
 }
 
+
+
 /* =========================
-   BOTÃO
+   BOTÃO CADASTRAR
 ========================= */
 
 .btn-cadastrar{
+
     min-height:65px;
+
     border:none;
+
     border-radius:18px;
-    background:linear-gradient(90deg, #005bea 0%, #0047b3 100%);
-    color:#ffffff;
+
+    background:linear-gradient(
+        90deg,
+        var(--azul-gradiente),
+        #0047b3
+    );
+
+    color:white;
+
     font-size:22px;
+
     font-weight:700;
-    transition:0.3s;
+
+    transition:.3s;
+
 }
 
+
+
 .btn-cadastrar:hover{
-    background:linear-gradient(90deg, #0047b3 0%, #003b94 100%);
-    transform:translateY(-2px);
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--sombra-hover);
+
 }
+
+
 
 /* =========================
    LOGIN
 ========================= */
 
 .texto-login{
-    color:#7a8aa8;
+
+    color:var(--texto-claro);
+
     font-size:18px;
+
 }
+
+
 
 .link-login{
-    color:#005bea;
+
+    color:var(--azul-hover);
+
     font-size:18px;
+
     font-weight:600;
+
     text-decoration:none;
+
 }
 
+
+
 .link-login:hover{
+
     text-decoration:underline;
+
 }
+
+
 
 /* =========================
    TABLETS
@@ -151,19 +318,37 @@ body{
 
 @media(max-width:992px){
 
-    .titulo{
-        font-size:48px;
+
+    .cadastro-container{
+
+        padding:30px 15px;
+
     }
+
+
+    .titulo{
+
+        font-size:48px;
+
+    }
+
 
     .subtitulo{
+
         font-size:18px;
+
     }
 
+
     .card-cadastro{
+
         padding:30px !important;
+
     }
 
 }
+
+
 
 /* =========================
    CELULAR
@@ -171,63 +356,107 @@ body{
 
 @media(max-width:768px){
 
+
     .cadastro-container{
+
         padding:25px 12px;
+
     }
+
 
     .logo{
+
         width:180px;
+
     }
+
 
     .titulo{
+
         font-size:36px;
+
     }
+
 
     .subtitulo{
+
         font-size:15px;
+
         padding:0 10px;
+
     }
+
 
     .card-cadastro{
-        border-radius:22px;
+
+        border-radius:24px;
+
         padding:25px 18px !important;
+
     }
+
 
     .titulo-input{
+
         font-size:16px;
+
     }
+
 
     .custom-input{
+
         min-height:58px;
+
     }
+
 
     .custom-input .input-group-text{
+
         padding-left:14px;
+
         padding-right:10px;
+
     }
 
+
     .custom-input .input-group-text i{
+
         font-size:20px;
+
     }
+
 
     .custom-input .form-control,
     .custom-input .form-select{
+
         font-size:15px;
+
         padding:12px;
+
     }
 
+
     .btn-cadastrar{
+
         min-height:55px;
+
         font-size:18px;
+
         border-radius:14px;
+
     }
+
 
     .texto-login,
     .link-login{
+
         font-size:15px;
+
     }
 
 }
+
+
 
 /* =========================
    CELULARES PEQUENOS
@@ -235,24 +464,39 @@ body{
 
 @media(max-width:480px){
 
+
     .titulo{
+
         font-size:30px;
+
     }
+
 
     .subtitulo{
+
         font-size:14px;
+
     }
+
 
     .logo{
+
         width:150px;
+
     }
+
 
     .card-cadastro{
+
         padding:20px 15px !important;
+
     }
 
+
     .btn-cadastrar{
+
         font-size:16px;
+
     }
 
 }

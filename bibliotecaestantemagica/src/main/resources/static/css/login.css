@@ -1,28 +1,46 @@
 /* =========================
-   GERAL
+   LOGIN - GERAL
 ========================= */
 
-body{
+*{
     margin:0;
     padding:0;
+    box-sizing:border-box;
     font-family:'Segoe UI', sans-serif;
-    background:#eef5ff;
-    overflow-x:hidden;
 }
+
+
+body{
+
+    background:#eef5ff;
+
+    overflow-x:hidden;
+
+}
+
 
 /* =========================
    CONTAINER
 ========================= */
 
 .login-container{
+
     width:100%;
+
     min-height:100vh;
-    position:relative;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     padding:40px 20px;
+
+    position:relative;
+
     overflow:hidden;
+
     background:
     linear-gradient(
         180deg,
@@ -30,230 +48,508 @@ body{
         #eaf3ff 45%,
         #d7e9ff 100%
     );
+
 }
+
+
 
 /* =========================
-   FORMAS FUNDO
+   FORMAS DO FUNDO
 ========================= */
 
+
 .background-shapes{
+
     position:absolute;
+
     width:100%;
+
     height:100%;
+
     overflow:hidden;
+
 }
+
+
 
 .shape{
+
     position:absolute;
+
     border-radius:50%;
+
     filter:blur(2px);
+
 }
+
+
 
 .shape-1{
+
     width:900px;
+
     height:900px;
-    background:rgba(0,91,234,0.10);
+
+    background:rgba(0,91,234,.10);
+
     bottom:-350px;
+
     left:-250px;
+
 }
+
+
 
 .shape-2{
+
     width:700px;
+
     height:700px;
-    background:rgba(0,91,234,0.08);
+
+    background:rgba(0,91,234,.08);
+
     top:-250px;
+
     right:-200px;
+
 }
 
+
+
 .shape-3{
+
     width:600px;
+
     height:600px;
-    background:rgba(255,255,255,0.7);
+
+    background:rgba(255,255,255,.7);
+
     top:180px;
+
     right:-180px;
+
 }
+
+
 
 /* =========================
    CONTEÚDO
 ========================= */
 
+
 .login-content{
+
     position:relative;
+
     z-index:2;
+
     width:100%;
-    max-width:550px; /* reduzido de 650px */
+
+    max-width:550px;
+
+    text-align:center;
+
 }
+
+
 
 /* =========================
    LOGO
 ========================= */
 
-.logo{
-    width:300px; /* reduzido de 380px */
+
+.login-logo{
+
+    width:300px;
+
+    max-width:100%;
+
     margin-bottom:20px;
+
 }
+
+
 
 .logo-area h1{
-    font-size:56px; /* reduzido de 72px */
+
+    font-size:56px;
+
     font-weight:800;
+
     color:#004aad;
+
     line-height:1.1;
+
     margin:20px 0;
+
 }
 
+
+
 .divider{
+
     width:180px;
+
     height:2px;
+
     background:#c8dcff;
-    margin:0 auto;
+
+    margin:auto;
+
 }
+
+
 
 /* =========================
    CARD LOGIN
 ========================= */
 
+
 .login-card{
+
     background:#ffffff;
+
     border-radius:32px;
-    padding:40px; /* reduzido de 55px */
-    margin-top:30px; /* reduzido de 45px */
-    box-shadow:0 15px 40px rgba(0,74,173,0.12);
+
+    padding:40px;
+
+    margin-top:30px;
+
+    box-shadow:
+
+    0 15px 40px rgba(0,74,173,.12);
+
 }
+
+
 
 /* =========================
    FORMULÁRIO
 ========================= */
 
+
 .form-group{
+
     margin-bottom:25px;
+
+    text-align:left;
+
 }
+
+
 
 .form-group label{
+
     display:block;
+
     color:#004aad;
+
     font-weight:700;
-    font-size:22px; /* reduzido de 28px */
+
+    font-size:22px;
+
     margin-bottom:12px;
+
 }
+
+
 
 .input-area{
-    height:70px; /* reduzido de 90px */
+
+    height:70px;
+
     border:2px solid #cfe0ff;
+
     border-radius:18px;
+
     display:flex;
+
     align-items:center;
+
     padding:0 20px;
-    background:#ffffff;
+
+    background:#fff;
+
 }
+
+
 
 .input-area i{
-    font-size:26px; /* reduzido de 34px */
+
+    font-size:26px;
+
     color:#4b8fff;
+
 }
+
+
 
 .input-area input{
+
+    background:transparent;
+
     border:none;
+
     outline:none;
+
     width:100%;
+
     margin-left:15px;
-    font-size:22px; /* reduzido de 30px */
+
+    font-size:22px;
+
     color:#35507a;
+
 }
+
+
 
 .input-area input::placeholder{
+
     color:#c2c2c2;
+
 }
+
+
 
 .eye-icon{
+
     cursor:pointer;
+
 }
 
-/* =========================
-   BOTÃO
+ /* =========================
+   BOTÃO LOGIN
 ========================= */
 
+
 .btn-login{
+
     width:100%;
-    height:70px; /* reduzido de 90px */
+
+    height:70px;
+
     border:none;
+
     border-radius:18px;
-    background:linear-gradient(90deg,#005bea,#0047b3);
-    color:#ffffff;
-    font-size:28px; /* reduzido de 36px */
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #005bea,
+        #0047b3
+    );
+
+    color:white;
+
+    font-size:28px;
+
     font-weight:700;
+
+    cursor:pointer;
+
     margin-top:10px;
-    transition:0.3s;
+
+    transition:.3s;
+
 }
 
+
+
 .btn-login:hover{
+
     transform:translateY(-2px);
+
+    box-shadow:
+
+    0 10px 25px rgba(0,91,234,.25);
+
 }
+
+
 
 /* =========================
    LINK
 ========================= */
 
+
 .forgot-password{
+
     text-align:center;
+
     margin-top:25px;
+
 }
+
+
 
 .forgot-password a{
+
     color:#004aad;
-    font-size:20px; /* reduzido de 26px */
+
+    font-size:20px;
+
     font-weight:500;
+
     text-decoration:none;
+
 }
+
+
 
 .forgot-password a:hover{
+
     text-decoration:underline;
+
 }
 
+
+
 /* =========================
-   RESPONSIVO
+   RESPONSIVO TABLET
 ========================= */
+
 
 @media(max-width:768px){
 
+
     .login-content{
+
         max-width:100%;
+
     }
 
-    .logo{
+
+    .login-logo{
+
         width:220px;
+
     }
+
 
     .logo-area h1{
+
         font-size:40px;
+
     }
+
 
     .login-card{
+
         padding:25px;
+
         border-radius:24px;
+
     }
+
 
     .form-group label{
+
         font-size:18px;
+
     }
+
 
     .input-area{
+
         height:60px;
+
     }
+
 
     .input-area i{
+
         font-size:22px;
+
     }
+
 
     .input-area input{
+
         font-size:18px;
+
     }
+
 
     .btn-login{
+
         height:60px;
+
         font-size:22px;
+
     }
 
+
     .forgot-password a{
+
         font-size:16px;
+
     }
+
+
+    .shape-1{
+
+        width:500px;
+
+        height:500px;
+
+    }
+
+
+    .shape-2{
+
+        width:400px;
+
+        height:400px;
+
+    }
+
+
+    .shape-3{
+
+        display:none;
+
+    }
+
+}
+
+
+
+/* =========================
+   CELULARES PEQUENOS
+========================= */
+
+
+@media(max-width:400px){
+
+
+    .login-container{
+
+        padding:20px 15px;
+
+    }
+
+
+    .login-logo{
+
+        width:180px;
+
+    }
+
+
+    .logo-area h1{
+
+        font-size:32px;
+
+    }
+
+
+    .login-card{
+
+        padding:20px;
+
+    }
+
+
 }

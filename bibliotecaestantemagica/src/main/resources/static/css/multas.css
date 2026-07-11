@@ -19,9 +19,7 @@
     --texto-claro:#6f87ab;
 
     --verde:#198754;
-
     --vermelho:#dc3545;
-
     --amarelo:#d89b00;
 
     --sombra:
@@ -33,11 +31,9 @@
 }
 
 
-
 /* =========================
    RESET
 ========================= */
-
 
 *{
 
@@ -50,23 +46,20 @@
 }
 
 
-
 body{
 
     background:var(--fundo);
 
-    font-family:'Segoe UI', sans-serif;
+    font-family:'Segoe UI',sans-serif;
 
     color:var(--texto);
 
 }
 
 
-
 /* =========================
    ANIMAÇÃO
 ========================= */
-
 
 @keyframes aparecer{
 
@@ -90,11 +83,9 @@ body{
 }
 
 
-
 /* =========================
    LAYOUT
 ========================= */
-
 
 .layout{
 
@@ -103,7 +94,6 @@ body{
     min-height:100vh;
 
 }
-
 
 
 .content{
@@ -115,7 +105,6 @@ body{
     animation:aparecer .5s ease;
 
 }
-
 
 
 /* =========================
@@ -159,6 +148,8 @@ body{
 
     width:180px;
 
+    max-width:100%;
+
     margin-bottom:15px;
 
 }
@@ -174,7 +165,6 @@ body{
     color:var(--azul-principal);
 
 }
-
 
 
 /* =========================
@@ -193,13 +183,11 @@ body{
 }
 
 
-
 .menu li{
 
     margin-bottom:12px;
 
 }
-
 
 
 .menu li a{
@@ -239,8 +227,6 @@ body{
 
 }
 
-
-
 /* =========================
    HEADER
 ========================= */
@@ -277,7 +263,6 @@ body{
     margin-top:8px;
 
 }
-
 
 
 /* =========================
@@ -340,6 +325,8 @@ body{
 
     height:70px;
 
+    min-width:70px;
+
     border-radius:50%;
 
     background:var(--azul-claro);
@@ -379,6 +366,8 @@ body{
     color:var(--texto-claro);
 
 }
+
+
 /* =========================
    TABELA
 ========================= */
@@ -414,11 +403,11 @@ body{
 
     font-weight:700;
 
+    font-size:28px;
+
 }
 
 
-
-/* CABEÇALHO TABELA */
 
 .table thead th{
 
@@ -430,6 +419,8 @@ body{
 
     padding:18px;
 
+    white-space:nowrap;
+
 }
 
 
@@ -439,6 +430,8 @@ body{
     padding:18px;
 
     color:var(--texto);
+
+    vertical-align:middle;
 
 }
 
@@ -454,10 +447,9 @@ body{
 
 .table tbody tr:hover{
 
-    background:#f7faff;
+    background:#f8fbff;
 
 }
-
 
 
 /* =========================
@@ -510,7 +502,6 @@ body{
 }
 
 
-
 /* =========================
    STATUS
 ========================= */
@@ -527,6 +518,8 @@ body{
     font-weight:700;
 
     display:inline-block;
+
+    white-space:nowrap;
 
 }
 
@@ -561,9 +554,8 @@ body{
 }
 
 
-
 /* =========================
-   BOTÕES PADRÃO
+   BOTÕES
 ========================= */
 
 
@@ -613,9 +605,7 @@ body{
 
 }
 
-
-
-/* =========================
+ /* =========================
    BOTÃO PRINCIPAL
 ========================= */
 
@@ -624,7 +614,7 @@ body{
 
     background:linear-gradient(
         90deg,
-        #005bea,
+        var(--azul-gradiente),
         #0047b3
     ) !important;
 
@@ -633,7 +623,6 @@ body{
     color:white !important;
 
 }
-
 
 
 /* =========================
@@ -650,7 +639,6 @@ body{
     color:white !important;
 
 }
-
 
 
 /* =========================
@@ -677,9 +665,8 @@ body{
 }
 
 
-
 /* =========================
-   BOTÃO EXCLUIR
+   BOTÃO EXCLUIR (CORRIGIDO)
 ========================= */
 
 
@@ -702,9 +689,8 @@ body{
 }
 
 
-
 /* =========================
-   BOTÕES DA TABELA
+   AÇÕES TABELA
 ========================= */
 
 
@@ -731,9 +717,8 @@ body{
 }
 
 
-
 /* =========================
-   BOTÃO PAGAMENTO
+   PAGAMENTO
 ========================= */
 
 
@@ -743,7 +728,7 @@ body{
 
     background:linear-gradient(
         90deg,
-        #005bea,
+        var(--azul-gradiente),
         #0047b3
     );
 
@@ -759,9 +744,25 @@ body{
 
     align-items:center;
 
+    justify-content:center;
+
     gap:10px;
 
+    transition:.3s;
+
 }
+
+
+
+.btn-pay:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--sombra-hover);
+
+}
+
+
 /* =========================
    MODAL
 ========================= */
@@ -781,21 +782,21 @@ body{
 
 
 
-.modal-title{
-
-    color:var(--azul-principal);
-
-    font-weight:800;
-
-}
-
-
-
 .modal-content{
 
     border:none;
 
     border-radius:28px;
+
+}
+
+
+
+.modal-title{
+
+    color:var(--azul-principal);
+
+    font-weight:800;
 
 }
 
@@ -814,7 +815,6 @@ body{
     border-top:1px solid var(--azul-borda);
 
 }
-
 
 
 /* =========================
@@ -861,9 +861,8 @@ body{
 }
 
 
-
 /* =========================
-   QR CODE / PIX
+   PIX
 ========================= */
 
 
@@ -899,9 +898,9 @@ body{
 
     margin-bottom:10px;
 
-    font-weight:700;
-
     color:var(--azul-principal);
+
+    font-weight:700;
 
 }
 
@@ -931,10 +930,6 @@ body{
 
     padding:0 15px;
 
-    outline:none;
-
-    color:#4d6285;
-
 }
 
 
@@ -958,17 +953,14 @@ body{
 }
 
 
-
 /* =========================
-   BOTÕES INFERIORES SIDEBAR
+   BOTÕES SIDEBAR
 ========================= */
 
 
 .bottom-buttons{
 
     display:flex;
-
-    flex-direction:row;
 
     gap:12px;
 
@@ -986,28 +978,11 @@ body{
 
     border-radius:16px !important;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
-    font-size:16px;
-
-    font-weight:600;
-
 }
 
 
 
-/* =========================
-   BOTÃO VOLTAR
-========================= */
-
-
-.bottom-buttons .back-btn{
+.back-btn{
 
     background:var(--azul-claro) !important;
 
@@ -1019,26 +994,15 @@ body{
 
 
 
-.bottom-buttons .back-btn:hover{
+.back-btn:hover{
 
     background:#dbe9ff !important;
-
-    transform:translateY(-3px);
-
-    box-shadow:
-
-    0 8px 20px rgba(0,87,216,.15);
 
 }
 
 
 
-/* =========================
-   BOTÃO SAIR
-========================= */
-
-
-.bottom-buttons .logout-btn{
+.logout-btn{
 
     background:#fff4f4 !important;
 
@@ -1050,31 +1014,25 @@ body{
 
 
 
-.bottom-buttons .logout-btn:hover{
+.logout-btn:hover{
 
     background:#ffe5e5 !important;
-
-    transform:translateY(-3px);
-
-    box-shadow:
-
-    0 8px 20px rgba(220,53,69,.15);
 
 }
 
 
-
 /* =========================
-   ÍCONES
+   ÍCONES (AJUSTADO)
 ========================= */
 
 
-i{
+.btn i,
+.menu i,
+.sidebar i{
 
     vertical-align:middle;
 
 }
-
 
 
 /* =========================
@@ -1095,8 +1053,6 @@ i{
     .sidebar{
 
         width:100%;
-
-        min-height:auto;
 
     }
 
@@ -1121,6 +1077,26 @@ i{
 
     }
 
+}
+
+
+
+@media(max-width:768px){
+
+
+    .table-card{
+
+        overflow-x:auto;
+
+    }
+
+
+    .table{
+
+        min-width:700px;
+
+    }
+
 
 }
 
@@ -1139,8 +1115,6 @@ i{
     .table-card{
 
         padding:15px;
-
-        overflow-x:auto;
 
     }
 
