@@ -1,175 +1,99 @@
-/* =====================================================
-   DASHBOARD BIBLIOTECÁRIO
-   CSS EXCLUSIVO
-===================================================== */
-
-
 /* =========================
    GERAL
 ========================= */
 
-*{
+body{
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
+    font-family:'Segoe UI', sans-serif;
+    background:#f6f9ff;
 }
-
-body{
-    background:#f4f8ff;
-    color:#1d3f72;
-}
-
-
 
 /* =========================
-   LAYOUT
-========================= */
-
-.layout{
-    display:flex;
-    min-height:100vh;
-}
-
-
-
-/* =========================
-   SIDEBAR BIBLIOTECÁRIO
+   SIDEBAR
 ========================= */
 
 .sidebar{
-
-    width:280px;
-
     background:#ffffff;
-
-    border-right:1px solid #e4ecff;
-
-    padding:30px 20px;
-
+    min-height:100vh;
+    padding:25px;
+    border-right:1px solid #e3ecff;
     display:flex;
-
     flex-direction:column;
-
     justify-content:space-between;
-
 }
 
-
-
-.logo-area{
-
-    text-align:center;
-
+.logo{
+    width:180px;
 }
 
-
-.logo-area img{
-
-    width:160px;
-
-    margin-bottom:15px;
-
-}
-
-
-.logo-area h2{
-
+.sidebar-title{
     color:#004aad;
-
-    font-size:26px;
-
-    font-weight:800;
-
+    font-weight:700;
+    text-align:center;
+    margin-top:20px;
+    margin-bottom:35px;
 }
 
-
-
-.menu{
-
-    list-style:none;
-
-    margin-top:40px;
-
-}
-
-
-
-.menu li{
-
-    margin-bottom:12px;
-
-}
-
-
-
-.menu li a{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
+.menu-item{
     padding:16px 18px;
-
-    border-radius:16px;
-
-    text-decoration:none;
-
+    border-radius:14px;
+    margin-bottom:10px;
     color:#35507a;
-
     font-size:17px;
-
-    font-weight:500;
-
-    transition:.3s;
-
+    transition:0.3s;
+    cursor:pointer;
 }
 
-
-
-.menu li a i{
-
-    font-size:21px;
-
+.menu-item i{
+    margin-right:12px;
 }
 
-
-
-.menu li a:hover,
-.menu li.active a{
-
+.menu-item:hover{
     background:#edf4ff;
-
-    color:#005bea;
-
 }
 
-
+.menu-item.active{
+    background:#edf4ff;
+    color:#005bea;
+    font-weight:600;
+}
 
 /* =========================
-   BOTÕES INFERIORES
+   BOTÃO SAIR
 ========================= */
-
+/* =========================
+   BOTÕES INFERIORES DESKTOP
+========================= */
 
 .bottom-buttons{
 
     display:flex;
 
-    gap:10px;
+    flex-direction:row;
+
+    gap:12px;
+
+    width:100%;
 
 }
 
 
+/* BOTÃO VOLTAR */
 
-.bottom-buttons .btn{
+.back-btn{
 
     flex:1;
 
-    height:55px;
+    height:58px;
 
-    border-radius:15px;
+    border-radius:16px;
+
+    background:#edf4ff;
+
+    border:1px solid #dce8ff;
+
+    color:#005bea !important;
 
     display:flex;
 
@@ -181,198 +105,30 @@ body{
 
     text-decoration:none;
 
+    font-size:16px;
+
     font-weight:600;
 
-    transition:.3s;
-
 }
 
 
-
-.back-btn{
-
-    background:#edf4ff;
-
-    color:#005bea;
-
-    border:1px solid #dce8ff;
-
-}
-
-
-
-.back-btn:hover{
-
-    background:#dbe9ff;
-
-    transform:translateY(-2px);
-
-}
-
-
+/* BOTÃO SAIR */
 
 .logout-btn{
 
-    background:#fff4f4;
+    flex:1;
 
-    color:#dc3545;
+    width:auto;
+
+    height:58px;
+
+    border-radius:16px;
+
+    background:#fff4f4;
 
     border:1px solid #ffd9d9;
 
-}
-
-
-
-.logout-btn:hover{
-
-    background:#ffe5e5;
-
-    transform:translateY(-2px);
-
-}
-
-
-
-/* =========================
-   CONTEÚDO
-========================= */
-
-
-.content{
-
-    flex:1;
-
-    padding:40px;
-
-}
-
-
-
-/* =========================
-   HEADER
-========================= */
-
-
-.page-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:35px;
-
-}
-
-
-
-.page-header h1{
-
-    color:#004aad;
-
-    font-size:40px;
-
-    font-weight:800;
-
-}
-
-
-
-.page-header p{
-
-    color:#6f87ab;
-
-    font-size:18px;
-
-    margin-top:8px;
-
-}
-
-
-
-.notification-btn{
-
-    width:55px;
-
-    height:55px;
-
-    border-radius:50%;
-
-    border:1px solid #dfe9ff;
-
-    background:white;
-
-    color:#004aad;
-
-    font-size:22px;
-
-}
-
-
-
-/* =========================
-   CARDS INFORMATIVOS
-========================= */
-
-
-.cards-grid{
-
-    display:grid;
-
-    grid-template-columns:
-
-    repeat(auto-fit,minmax(240px,1fr));
-
-    gap:20px;
-
-    margin-bottom:30px;
-
-}
-
-
-
-.info-card{
-
-    background:#ffffff;
-
-    border-radius:24px;
-
-    padding:25px;
-
-    border:1px solid #e4ecff;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:20px;
-
-    transition:.3s;
-
-}
-
-
-
-.info-card:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:0 12px 30px rgba(0,74,173,.10);
-
-}
-
-
-
-.card-icon{
-
-    width:70px;
-
-    height:70px;
-
-    border-radius:50%;
-
-    background:#edf4ff;
+    color:#dc3545 !important;
 
     display:flex;
 
@@ -380,252 +136,367 @@ body{
 
     justify-content:center;
 
-    color:#005bea;
+    gap:8px;
 
-    font-size:30px;
+    text-decoration:none;
 
-}
+    font-size:16px;
 
-
-
-.info-card h3{
-
-    color:#004aad;
-
-    font-size:32px;
-
-    font-weight:800;
+    font-weight:600;
 
 }
+.logout-btn{
 
+    flex:1;
 
+    height:58px;
 
-.info-card span{
+    border-radius:16px;
 
-    color:#6f87ab;
+    background:#fff4f4;
 
-}
+    border:1px solid #ffd9d9;
 
+    color:#dc3545 !important;
 
+    font-size:16px;
 
-/* =========================
-   TABELA EMPRÉSTIMOS
-========================= */
+    font-weight:600;
 
-
-.table-card{
-
-    background:#fff;
-
-    border-radius:26px;
-
-    padding:30px;
-
-    border:1px solid #e4ecff;
-
-}
-
-
-
-.table-header h2{
-
-    color:#004aad;
-
-    margin-bottom:20px;
-
-    font-weight:700;
-
-}
-
-
-
-.table{
-
-    width:100%;
-
-}
-
-
-
-.table thead th{
-
-    background:#edf4ff;
-
-    color:#004aad;
-
-    padding:16px;
-
-    border:none;
-
-}
-
-
-
-.table tbody td{
-
-    padding:16px;
-
-    color:#5f769d;
-
-    border-bottom:1px solid #eef3ff;
-
-}
-
-
-
-.table tbody tr:hover{
-
-    background:#f8fbff;
-
-}
-
-
-
-/* =========================
-   STATUS
-========================= */
-
-
-.status{
-
-    padding:8px 15px;
-
-    border-radius:20px;
-
-    font-size:13px;
-
-    font-weight:700;
-
-}
-
-
-
-.status-ok{
-
-    background:#e7f8ee;
-
-    color:#198754;
-
-}
-
-
-
-.status-pendente{
-
-    background:#fff4df;
-
-    color:#d89b00;
-
-}
-
-
-
-.status-atrasado{
-
-    background:#fff0f0;
-
-    color:#dc3545;
-
-}
-
-
-
-/* =========================
-   AÇÕES
-========================= */
-
-
-.actions{
+    text-decoration:none;
 
     display:flex;
-
-    gap:10px;
-
-}
-
-
-
-.btn-action{
-
-    width:40px;
-
-    height:40px;
-
-    border-radius:12px;
-
-    border:none;
-
-    color:white;
-
-}
-
-
-
-.edit{
-
-    background:#0066ff;
-
-}
-
-
-
-.delete{
-
-    background:#dc3545;
-
-}
-
-
-
-/* =========================
-   ALERTA
-========================= */
-
-
-.alert-card{
-
-    margin-top:30px;
-
-    background:#edf4ff;
-
-    border:1px solid #dce8ff;
-
-    border-radius:22px;
-
-    padding:25px;
-
-    display:flex;
-
-    gap:15px;
 
     align-items:center;
 
+    justify-content:center;
+
+    gap:8px;
+
+    transition:.3s;
+
+}
+/* =========================
+   CONTEUDO
+========================= */
+
+.content-area{
+    padding:30px;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* =========================
+   BUSCA COM BOTÃO
+========================= */
+
+.search-box{
+    background:#ffffff;
+    border:2px solid #dce8ff;
+    border-radius:20px;
+    height:72px;
+    width:65%;
+    display:flex;
+    align-items:center;
+    padding:0 12px 0 25px;
+    gap:15px;
+}
+
+.search-box i{
+    color:#6f86ad;
+    font-size:24px;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    flex:1;
+    font-size:18px;
+    color:#35507a;
+}
+
+.search-box input::placeholder{
+    color:#8a9bb8;
 }
 
 
+/* BOTÃO PESQUISAR */
 
-.alert-card i{
-
-    font-size:32px;
-
-    color:#005bea;
-
+.btn-search{
+    height:48px;
+    padding:0 25px;
+    border-radius:14px;
+    background:#004aad;
+    color:#ffffff !important;
+    font-size:16px;
+    font-weight:600;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.3s;
 }
 
+.btn-search:hover{
+    background:#005bea;
+    color:#ffffff !important;
+}
 
+.btn-search i{
+    color:#ffffff;
+    font-size:18px;
+}
 
-.alert-card h3{
-
+.notification-icon{
+    font-size:28px;
     color:#004aad;
-
 }
 
+/* =========================
+   CARDS SUPERIORES
+========================= */
 
+.stats-card{
+    background:#ffffff;
+    border:1px solid #e3ecff;
+    border-radius:22px;
+    padding:25px;
+    height:100%;
+}
 
-.alert-card p{
+.stats-icon{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#edf4ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+}
 
-    color:#6f87ab;
+.stats-icon i{
+    color:#005bea;
+    font-size:30px;
+}
 
+.stats-card h6{
+    color:#60779d;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.stats-card h2{
+    color:#005bea;
+    font-size:38px;
+    font-weight:800;
+}
+
+.stats-card a{
+    text-decoration:none;
+    color:#005bea;
+    font-weight:600;
+}
+
+/* =========================
+   CUSTOM CARD
+========================= */
+
+.custom-card{
+    background:#ffffff;
+    border-radius:24px;
+    padding:25px;
+    border:1px solid #e3ecff;
+    height:100%;
+}
+
+.card-header-custom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.card-header-custom h4{
+    color:#004aad;
+    font-weight:700;
+}
+
+.card-header-custom a{
+    color:#005bea;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* =========================
+   EMPRESTIMOS
+========================= */
+
+.emprestimo-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:18px 0;
+    border-bottom:1px solid #edf2ff;
+}
+
+.emprestimo-item img{
+    width:65px;
+    border-radius:12px;
+}
+
+.emprestimo-info h5{
+    margin:0;
+    color:#14396b;
+    font-size:17px;
+    font-weight:700;
+}
+
+.emprestimo-info p{
+    margin:5px 0;
+    color:#60779d;
+}
+
+.emprestimo-info span{
+    color:#7f90ab;
+    font-size:14px;
+}
+
+.emprestimo-data{
+    margin-left:auto;
+    text-align:right;
+}
+
+.emprestimo-data small{
+    display:block;
+    color:#7f90ab;
+}
+
+.emprestimo-data strong{
+    color:#005bea;
+}
+
+/* =========================
+   MULTAS
+========================= */
+
+.multa-item{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:18px 0;
+    border-bottom:1px solid #edf2ff;
+}
+
+.multa-avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#edf4ff;
+    color:#005bea;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:20px;
+}
+
+.multa-info h5{
+    margin:0;
+    color:#14396b;
+    font-size:17px;
+    font-weight:700;
+}
+
+.multa-info span{
+    color:#ff5a5a;
+    font-size:14px;
+}
+
+.multa-info p{
+    margin:5px 0 0;
+    color:#60779d;
+}
+
+.multa-valor{
+    margin-left:auto;
+    color:#ff4d4d;
+    font-size:22px;
+    font-weight:700;
+}
+
+/* =========================
+   BOTAO (CORRIGIDO)
+========================= */
+
+.btn-gerenciar{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:16px;
+    margin-top:20px;
+    background:#edf4ff;
+    color:#005bea;
+    font-weight:700;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+/* =========================
+   ACTION CARD
+========================= */
+
+.action-card{
+    background:#ffffff;
+    border-radius:22px;
+    border:1px solid #e3ecff;
+    padding:25px;
+    height:100%;
+}
+
+.action-icon{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#edf4ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+.action-icon i{
+    font-size:28px;
+    color:#005bea;
+}
+
+.action-card h5{
+    color:#14396b;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.action-card p{
+    color:#7d8daa;
+    min-height:60px;
+}
+
+.action-card a{
+    text-decoration:none;
+    color:#005bea;
+    font-weight:700;
 }
 
 
@@ -634,78 +505,19 @@ body{
    RESPONSIVO
 ========================= */
 
-
 @media(max-width:992px){
 
-    .layout{
-
-        flex-direction:column;
-
-    }
-
-
     .sidebar{
-
-        width:100%;
-
+        min-height:auto;
     }
 
-
-    .content{
-
-        padding:25px;
-
-    }
-
-
-    .page-header{
-
+    .topbar{
         flex-direction:column;
-
-        align-items:flex-start;
-
         gap:20px;
-
     }
 
-}
-
-
-
-@media(max-width:600px){
-
-    .content{
-
-        padding:15px;
-
-    }
-
-
-    .page-header h1{
-
-        font-size:28px;
-
-    }
-
-
-    .cards-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    .bottom-buttons{
-
-        flex-direction:column;
-
-    }
-
-
-    .table-card{
-
-        overflow-x:auto;
-
+    .search-box{
+        width:100%;
     }
 
 }
