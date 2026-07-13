@@ -2,9 +2,6 @@
    FONTE
 ========================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-
 /* =========================
    VARIÁVEIS
 ========================= */
@@ -46,7 +43,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Segoe UI',sans-serif;
 
 }
 
@@ -77,6 +74,15 @@ body{
 }
 
 
+.dashboard-container{
+
+    min-height:100vh;
+
+    padding:0;
+
+}
+
+
 
 /* =========================
    SIDEBAR
@@ -85,7 +91,7 @@ body{
 
 .sidebar{
 
-    width:280px;
+    width:230px;
 
     min-height:100vh;
 
@@ -93,7 +99,7 @@ body{
 
     border-right:1px solid var(--azul-borda);
 
-    padding:30px 20px;
+    padding:24px 16px;
 
     display:flex;
 
@@ -111,7 +117,7 @@ body{
 
 .logo{
 
-    width:180px;
+    width:120px;
 
     max-width:100%;
 
@@ -170,13 +176,13 @@ body{
 
     width:100%;
 
-    padding:16px 18px;
+    padding:10px 14px;
 
     border-radius:16px;
 
     color:#28508f;
 
-    font-size:17px;
+    font-size:14px;
 
     font-weight:500;
 
@@ -190,7 +196,7 @@ body{
 
 .menu-item i{
 
-    font-size:22px;
+    font-size:16px;
 
 }
 
@@ -228,7 +234,7 @@ body{
 
     flex:1;
 
-    height:55px;
+    height:42px;
 
     display:flex;
 
@@ -238,7 +244,7 @@ body{
 
     gap:8px;
 
-    border-radius:16px;
+    border-radius:10px;
 
     font-weight:600;
 
@@ -301,7 +307,7 @@ body{
 
     flex:1;
 
-    padding:35px;
+    padding:24px;
 
 }
 
@@ -332,19 +338,19 @@ body{
 
     width:65%;
 
-    height:70px;
+    height:42px;
 
     background:var(--branco);
 
     border:2px solid #dce8ff;
 
-    border-radius:20px;
+    border-radius:10px;
 
     display:flex;
 
     align-items:center;
 
-    padding:0 25px;
+    padding:10px 14px;
 
 }
 
@@ -354,7 +360,7 @@ body{
 
     color:#6f86ad;
 
-    font-size:24px;
+    font-size:16px;
 
 }
 
@@ -370,7 +376,7 @@ body{
 
     margin-left:15px;
 
-    font-size:18px;
+    font-size:14px;
 
 }
 
@@ -390,7 +396,7 @@ body{
 
     padding:12px 25px;
 
-    border-radius:14px;
+    border-radius:10px;
 
     font-weight:600;
 
@@ -414,7 +420,7 @@ body{
 
 .notification-icon{
 
-    font-size:30px;
+    font-size:18px;
 
     color:var(--azul-principal);
 
@@ -431,9 +437,9 @@ body{
 
     background:var(--branco);
 
-    border-radius:28px;
+    border-radius:16px;
 
-    padding:35px;
+    padding:20px;
 
     border:1px solid var(--azul-borda);
 
@@ -485,6 +491,8 @@ body{
 
     gap:40px;
 
+    margin-bottom:0;
+
 }
 
 
@@ -511,7 +519,7 @@ body{
 
 .book-details h1{
 
-    font-size:58px;
+    font-size:26px;
 
     line-height:1.1;
 
@@ -656,410 +664,6 @@ body{
 
 }
 
-/* =========================
-   GERAL
-========================= */
-
-body{
-    margin:0;
-    padding:0;
-    font-family:'Segoe UI', sans-serif;
-    background:#f6f9ff;
-}
-
-
-/* =========================
-   SIDEBAR
-========================= */
-
-.sidebar{
-    background:#ffffff;
-    min-height:100vh;
-    padding:25px;
-    border-right:1px solid #e3ecff;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-}
-
-.logo{
-    width:180px;
-}
-
-.sidebar-title{
-    color:#004aad;
-    text-align:center;
-    font-weight:700;
-    margin-top:20px;
-    margin-bottom:35px;
-}
-
-
-/* =========================
-   MENU SIDEBAR
-========================= */
-
-.menu{
-    margin-top:35px;
-    padding:0;
-}
-
-
-.menu-item{
-    margin-bottom:10px;
-    border-radius:14px;
-    transition:0.3s;
-}
-
-
-.menu-item a{
-
-    display:flex;
-    align-items:center;
-
-    gap:12px;
-
-    padding:16px 18px;
-
-    color:#35507a;
-
-    font-size:17px;
-
-    text-decoration:none;
-
-    border-radius:14px;
-
-    width:100%;
-
-    transition:0.3s;
-}
-
-
-.menu-item i{
-
-    font-size:20px;
-
-}
-
-
-/* HOVER */
-
-.menu-item a:hover{
-
-    background:#edf4ff;
-
-    color:#005bea;
-
-}
-
-
-/* ITEM ATIVO */
-
-.menu-item.active a{
-
-    background:#edf4ff;
-
-    color:#005bea;
-
-    font-weight:600;
-
-}
-
-
-.menu-item.active{
-    background:#edf4ff;
-    color:#005bea;
-    font-weight:600;
-}
-
-
-.menu-item i{
-    margin-right:12px;
-}
-
-
-.menu-item:hover{
-    background:#edf4ff;
-    color:#005bea;
-    text-decoration:none;
-}
-
-
-/* =========================
-   BOTÕES INFERIORES
-========================= */
-
-.bottom-buttons{
-    margin-top:auto;
-    display:flex;
-    gap:10px;
-}
-
-
-.bottom-buttons .btn{
-    flex:1;
-    height:58px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    border-radius:16px;
-    font-size:16px;
-    font-weight:600;
-    text-decoration:none;
-    transition:.3s;
-}
-
-
-/* VOLTAR */
-
-.back-btn{
-    background:#edf4ff;
-    border:1px solid #d9e7ff;
-    color:#005bea;
-}
-
-
-.back-btn:hover{
-    background:#dbe9ff;
-    color:#005bea;
-    transform:translateY(-2px);
-}
-
-
-/* SAIR */
-
-.logout-btn{
-    background:#fff4f4;
-    border:1px1px solid #ffd9d9;
-    color:#dc3545;
-}
-
-
-.logout-btn:hover{
-    background:#ffe5e5;
-    color:#b02a37;
-    transform:translateY(-2px);
-}
-
-
-
-/* =========================
-   CONTEUDO
-========================= */
-
-.content-area{
-    padding:30px;
-}
-
-
-/* =========================
-   TOPBAR
-========================= */
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-}
-
-
-.search-box{
-    background:#ffffff;
-    border:2px solid #dce8ff;
-    border-radius:20px;
-    height:72px;
-    width:65%;
-    display:flex;
-    align-items:center;
-    padding:0 25px;
-}
-
-
-.search-box i{
-    color:#6f86ad;
-    font-size:24px;
-}
-
-
-.search-box input{
-    border:none;
-    outline:none;
-    width:100%;
-    margin-left:15px;
-    font-size:20px;
-}
-
-
-.notification-icon{
-    font-size:28px;
-    color:#004aad;
-}
-
-
-
-/* =========================
-   CONTAINER
-========================= */
-
-.book-container{
-    background:#ffffff;
-    border-radius:26px;
-    padding:30px;
-    border:1px solid #e3ecff;
-}
-
-
-
-/* =========================
-   BREADCRUMB
-========================= */
-
-.breadcrumb-custom{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:35px;
-    color:#7b8da9;
-    font-size:15px;
-}
-
-
-.breadcrumb-custom strong{
-    color:#35507a;
-}
-
-
-
-/* =========================
-   LIVRO
-========================= */
-
-.book-info-area{
-    display:flex;
-    gap:35px;
-}
-
-
-.book-cover img{
-    width:280px;
-    border-radius:18px;
-}
-
-
-.book-details h1{
-    font-size:60px;
-    color:#004aad;
-    font-weight:800;
-}
-
-
-.book-details h3{
-    color:#005bea;
-    margin-bottom:25px;
-}
-
-/* =========================
-   RATING
-========================= */
-
-.rating-area{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    margin-bottom:30px;
-}
-
-
-.stars{
-    color:#ffb400;
-    font-size:24px;
-}
-
-
-.rating-area span{
-    color:#60779d;
-    font-weight:600;
-}
-
-
-
-/* =========================
-   INFOS
-========================= */
-
-.book-data{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:18px;
-
-}
-
-
-.info-item{
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-
-.info-item strong{
-
-    color:#35507a;
-
-    margin-bottom:5px;
-
-}
-
-
-.info-item span{
-
-    color:#60779d;
-
-}
-
-
-
-/* =========================
-   SINOPSE
-========================= */
-
-.sinopse-area{
-
-    margin-top:40px;
-
-    padding-top:30px;
-
-    border-top:1px solid #edf2ff;
-
-}
-
-
-.sinopse-area h4{
-
-    color:#004aad;
-
-    font-weight:700;
-
-    margin-bottom:20px;
-
-}
-
-
-.sinopse-area p{
-
-    color:#60779d;
-
-    line-height:1.8;
-
-}
-
 
 
 /* =========================
@@ -1068,20 +672,20 @@ body{
 
 .side-card{
 
-    background:#ffffff;
+    background:var(--branco);
 
-    border:1px solid #e3ecff;
+    border:1px solid var(--azul-borda);
 
-    border-radius:22px;
+    border-radius:16px;
 
-    padding:25px;
+    padding:20px;
 
 }
 
 
 .status-badge{
 
-    background:#005bea;
+    background:var(--azul-gradiente);
 
     border:none;
 
@@ -1104,7 +708,7 @@ body{
 
 .side-card h4{
 
-    color:#004aad;
+    color:var(--azul-principal);
 
     font-weight:700;
 
@@ -1133,13 +737,13 @@ body{
 
 .availability-icon{
 
-    width:70px;
+    width:42px;
 
-    height:70px;
+    height:42px;
 
     border-radius:50%;
 
-    background:#edf4ff;
+    background:var(--azul-claro);
 
     display:flex;
 
@@ -1152,18 +756,18 @@ body{
 
 .availability-icon i{
 
-    font-size:32px;
+    font-size:18px;
 
-    color:#005bea;
+    color:var(--azul-gradiente);
 
 }
 
 
 .availability-box h2{
 
-    color:#005bea;
+    color:var(--azul-gradiente);
 
-    font-size:48px;
+    font-size:26px;
 
     font-weight:800;
 
@@ -1174,7 +778,7 @@ body{
 
 .availability-box p{
 
-    color:#60779d;
+    color:var(--texto-claro);
 
     margin:0;
 
@@ -1190,17 +794,17 @@ body{
 
     width:100%;
 
-    height:58px;
+    height:42px;
 
-    background:linear-gradient(90deg,#005bea,#0047b3);
+    background:linear-gradient(90deg,var(--azul-gradiente),#0047b3);
 
     border:none;
 
-    border-radius:16px;
+    border-radius:10px;
 
     color:#ffffff;
 
-    font-size:18px;
+    font-size:14px;
 
     font-weight:700;
 
@@ -1214,17 +818,17 @@ body{
 
     width:100%;
 
-    height:58px;
+    height:42px;
 
-    background:#ffffff;
+    background:var(--branco);
 
     border:2px solid #dce8ff;
 
-    border-radius:16px;
+    border-radius:10px;
 
-    color:#005bea;
+    color:var(--azul-gradiente);
 
-    font-size:18px;
+    font-size:14px;
 
     font-weight:700;
 
@@ -1247,9 +851,9 @@ body{
 
 .nota{
 
-    font-size:62px;
+    font-size:26px;
 
-    color:#005bea;
+    color:var(--azul-gradiente);
 
     font-weight:800;
 
@@ -1258,7 +862,7 @@ body{
 
 .avaliacao-geral span{
 
-    color:#60779d;
+    color:var(--texto-claro);
 
 }
 
@@ -1288,7 +892,7 @@ body{
 
     width:45px;
 
-    color:#60779d;
+    color:var(--texto-claro);
 
 }
 
@@ -1299,7 +903,7 @@ body{
 
     height:10px;
 
-    background:#edf2ff;
+    background:var(--azul-borda);
 
     border-radius:20px;
 
@@ -1312,7 +916,7 @@ body{
 
     height:100%;
 
-    background:#005bea;
+    background:var(--azul-gradiente);
 
     border-radius:20px;
 
@@ -1328,7 +932,7 @@ body{
 
 .bar-item small{
 
-    color:#60779d;
+    color:var(--texto-claro);
 
 }
 
@@ -1338,17 +942,17 @@ body{
 
     width:100%;
 
-    height:58px;
+    height:42px;
 
-    background:#ffffff;
+    background:var(--branco);
 
     border:2px solid #dce8ff;
 
-    border-radius:16px;
+    border-radius:10px;
 
-    color:#005bea;
+    color:var(--azul-gradiente);
 
-    font-size:17px;
+    font-size:14px;
 
     font-weight:700;
 
@@ -1369,7 +973,7 @@ body{
 
 .extra-info h4{
 
-    color:#004aad;
+    color:var(--azul-principal);
 
     font-weight:700;
 
@@ -1380,11 +984,11 @@ body{
 
 .extra-card{
 
-    border:1px1px solid #e3ecff;
+    border:1px solid var(--azul-borda);
 
-    border-radius:20px;
+    border-radius:16px;
 
-    padding:22px;
+    padding:20px;
 
     display:flex;
 
@@ -1399,13 +1003,13 @@ body{
 
 .extra-icon{
 
-    width:60px;
+    width:42px;
 
-    height:60px;
+    height:42px;
 
     border-radius:50%;
 
-    background:#edf4ff;
+    background:var(--azul-claro);
 
     display:flex;
 
@@ -1418,9 +1022,9 @@ body{
 
 .extra-icon i{
 
-    color:#005bea;
+    color:var(--azul-gradiente);
 
-    font-size:28px;
+    font-size:18px;
 
 }
 
@@ -1434,7 +1038,7 @@ body{
 
 .extra-card h6{
 
-    color:#004aad;
+    color:var(--azul-principal);
 
     margin:5px 0;
 
@@ -1445,7 +1049,7 @@ body{
 
 .extra-card span{
 
-    color:#005bea;
+    color:var(--azul-gradiente);
 
     font-size:14px;
 
@@ -1511,37 +1115,25 @@ body{
 
     .book-details h1{
 
-        font-size:42px;
+        font-size:26px;
 
     }
 
 
     .nota{
 
-        font-size:48px;
+        font-size:26px;
 
     }
 
 
     .btn-search{
 
-        border:none;
-
-        background:linear-gradient(135deg,#6c63ff,#4f46e5);
-
-        color:white;
-
         padding:10px 22px;
 
-        border-radius:12px;
+        border-radius:10px;
 
-        font-weight:600;
-
-        font-size:15px;
-
-        cursor:pointer;
-
-        transition:all .3s ease;
+        font-size:14px;
 
     }
 
@@ -1550,7 +1142,7 @@ body{
 
         transform:translateY(-2px);
 
-        box-shadow:0 8px 20px rgba(79,70,229,.35);
+        box-shadow:0 8px 20px rgba(0,74,173,.25);
 
     }
 
@@ -1575,6 +1167,127 @@ body{
 /* =========================
    MODAL AVALIAÇÃO
 ========================= */
+
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+
+    background:rgba(29,63,114,.45);
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:1000;
+
+}
+
+
+.modal.show{
+
+    display:flex;
+
+}
+
+
+.modal-content{
+
+    background:var(--branco);
+
+    border-radius:16px;
+
+    padding:20px;
+
+    box-shadow:var(--sombra-hover);
+
+}
+
+
+.modal-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+}
+
+
+.modal-header h2{
+
+    color:var(--azul-principal);
+
+    font-size:17px;
+
+    font-weight:700;
+
+}
+
+
+.btn-fechar{
+
+    background:none;
+
+    border:none;
+
+    font-size:20px;
+
+    color:#7b8da9;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.btn-fechar:hover{
+
+    color:var(--vermelho);
+
+}
+
+
+.modal-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:10px;
+
+}
+
+
+.campo{
+
+    margin-bottom:10px;
+
+}
+
+
+.campo label{
+
+    display:block;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
 
 
 .modal-livro{
@@ -1651,9 +1364,9 @@ body{
 
     justify-content:center;
 
-    gap:12px;
+    gap:8px;
 
-    margin-bottom:15px;
+    margin:25px 0;
 
 }
 
@@ -1661,7 +1374,7 @@ body{
 
 .star{
 
-    font-size:48px;
+    font-size:55px;
 
     color:#d9d9d9;
 
@@ -1782,58 +1495,5 @@ textarea:focus{
     border-radius:10px;
 
     cursor:pointer;
-
-}
-
-
-
-/* AJUSTES FINAIS */
-
-.rating{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:8px;
-
-    margin:25px 0;
-
-}
-
-
-.star{
-
-    font-size:55px;
-
-    color:#d9d9d9;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-
-
-.book-container{
-
-    padding-bottom:30px;
-
-}
-
-
-
-.book-info-area{
-
-    margin-bottom:0;
-
-}
-
-
-
-.content-area{
-
-    padding-bottom:30px;
 
 }

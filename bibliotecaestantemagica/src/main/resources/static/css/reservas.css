@@ -2,9 +2,6 @@
    FONTE
 ========================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-
 /* =========================
    VARIÁVEIS DO SISTEMA
 ========================= */
@@ -50,7 +47,7 @@
 
     box-sizing:border-box;
 
-    font-family:'Poppins',sans-serif;
+    font-family:'Segoe UI',sans-serif;
 
 }
 
@@ -87,7 +84,7 @@ body{
 
     flex:1;
 
-    padding:40px;
+    padding:24px;
 
     animation:aparecer .5s ease;
 
@@ -130,13 +127,13 @@ body{
 
 .sidebar{
 
-    width:280px;
+    width:230px;
 
     background:var(--branco);
 
     border-right:1px solid var(--azul-borda);
 
-    padding:30px 20px;
+    padding:24px 16px;
 
     display:flex;
 
@@ -164,7 +161,7 @@ body{
 
 .logo-area img{
 
-    width:180px;
+    width:120px;
 
     max-width:100%;
 
@@ -176,7 +173,7 @@ body{
 
 .logo-area h2{
 
-    font-size:26px;
+    font-size:20px;
 
     color:var(--azul-principal);
 
@@ -217,7 +214,7 @@ body{
 
     gap:15px;
 
-    padding:16px 18px;
+    padding:10px 14px;
 
     border-radius:16px;
 
@@ -225,7 +222,7 @@ body{
 
     color:#28508f;
 
-    font-size:16px;
+    font-size:14px;
 
     font-weight:500;
 
@@ -271,7 +268,7 @@ body{
 
 .page-header h1{
 
-    font-size:34px;
+    font-size:26px;
 
     color:var(--azul-principal);
 
@@ -304,11 +301,11 @@ body{
 
     border:none;
 
-    height:52px;
+    height:42px;
 
     padding:0 24px;
 
-    border-radius:16px;
+    border-radius:10px;
 
     font-weight:600;
 
@@ -339,9 +336,9 @@ body{
 
     background:var(--branco);
 
-    border-radius:30px;
+    border-radius:16px;
 
-    padding:30px;
+    padding:20px;
 
     border:1px solid var(--azul-borda);
 
@@ -365,7 +362,7 @@ body{
 
     font-weight:700;
 
-    font-size:28px;
+    font-size:17px;
 
 }
 
@@ -389,7 +386,7 @@ body{
 
     border-bottom:1px solid var(--azul-borda);
 
-    padding:18px;
+    padding:10px 12px;
 
 }
 
@@ -399,7 +396,7 @@ body{
 
     vertical-align:middle;
 
-    padding:18px;
+    padding:10px 12px;
 
     border-color:var(--azul-borda);
 
@@ -542,7 +539,7 @@ body{
 
     flex:1;
 
-    height:45px;
+    height:42px;
 
     display:flex;
 
@@ -552,7 +549,7 @@ body{
 
     gap:8px;
 
-    border-radius:14px;
+    border-radius:10px;
 
     font-weight:600;
 
@@ -624,7 +621,7 @@ body{
 
     .sidebar{
 
-        width:240px;
+        width:230px;
 
     }
 
@@ -654,7 +651,7 @@ body{
 
     .sidebar{
 
-        width:100%;
+        width:230px;
 
         border-right:none;
 
@@ -665,14 +662,14 @@ body{
 
     .content{
 
-        padding:20px;
+        padding:24px;
 
     }
 
 
     .page-header h1{
 
-        font-size:28px;
+        font-size:26px;
 
     }
 

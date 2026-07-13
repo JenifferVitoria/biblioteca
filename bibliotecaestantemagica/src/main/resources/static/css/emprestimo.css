@@ -2,9 +2,6 @@
    FONTE
 ========================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-
 /* =========================
    GERAL
 ========================= */
@@ -13,7 +10,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 
@@ -44,13 +41,13 @@ body{
 
 .sidebar{
 
-    width:280px;
+    width:230px;
 
     background:#ffffff;
 
     border-right:1px solid #dfe9ff;
 
-    padding:30px 20px;
+    padding:24px 16px;
 
     display:flex;
 
@@ -74,7 +71,7 @@ body{
 
 .logo-area img{
 
-    width:180px;
+    width:120px;
 
     max-width:100%;
 
@@ -88,9 +85,9 @@ body{
 
     color:#004aad;
 
-    font-size:26px;
+    font-size:20px;
 
-    font-weight:700;
+    font-weight:800;
 
 }
 
@@ -124,7 +121,7 @@ body{
 
     gap:15px;
 
-    padding:15px 18px;
+    padding:10px 14px;
 
     border-radius:16px;
 
@@ -132,7 +129,7 @@ body{
 
     color:#28508f;
 
-    font-size:17px;
+    font-size:14px;
 
     font-weight:500;
 
@@ -144,7 +141,7 @@ body{
 
 .menu li a i{
 
-    font-size:21px;
+    font-size:16px;
 
 }
 
@@ -186,9 +183,9 @@ body{
 
     flex:1;
 
-    height:55px;
+    height:42px;
 
-    border-radius:16px;
+    border-radius:10px;
 
     display:flex;
 
@@ -200,7 +197,7 @@ body{
 
     text-decoration:none;
 
-    font-size:15px;
+    font-size:14px;
 
     font-weight:600;
 
@@ -273,7 +270,7 @@ body{
 
     flex:1;
 
-    padding:40px;
+    padding:24px;
 
 }
 
@@ -300,7 +297,7 @@ body{
 
 .page-header h1{
 
-    font-size:38px;
+    font-size:26px;
 
     color:#004aad;
 
@@ -324,11 +321,11 @@ body{
 
 .btn-add{
 
-    height:58px;
+    height:42px;
 
     padding:0 25px;
 
-    border-radius:16px;
+    border-radius:10px;
 
     background:linear-gradient(135deg,#0066ff,#004aad);
 
@@ -344,7 +341,7 @@ body{
 
     gap:8px;
 
-    font-size:16px;
+    font-size:14px;
 
     font-weight:600;
 
@@ -370,7 +367,7 @@ body{
 
 .btn-add i{
 
-    font-size:18px;
+    font-size:14px;
 
 }
 
@@ -385,7 +382,7 @@ body{
 
     grid-template-columns:repeat(4,1fr);
 
-    gap:20px;
+    gap:16px;
 
     margin-bottom:30px;
 
@@ -399,9 +396,9 @@ body{
 
     border:1px solid #dfe9ff;
 
-    border-radius:24px;
+    border-radius:16px;
 
-    padding:25px;
+    padding:20px;
 
     display:flex;
 
@@ -427,11 +424,11 @@ body{
 
 .card-icon{
 
-    width:70px;
+    width:42px;
 
-    height:70px;
+    height:42px;
 
-    min-width:70px;
+    min-width:42px;
 
     border-radius:50%;
 
@@ -445,7 +442,7 @@ body{
 
     justify-content:center;
 
-    font-size:30px;
+    font-size:18px;
 
 }
 
@@ -457,7 +454,7 @@ body{
 
     color:#004aad;
 
-    font-size:32px;
+    font-size:26px;
 
     font-weight:800;
 
@@ -488,9 +485,9 @@ body{
 
     background:#ffffff;
 
-    border-radius:28px;
+    border-radius:16px;
 
-    padding:30px;
+    padding:20px;
 
     border:1px solid #dfe9ff;
 
@@ -518,7 +515,7 @@ body{
 
     color:#004aad;
 
-    font-size:26px;
+    font-size:17px;
 
     font-weight:700;
 
@@ -556,7 +553,7 @@ body{
 
     border:none;
 
-    padding:18px;
+    padding:10px 12px;
 
     font-weight:700;
 
@@ -586,7 +583,7 @@ body{
 
 .table tbody td{
 
-    padding:18px;
+    padding:10px 12px;
 
     vertical-align:middle;
 
@@ -633,9 +630,9 @@ body{
 
 .avatar{
 
-    width:55px;
+    width:42px;
 
-    height:55px;
+    height:42px;
 
     border-radius:50%;
 
@@ -696,9 +693,9 @@ body{
 
 .book-info img{
 
-    width:55px;
+    width:45px;
 
-    height:75px;
+    height:60px;
 
     object-fit:cover;
 
@@ -929,7 +926,7 @@ body{
 
     border:none;
 
-    border-radius:28px;
+    border-radius:16px;
 
     box-shadow:0 20px 50px rgba(0,0,0,.12);
 
@@ -941,7 +938,7 @@ body{
 
     border:none;
 
-    padding:25px 30px 10px;
+    padding:24px 24px 10px;
 
 }
 
@@ -951,7 +948,7 @@ body{
 
     color:#004aad;
 
-    font-size:24px;
+    font-size:17px;
 
     font-weight:700;
 
@@ -961,7 +958,7 @@ body{
 
 .modal-body{
 
-    padding:20px 30px;
+    padding:20px 24px;
 
 }
 
@@ -990,13 +987,13 @@ body{
 .modal-body .form-select{
 
 
-    height:52px;
+    height:42px;
 
-    border-radius:14px;
+    border-radius:10px;
 
     border:1px solid #dfe9ff;
 
-    padding:0 16px;
+    padding:20px 24px;
 
     color:#35507a;
 
@@ -1020,9 +1017,9 @@ body{
 
 .modal-body textarea.form-control{
 
-    height:100px;
+    height:42px;
 
-    padding:15px;
+    padding:20px 24px;
 
     resize:none;
 
@@ -1063,7 +1060,7 @@ body{
 
     border:none;
 
-    padding:15px 30px 25px;
+    padding:10px 24px 24px;
 
     display:flex;
 
@@ -1079,11 +1076,11 @@ body{
 .modal-footer .btn{
 
 
-    height:50px;
+    height:42px;
 
-    border-radius:14px;
+    border-radius:10px;
 
-    padding:0 25px;
+    padding:10px 24px 24px;
 
     font-weight:600;
 
@@ -1144,9 +1141,9 @@ body{
 .btn-search-modal{
 
 
-    width:50px;
+    width:42px;
 
-    height:45px;
+    height:42px;
 
     border:none;
 
@@ -1190,7 +1187,7 @@ body{
 
     .sidebar{
 
-        width:240px;
+        width:230px;
 
     }
 
@@ -1204,7 +1201,7 @@ body{
 
     .content{
 
-        padding:25px;
+        padding:24px;
 
     }
 
@@ -1230,7 +1227,7 @@ body{
 
     .sidebar{
 
-        width:100%;
+        width:230px;
 
         min-height:auto;
 
@@ -1257,7 +1254,7 @@ body{
 
     .content{
 
-        padding:20px;
+        padding:24px;
 
     }
 
@@ -1308,7 +1305,7 @@ body{
 
     .page-header h1{
 
-        font-size:30px;
+        font-size:26px;
 
     }
 
@@ -1317,7 +1314,7 @@ body{
 
         padding:20px;
 
-        border-radius:22px;
+        border-radius:16px;
 
     }
 

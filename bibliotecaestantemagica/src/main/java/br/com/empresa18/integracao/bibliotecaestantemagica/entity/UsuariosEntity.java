@@ -1,4 +1,4 @@
-package br.com.empresa18.integracao.bibliotecaestantemagica.entity;
+	package br.com.empresa18.integracao.bibliotecaestantemagica.entity;
 
 import java.time.LocalDate;
 
@@ -24,7 +24,7 @@ public class UsuariosEntity {
 	@Column(name = "nome", length = 150, nullable = false)
 	private String nome;
 
-	@Column (name = "cpf", length = 11, nullable = false)
+	@Column (name = "cpf", length = 20, nullable = false)
 	private String cpf;
 	
 	@Column(nullable = true)

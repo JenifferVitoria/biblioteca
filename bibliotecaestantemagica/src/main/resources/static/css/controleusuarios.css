@@ -41,13 +41,13 @@ body{
 
 .sidebar{
 
-    width:280px;
+    width:230px;
 
     background:#ffffff;
 
     border-right:1px solid #e4ecff;
 
-    padding:30px 20px;
+    padding:24px 16px;
 
     display:flex;
 
@@ -68,7 +68,7 @@ body{
 
 .logo-area img{
 
-    width:150px;
+    width:120px;
 
 }
 
@@ -102,7 +102,7 @@ body{
 
     gap:15px;
 
-    padding:16px 18px;
+    padding:10px 14px;
 
     border-radius:16px;
 
@@ -110,7 +110,7 @@ body{
 
     color:#28508f;
 
-    font-size:18px;
+    font-size:14px;
 
     transition:.3s;
 
@@ -120,7 +120,7 @@ body{
 
 .menu li a i{
 
-    font-size:22px;
+    font-size:16px;
 
 }
 
@@ -156,7 +156,7 @@ body{
 
     flex:1;
 
-    height:58px;
+    height:42px;
 
     display:flex;
 
@@ -166,7 +166,7 @@ body{
 
     gap:8px;
 
-    border-radius:16px;
+    border-radius:10px;
 
     font-weight:600;
 
@@ -234,7 +234,7 @@ body{
 
     flex:1;
 
-    padding:40px;
+    padding:24px;
 
 }
 
@@ -261,7 +261,7 @@ body{
 
     color:#004aad;
 
-    font-size:42px;
+    font-size:26px;
 
     font-weight:800;
 
@@ -291,7 +291,7 @@ body{
 
     grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
 
-    gap:20px;
+    gap:16px;
 
     margin-bottom:30px;
 
@@ -303,9 +303,9 @@ body{
 
     background:#ffffff;
 
-    border-radius:24px;
+    border-radius:16px;
 
-    padding:25px;
+    padding:20px;
 
     border:1px solid #e4ecff;
 
@@ -333,9 +333,9 @@ body{
 
 .card-icon{
 
-    width:70px;
+    width:42px;
 
-    height:70px;
+    height:42px;
 
     border-radius:50%;
 
@@ -349,7 +349,7 @@ body{
 
     color:#005bea;
 
-    font-size:30px;
+    font-size:18px;
 
 }
 
@@ -359,7 +359,7 @@ body{
 
     color:#004aad;
 
-    font-size:32px;
+    font-size:26px;
 
     font-weight:800;
 
@@ -384,9 +384,9 @@ body{
 
     background:#ffffff;
 
-    border-radius:28px;
+    border-radius:16px;
 
-    padding:30px;
+    padding:20px;
 
     border:1px solid #e4ecff;
 
@@ -408,7 +408,7 @@ body{
 
     font-weight:700;
 
-    font-size:28px;
+    font-size:17px;
 
 }
 
@@ -438,7 +438,7 @@ body{
 
     border:none;
 
-    padding:18px;
+    padding:10px 12px;
 
     font-weight:700;
 
@@ -448,7 +448,7 @@ body{
 
 .table tbody td{
 
-    padding:18px;
+    padding:10px 12px;
 
     vertical-align:middle;
 
@@ -608,7 +608,7 @@ body{
 
     .sidebar{
 
-        width:240px;
+        width:230px;
 
     }
 
@@ -628,14 +628,14 @@ body{
 
     .sidebar{
 
-        width:100%;
+        width:230px;
 
     }
 
 
     .content{
 
-        padding:25px;
+        padding:24px;
 
     }
 
@@ -660,7 +660,7 @@ body{
 
     .content{
 
-        padding:20px;
+        padding:24px;
 
     }
 

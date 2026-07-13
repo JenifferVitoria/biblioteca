@@ -1,4 +1,4 @@
-const API_LISTAR_ATRASADOS ="http://192.168.10.22:8011/emprestimos/atrasados"
+const API_LISTAR_ATRASADOS ="http://192.168.10.22:8000/emprestimos/atrasados"
 
 let listaMultas = [];
 let listaEmprestimos = [];
@@ -128,7 +128,7 @@ async function abrirModalPix(valor) {
         valor = parseFloat(valor);
 		
     const response = await fetch(
-        `http://localhost:8000/pix/gerar?valor=${valor.toFixed(2)}`);
+        `http://192.168.10.22:8000/pix/gerar?valor=${valor.toFixed(2)}`);
 
     const data = await response.json();
 

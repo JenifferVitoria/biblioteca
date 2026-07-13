@@ -11,7 +11,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins','Segoe UI',sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 
@@ -37,11 +37,21 @@ body{
 }
 
 
-.content{
+.dashboard-container{
+
+    min-height:100vh;
+
+    padding:0;
+
+}
+
+
+.content,
+.content-area{
 
     flex:1;
 
-    padding:40px;
+    padding:24px;
 
 }
 
@@ -54,13 +64,13 @@ body{
 
 .sidebar{
 
-    width:260px;
+    width:230px;
 
     background:#ffffff;
 
     border-right:1px solid #dfe9ff;
 
-    padding:30px 20px;
+    padding:24px 16px;
 
     display:flex;
 
@@ -86,7 +96,7 @@ body{
 
 .logo-area img{
 
-    width:150px;
+    width:120px;
 
     margin-bottom:15px;
 
@@ -98,9 +108,9 @@ body{
 
     color:#004aad;
 
-    font-size:25px;
+    font-size:20px;
 
-    font-weight:700;
+    font-weight:800;
 
 }
 
@@ -135,7 +145,7 @@ body{
 
     gap:15px;
 
-    padding:15px 18px;
+    padding:10px 14px;
 
     border-radius:16px;
 
@@ -143,7 +153,7 @@ body{
 
     color:#28508f;
 
-    font-size:17px;
+    font-size:14px;
 
     transition:.3s;
 
@@ -153,7 +163,7 @@ body{
 
 .menu li a i{
 
-    font-size:20px;
+    font-size:16px;
 
 }
 
@@ -161,6 +171,59 @@ body{
 
 .menu li.active a,
 .menu li a:hover{
+
+    background:#edf4ff;
+
+    color:#005bea;
+
+}
+
+
+
+/* item de menu usado como <li> ou <a> soltos */
+
+.menu-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:10px 14px;
+
+    border-radius:16px;
+
+    text-decoration:none;
+
+    color:#28508f;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+    margin-bottom:12px;
+
+    list-style:none;
+
+}
+
+
+
+.menu-item i{
+
+    font-size:16px;
+
+}
+
+
+
+.menu-item.active,
+.menu-item:hover{
 
     background:#edf4ff;
 
@@ -189,7 +252,7 @@ body{
 
     flex:1;
 
-    height:55px;
+    height:42px;
 
     display:flex;
 
@@ -199,7 +262,7 @@ body{
 
     gap:8px;
 
-    border-radius:16px;
+    border-radius:10px;
 
     font-weight:600;
 
@@ -287,19 +350,19 @@ body{
 
     width:65%;
 
-    height:65px;
+    height:42px;
 
     background:white;
 
     border:2px solid #dce8ff;
 
-    border-radius:20px;
+    border-radius:10px;
 
     display:flex;
 
     align-items:center;
 
-    padding:0 22px;
+    padding:10px 14px;
 
 }
 
@@ -309,7 +372,7 @@ body{
 
     color:#6f86ad;
 
-    font-size:22px;
+    font-size:16px;
 
 }
 
@@ -325,7 +388,7 @@ body{
 
     margin-left:15px;
 
-    font-size:18px;
+    font-size:14px;
 
 }
 
@@ -336,9 +399,9 @@ body{
 
 .notification-icon{
 
-    width:55px;
+    width:42px;
 
-    height:55px;
+    height:42px;
 
     border-radius:50%;
 
@@ -352,9 +415,73 @@ body{
 
     color:#004aad;
 
-    font-size:24px;
+    font-size:18px;
 
     border:1px solid #dfe9ff;
+
+}
+
+
+
+/* ÁREA DO USUÁRIO */
+
+.user-area{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+
+.user-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+
+.user-info img{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+
+
+.user-info h6{
+
+    margin:0;
+
+    color:#004aad;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+
+
+.user-info span{
+
+    color:#6c7aa0;
+
+    font-size:13px;
 
 }
 
@@ -375,7 +502,7 @@ body{
 
 .page-header h1{
 
-    font-size:40px;
+    font-size:26px;
 
     color:#004aad;
 
@@ -396,6 +523,185 @@ body{
 
 
 /* =========================
+   CARD CUSTOM (LIVROS EM DESTAQUE)
+========================= */
+
+
+.custom-card{
+
+    background:white;
+
+    border-radius:16px;
+
+    border:1px solid #dfe9ff;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.card-header-custom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.card-header-custom h4{
+
+    color:#004aad;
+
+    font-weight:700;
+
+}
+
+
+
+.card-header-custom a{
+
+    color:#005bea;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+}
+
+
+
+.card-header-custom a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+
+.books-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+
+    gap:16px;
+
+}
+
+
+
+.book-card{
+
+    background:#f8fbff;
+
+    border:1px solid #eef3ff;
+
+    border-radius:18px;
+
+    padding:15px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+
+
+.book-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(0,74,173,.08);
+
+}
+
+
+
+.book-card img{
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    margin-bottom:12px;
+
+}
+
+
+
+.book-card h5{
+
+    color:#004aad;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    margin-bottom:4px;
+
+}
+
+
+
+.book-card p{
+
+    color:#6c7aa0;
+
+    font-size:14px;
+
+    margin-bottom:4px;
+
+}
+
+
+
+.book-card span{
+
+    display:inline-block;
+
+    background:#edf4ff;
+
+    color:#005bea;
+
+    font-size:12px;
+
+    padding:3px 10px;
+
+    border-radius:12px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.rating{
+
+    color:#ffb400;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+
+
+/* =========================
    CARDS
 ========================= */
 
@@ -408,7 +714,7 @@ body{
 
     repeat(auto-fit,minmax(240px,1fr));
 
-    gap:20px;
+    gap:16px;
 
     margin-bottom:30px;
 
@@ -420,23 +726,29 @@ body{
 
     background:white;
 
-    border-radius:24px;
+    border-radius:16px;
 
     border:1px solid #dfe9ff;
 
-    padding:25px;
+    padding:20px;
 
     display:flex;
 
-    align-items:center;
+    flex-direction:column;
 
-    gap:20px;
+    align-items:flex-start;
+
+    gap:6px;
+
+    transition:.3s;
 
 }
 
 
 
 .info-card:hover{
+
+    transform:translateY(-4px);
 
     box-shadow:
 
@@ -446,11 +758,12 @@ body{
 
 
 
-.card-icon{
+.card-icon,
+.info-icon{
 
-    width:65px;
+    width:42px;
 
-    height:65px;
+    height:42px;
 
     background:#edf4ff;
 
@@ -464,7 +777,9 @@ body{
 
     color:#005bea;
 
-    font-size:28px;
+    font-size:18px;
+
+    margin-bottom:10px;
 
 }
 
@@ -478,11 +793,58 @@ body{
 
 
 
-.info-card h3{
+.info-card h3,
+.info-card h4{
+
+    color:#6c7aa0;
+
+    font-size:26px;
+
+    font-weight:800;
+
+}
+
+
+
+.info-card h2{
 
     color:#004aad;
 
-    font-size:30px;
+    font-size:26px;
+
+    font-weight:800;
+
+}
+
+
+
+.info-card p{
+
+    color:#6c7aa0;
+
+    font-size:14px;
+
+}
+
+
+
+.info-card a{
+
+    color:#005bea;
+
+    font-weight:600;
+
+    font-size:14px;
+
+    text-decoration:none;
+
+}
+
+
+
+.info-card a:hover{
+
+    text-decoration:underline;
 
 }
 
@@ -497,11 +859,11 @@ body{
 
     background:white;
 
-    border-radius:25px;
+    border-radius:16px;
 
     border:1px solid #dfe9ff;
 
-    padding:30px;
+    padding:20px;
 
 }
 
@@ -531,7 +893,7 @@ body{
 
     color:#004aad;
 
-    padding:15px;
+    padding:10px 12px;
 
     text-align:left;
 
@@ -543,7 +905,7 @@ body{
 
 .table td{
 
-    padding:15px;
+    padding:10px 12px;
 
     color:#4d5d7c;
 
@@ -572,9 +934,9 @@ body{
 
 .book-info img{
 
-    width:60px;
+    width:45px;
 
-    height:85px;
+    height:60px;
 
     border-radius:10px;
 
@@ -652,7 +1014,7 @@ body{
 
     padding:11px 18px;
 
-    border-radius:12px;
+    border-radius:10px;
 
     font-weight:600;
 
@@ -683,9 +1045,9 @@ body{
 
     border:1px solid #dfe9ff;
 
-    border-radius:24px;
+    border-radius:16px;
 
-    padding:25px;
+    padding:20px;
 
     display:flex;
 
@@ -727,7 +1089,7 @@ body{
 
     .sidebar{
 
-        width:100%;
+        width:230px;
 
     }
 
@@ -755,14 +1117,14 @@ body{
 
     .content{
 
-        padding:15px;
+        padding:24px;
 
     }
 
 
     .page-header h1{
 
-        font-size:30px;
+        font-size:26px;
 
     }
 

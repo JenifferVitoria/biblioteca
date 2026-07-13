@@ -1,66 +1,58 @@
 
 // COMEÇANDO O METODO LISTAR TODOS DOS (LIVROS)
-
-const API_BUSCAR_TODOS = "http://192.168.10.22:8011/reservas/listartodos";
-const API_BUSCAR_POR_ID = "http://192.168.10.22:8011/reservas/listarporid";
-const API_ATUALIZAR = "http://192.168.10.22:8011/reservas/atualizar";
-const API_DELETAR = "http://192.168.10.22:8011/reservas/deletar";
-const API_SALVAR ="http://192.168.10.22:8011/reservas/salvar";
+const API_BASE2 = "http://192.168.10.22:8000";
+const API_BUSCAR_TODOS = API_BASE2+"/192.168.10.22/listartodos";
+const API_BUSCAR_POR_ID = API_BASE2+"/192.168.10.22/listarporid";
+const API_ATUALIZAR = API_BASE2+"/192.168.10.22/atualizar";
+const API_DELETAR = API_BASE2+"/192.168.10.22/deletar";
+const API_SALVAR =API_BASE2+"/192.168.10.22/salvar";
 
 let editandoID = null;
 
 function AbrirPagina(){
-     window.location.href ="emprestimo.html";
+     window.location.href ="emprestimos.html";
 }
 
 
 
 async function listarLivrosCadastrados(){
-	
+	console.log("passou aqui");
 	const response = await fetch (API_BUSCAR_TODOS);
 	const reservas = await response.json();
 	const tbody = document.getElementById("tabelaReservas");
 	tbody.innerHTML="";
 	
-	console.log('Resposta')
-	console.log(response);
-	console.log('JSON')
-	console.log(reservas);
-	
-	
-
-
-reservas.forEach(reservas => {
-
-const tr = document.createElement("tr");
-
-tr.innerHTML = `
-
-<td>${reservas.livro}</td>
-
-<td>${reservas.autor}</td>
-
-<td>${reservas.dataDaReserva}</td>
-
-<td>${reservas.status}</td>
-
-
-<td class="text-center">
-
-<button class="btn btn-success btn-sm"
-        onclick="AbrirPagina(${reservas.id})">
+		reservas.forEach(reservas => {
 		
-    <i class="bi bi-journal-check"></i>
-    Realizar Empréstimo
-	
-</button>
-   
-
-</td>
-
-`; window.Location.href="livro.html";
-
-tbody.appendChild(tr);
+		const tr = document.createElement("tr");
+		
+		tr.innerHTML = `
+		
+		<td>${reservas.livro}</td>
+		
+		<td>${reservas.autor}</td>
+		
+		<td>${reservas.dataDaReserva}</td>
+		
+		<td>${reservas.status}</td>
+		
+		
+		<td class="text-center">
+		
+		<button class="btn btn-success btn-sm"
+		        onclick="AbrirPagina(${reservas.id})">
+				
+		    <i class="bi bi-journal-check"></i>
+		    Realizar Empréstimo
+			
+		</button>
+		   
+		
+		</td>
+		
+		`; window.Location.href="livro.html";
+		
+		tbody.appendChild(tr);
 
 });
 }

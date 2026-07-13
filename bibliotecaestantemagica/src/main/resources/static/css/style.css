@@ -62,7 +62,7 @@ body{
 
     min-height:100vh;
 
-    padding:40px 15px;
+    padding:24px 15px;
 
     display:flex;
 
@@ -80,7 +80,7 @@ body{
 
 .logo{
 
-    width:260px;
+    width:120px;
 
     max-width:100%;
 
@@ -96,7 +96,7 @@ body{
 
 .titulo{
 
-    font-size:58px;
+    font-size:26px;
 
     font-weight:800;
 
@@ -113,7 +113,7 @@ body{
 
     color:var(--texto-claro);
 
-    font-size:20px;
+    font-size:14px;
 
 }
 
@@ -127,9 +127,9 @@ body{
 
     background:var(--branco);
 
-    border-radius:30px;
+    border-radius:16px;
 
-    padding:40px !important;
+    padding:20px;
 
     border:1px solid var(--azul-borda);
 
@@ -154,9 +154,9 @@ body{
 
 .titulo-input{
 
-    font-size:18px;
+    font-size:14px;
 
-    font-weight:700;
+    font-weight:600;
 
     color:var(--azul-principal);
 
@@ -168,7 +168,33 @@ body{
 
 .custom-input{
 
-    min-height:70px;
+    min-height:42px;
+
+    display:flex;
+
+    align-items:stretch;
+
+    background:var(--branco);
+
+    border:2px solid var(--azul-borda);
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+
+
+.custom-input:focus-within{
+
+    border-color:var(--azul-hover);
+
+    box-shadow:
+
+    0 0 0 .2rem rgba(0,87,216,.15);
 
 }
 
@@ -178,11 +204,13 @@ body{
 
     background:var(--branco);
 
-    border:2px solid var(--azul-borda);
+    border:none;
 
-    border-right:none;
+    border-radius:10px;
 
-    border-radius:18px 0 0 18px;
+    display:flex;
+
+    align-items:center;
 
     padding-left:20px;
 
@@ -196,7 +224,7 @@ body{
 
     color:var(--azul-hover);
 
-    font-size:24px;
+    font-size:16px;
 
 }
 
@@ -205,19 +233,23 @@ body{
 .custom-input .form-control,
 .custom-input .form-select{
 
-    border:2px solid var(--azul-borda);
+    flex:1 1 0%;
 
-    border-left:none;
+    width:1%;
 
-    border-radius:0 18px 18px 0;
+    min-width:0;
 
-    font-size:18px;
+    border:none;
+
+    border-radius:10px;
+
+    font-size:14px;
 
     color:var(--texto);
 
     box-shadow:none;
 
-    padding:16px;
+    padding:10px 14px;
 
 }
 
@@ -226,11 +258,11 @@ body{
 .custom-input .form-control:focus,
 .custom-input .form-select:focus{
 
-    border-color:var(--azul-hover);
+    border:none;
 
-    box-shadow:
+    box-shadow:none;
 
-    0 0 0 .2rem rgba(0,87,216,.15);
+    outline:none;
 
 }
 
@@ -242,11 +274,11 @@ body{
 
 .btn-cadastrar{
 
-    min-height:65px;
+    min-height:42px;
 
     border:none;
 
-    border-radius:18px;
+    border-radius:10px;
 
     background:linear-gradient(
         90deg,
@@ -256,7 +288,7 @@ body{
 
     color:white;
 
-    font-size:22px;
+    font-size:14px;
 
     font-weight:700;
 
@@ -321,28 +353,28 @@ body{
 
     .cadastro-container{
 
-        padding:30px 15px;
+        padding:24px 15px;
 
     }
 
 
     .titulo{
 
-        font-size:48px;
+        font-size:26px;
 
     }
 
 
     .subtitulo{
 
-        font-size:18px;
+        font-size:14px;
 
     }
 
 
     .card-cadastro{
 
-        padding:30px !important;
+        padding:20px;
 
     }
 
@@ -359,28 +391,28 @@ body{
 
     .cadastro-container{
 
-        padding:25px 12px;
+        padding:24px 15px;
 
     }
 
 
     .logo{
 
-        width:180px;
+        width:120px;
 
     }
 
 
     .titulo{
 
-        font-size:36px;
+        font-size:26px;
 
     }
 
 
     .subtitulo{
 
-        font-size:15px;
+        font-size:14px;
 
         padding:0 10px;
 
@@ -389,23 +421,23 @@ body{
 
     .card-cadastro{
 
-        border-radius:24px;
+        border-radius:16px;
 
-        padding:25px 18px !important;
+        padding:20px;
 
     }
 
 
     .titulo-input{
 
-        font-size:16px;
+        font-size:14px;
 
     }
 
 
     .custom-input{
 
-        min-height:58px;
+        min-height:42px;
 
     }
 
@@ -421,7 +453,7 @@ body{
 
     .custom-input .input-group-text i{
 
-        font-size:20px;
+        font-size:16px;
 
     }
 
@@ -429,20 +461,20 @@ body{
     .custom-input .form-control,
     .custom-input .form-select{
 
-        font-size:15px;
+        font-size:14px;
 
-        padding:12px;
+        padding:10px 14px;
 
     }
 
 
     .btn-cadastrar{
 
-        min-height:55px;
+        min-height:42px;
 
-        font-size:18px;
+        font-size:14px;
 
-        border-radius:14px;
+        border-radius:10px;
 
     }
 
@@ -467,7 +499,7 @@ body{
 
     .titulo{
 
-        font-size:30px;
+        font-size:26px;
 
     }
 
@@ -481,21 +513,21 @@ body{
 
     .logo{
 
-        width:150px;
+        width:120px;
 
     }
 
 
     .card-cadastro{
 
-        padding:20px 15px !important;
+        padding:20px;
 
     }
 
 
     .btn-cadastrar{
 
-        font-size:16px;
+        font-size:14px;
 
     }
 

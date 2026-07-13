@@ -1,4 +1,4 @@
-const API_SALVAR ="http://192.168.10.22:8011/alunos/salvar";	
+const API_SALVAR ="http://192.168.10.22:8000/Usuarios/salvar";	
 
 function voltarPagina() {
     window.location.href = "dashboardbibliotecario.html";
