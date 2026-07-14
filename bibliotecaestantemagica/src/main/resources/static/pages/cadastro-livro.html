@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastrar Livro — Estante Mágica</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/pages.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="app-shell">
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="alternarSidebarMobile()"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="conteudo">
+
+        <div class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button class="menu-toggle" onclick="alternarSidebarMobile()"><i class="bi bi-list"></i></button>
+                <div>
+                    <h1>Livros</h1>
+                    <p>Cadastre e gerencie o acervo da biblioteca</p>
+                </div>
+            </div>
+            <div class="usuario-chip">
+                <div class="avatar" data-usuario-inicial>U</div>
+                <div>
+                    <div class="nome" data-usuario-nome>Usuário</div>
+                    <div class="tipo" data-usuario-tipo>Tipo</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-app mb-4">
+            <div class="filtros-row justify-content-between">
+                <div class="d-flex gap-2 flex-wrap">
+                    <div class="custom-input input-group search-bar">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" id="buscaLivro" placeholder="Buscar por título ou autor..." oninput="filtrarLivros()">
+                    </div>
+                </div>
+                <button class="btn-app btn-app-primario" data-bs-toggle="modal" data-bs-target="#modalLivro" onclick="prepararNovoLivro()">
+                    <i class="bi bi-plus-circle"></i> Novo livro
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="tabela-app">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaLivros">
+                        <tr><td colspan="4" class="tabela-vazia"><span class="spinner-border spinner-border-sm"></span> Carregando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- MODAL NOVO/EDITAR LIVRO -->
+<div class="modal fade" id="modalLivro" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloFormulario"><i class="bi bi-journal-plus me-2"></i>Novo livro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+                <div id="alertaLivro" class="alert alert-danger d-none"></div>
+
+                <form onsubmit="return false;">
+                    <input type="hidden" id="livroId">
+
+                    <label class="titulo-input">Título</label>
+                    <div class="custom-input input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-book"></i></span>
+                        <input type="text" class="form-control" id="titulo" placeholder="Título do livro" required>
+                    </div>
+
+                    <label class="titulo-input">Autor</label>
+                    <div class="custom-input input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" id="autor" placeholder="Nome do autor" required>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="titulo-input">Editora</label>
+                            <div class="custom-input input-group">
+                                <span class="input-group-text"><i class="bi bi-building"></i></span>
+                                <input type="text" class="form-control" id="editora" placeholder="Editora">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="titulo-input">Gênero</label>
+                            <div class="custom-input input-group">
+                                <span class="input-group-text"><i class="bi bi-tags"></i></span>
+                                <input type="text" class="form-control" id="genero" placeholder="Ex: Ficção">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="titulo-input">ISBN</label>
+                            <div class="custom-input input-group">
+                                <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
+                                <input type="text" class="form-control" id="isbn" placeholder="000-0-00-000000-0">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="titulo-input">Ano de publicação</label>
+                            <div class="custom-input input-group">
+                                <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                <input type="number" class="form-control" id="anoPublicacao" placeholder="2024">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="titulo-input">Código do acervo</label>
+                            <div class="custom-input input-group">
+                                <span class="input-group-text"><i class="bi bi-hash"></i></span>
+                                <input type="text" class="form-control" id="codigoAcervo" placeholder="Ex: AC-0001">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="titulo-input">Estoque</label>
+                            <div class="custom-input input-group">
+                                <span class="input-group-text"><i class="bi bi-stack"></i></span>
+                                <input type="number" class="form-control" id="estoque" placeholder="1" value="1" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="disponivel" checked>
+                        <label class="form-check-label" for="disponivel" style="font-size:14px;">Disponível para empréstimo</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-app btn-app-secundario" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn-app btn-app-primario" id="btnSalvarLivro" onclick="salvarLivro()">
+                    <i class="bi bi-check-circle"></i> Salvar livro
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/sidebar.js"></script>
+<script>
+    const usuario = exigirLogin("Bibliotecário");
+    let listaLivros = [];
+    let modalLivro;
+
+    if (usuario) {
+        montarSidebar("cadastro-livro.html");
+        modalLivro = new bootstrap.Modal(document.getElementById("modalLivro"));
+        carregarLivros();
+    }
+
+    async function carregarLivros() {
+        try {
+            const response = await apiFetch(API.livros.listar());
+            listaLivros = response.ok ? await response.json() : [];
+            renderizarTabela(listaLivros);
+        } catch (e) {
+            document.getElementById("tabelaLivros").innerHTML =
+                `<tr><td colspan="4" class="tabela-vazia"><i class="bi bi-wifi-off"></i>Não foi possível carregar os livros</td></tr>`;
+        }
+    }
+
+    function renderizarTabela(livros) {
+        const corpo = document.getElementById("tabelaLivros");
+        if (!livros.length) {
+            corpo.innerHTML = `<tr><td colspan="4" class="tabela-vazia"><i class="bi bi-book"></i>Nenhum livro cadastrado</td></tr>`;
+            return;
+        }
+        corpo.innerHTML = livros.map(l => `
+            <tr>
+                <td>${l.titulo || "-"}</td>
+                <td>${l.autor || "-"}</td>
+                <td>${badgeStatus(l.disponivel ? "Disponível" : "Indisponível")}</td>
+                <td class="text-end">
+                    <button class="btn-icone btn-app-secundario" title="Editar" onclick="editarLivro(${l.id})"><i class="bi bi-pencil"></i></button>
+                    <button class="btn-icone btn-app-perigo" title="Excluir" onclick="excluirLivro(${l.id})"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+        `).join("");
+    }
+
+    function filtrarLivros() {
+        const termo = document.getElementById("buscaLivro").value.toLowerCase();
+        renderizarTabela(listaLivros.filter(l => (l.titulo || "").toLowerCase().includes(termo) || (l.autor || "").toLowerCase().includes(termo)));
+    }
+
+    function limparFormulario() {
+        const alerta = document.getElementById("alertaLivro");
+        alerta.classList.add("d-none");
+        ["livroId","titulo","autor","editora","genero","isbn","anoPublicacao","codigoAcervo"].forEach(id => document.getElementById(id).value = "");
+        document.getElementById("estoque").value = 1;
+        document.getElementById("disponivel").checked = true;
+    }
+
+    function prepararNovoLivro() {
+        limparFormulario();
+        document.getElementById("tituloFormulario").innerHTML = '<i class="bi bi-journal-plus me-2"></i>Novo livro';
+        document.getElementById("btnSalvarLivro").innerHTML = '<i class="bi bi-check-circle"></i> Salvar livro';
+    }
+
+    function editarLivro(id) {
+        const livro = listaLivros.find(l => l.id === id);
+        if (!livro) return;
+
+        limparFormulario();
+        document.getElementById("livroId").value = livro.id;
+        document.getElementById("titulo").value = livro.titulo || "";
+        document.getElementById("autor").value = livro.autor || "";
+        document.getElementById("editora").value = livro.editora || "";
+        document.getElementById("genero").value = livro.genero || "";
+        document.getElementById("isbn").value = livro.isbn || "";
+        document.getElementById("anoPublicacao").value = livro.anoPublicacao || "";
+        document.getElementById("codigoAcervo").value = livro.codigoAcervo || "";
+        document.getElementById("estoque").value = livro.estoque || 0;
+        document.getElementById("disponivel").checked = !!livro.disponivel;
+
+        document.getElementById("tituloFormulario").innerHTML = '<i class="bi bi-pencil-square me-2"></i>Editando livro';
+        document.getElementById("btnSalvarLivro").innerHTML = '<i class="bi bi-check-circle"></i> Atualizar livro';
+
+        modalLivro.show();
+    }
+
+    async function salvarLivro() {
+        const alerta = document.getElementById("alertaLivro");
+        alerta.classList.add("d-none");
+
+        const id = document.getElementById("livroId").value;
+        const titulo = document.getElementById("titulo").value.trim();
+        const autor = document.getElementById("autor").value.trim();
+
+        if (!titulo || !autor) {
+            alerta.textContent = "Preencha ao menos título e autor.";
+            alerta.classList.remove("d-none");
+            return;
+        }
+
+        const livro = {
+            titulo,
+            autor,
+            editora: document.getElementById("editora").value.trim(),
+            genero: document.getElementById("genero").value.trim(),
+            isbn: document.getElementById("isbn").value.trim(),
+            anoPublicacao: parseInt(document.getElementById("anoPublicacao").value) || null,
+            codigoAcervo: document.getElementById("codigoAcervo").value.trim(),
+            estoque: parseInt(document.getElementById("estoque").value) || 0,
+            disponivel: document.getElementById("disponivel").checked,
+            status: document.getElementById("disponivel").checked ? "DISPONIVEL" : "INDISPONIVEL",
+            imagem: null
+        };
+
+        const btn = document.getElementById("btnSalvarLivro");
+        btn.disabled = true;
+
+        try {
+            const url = id ? API.livros.atualizar(id) : API.livros.salvar();
+            const response = await apiFetch(url, {
+                method: id ? "PUT" : "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(livro)
+            });
+
+            if (!response.ok) {
+                alerta.textContent = "Não foi possível salvar o livro. Tente novamente.";
+                alerta.classList.remove("d-none");
+                return;
+            }
+
+            mostrarToast(id ? "Livro atualizado com sucesso!" : "Livro cadastrado com sucesso!");
+            modalLivro.hide();
+            carregarLivros();
+
+        } catch (e) {
+            // erro já tratado (toast)
+        } finally {
+            btn.disabled = false;
+        }
+    }
+
+    async function excluirLivro(id) {
+        if (!confirm("Deseja realmente excluir este livro?")) return;
+        try {
+            const response = await apiFetch(API.livros.deletar(id), { method: "DELETE" });
+            if (!response.ok) {
+                mostrarToast("Não foi possível excluir o livro.", "erro");
+                return;
+            }
+            mostrarToast("Livro excluído.");
+            carregarLivros();
+        } catch (e) {
+            // erro já tratado (toast)
+        }
+    }
+</script>
+</body>
+</html>

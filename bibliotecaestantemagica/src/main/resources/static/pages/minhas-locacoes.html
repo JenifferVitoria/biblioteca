@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minhas Locações — Estante Mágica</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/pages.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="app-shell">
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="alternarSidebarMobile()"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="conteudo">
+
+        <div class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button class="menu-toggle" onclick="alternarSidebarMobile()"><i class="bi bi-list"></i></button>
+                <div>
+                    <h1>Minhas Locações</h1>
+                    <p>Seus empréstimos e reservas de livros</p>
+                </div>
+            </div>
+            <div class="usuario-chip">
+                <div class="avatar" data-usuario-inicial>U</div>
+                <div>
+                    <div class="nome" data-usuario-nome>Usuário</div>
+                    <div class="tipo" data-usuario-tipo>Tipo</div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs mb-3" style="border-bottom:2px solid var(--azul-borda);">
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#abaEmprestimos" type="button">
+                    <i class="bi bi-journal-check me-1"></i> Empréstimos
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#abaReservas" type="button">
+                    <i class="bi bi-bookmark-star me-1"></i> Reservas
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="abaEmprestimos">
+                <div class="card-app">
+                    <div class="table-responsive">
+                        <table class="tabela-app">
+                            <thead>
+                                <tr>
+                                    <th>Livro</th>
+                                    <th>Data do empréstimo</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaMeusEmprestimos">
+                                <tr><td colspan="3" class="tabela-vazia"><span class="spinner-border spinner-border-sm"></span> Carregando...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="abaReservas">
+                <div class="card-app">
+                    <div class="table-responsive">
+                        <table class="tabela-app">
+                            <thead>
+                                <tr>
+                                    <th>Livro</th>
+                                    <th>Autor</th>
+                                    <th>Data da reserva</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaMinhasReservas">
+                                <tr><td colspan="4" class="tabela-vazia"><span class="spinner-border spinner-border-sm"></span> Carregando...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/sidebar.js"></script>
+<script>
+    const usuario = exigirLogin("Aluno");
+
+    if (usuario) {
+        montarSidebar("minhas-locacoes.html");
+        carregarEmprestimos();
+        carregarReservas();
+    }
+
+    function estaAtrasado(e) {
+        if (!e.dataEmprestimo || (e.status || "").toLowerCase() === "devolvido") return false;
+        const limite = new Date(e.dataEmprestimo);
+        limite.setDate(limite.getDate() + 10);
+        return limite < new Date();
+    }
+
+    async function carregarEmprestimos() {
+        try {
+            const response = await apiFetch(API.emprestimos.listarPorUsuario(usuario.id));
+            const emprestimos = response.ok ? await response.json() : [];
+            const corpo = document.getElementById("tabelaMeusEmprestimos");
+
+            if (!emprestimos.length) {
+                corpo.innerHTML = `<tr><td colspan="3" class="tabela-vazia"><i class="bi bi-journal"></i>Você ainda não realizou nenhum empréstimo</td></tr>`;
+                return;
+            }
+
+            corpo.innerHTML = emprestimos.map(e => {
+                const devolvido = (e.status || "").toLowerCase() === "devolvido";
+                const atrasado = estaAtrasado(e);
+                const statusExibido = devolvido ? "Devolvido" : (atrasado ? "Atrasado" : (e.status || "Emprestado"));
+                return `
+                    <tr>
+                        <td>${e.livro?.titulo || "-"}</td>
+                        <td>${formatarData(e.dataEmprestimo)}</td>
+                        <td>${badgeStatus(statusExibido)}</td>
+                    </tr>
+                `;
+            }).join("");
+
+        } catch (e) {
+            document.getElementById("tabelaMeusEmprestimos").innerHTML =
+                `<tr><td colspan="3" class="tabela-vazia"><i class="bi bi-wifi-off"></i>Não foi possível carregar os empréstimos</td></tr>`;
+        }
+    }
+
+    async function carregarReservas() {
+        try {
+            const response = await apiFetch(API.reservas.listar());
+            const reservas = response.ok ? await response.json() : [];
+            const corpo = document.getElementById("tabelaMinhasReservas");
+
+            if (!reservas.length) {
+                corpo.innerHTML = `<tr><td colspan="4" class="tabela-vazia"><i class="bi bi-bookmark"></i>Você ainda não fez nenhuma reserva</td></tr>`;
+                return;
+            }
+
+            corpo.innerHTML = reservas.map(r => `
+                <tr>
+                    <td>${r.livro || "-"}</td>
+                    <td>${r.autor || "-"}</td>
+                    <td>${formatarData(r.dataDaReserva)}</td>
+                    <td>${badgeStatus(r.status)}</td>
+                </tr>
+            `).join("");
+
+        } catch (e) {
+            document.getElementById("tabelaMinhasReservas").innerHTML =
+                `<tr><td colspan="4" class="tabela-vazia"><i class="bi bi-wifi-off"></i>Não foi possível carregar as reservas</td></tr>`;
+        }
+    }
+</script>
+</body>
+</html>

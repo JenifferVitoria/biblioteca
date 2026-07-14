@@ -1,15 +1,11 @@
 package br.com.empresa18.integracao.bibliotecaestantemagica.controllers;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,154 +18,165 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+=======
+import org.springframework.web.bind.annotation.*;
+>>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
 
 import br.com.empresa18.integracao.bibliotecaestantemagica.entity.LivroEntity;
 import br.com.empresa18.integracao.bibliotecaestantemagica.repository.LivroRepository;
+
 
 @RestController
 @RequestMapping("/livros")
 @CrossOrigin("*")
 public class LivroController {
-	
-	@Autowired
-	private LivroRepository livroRepo;
-	
-	@GetMapping("/listartodos")
-	@ResponseStatus(HttpStatus.OK)
-	public List< LivroEntity> listarLivro(){
-		return livroRepo.findAll();
-	}
 
-	@GetMapping("/listarid/{id}")
-	@ResponseStatus(HttpStatus.OK)
-	public Optional<LivroEntity> listarPorId (@PathVariable Long id){
-		return livroRepo.findById(id);
-	}
-	
-	@GetMapping("/buscar/{genero}/{titulo}/{autor}/{isbn}")
-	@ResponseStatus(HttpStatus.OK)
-	public List<LivroEntity> buscar(
-	        @PathVariable String genero,
-	        @PathVariable String titulo,
-	        @PathVariable String autor,
-	        @PathVariable String isbn) {
+    @Autowired
+    private LivroRepository livroRepo;
 
-	    return livroRepo.findByGeneroOrTituloOrAutorOrIsbnContainingIgnoreCase(
-	            genero,
-	            titulo,
-	            autor,
-	            isbn);
-	}
-	
-	
-	@PostMapping("/salvar")
-	@ResponseStatus(HttpStatus.CREATED)
-	public LivroEntity cadastrar (@RequestParam String titulo, 
-								  @RequestParam String autor, 
-								  @RequestParam String editora, 
-								  @RequestParam MultipartFile imagem, 
-								  @RequestParam int anoPublicacao, 
-								  @RequestParam String isbn, 
-								  @RequestParam String genero, 
-								  @RequestParam String codigoAcervo, 
-								  @RequestParam long estoque) throws IOException {
-		
-   	 	// Gerar um nome único para o arquivo usando UUID
-		
-        String nomeArquivo = UUID.randomUUID()
-                + "_"
-                + imagem.getOriginalFilename();
 
-        // Definir o caminho onde o arquivo será salvo
-        Path caminho = Paths.get(
-        		"//SC-ALPHA/deploy/biblioteca/img/" + nomeArquivo
-        );
-        
-        // Salvar o arquivo no caminho definido
-        Files.write(caminho, imagem.getBytes());
-        
-        LivroEntity livro = new LivroEntity();
-		livro.setTitulo(titulo);
-		livro.setAutor(autor);
-		livro.setEditora(editora);
-		livro.setImagem(nomeArquivo); // Salvar o nome do arquivo no banco de dados
-		livro.setAnoPublicacao(anoPublicacao);
-		livro.setIsbn(isbn);			
-		livro.setGenero(genero);
-		livro.setCodigoAcervo(codigoAcervo);
-		livro.setEstoque(estoque);
-		livro.setStatus("DISPONIVEL");
+    // LISTAR TODOS
+    @GetMapping("/listartodos")
+    @ResponseStatus(HttpStatus.OK)
+    public List<LivroEntity> listarLivro() {
 
-		return livroRepo.save(livro);
-	}
-	
-	@DeleteMapping("/deletar/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public String deletar (@PathVariable long id) {
-		
-		if(livroRepo.existsById(id)) {
-			livroRepo.deleteById(id);
-			return"Livro deletado";
-		}
-		return"Não";
-	}
-	
-	@PutMapping("/atualizar/{id}")
-	@ResponseStatus(HttpStatus.OK)
-	public LivroEntity atualizarTabela (@PathVariable long id,@RequestParam String titulo,
-			  @RequestParam String autor, 
-			  @RequestParam String editora, 
-			  @RequestParam MultipartFile imagem, 
-			  @RequestParam int anoPublicacao, 
-			  @RequestParam String isbn, 
-			  @RequestParam String genero, 
-			  @RequestParam String codigoAcervo, 
-			  @RequestParam long estoque) throws IOException {
+        return livroRepo.findAll();
 
-	// Gerar um nome único para o arquivo usando UUID
-	
-	String nomeArquivo = UUID.randomUUID()
-	+ "_"
-	+ imagem.getOriginalFilename();
-	
-	// Definir o caminho onde o arquivo será salvo
-	Path caminho = Paths.get(
-			"//SC-ALPHA/deploy/biblioeca/img/" + nomeArquivo
-	);
-	
-	// Salvar o arquivo no caminho definido
-	Files.write(caminho, imagem.getBytes());
-	
-	LivroEntity livro = new LivroEntity();
-	livro.setTitulo(titulo);
-	livro.setAutor(autor);
-	livro.setEditora(editora);
-	livro.setImagem(nomeArquivo); // Salvar o nome do arquivo no banco de dados
-	livro.setAnoPublicacao(anoPublicacao);
-	livro.setIsbn(isbn);			
-	livro.setGenero(genero);
-	livro.setCodigoAcervo(codigoAcervo);
-	livro.setEstoque(estoque);
-	
-	
-	if(livroRepo.existsById(id)) {
-		
+    }
 
-		if(livroRepo.existsById(id)) {
-			livro.setId(id);
-			
-			return livroRepo.save(livro);
-		}
-	
 
-		return livroRepo.save(livro);
+    // BUSCAR POR ID
+    @GetMapping("/listarid/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<LivroEntity> listarPorId(@PathVariable Long id) {
 
-	}
-	
-	
-	return null;
-	
-	}
+        return livroRepo.findById(id);
+
+    }
+
+
+    // BUSCAR LIVRO
+    @GetMapping("/buscar/{genero}/{titulo}/{autor}/{isbn}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<LivroEntity> buscar(
+            @PathVariable String genero,
+            @PathVariable String titulo,
+            @PathVariable String autor,
+            @PathVariable String isbn) {
+
+
+        return livroRepo.findByGeneroOrTituloOrAutorOrIsbnContainingIgnoreCase(
+                genero,
+                titulo,
+                autor,
+                isbn);
+
+    }
+
+
+    // CADASTRAR
+    @PostMapping("/salvar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public LivroEntity cadastrar(@RequestBody LivroEntity livro) {
+
+        return livroRepo.save(livro);
+
+    }
+
+
+    // ATUALIZAR
+    @PutMapping("/atualizar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public LivroEntity atualizar(
+            @PathVariable Long id,
+            @RequestBody LivroEntity livro) {
+
+
+        livro.setId(id);
+
+        return livroRepo.save(livro);
+
+    }
+
+
+    // RESERVAR
+    @PutMapping("/reservar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public LivroEntity reservar(@PathVariable Long id) {
+
+
+        Optional<LivroEntity> livros = livroRepo.findById(id);
+
+
+        if (livros.isPresent()) {
+
+
+            LivroEntity livro = livros.get();
+
+
+            livro.setStatus("RESERVADO");
+
+
+            return livroRepo.save(livro);
+
+        }
+
+
+        return null;
+
+    }
+
+
+    // DISPONIBILIZAR LIVRO
+    @PutMapping("/disponibilizar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public LivroEntity disponibilizar(@PathVariable Long id) {
+
+
+        Optional<LivroEntity> livros = livroRepo.findById(id);
+
+
+        if (livros.isPresent()) {
+
+
+            LivroEntity livro = livros.get();
+
+
+            livro.setStatus("DISPONIVEL");
+
+
+            return livroRepo.save(livro);
+
+        }
+
+
+        return null;
+
+    }
+
+
+    // DELETAR
+    @DeleteMapping("/deletar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public String deletar(@PathVariable Long id) {
+
+
+        if (livroRepo.existsById(id)) {
+
+
+            livroRepo.deleteById(id);
+
+
+            return "Livro deletado com sucesso.";
+
+        }
+
+
+        return "Livro não encontrado.";
+
+    }
+
+
 
 	// PUT ATUALIZAR RESERVA
 	@PutMapping("/atualizarStatus/{id}/{status}")
@@ -186,6 +193,10 @@ public class LivroController {
 	       }
 			return "Não Salvo";
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
 	
 	
 	@GetMapping("/BuscarPorTitulo/{titulo}")
@@ -193,10 +204,34 @@ public class LivroController {
 	public List<LivroEntity> buscarPorTitulo(@PathVariable String titulo) {
 	    return livroRepo.findByTituloContainingIgnoreCase(titulo);
 	}
+<<<<<<< HEAD
 	
+=======
+
+	
+	@PostMapping("/reservar/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public String reservar(@PathVariable long id) {
+
+	    LivroEntity livro = livroRepo.findById(id);
+
+	    if (livro == null) {
+	        return "Livro não encontrado.";
+	    }
+
+	    if ("Reservado".equalsIgnoreCase(livro.getStatus())) {
+	        return "Livro já está reservado.";
+	    }
+
+	    livro.setStatus("Reservado");
+
+	    livroRepo.save(livro);
+
+	    return "Livro reservado com sucesso!";
+	}
+
+>>>>>>> branch 'master' of https://github.com/JenifferVitoria/biblioteca.git
 }
-
-
 
 
 

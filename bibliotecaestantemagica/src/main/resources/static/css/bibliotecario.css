@@ -16,7 +16,7 @@ body{
 .sidebar{
     background:#ffffff;
     min-height:100vh;
-    padding:25px;
+    padding:24px 16px;
     border-right:1px solid #e3ecff;
     display:flex;
     flex-direction:column;
@@ -24,23 +24,23 @@ body{
 }
 
 .logo{
-    width:180px;
+    width:120px;
 }
 
 .sidebar-title{
     color:#004aad;
-    font-weight:700;
+    font-weight:800;
     text-align:center;
     margin-top:20px;
     margin-bottom:35px;
 }
 
 .menu-item{
-    padding:16px 18px;
+    padding:10px 14px;
     border-radius:14px;
     margin-bottom:10px;
     color:#35507a;
-    font-size:17px;
+    font-size:14px;
     transition:0.3s;
     cursor:pointer;
 }
@@ -62,44 +62,106 @@ body{
 /* =========================
    BOTÃO SAIR
 ========================= */
+/* =========================
+   BOTÕES INFERIORES DESKTOP
+========================= */
 
-.logout-btn{
-    width:100%;
-    height:58px;
-    border-radius:16px;
-    background:#fff4f4;
-    border:1px solid #ffd9d9;
-    color:#dc3545 !important;
-    font-size:16px;
-    font-weight:600;
-    text-decoration:none;
+.bottom-buttons{
 
     display:flex;
+
+    flex-direction:row;
+
+    gap:12px;
+
+    width:100%;
+
+}
+
+
+/* BOTÃO VOLTAR */
+
+.back-btn{
+
+    flex:1;
+
+    height:42px;
+
+    border-radius:10px;
+
+    background:#edf4ff;
+
+    border:1px solid #dce8ff;
+
+    color:#005bea !important;
+
+    display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     gap:8px;
 
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+/* BOTÃO SAIR */
+
+.logout-btn{
+
+    flex:1;
+
+    width:auto;
+
+    height:42px;
+
+    border-radius:10px;
+
+    background:#fff4f4;
+
+    border:1px solid #ffd9d9;
+
+    color:#dc3545 !important;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:600;
+
     transition:.3s;
-    margin-top:auto;
+
+}
+/* =========================
+   LAYOUT
+========================= */
+
+.dashboard-container{
+    min-height:100vh;
+    padding:0;
 }
 
-.logout-btn:hover{
-    background:#ffe5e5;
-    border-color:#ffc2c2;
-    color:#b02a37 !important;
-    transform:translateY(-2px);
-}
-
-.logout-btn i{
-    color:#dc3545;
-    font-size:18px;
-}
 /* =========================
    CONTEUDO
 ========================= */
 
 .content-area{
-    padding:30px;
+    padding:24px;
 }
 
 /* =========================
@@ -112,6 +174,12 @@ body{
     align-items:center;
 }
 
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
 /* =========================
    BUSCA COM BOTÃO
 ========================= */
@@ -119,25 +187,25 @@ body{
 .search-box{
     background:#ffffff;
     border:2px solid #dce8ff;
-    border-radius:20px;
-    height:72px;
+    border-radius:10px;
+    height:42px;
     width:65%;
     display:flex;
     align-items:center;
-    padding:0 12px 0 25px;
+    padding:10px 14px;
     gap:15px;
 }
 
 .search-box i{
     color:#6f86ad;
-    font-size:24px;
+    font-size:16px;
 }
 
 .search-box input{
     border:none;
     outline:none;
     flex:1;
-    font-size:18px;
+    font-size:14px;
     color:#35507a;
 }
 
@@ -149,12 +217,12 @@ body{
 /* BOTÃO PESQUISAR */
 
 .btn-search{
-    height:48px;
+    height:42px;
     padding:0 25px;
-    border-radius:14px;
+    border-radius:10px;
     background:#004aad;
     color:#ffffff !important;
-    font-size:16px;
+    font-size:14px;
     font-weight:600;
     text-decoration:none;
     display:flex;
@@ -171,11 +239,11 @@ body{
 
 .btn-search i{
     color:#ffffff;
-    font-size:18px;
+    font-size:14px;
 }
 
 .notification-icon{
-    font-size:28px;
+    font-size:18px;
     color:#004aad;
 }
 
@@ -186,14 +254,14 @@ body{
 .stats-card{
     background:#ffffff;
     border:1px solid #e3ecff;
-    border-radius:22px;
-    padding:25px;
+    border-radius:16px;
+    padding:20px;
     height:100%;
 }
 
 .stats-icon{
-    width:65px;
-    height:65px;
+    width:42px;
+    height:42px;
     border-radius:50%;
     background:#edf4ff;
     display:flex;
@@ -204,7 +272,7 @@ body{
 
 .stats-icon i{
     color:#005bea;
-    font-size:30px;
+    font-size:18px;
 }
 
 .stats-card h6{
@@ -215,7 +283,7 @@ body{
 
 .stats-card h2{
     color:#005bea;
-    font-size:38px;
+    font-size:26px;
     font-weight:800;
 }
 
@@ -231,8 +299,8 @@ body{
 
 .custom-card{
     background:#ffffff;
-    border-radius:24px;
-    padding:25px;
+    border-radius:16px;
+    padding:20px;
     border:1px solid #e3ecff;
     height:100%;
 }
@@ -268,7 +336,7 @@ body{
 }
 
 .emprestimo-item img{
-    width:65px;
+    width:45px;
     border-radius:12px;
 }
 
@@ -316,8 +384,8 @@ body{
 }
 
 .multa-avatar{
-    width:55px;
-    height:55px;
+    width:42px;
+    height:42px;
     border-radius:50%;
     background:#edf4ff;
     color:#005bea;
@@ -325,7 +393,7 @@ body{
     align-items:center;
     justify-content:center;
     font-weight:700;
-    font-size:20px;
+    font-size:18px;
 }
 
 .multa-info h5{
@@ -348,7 +416,7 @@ body{
 .multa-valor{
     margin-left:auto;
     color:#ff4d4d;
-    font-size:22px;
+    font-size:17px;
     font-weight:700;
 }
 
@@ -358,9 +426,9 @@ body{
 
 .btn-gerenciar{
     width:100%;
-    height:56px;
+    height:42px;
     border:none;
-    border-radius:16px;
+    border-radius:10px;
     margin-top:20px;
     background:#edf4ff;
     color:#005bea;
@@ -378,15 +446,15 @@ body{
 
 .action-card{
     background:#ffffff;
-    border-radius:22px;
+    border-radius:16px;
     border:1px solid #e3ecff;
-    padding:25px;
+    padding:20px;
     height:100%;
 }
 
 .action-icon{
-    width:65px;
-    height:65px;
+    width:42px;
+    height:42px;
     border-radius:50%;
     background:#edf4ff;
     display:flex;
@@ -396,7 +464,7 @@ body{
 }
 
 .action-icon i{
-    font-size:28px;
+    font-size:18px;
     color:#005bea;
 }
 

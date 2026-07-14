@@ -1,176 +1,114 @@
-const API = "http://localhost:8080/livros";
+const API_LISTAR_ID = "http://localhost:8000/livros/listarid";
+const API_RESERVAR = "http://localhost:8000/livros/reservar";
 
 
-// ================================
-// PEGAR ID DA URL
-// ================================
+/// PEGAR ID DA URL
+
 function obterIdLivro() {
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
+    const params = new URLSearchParams(window.location.search);
 
     return params.get("id");
-
 }
 
 
-// ================================
-// CARREGAR LIVRO
-// ================================
+/// INICIALIZAÇÃO
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    carregarLivro();
+
+    document.querySelector(".btn-reserve")
+        .addEventListener("click", reservarLivro);
+
+});
+
+
+/// CARREGAR LIVRO
+
 async function carregarLivro() {
 
-    try {
+    const id = obterIdLivro();
 
-        const id = obterIdLivro();
+    if (id == null) {
 
-        const resposta = await fetch(
-            `${API}/listarid/${id}`
-        );
+        alert("Livro não encontrado.");
+        return;
+    }
 
-        if (!resposta.ok) {
+    const response = await fetch(`${API_LISTAR_ID}/${id}`);
 
-            throw new Error(
-                "Livro não encontrado"
-            );
+    if (!response.ok) {
 
-        }
+        alert("Livro não encontrado.");
+        return;
+    }
 
-        const livro =
-            await resposta.json();
+    const livro = await response.json();
 
-        // IMAGEM
-        document.querySelector(
-            ".book-image img"
-        ).src =
-            `http://localhost:8080/uploads/${livro.imagem}`;
+    document.querySelector(".book-image img").src =
+        `http://localhost:8000/uploads/${livro.imagem}`;
 
-        // CATEGORIA
-        document.querySelector(
-            ".category"
-        ).innerText =
-            livro.genero;
+    document.querySelector(".category").innerText =
+        livro.genero;
 
-        // TÍTULO
-        document.querySelector(
-            ".book-details h2"
-        ).innerText =
-            livro.titulo;
+    document.querySelector(".book-details h2").innerText =
+        livro.titulo;
 
-        // AUTOR
-        document.querySelector(
-            ".book-details h4"
-        ).innerText =
-            livro.autor;
+    document.querySelector(".book-details h4").innerText =
+        livro.autor;
 
-        // DESCRIÇÃO
-        document.querySelector(
-            ".description"
-        ).innerText =
-            livro.descricao || "Sem descrição";
+    document.querySelector(".description").innerText =
+        livro.descricao;
 
-        // ISBN
-        document.querySelectorAll(
-            ".info-item span"
-        )[0].innerText =
-            livro.isbn;
+    document.querySelectorAll(".info-item span")[0].innerText =
+        livro.isbn;
 
-        // CATEGORIA
-        document.querySelectorAll(
-            ".info-item span"
-        )[1].innerText =
-            livro.genero;
+    document.querySelectorAll(".info-item span")[1].innerText =
+        livro.genero;
 
-        // IDIOMA
-        document.querySelectorAll(
-            ".info-item span"
-        )[2].innerText =
-            livro.idioma || "Português";
+    document.querySelectorAll(".info-item span")[2].innerText =
+        livro.idioma;
 
-        // ANO
-        document.querySelectorAll(
-            ".info-item span"
-        )[3].innerText =
-            livro.anoPublicacao;
-
-			} catch (erro) {
-
-			    console.error(erro);
-
-			}
-
+    document.querySelectorAll(".info-item span")[3].innerText =
+        livro.anoPublicacao;
 }
 
 
-// ================================
-// RESERVAR LIVRO
-// ================================
+/// RESERVAR LIVRO
+
 async function reservarLivro() {
 
-    try {
+    const id = obterIdLivro();
 
-        const id = obterIdLivro();
+    if (id == null) {
+		
+		window.Location.href="livro.html";
 
-        const resposta = await fetch(
-            `${API}/reservar/${id}`,
-            {
-                method: "POST"
-            }
-        );
+        alert("Livro não encontrado.");
+        return;
+    } 
 
-        const mensagem =
-            await resposta.text();
+    const response = await fetch(`${API_RESERVAR}/${id}`, {
 
-        alert(mensagem);
+        method: "POST"
 
-        if (resposta.ok) {
+    });
 
-            const botao =
-                document.querySelector(
-                    ".btn-reserve"
-                );
+    const mensagem = await response.text();
 
-            botao.disabled = true;
+    alert(mensagem);
 
-            botao.innerHTML = `
-                <i class="bi bi-check-circle-fill"></i>
-                Reservado
-            `;
+    if (response.ok) {
 
-        }
+        const botao = document.querySelector(".btn-reserve");
 
-    } catch (erro) {
+        botao.disabled = true;
 
-        console.error(erro);
-
-        alert(
-            "Erro ao reservar livro"
-        );
-
+        botao.innerHTML = `
+            <i class="bi bi-check-circle-fill"></i>
+            Reservado
+			
+        `;   
     }
-
 }
-
-
-// ================================
-// BOTÃO RESERVAR
-// ================================
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        carregarLivro();
-
-        document.querySelector(
-            ".btn-reserve"
-        ).addEventListener(
-            "click",
-            reservarLivro
-        );
-
-    }
-);
-
-
-

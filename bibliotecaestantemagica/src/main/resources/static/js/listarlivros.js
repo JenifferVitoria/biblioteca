@@ -69,6 +69,8 @@ function preencherTabela(livros) {
 		
 	let caminho = "/img/"+livro.imagem;
 	console.log(caminho);
+	console.log(livro);
+	console.log("ID:", livro.id);
         tr.innerHTML = `
             <td>
                 <img src="${caminho}" width="70" height="90">
@@ -85,10 +87,12 @@ function preencherTabela(livros) {
             <td>${livro.disponivel ? "Disponível" : "Emprestado"}</td>
 
             <td>
-                <button class="btn btn-primary btn-sm"
-                        onclick="AbrirPagina(${livro.id})">
-                    Selecionar
-                </button >
+			
+			<button class="btn-selecionar"
+			        onclick="AbrirPagina(${livro.id})">
+			    <i class="bi bi-check-circle-fill"></i>
+			    Selecionar
+			</button>
 				
 				
 
@@ -107,10 +111,13 @@ function preencherTabela(livros) {
 
 
 function AbrirPagina(id){
-	window.location.href="emprestimo.html?id="+id;
+	window.location.href="livro.html?id="+id;
 }
 
 
 // CARREGA A TABELA//
 
 listarLivros();
+
+
+

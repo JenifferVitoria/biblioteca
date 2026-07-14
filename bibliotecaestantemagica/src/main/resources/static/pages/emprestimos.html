@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empréstimos — Estante Mágica</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="css/pages.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="app-shell">
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="alternarSidebarMobile()"></div>
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="conteudo">
+
+        <div class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button class="menu-toggle" onclick="alternarSidebarMobile()"><i class="bi bi-list"></i></button>
+                <div>
+                    <h1>Empréstimos</h1>
+                    <p>Registre e acompanhe os empréstimos de livros</p>
+                </div>
+            </div>
+            <div class="usuario-chip">
+                <div class="avatar" data-usuario-inicial>U</div>
+                <div>
+                    <div class="nome" data-usuario-nome>Usuário</div>
+                    <div class="tipo" data-usuario-tipo>Tipo</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-app mb-4">
+            <div class="filtros-row justify-content-between">
+                <div class="d-flex gap-2 flex-wrap">
+                    <div class="custom-input input-group search-bar">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" id="buscaEmprestimo" placeholder="Buscar por aluno ou livro..." oninput="filtrarEmprestimos()">
+                    </div>
+                    <div class="custom-input input-group" style="max-width:180px;">
+                        <span class="input-group-text"><i class="bi bi-funnel"></i></span>
+                        <select class="form-select" id="filtroStatus" onchange="filtrarEmprestimos()">
+                            <option value="todos">Todos</option>
+                            <option value="ativo">Ativos</option>
+                            <option value="atrasado">Atrasados</option>
+                            <option value="devolvido">Devolvidos</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn-app btn-app-primario" data-bs-toggle="modal" data-bs-target="#modalNovoEmprestimo">
+                    <i class="bi bi-plus-circle"></i> Novo empréstimo
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="tabela-app">
+                    <thead>
+                        <tr>
+                            <th>Livro</th>
+                            <th>Aluno</th>
+                            <th>Data empréstimo</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaEmprestimos">
+                        <tr><td colspan="5" class="tabela-vazia"><span class="spinner-border spinner-border-sm"></span> Carregando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- MODAL NOVO EMPRÉSTIMO -->
+<div class="modal fade" id="modalNovoEmprestimo" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Novo empréstimo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label class="titulo-input">Aluno</label>
+                <div class="custom-input input-group mb-3">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <select class="form-select" id="selectUsuario">
+                        <option value="">Selecione o aluno...</option>
+                    </select>
+                </div>
+
+                <label class="titulo-input">Livro</label>
+                <div class="custom-input input-group mb-3">
+                    <span class="input-group-text"><i class="bi bi-book"></i></span>
+                    <select class="form-select" id="selectLivro">
+                        <option value="">Selecione o livro...</option>
+                    </select>
+                </div>
+
+                <label class="titulo-input">Data do empréstimo</label>
+                <div class="custom-input input-group">
+                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                    <input type="date" class="form-control" id="dataEmprestimoNovo">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-app btn-app-secundario" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn-app btn-app-primario" onclick="registrarEmprestimo()">
+                    <i class="bi bi-check-circle"></i> Registrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/sidebar.js"></script>
+<script>
+    const usuario = exigirLogin("Bibliotecário");
+    let listaEmprestimos = [];
+    let listaUsuariosAlunos = [];
+    let listaLivrosDisponiveis = [];
+
+    if (usuario) {
+        montarSidebar("emprestimos.html");
+        document.getElementById("dataEmprestimoNovo").value = new Date().toISOString().slice(0, 10);
+        carregarTudo();
+    }
+
+    function estaAtrasado(e) {
+        if (!e.dataEmprestimo || (e.status || "").toLowerCase() === "devolvido") return false;
+        const limite = new Date(e.dataEmprestimo);
+        limite.setDate(limite.getDate() + 10);
+        return limite < new Date();
+    }
+
+    async function carregarTudo() {
+        try {
+            const [empRes, usrRes, livRes] = await Promise.all([
+                apiFetch(API.emprestimos.listar()),
+                apiFetch(API.usuarios.listar()),
+                apiFetch(API.livros.listar()),
+            ]);
+
+            listaEmprestimos = empRes.ok ? await empRes.json() : [];
+            const usuarios = usrRes.ok ? await usrRes.json() : [];
+            const livros = livRes.ok ? await livRes.json() : [];
+
+            listaUsuariosAlunos = usuarios.filter(u => u.tipo === "Aluno");
+            listaLivrosDisponiveis = livros.filter(l => l.disponivel);
+
+            document.getElementById("selectUsuario").innerHTML =
+                '<option value="">Selecione o aluno...</option>' +
+                listaUsuariosAlunos.map(u => `<option value="${u.id}">${u.nome}${u.ra ? " (RA " + u.ra + ")" : ""}</option>`).join("");
+
+            document.getElementById("selectLivro").innerHTML =
+                '<option value="">Selecione o livro...</option>' +
+                listaLivrosDisponiveis.map(l => `<option value="${l.id}">${l.titulo}</option>`).join("");
+
+            renderizarTabela(listaEmprestimos);
+
+        } catch (e) {
+            document.getElementById("tabelaEmprestimos").innerHTML =
+                `<tr><td colspan="5" class="tabela-vazia"><i class="bi bi-wifi-off"></i>Não foi possível carregar os dados</td></tr>`;
+        }
+    }
+
+    function renderizarTabela(lista) {
+        const corpo = document.getElementById("tabelaEmprestimos");
+        if (!lista.length) {
+            corpo.innerHTML = `<tr><td colspan="5" class="tabela-vazia"><i class="bi bi-journal"></i>Nenhum empréstimo encontrado</td></tr>`;
+            return;
+        }
+        corpo.innerHTML = lista.map(e => {
+            const devolvido = (e.status || "").toLowerCase() === "devolvido";
+            const atrasado = estaAtrasado(e);
+            const statusExibido = devolvido ? "Devolvido" : (atrasado ? "Atrasado" : (e.status || "Emprestado"));
+            return `
+                <tr>
+                    <td>${e.livro?.titulo || "-"}</td>
+                    <td>${e.usuario?.nome || "-"}</td>
+                    <td>${formatarData(e.dataEmprestimo)}</td>
+                    <td>${badgeStatus(statusExibido)}</td>
+                    <td class="text-end">
+                        ${!devolvido ? `
+                            <button class="btn-icone btn-app-secundario" title="Renovar" onclick="renovarEmprestimo(${e.id})"><i class="bi bi-arrow-repeat"></i></button>
+                            <button class="btn-icone btn-app-primario" title="Registrar devolução" onclick="devolverEmprestimo(${e.id})"><i class="bi bi-box-arrow-in-left"></i></button>
+                        ` : `<span class="text-muted" style="font-size:12px;">Concluído</span>`}
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    function filtrarEmprestimos() {
+        const termo = document.getElementById("buscaEmprestimo").value.toLowerCase();
+        const filtro = document.getElementById("filtroStatus").value;
+
+        let filtrado = listaEmprestimos.filter(e =>
+            (e.livro?.titulo || "").toLowerCase().includes(termo) || (e.usuario?.nome || "").toLowerCase().includes(termo)
+        );
+
+        if (filtro === "devolvido") filtrado = filtrado.filter(e => (e.status || "").toLowerCase() === "devolvido");
+        if (filtro === "atrasado") filtrado = filtrado.filter(e => estaAtrasado(e));
+        if (filtro === "ativo") filtrado = filtrado.filter(e => (e.status || "").toLowerCase() !== "devolvido" && !estaAtrasado(e));
+
+        renderizarTabela(filtrado);
+    }
+
+    async function registrarEmprestimo() {
+        const usuarioId = document.getElementById("selectUsuario").value;
+        const livroId = document.getElementById("selectLivro").value;
+        const data = document.getElementById("dataEmprestimoNovo").value;
+
+        if (!usuarioId || !livroId || !data) {
+            mostrarToast("Selecione o aluno, o livro e a data.", "erro");
+            return;
+        }
+
+        const emprestimo = {
+            usuario: { id: parseInt(usuarioId) },
+            livro: { id: parseInt(livroId) },
+            dataEmprestimo: data,
+            status: "Emprestado"
+        };
+
+        try {
+            const response = await apiFetch(API.emprestimos.salvar(), {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(emprestimo)
+            });
+
+            if (!response.ok) {
+                mostrarToast("Não foi possível registrar o empréstimo.", "erro");
+                return;
+            }
+
+            mostrarToast("Empréstimo registrado com sucesso!");
+            bootstrap.Modal.getInstance(document.getElementById("modalNovoEmprestimo")).hide();
+            carregarTudo();
+
+        } catch (e) {
+            // erro já tratado (toast)
+        }
+    }
+
+    async function devolverEmprestimo(id) {
+        try {
+            const response = await apiFetch(API.emprestimos.devolver(id), { method: "PUT" });
+            if (!response.ok) {
+                mostrarToast("Não foi possível registrar a devolução.", "erro");
+                return;
+            }
+            mostrarToast("Devolução registrada!");
+            carregarTudo();
+        } catch (e) {
+            // erro já tratado (toast)
+        }
+    }
+
+    async function renovarEmprestimo(id) {
+        try {
+            const response = await apiFetch(API.emprestimos.renovar(id), { method: "PUT" });
+            if (!response.ok) {
+                mostrarToast("Não foi possível renovar o empréstimo.", "erro");
+                return;
+            }
+            mostrarToast("Empréstimo renovado!");
+            carregarTudo();
+        } catch (e) {
+            // erro já tratado (toast)
+        }
+    }
+</script>
+</body>
+</html>
