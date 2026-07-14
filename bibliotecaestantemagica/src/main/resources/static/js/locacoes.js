@@ -1,4 +1,4 @@
-const API_LISTAR = "http://192.168.10.22:8000/emprestimos/listartodos";
+const API_LISTAR = "http://localhost:8000/emprestimos/listartodos";
 
 document.addEventListener("DOMContentLoaded", () => {
     listarLocacoes();

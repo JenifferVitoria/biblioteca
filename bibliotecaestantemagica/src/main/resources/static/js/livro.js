@@ -1,8 +1,8 @@
-const API_CADASTRAR ="http://192.168.10.22:8000/livros/salvar";
-const API_BUSCAR_TODOS ="http://192.168.10.22:8000/livros/listartodos";
-const API_BUSCAR_LIVRO ="http://192.168.10.22:8000/livros/BuscarPorTipo";
-const API_BUSCAR_ID = "http://192.168.10.22:8000/livros/listarid";
-const API_RESERVAR = "http://192.168.10.22:8000/livros/reservar";
+const API_CADASTRAR ="http://localhost:8000/livros/salvar";
+const API_BUSCAR_TODOS ="http://localhost:8000/livros/listartodos";
+const API_BUSCAR_LIVRO ="http://localhost:8000/livros/BuscarPorTipo";
+const API_BUSCAR_ID = "http://localhost:8000/livros/listarid";
+const API_RESERVAR = "http://localhost:8000/livros/reservar";
 
 let notaAvaliacao = 0;
 let editandoid = null;

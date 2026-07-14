@@ -1,5 +1,5 @@
-const API_LIVROS = "http://192.168.10.22:8000/livros";
-const API_USUARIOS = "http://192.168.10.22:8000/Usuarios";
+const API_LIVROS = "http://localhost:8000/livros";
+const API_USUARIOS = "http://localhost:8000/Usuarios";
 
 
 // ==============================
@@ -46,7 +46,7 @@ function mostrarLivros(livros) {
 
         container.innerHTML += `
             <div class="book-card">
-                <img src="http://192.168.10.22:8000/uploads/${livro.imagem}">
+                <img src="http://localhost:8000/uploads/${livro.imagem}">
                 <h5>${livro.titulo}</h5>
                 <p>${livro.autor}</p>
                 <span>${livro.genero}</span>

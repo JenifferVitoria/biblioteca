@@ -1,11 +1,11 @@
 
 // COMEÇANDO O METODO LISTAR TODOS DOS (LIVROS)
-const API_BASE2 = "http://192.168.10.22:8000";
-const API_BUSCAR_TODOS = API_BASE2+"/192.168.10.22/listartodos";
-const API_BUSCAR_POR_ID = API_BASE2+"/192.168.10.22/listarporid";
-const API_ATUALIZAR = API_BASE2+"/192.168.10.22/atualizar";
-const API_DELETAR = API_BASE2+"/192.168.10.22/deletar";
-const API_SALVAR =API_BASE2+"/192.168.10.22/salvar";
+const API_BASE2 = "http://localhost:8000";
+const API_BUSCAR_TODOS = API_BASE2+"/reservas/listartodos";
+const API_BUSCAR_POR_ID = API_BASE2+"/reservas/listarporid";
+const API_ATUALIZAR = API_BASE2+"/reservas/atualizar";
+const API_DELETAR = API_BASE2+"/reservas/deletar";
+const API_SALVAR =API_BASE2+"/reservas/salvar";
 
 let editandoID = null;
 

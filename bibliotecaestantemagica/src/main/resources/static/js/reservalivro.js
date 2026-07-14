@@ -1,5 +1,5 @@
-const API_LISTAR_ID = "http://192.168.10.22:8000/livros/listarid";
-const API_RESERVAR = "http://192.168.10.22:8000/livros/reservar";
+const API_LISTAR_ID = "http://localhost:8000/livros/listarid";
+const API_RESERVAR = "http://localhost:8000/livros/reservar";
 
 
 /// PEGAR ID DA URL
@@ -47,7 +47,7 @@ async function carregarLivro() {
     const livro = await response.json();
 
     document.querySelector(".book-image img").src =
-        `http://192.168.10.22:8000/uploads/${livro.imagem}`;
+        `http://localhost:8000/uploads/${livro.imagem}`;
 
     document.querySelector(".category").innerText =
         livro.genero;
