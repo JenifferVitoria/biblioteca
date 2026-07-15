@@ -7,10 +7,53 @@ const API_ATUALIZAR = API_BASE2+"/reservas/atualizar";
 const API_DELETAR = API_BASE2+"/reservas/deletar";
 const API_SALVAR =API_BASE2+"/reservas/salvar";
 
-let editandoID = null;
+const API_SALVAR_emprestimo = API_BASE2+"/emprestimos/salvar";
 
-function AbrirPagina(){
-     window.location.href ="emprestimos.html";
+
+async function AbrirPagina(id){
+
+		const emprestimo = {};
+
+		emprestimo.usuario = {
+		    id: Number(id)
+		};
+
+		emprestimo.livro = {
+		    id: Number(id)
+		};
+
+		emprestimo.dataEmprestimo = new Date();
+		emprestimo.status = "ATIVO";
+
+	    const salvar = API_SALVAR_emprestimo;
+	    const metodo = "POST";
+
+	 
+
+	    const response = await fetch(salvar, {
+
+	        method: metodo,
+
+	        headers: {
+	            "Content-Type": "application/json"
+	        },
+
+	        body: JSON.stringify(emprestimo)
+	    });
+
+	    if (response.ok) {
+
+	        alert("Empréstimo salvo com sucesso!");
+
+			window.location.href ="emprestimos.html";
+
+	    } else {
+
+	        alert("Erro ao salvar empréstimo.");
+	    }	
+	
+	
+
 }
 
 
